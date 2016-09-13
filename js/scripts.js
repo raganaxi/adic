@@ -51,15 +51,11 @@
     });
     $("#do_drag_search_open").swipe({
       swipeStatus: function (event, phase, direction, distance, duration, fingers) {
-        if (phase == "move" && direction == "down") {
+        if (phase == "move" && direction == "left") {
           openAsideSearch();
           return false;
         }
-      }
-    });
-    $("#do_drag_search_close").swipe({
-      swipeStatus: function (event, phase, direction, distance, duration, fingers) {
-        if (phase == "move" && direction == "up") {
+        if (phase == "move" && direction == "right") {
           closeAsideSearch();
           return false;
         }
@@ -112,15 +108,15 @@
 
     function toggleAsideSearch(){
       controller.toggle('searchNav');
-      toggleSwipeArea();
+      /*toggleSwipeArea();*/
     }
     function openAsideSearch(){
       controller.open('searchNav');
-      toggleSwipeArea();
+      /*toggleSwipeArea();*/
     }
     function closeAsideSearch(){
       controller.close('searchNav');
-      toggleSwipeArea();
+      /*toggleSwipeArea();*/
     }
 
     function toggleSwipeArea(){
@@ -131,10 +127,10 @@
       }
     }
     function toggleSwipeAreaSearch(){
-      if($('#do_drag_search').hasClass('navOpen')){
-        $('#do_drag_search').removeClass('navOpen');
+      if($('#do_drag_search_open').hasClass('navOpen')){
+        $('#do_drag_search_open').removeClass('navOpen');
       } else {
-        $('#do_drag_search').addClass('navOpen');
+        $('#do_drag_search_open').addClass('navOpen');
       }
     }
 
