@@ -32,40 +32,50 @@
   "use strict";
   // Place any jQuery/helper plugins in here.
 
+
   $(document).ready(function(){
+    var controller = new slidebars();
+    controller.init();
+
+    $("#do_drag").swipe({
+      swipeStatus: function (event, phase, direction, distance, duration, fingers) {
+        if (phase == "move" && direction == "right") {
+          openAside();
+          return false;
+        }
+        if (phase == "move" && direction == "left") {
+          closeAside();
+          return false;
+        }
+      }
+    });
+    $("#do_drag_search_open").swipe({
+      swipeStatus: function (event, phase, direction, distance, duration, fingers) {
+        if (phase == "move" && direction == "down") {
+          openAsideSearch();
+          return false;
+        }
+      }
+    });
+    $("#do_drag_search_close").swipe({
+      swipeStatus: function (event, phase, direction, distance, duration, fingers) {
+        if (phase == "move" && direction == "up") {
+          closeAsideSearch();
+          return false;
+        }
+      }
+    });
+
     var wow = new WOW({
       offset: 100,
       mobile: true,
-      live: true
+      live: true,
+      scrollContainer: '.scroll'
     })
     wow.init();
-    var options = {
-      $menu: false,
-      menuSelector: 'a',
-      panelSelector: '.snap',
-      namespace: '.panelSnap',
-      onSnapStart: function(){},
-      onSnapFinish: function(){},
-      onActivate: function(){},
-      directionThreshold: 50,
-      slideSpeed: 500,
-      delay: 0,
-      easing: 'linear',
-      offset: 0,
-      navigation: {
-        keys: {
-          nextKey: false,
-          prevKey: false,
-        },
-        buttons: {
-          $nextButton: false,
-          $prevButton: false,
-        },
-        wrapAround: false
-      }
-    };
-    $('body').panelSnap(options);
+
     fullHeight();
+
     $('.fab').click(function(){
       if ($('.nav-modal').hasClass('active')){
         $(".nav-modal").removeClass("active");
@@ -74,7 +84,59 @@
       	$(".nav-modal").addClass("active");
         $('body').addClass('overflowHidden');
       }
+    });
+
+    $( '#openAside' ).click(function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      toggleAside();
     })
+    $( '#openSearch' ).click(function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      toggleAsideSearch();
+    })
+
+    function toggleAside(){
+      controller.toggle('asideNav');
+      toggleSwipeArea();
+    }
+    function openAside(){
+      controller.open('asideNav');
+      toggleSwipeArea();
+    }
+    function closeAside(){
+      controller.close('asideNav');
+      toggleSwipeArea();
+    }
+
+    function toggleAsideSearch(){
+      controller.toggle('searchNav');
+      toggleSwipeArea();
+    }
+    function openAsideSearch(){
+      controller.open('searchNav');
+      toggleSwipeArea();
+    }
+    function closeAsideSearch(){
+      controller.close('searchNav');
+      toggleSwipeArea();
+    }
+
+    function toggleSwipeArea(){
+      if($('#do_drag').hasClass('navOpen')){
+        $('#do_drag').removeClass('navOpen');
+      } else {
+        $('#do_drag').addClass('navOpen');
+      }
+    }
+    function toggleSwipeAreaSearch(){
+      if($('#do_drag_search').hasClass('navOpen')){
+        $('#do_drag_search').removeClass('navOpen');
+      } else {
+        $('#do_drag_search').addClass('navOpen');
+      }
+    }
 
     var stickyNavTop = $('.nav').offset().top;
     var stickyNav = function(){

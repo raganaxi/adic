@@ -48,7 +48,7 @@ body *:after, .wrapper *:after, .z-container *:after, .z-container-fluid *:after
 .z-btn {
   display: inline-block;
   border: none;
-  border-bottom: 4px solid rgba(0, 0, 0, .2)!important;
+  border-bottom: 4px solid rgba(0, 0, 0, .2);
   cursor: pointer;
   border-radius: 0!important;
   padding: 10px!important;
@@ -75,7 +75,9 @@ body *:after, .wrapper *:after, .z-container *:after, .z-container-fluid *:after
 .square { border-radius: 0!important; }
 .border { border: solid 1px #c2c2c2; }
 .border-box { border: solid 1px #999999; }
-.boxShadow { box-shadow: 0px 6px 5px 0 rgba(0, 0, 0, 0.2); }
+.boxShadow { box-shadow: 0px 4px 10px 0 rgba(0, 0, 0, 0.2); }
+.boxShadowRight { box-shadow: 4px 0 10px rgba(0,0,0,0.2); }
+.boxShadowLeft { box-shadow: -4px 0 10px rgba(0,0,0,0.2); }
 .noShadow { box-shadow: none!important; }
 .text-shadow { text-shadow: 0 0 5px rgba(0, 0, 0, .2)!important; }
 .noTransform { text-decoration: none!important; text-transform: none!important; }
@@ -969,16 +971,16 @@ body:after,
   outline: none!important;
 }
 .form-control:-moz-placeholder {
-color: #cfcfcf;
-font-size: 15px;
+  color: #cfcfcf;
+  font-size: 15px;
 }
 .form-control::-moz-placeholder {
-color: #cfcfcf;
-font-size: 15px;
+  color: #cfcfcf;
+  font-size: 15px;
 }
 .form-control:-ms-input-placeholder {
-color: #cfcfcf;
-font-size: 15px;
+  color: #cfcfcf;
+  font-size: 15px;
 }
 .form-addon {
   position: absolute!important;

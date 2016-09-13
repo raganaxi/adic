@@ -1,0 +1,228 @@
+<!doctype html>
+<html class="no-js" lang="en-US">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>appGobierno</title>
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#385e9d" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- Standard Favicon -->
+    <link rel="icon" sizes="32x32" type="image/x-icon" href="favicon/favicon.ico" />
+    <!-- For iPhone 4 Retina display: -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicon/apple-touch-icon-114x114-precomposed.png">-->
+    <!-- For iPad: -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="72x72" href="favicon/apple-touch-icon-72x72-precomposed.png">-->
+    <!-- For iPhone: -->
+    <!--<link rel="apple-touch-icon-precomposed" href="favicon/apple-touch-icon-57x57-precomposed.png">-->
+    <!-- For Windows 8: -->
+    <!--<meta name="msapplication-TileImage" content="favicon/pinned.png">
+    <meta name="msapplication-TileColor" content="#385e9d">-->
+    <!-- For Opera Coast: -->
+    <!--<link rel="icon" sizes="228x228" href="favicon/favicon-coast.png" >-->
+
+    <!-- build:css css/styles.css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/slidebars/dist/slidebars.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/helpers.css">
+    <!-- endbuild -->
+
+  </head>
+
+  <body class="bgLightGrey hFull">
+    <nav class="nav z-container-fluid bgDark boxShadow">
+      <div class="z-row noMargin">
+        <div class="z-block h50">
+          <div class="z-content-fluid z-contentMiddle text-left">
+            <a id="openAside" role="button" class="cLightGrey s15">
+              <span class="fa fa-bars s25"></span>
+            </a>
+          </div>
+          <div class="z-content-fluid z-contentMiddle text-center">
+            <a href="main.html" role="button" class="cLightGrey s15">
+              <span class="fa fa-home s25"></span>
+            </a>
+          </div>
+          <div id="do_drag_search_open" class="z-content-fluid z-contentMiddle text-right">
+            <a id="openSearch" role="button" class="cLightGrey s15">
+              <span class="fa fa-search s25"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <nav class="nav-movil">
+      <div class="fab bgBlue"><span class="fa fa-plus s25"></span></div>
+      <div class="nav-modal">
+        <div class="blur"></div>
+        <ul>
+          <li class="z-block h50">
+            <a href="#" class="z-content z-contentMiddle cDark s20 text-bold text-center">
+              Link
+            </a>
+          </li>
+          <li class="z-block h50">
+            <a href="#" class="z-content z-contentMiddle cDark s20 text-bold text-center">
+              Link
+            </a>
+          </li>
+          <li class="z-block h50">
+            <a href="#" class="z-content z-contentMiddle cDark s20 text-bold text-center">
+              Link
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <aside id="sidebar" off-canvas="asideNav left push" role="navigation" class="mainContainer sidebar boxShadowRight bgLightBlue">
+      <div class="sidebar-header header-cover z-forceBlock h200 panelImg" style="background-image: url('images/bg/01.jpg');">
+        <div class="z-block h150">
+          <div class="z-content z-contentMiddle">
+            <div class="sidebar-image panelImg" style="background-image:url('images/profile/01.png')">
+            </div>
+          </div>
+        </div>
+        <a data-toggle="collapse" href="#profile-dropdown" role="button" class="z-block h50 cDark bgWhiteClear">
+          <div class="z-content z-contentMiddle">
+            <div class="z-panelBody">
+              usuario@correo.com
+              <span class="fa fa-caret-down pull-right"></pan>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="sidebar-nav">
+        <div class="collapse" id="profile-dropdown">
+          <div class="list-group bgLightGrey noBorder square">
+            <a role="button" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+              Ir a perfil
+            </a>
+            <a role="button" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+              Link
+            </a>
+            <a role="button" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+              Link
+            </a>
+            <a role="button" href="index.html" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+              Cerrar sesión
+            </a>
+          </div>
+        </div>
+        <div class="list-group bgTransparent noBorder square">
+          <a href="main.html" role="button" class="list-group-item cDark s15 square noBorder noMargin bgTransparent">
+            <span class="sidebar-icon fa fa-newspaper-o cDark"></span> Noticias
+          </a>
+          <a href="main.html" role="button" class="list-group-item cDark s15 square noBorder noMargin bgTransparent">
+            <span class="sidebar-icon fa fa-calendar cDark"></span> Eventos
+          </a>
+          <a href="main.html" role="button" class="list-group-item cDark s15 square noBorder noMargin bgTransparent">
+            <span class="sidebar-icon fa fa-bell cDark"></span> Alertas
+          </a>
+          <a href="main.html" role="button" class="list-group-item cDark s15 square noBorder noMargin bgTransparent">
+            <span class="sidebar-icon fa fa-tag cDark"></span> etc...
+          </a>
+        </div>
+        <hr class="separator">
+        <div class="list-group bgTransparent noBorder square">
+          <a role="button" class="list-group-item cDark s15 square noBorder noMargin bgTransparent">
+            link extra 1
+          </a>
+          <a role="button" class="list-group-item cDark s15 square noBorder noMargin bgTransparent">
+            link extra 2
+          </a>
+        </div>
+      </div>
+    </aside>
+    <aside class="searchSidebar sidebar boxShadowLeft bgLightBlue" off-canvas="searchNav right push" role="panel" class="mainContainer sidebar boxShadow bgWhite">
+      <div class="clear"></div>
+      <form class="z-container-fluid">
+        <div class="z-row">
+          <div class="z-col-lg-8 z-col-md-8 z-col-sm-8 z-col-xs-12">
+            <input class="form-control square" type="text" name="name" value="" placeholder="Buscar...">
+            <div class="clear"></div>
+          </div>
+          <div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-xs-12">
+            <button class="z-btn cWhite bgGreen s15 rounded"><span class="fa fa-search"></span></button>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </form>
+      <div class="hidden" id="do_drag_search_close"></div>
+    </aside>
+    <div id="do_drag"></div><main canvas="container" class="z-container-fluid noPadding scroll bgLightGrey">
+      <section class="z-container mainContainer">
+        <div class="z-row">
+          <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12">
+            <div class="z-panel bgWhite boxShadow wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".3s">
+              <div class="z-panelHeader z-block h100 mh100 overflowHidden noPadding">
+                <div id="img_00" class="z-block panelImg h300">
+                  <div class="z-content z-contentBottom">
+                    <h1 class="text-center text-uppercase cWhite s40 text-bold text-shadow wow fadeInDown bgDarkClear" data-wow-duration="1s" data-wow-delay=".5s">
+                      Titulo de la noticia
+                    </h1>
+                  </div>
+                </div>
+              </div>
+              <div class="z-panelBody z-block h100 mh100 overflowHidden">
+                <div class="z-row">
+                  <div class="z-col-lg-8 z-col-md-8 z-col-sm-8 z-col-xs-12 z-col-lg-offset-2 z-col-md-offset-2 z-col-sm-offset-2 z-col-xs-offset-0">
+                    <p class="cDark s15 text-justify">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      <br>
+                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                      <br>
+                      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      <br>
+                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p class="cDark s15 text-justify">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      <br>
+                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                      <br>
+                      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      <br>
+                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="z-panelFooter z-block h50 mh50 overflowHidden noPadding bgDarkClear">
+                <a role="button" class="z-content-fluid z-contentMiddle z-btn cWhite text-center s20">
+                  <span class="fa fa-share"></span>
+                </a>
+                <a role="button" class="z-content-fluid z-contentMiddle z-btn cWhite text-center s20">
+                  <span class="fa fa-thumbs-up"></span>
+                </a>
+                <a role="button" class="z-content-fluid z-contentMiddle z-btn cWhite text-center s20">
+                  <span class="fa fa-tag"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="clear h50"></div>
+    </main>
+
+    <svg class="hidden" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <filter id="blur">
+        <feGaussianBlur stdDeviation="30" />
+      </filter>
+    </svg>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/slidebars/dist/slidebars.min.js"></script>
+    <script src="bower_components/jquery-touchSwipe/jquery.touchSwipe.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>

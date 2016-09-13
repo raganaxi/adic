@@ -3,20 +3,36 @@
 <head>
   <meta charset="utf-8">
 
-  <title>A donde ir en la Ciudad</title>
+  <title>appGobierno</title>
 
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#385e9d" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
 
-  <!--<link rel="shortcut icon" href="images/favicon.ico" sizes="32x32" type="image/x-icon" />-->
+  <!-- Standard Favicon -->
+  <link rel="icon" sizes="32x32" type="image/x-icon" href="favicon/favicon.ico" />
+  <!-- For iPhone 4 Retina display: -->
+  <!--<link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicon/apple-touch-icon-114x114-precomposed.png">-->
+  <!-- For iPad: -->
+  <!--<link rel="apple-touch-icon-precomposed" sizes="72x72" href="favicon/apple-touch-icon-72x72-precomposed.png">-->
+  <!-- For iPhone: -->
+  <!--<link rel="apple-touch-icon-precomposed" href="favicon/apple-touch-icon-57x57-precomposed.png">-->
+  <!-- For Windows 8: -->
+  <!--<meta name="msapplication-TileImage" content="favicon/pinned.png">
+  <meta name="msapplication-TileColor" content="#385e9d">-->
+  <!-- For Opera Coast: -->
+  <!--<link rel="icon" sizes="228x228" href="favicon/favicon-coast.png" >-->
 
   <!-- build:css css/styles.css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="bower_components/slidebars/dist/slidebars.css">
   <link rel="stylesheet" href="css/font-awesome.css">
   <link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/helpers.css">
+
   <!-- endbuild -->
 
 </head>
@@ -30,297 +46,42 @@
           <div class="z-row">
             <div class="z-col-lg-12">
               <h1 class="text-center cWhite s65 noMargin text-bold text-shadow wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
-                A donde ir
+                Gobierno
               </h1>
-              <h2 class="text-center cBlue s30 noMargin text-bold text-shadow wow fadeInDown" data-wow-duration="1s" data-wow-delay=".8s">
-                en la ciudad
+              <h2 class="text-center cYellow s30 noMargin text-bold text-shadow wow fadeInDown" data-wow-duration="1s" data-wow-delay=".8s">
+                y servicios digitales
               </h2>
             </div>
           </div>
-          <div class="clear h50"></div>
-          <div class="z-row">
-            <h3 class="s20 text-center text-uppercase text-shadow cWhite wow fadeInDown" data-wow-duration="1s" data-wow-delay="2s">Inicia sesión</h3>
-          </div>
-          <div class="z-row">
+          <div class="clear h100"></div>
+          <div class="z-row wow fadeInUp" data-wow-duration="1s" data-wow-delay="2s">
             <div class="z-col-lg-4 z-col-lg-offset-2 z-col-md-4 z-col-md-offset-2 z-col-sm-4 z-col-sm-offset-2 z-col-xs-8 z-col-xs-offset-2">
-              <div class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center boxShadow wow fadeInDown" data-wow-duration="1s" data-wow-delay="2s">
-                <span class="fa fa-facebook-square"></span> Facebook
-              </div>
-              <div class="clear"></div>
+              <a href="main.html" class="z-btn h50 bgBlue cWhite s20 text-center noTransform boxShadow">
+                Facebook
+              </a>
             </div>
             <div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-sm-offset-0 z-col-xs-8 z-col-xs-offset-2">
-              <div class="z-btn btn-rounded h50 bgRed cWhite s20 text-center boxShadow wow fadeInDown" data-wow-duration="1s" data-wow-delay="2s">
-                <span class="fa fa-google-plus-square"></span> Google+
+              <a href="main.html" class="z-btn h50 bgRed cWhite s20 text-center noTransform boxShadow">
+                Google+
+              </a>
+            </div>
+            <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12">
+              <div class="z-block h70">
+                <div class="z-content z-contentMiddle text-center">
+                  <a href="main.html" class="cWhite s20 noTransform">entrar <span class="fa fa-arrow-right"></span></a>
+                </div>
               </div>
-              <div class="clear"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </main>
-  <section class="z-container-fluid noPadding">
-    <nav class="nav z-container-fluid bgDark boxShadow">
-      <div class="z-row noMargin">
-        <div class="z-block h50">
-          <a role="button" class="z-content-fluid z-contentMiddle text-left cLightGrey s15">
-            <span class="fa fa-bars s20"></span>
-          </a>
-          <a role="button" class="z-content-fluid z-contentMiddle text-center cLightGrey s15">
-            Home
-          </a>
-          <a role="button" class="z-content-fluid z-contentMiddle text-right cLightGrey s15">
-            <span class="fa fa-user s20"></span>
-          </a>
-        </div>
-      </div>
-    </nav>
-    <nav class="nav-movil wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".5s">
-      <div class="fab bgBlue z-block">
-        <div class="z-content z-contentMiddle text-center">
-          <span class="fa fa-search s25"></span>
-        </div>
-      </div>
-      <div class="nav-modal bgDarkClear">
-        <div class="blur"></div>
-        <ul>
-          <li class="z-block h60">
-            <a href="#" class="z-content z-contentMiddle cDark s30 text-right text-uppercase">
-              A donde ir
-            </a>
-          </li>
-          <li class="z-block h60">
-            <a href="#" class="z-content z-contentMiddle cDark s30 text-right text-uppercase">
-              Categorias
-            </a>
-          </li>
-          <li class="z-block h60">
-            <a href="#" class="z-content z-contentMiddle cDark s30 text-right text-uppercase">
-              Etc...
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div class="z-container mainContainer">
-      <div class="z-row">
-        <div class="z-col-lg-12">
-          <div class="z-block h100">
-            <div class="z-content z-contentMiddle">
-              <h1 class="text-center text-uppercase cDark s30 noMargin text-bold text-shadow wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
-                noticias
-              </h1>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="z-row">
 
-        <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
-          <div id="img_00" class="z-panel bgWhite boxShadow wow fadeInUp panelImg" data-wow-duration=".5s" data-wow-delay=".3s">
-            <div class="z-panelBody z-block h100 mh100 overflowHidden">
-              <div class="z-row">
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12">
-                  <div class="z-block h150 bgTransparent" >
-                    <div class="z-content z-contentMiddle">
-                      &nbsp;
-                    </div>
-                  </div>
-                </div>
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgDarkClear">
-                  <div class="z-block h100 mh100 overflowAuto">
-                    <div class="z-content z-contentMiddle">
-                      <p class="cWhite s15">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
-          <div id="img_01" class="z-panel bgWhite boxShadow wow fadeInUp panelImg" data-wow-duration=".5s" data-wow-delay=".3s">
-            <div class="z-panelBody z-block h100 mh100 overflowHidden">
-              <div class="z-row">
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12">
-                  <div class="z-block h150 bgTransparent" >
-                    <div class="z-content z-contentMiddle">
-                      &nbsp;
-                    </div>
-                  </div>
-                </div>
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgDarkClear">
-                  <div class="z-block h100 mh100 overflowAuto">
-                    <div class="z-content z-contentMiddle">
-                      <p class="cWhite s15">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
-          <div id="img_02" class="z-panel bgWhite boxShadow wow fadeInUp panelImg" data-wow-duration=".5s" data-wow-delay=".3s">
-            <div class="z-panelBody z-block h100 mh100 overflowHidden">
-              <div class="z-row">
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12">
-                  <div class="z-block h150 bgTransparent" >
-                    <div class="z-content z-contentMiddle">
-                      &nbsp;
-                    </div>
-                  </div>
-                </div>
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgDarkClear">
-                  <div class="z-block h100 mh100 overflowAuto">
-                    <div class="z-content z-contentMiddle">
-                      <p class="cWhite s15">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
-          <div id="img_03" class="z-panel bgWhite boxShadow wow fadeInUp panelImg" data-wow-duration=".5s" data-wow-delay=".3s">
-            <div class="z-panelBody z-block h100 mh100 overflowHidden">
-              <div class="z-row">
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12">
-                  <div class="z-block h150 bgTransparent" >
-                    <div class="z-content z-contentMiddle">
-                      &nbsp;
-                    </div>
-                  </div>
-                </div>
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgDarkClear">
-                  <div class="z-block h100 mh100 overflowAuto">
-                    <div class="z-content z-contentMiddle">
-                      <p class="cWhite s15">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
-          <div id="img_04" class="z-panel bgWhite boxShadow wow fadeInUp panelImg" data-wow-duration=".5s" data-wow-delay=".3s">
-            <div class="z-panelBody z-block h100 mh100 overflowHidden">
-              <div class="z-row">
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12">
-                  <div class="z-block h150 bgTransparent" >
-                    <div class="z-content z-contentMiddle">
-                      &nbsp;
-                    </div>
-                  </div>
-                </div>
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgDarkClear">
-                  <div class="z-block h100 mh100 overflowAuto">
-                    <div class="z-content z-contentMiddle">
-                      <p class="cWhite s15">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
-          <div id="img_05" class="z-panel bgWhite boxShadow wow fadeInUp panelImg" data-wow-duration=".5s" data-wow-delay=".3s">
-            <div class="z-panelBody z-block h100 mh100 overflowHidden">
-              <div class="z-row">
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12">
-                  <div class="z-block h150 bgTransparent" >
-                    <div class="z-content z-contentMiddle">
-                      &nbsp;
-                    </div>
-                  </div>
-                </div>
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgDarkClear">
-                  <div class="z-block h100 mh100 overflowAuto">
-                    <div class="z-content z-contentMiddle">
-                      <p class="cWhite s15">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
-          <div id="img_06" class="z-panel bgWhite boxShadow wow fadeInUp panelImg" data-wow-duration=".5s" data-wow-delay=".3s">
-            <div class="z-panelBody z-block h100 mh100 overflowHidden">
-              <div class="z-row">
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12">
-                  <div class="z-block h150 bgTransparent" >
-                    <div class="z-content z-contentMiddle">
-                      &nbsp;
-                    </div>
-                  </div>
-                </div>
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgDarkClear">
-                  <div class="z-block h100 mh100 overflowAuto">
-                    <div class="z-content z-contentMiddle">
-                      <p class="cWhite s15">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
-          <div id="img_07" class="z-panel bgWhite boxShadow wow fadeInUp panelImg" data-wow-duration=".5s" data-wow-delay=".3s">
-            <div class="z-panelBody z-block h100 mh100 overflowHidden">
-              <div class="z-row">
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12">
-                  <div class="z-block h150 bgTransparent" >
-                    <div class="z-content z-contentMiddle">
-                      &nbsp;
-                    </div>
-                  </div>
-                </div>
-                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgDarkClear">
-                  <div class="z-block h100 mh100 overflowAuto">
-                    <div class="z-content z-contentMiddle">
-                      <p class="cWhite s15">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <filter id="blur">
-      <feGaussianBlur stdDeviation="30" />
-    </filter>
-  </svg>
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="js/jquery.panelSnap.js"></script>
+  <script src="bower_components/slidebars/dist/slidebars.min.js"></script>
+  <script src="bower_components/jquery-touchSwipe/jquery.touchSwipe.min.js"></script>
   <script src="js/wow.min.js"></script>
   <script src="js/scripts.js"></script>
 </body>
