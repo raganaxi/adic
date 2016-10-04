@@ -1,5 +1,4 @@
 <?php
-//https://www.funcion13.com/creando-un-pequeno-orm-en-php/#
 define( "DB_PROVIDER", "mysql:host=mysql.hostinger.mx;dbname=u913897248_aadic" );
 define( "DB_USER", "u913897248_aadic" );
 define( "DB_PASSWORD", "u913897248_adicBD" );
@@ -16,6 +15,10 @@ if ($conn->connect_error) {
   die("connection failed: ", $conn->connect_error);
 }
 
+
+// aqui empieza el ORM
+//https://www.ufncion13.com/creando-un-pequeno-orm-en-php/#
+/*
 abstract class DatabaseProvider {
   protected $resource;
   public abstract function connect($host, $user, $pass, $dbname);
@@ -274,3 +277,4 @@ class Users extends ORM {
     $this->nombre = isset($data['nombre']) ? $data['nombre'] : null;
   }
 }
+*/

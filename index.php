@@ -1,43 +1,4 @@
-<!doctype html>
-<html class="no-js" lang="en-US">
-<head>
-  <meta charset="utf-8">
-
-  <title>A donde ir en la ciudad</title>
-
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#385e9d" />
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-
-  <!-- Standard Favicon -->
-  <link rel="icon" sizes="32x32" type="image/x-icon" href="favicon/favicon.ico" />
-  <!-- For iPhone 4 Retina display: -->
-  <!--<link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicon/apple-touch-icon-114x114-precomposed.png">-->
-  <!-- For iPad: -->
-  <!--<link rel="apple-touch-icon-precomposed" sizes="72x72" href="favicon/apple-touch-icon-72x72-precomposed.png">-->
-  <!-- For iPhone: -->
-  <!--<link rel="apple-touch-icon-precomposed" href="favicon/apple-touch-icon-57x57-precomposed.png">-->
-  <!-- For Windows 8: -->
-  <!--<meta name="msapplication-TileImage" content="favicon/pinned.png">
-  <meta name="msapplication-TileColor" content="#385e9d">-->
-  <!-- For Opera Coast: -->
-  <!--<link rel="icon" sizes="228x228" href="favicon/favicon-coast.png" >-->
-
-  <!-- build:css css/styles.css -->
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="bower_components/slidebars/dist/slidebars.css">
-  <link rel="stylesheet" href="css/font-awesome.css">
-  <link rel="stylesheet" href="css/animate.css">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/helpers.css">
-
-  <!-- endbuild -->
-
-</head>
-<body class="bgLightGrey hFull">
-
+<?php include ('header.php'); ?>
   <main class="z-container-fluid splash noPadding hFull">
     <div class="bgCover"></div>
     <div class="z-container">
@@ -73,6 +34,7 @@
       </div>
     </div>
   </main>
+
   <div class="modal fade bgDarkClear" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -92,11 +54,11 @@
           </form>
           <hr>
           <div class="form-section">
-            <a href="main.html" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow">
+            <a href="main.php" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow">
               Facebook
             </a>
             <div class="clear"></div>
-            <a href="main.html" class="z-btn btn-rounded h50 bgRed cWhite s20 text-center noTransform boxShadow">
+            <a href="main.php" class="z-btn btn-rounded h50 bgRed cWhite s20 text-center noTransform boxShadow">
               Google+
             </a>
           </div>
@@ -127,11 +89,11 @@
           </form>
           <hr>
           <div class="form-section">
-            <a href="main.html" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow">
+            <a href="main.php" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow">
               Facebook
             </a>
             <div class="clear"></div>
-            <a href="main.html" class="z-btn btn-rounded h50 bgRed cWhite s20 text-center noTransform boxShadow">
+            <a href="main.<?php  ?>" class="z-btn btn-rounded h50 bgRed cWhite s20 text-center noTransform boxShadow">
               Google+
             </a>
           </div>
@@ -144,11 +106,4 @@
     </div><!-- /.modal-dialog -->
   </div>
 
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="bower_components/slidebars/dist/slidebars.min.js"></script>
-  <script src="js/jquery.touchSwipe.min.js"></script>
-  <script src="js/wow.min.js"></script>
-  <script src="js/scripts.js"></script>
-</body>
-</html>
+<?php include ('footer.php'); ?>
