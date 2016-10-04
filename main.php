@@ -1,4 +1,13 @@
-<?php include ('header.php'); ?>
+<?php
+include ('header.php');
+//autoloader para cargar clases
+require_once(__DIR__.'/classes/autoloader.php');
+require_once(__DIR__.'/config.php');
+
+//invocacion de clases
+use pdomysql AS pdomysql;
+use user AS user;
+?>
 <?php include ('menu.php'); ?>
   <main canvas="container" class="z-container noPadding scroll bgLightGrey">
     <section class="z-container mainContainer">

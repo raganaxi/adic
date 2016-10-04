@@ -184,9 +184,6 @@ function fullHeight() {
   }
 };
 
-
-
-
   //crear cuenta por email
   $("#crteAccountE").on('click', function(){
       $.ajax({
@@ -202,6 +199,7 @@ function fullHeight() {
         console.log(data);
         if (data.Y == "Y") {
           alert('Registrado');
+          window.location.replace("main.php");
         }else{
           alert('Erro usuario no registrado');
         }
@@ -225,5 +223,19 @@ function fullHeight() {
         }else{
           alert('problemas al iniciar session');
         }
+      });  
+  });
+
+
+    $("#logOutbtn").on('click', function(){
+
+      $.ajax({
+        data:  {
+        "logout" : 1
+        },
+        url: 'classes/ajaxUsers.php',
+        type: 'post'
+      }).done(function(data){
+        window.location.replace("index.php");
       });  
   });

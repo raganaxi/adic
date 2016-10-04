@@ -87,7 +87,10 @@
         <a data-toggle="collapse" href="#profile-dropdown" role="button" class="z-block h50 cWhite bgDarkClear">
           <div class="z-content z-contentMiddle">
             <div class="z-panelBody">
-              <span class="fa fa-user"></span> usuario@correo.com
+              <span class="fa fa-user"></span>
+          <?php
+          echo $_SESSION['user'] ;
+           ?>
               <span class="fa fa-caret-down pull-right"></pan>
             </div>
           </div>
@@ -100,7 +103,7 @@
             <a href="#" role="button" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
               link
             </a>
-            <a role="button" href="index.php" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+            <a role="button" id="logOutbtn" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
               Cerrar sesión
             </a>
           </div>
