@@ -9,14 +9,16 @@ use pdomysql AS pdomysql;
 use user AS user;
 
 ?>
-  <main class="z-container-fluid noPadding hFull">
+
+  <main class="z-container-fluid splash noPadding hFull">
+
     <div class="bgCover"></div>
     <div class="z-container">
       <div class="hFull z-block">
         <div class="z-content z-contentMiddle">
           <div class="z-row">
             <div class="z-col-lg-12">
-              <!--<img src="images/logos/logo.png" class="centered z-forceBlock wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s" />-->
+              <img src="images/logos/logo.png" class="centered z-forceBlock wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s" />
               <!--<h2 class="text-center cLightBlue s35 noMargin text-bold text-shadow wow fadeInDown" data-wow-duration="1s" data-wow-delay=".8s">
                 en la ciudad
               </h2>-->

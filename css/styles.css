@@ -236,6 +236,10 @@ body {
   position: relative;
   z-index: 10;
 }
+.sidebar-bottom {
+  position: absolute!important;
+  bottom: 0;
+}
 
 .sidebar-nav {
 
