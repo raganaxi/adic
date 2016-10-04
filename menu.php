@@ -8,7 +8,7 @@
       </div>
       <div class="z-content-fluid z-contentMiddle text-center">
         <a href="main.html" role="button" class="cLightGrey s15">
-          <span class="fa fa-home s25"></span>
+          <img class="h50" src="images/logos/logo.png" alt="logo" />
         </a>
       </div>
       <div class="z-content-fluid z-contentMiddle text-right">
