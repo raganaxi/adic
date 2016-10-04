@@ -11,11 +11,6 @@
           <img class="h50" src="images/logos/logo.png" alt="logo" />
         </a>
       </div>
-      <!--<div class="z-content-fluid z-contentMiddle text-right">
-        <a id="openUser" role="button" class="cLightGrey s20 text-bold">
-          <span class="fa fa-user s20"></span>
-        </a>
-      </div>-->
       <div class="z-content-fluid z-contentMiddle text-right">
         <a id="openSearch" role="button" class="cLightGrey s20 text-bold">
           Hoy <span class="fa fa-chevron-down s15"></span>
@@ -79,6 +74,37 @@
       <div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-xs-12">
         <button class="z-btn cWhite bgGreen s15 rounded"><span class="fa fa-search"></span></button>
         <div class="clear"></div>
+      </div>
+    </div>
+    <div class="z-row">
+      <div class="z-forceBlock h50">
+        <div class="z-block h150 hidden">
+          <div class="z-content z-contentMiddle">
+            <a href="user.php" class="sidebar-image panelImg bgDark ">
+            </a>
+          </div>
+        </div>
+        <a data-toggle="collapse" href="#profile-dropdown" role="button" class="z-block h50 cWhite bgDarkClear">
+          <div class="z-content z-contentMiddle">
+            <div class="z-panelBody">
+              <span class="fa fa-user"></span> usuario@correo.com
+              <span class="fa fa-caret-down pull-right"></pan>
+            </div>
+          </div>
+        </a>
+        <div class="collapse" id="profile-dropdown">
+          <div class="list-group bgLightGrey noBorder square">
+            <a href="#" role="button" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+              link
+            </a>
+            <a href="#" role="button" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+              link
+            </a>
+            <a role="button" href="index.php" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+              Cerrar sesión
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </form>

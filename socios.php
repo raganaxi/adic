@@ -12,15 +12,21 @@
               </h2>-->
             </div>
           </div>
-          <div class="clear h100"></div>
-          <div class="z-row wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+          <!--<div class="clear h100"></div>-->
+          <div class="z-row wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
             <div class="z-col-xs-12">
+              <div class="z-forceBlock text-center">
+                <img src="images/logos/logo.png" class=" h60"/>
+              </div>
               <h1 class="cLightGrey text-center s35">Bienvenido Socio</h1>
               <p class="cLightGrey">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
-              <div class="clear h50"></div>
             </div>
+          </div>
+          <div class="clear h50"></div>
+          <div class="z-row wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+            <hr>
             <div class="z-col-lg-4 z-col-lg-offset-2 z-col-md-4 z-col-md-offset-2 z-col-sm-4 z-col-sm-offset-2 z-col-xs-8 z-col-xs-offset-2">
               <a href="main.html" class="z-block h50 cLightGrey s20 text-center noTransform text-uppercase" data-toggle="modal" data-target="#loginModal">
                 <div class="z-content z-contentMiddle">

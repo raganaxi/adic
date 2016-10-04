@@ -14,7 +14,7 @@
               <div class="z-col-lg-9 z-col-md-9 z-col-sm-9 z-col-xs-9">
                 <div class="z-block h100">
                   <div class="z-content z-contentMiddle">
-                    <h3 class="noMargin text-uppercase text-bold s20">Nombre del negocio</h3>
+                    <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Nombre</h3>
                     <h4 class="noMarign cDark">(871) 260 2226</h4>
                     <h4 class="noMargin cDark">Calle fulana #45, Centro. Torreón, Coahuila.</h4>
                   </div>
