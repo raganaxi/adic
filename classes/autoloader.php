@@ -1,8 +1,8 @@
 <?php
 $mapping = array(
     'pdomysql' => __DIR__ . '/controller/pdomysql.php',
-    'config' => __DIR__ . '/controller/config.php',
-    'demo' => __DIR__ . '/controller/demo.php',
+    'user' => __DIR__ . '/controller/user.php',
+
 );
 
 spl_autoload_register(function ($class) use ($mapping) {

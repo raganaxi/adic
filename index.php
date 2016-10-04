@@ -1,4 +1,14 @@
-<?php include ('header.php'); ?>
+<?php 
+include ('header.php');
+//autoloader para cargar clases
+require_once(__DIR__.'/classes/autoloader.php');
+require_once(__DIR__.'/config.php');
+
+//invocacion de clases
+use pdomysql AS pdomysql;
+use user AS user;
+
+?>
   <main class="z-container-fluid noPadding hFull">
     <div class="bgCover"></div>
     <div class="z-container">
@@ -19,7 +29,7 @@
             </div>
             <div class="z-col-lg-4 z-col-lg-offset-2 z-col-md-4 z-col-md-offset-2 z-col-sm-4 z-col-sm-offset-2 z-col-xs-8 z-col-xs-offset-2">
               <a href="main.html" class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#loginModal">
-                Inicia sesión
+                Inicia sesión<br>
               </a>
               <div class="clear"></div>
             </div>
@@ -79,11 +89,11 @@
         </div>
         <div class="modal-body">
           <form class="form-section">
-            <input type="text" class="form-control" placeholder="Correo" name="mail" value="">
+            <input id="ruMail" type="text" class="form-control" placeholder="Correo" name="mail" value="">
             <div class="clear"></div>
-            <input type="password" class="form-control" placeholder="Contraseña" name="password" value="">
+            <input id="ruPass" type="password" class="form-control" placeholder="Contraseña" name="password" value="">
             <div class="clear"></div>
-            <button href="#" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow">
+            <button type="button" id="crteAccountE" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow">
               Crear cuenta
             </button>
           </form>

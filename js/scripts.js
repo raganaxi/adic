@@ -149,6 +149,11 @@
     $(window).scroll(function() {
       stickyNav();
     });
+
+
+
+
+
   });
 
   $(window).resize(function(){
@@ -178,3 +183,27 @@ function fullHeight() {
     $('.hFull-body').css('max-height', winHeight - nav);
   }
 };
+
+
+
+
+  //crear cuenta por email
+  $("#crteAccountE").on('click', function(){
+      $.ajax({
+        data:  {
+        "reg_user" : 1,
+        "mail": $("#ruMail").val(),
+        "pass": $("#ruPass").val()
+        },
+        url: 'classes/ajaxUsers.php',
+        type: 'post'
+      }).done(function(data){
+        data = $.parseJSON( data );
+        console.log(data);
+        if (data.Y == "Y") {
+          alert('Registrado');
+        }else{
+          alert('Erro usuario no registrado');
+        }
+      });  
+  });
