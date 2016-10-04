@@ -54,11 +54,11 @@ use user AS user;
         </div>
         <div class="modal-body">
           <form class="form-section">
-            <input type="text" class="form-control" placeholder="Usuario" name="user" value="">
+            <input id="logUser" type="text" class="form-control" placeholder="Usuario" name="user" value="">
             <div class="clear"></div>
-            <input type="text" class="form-control" placeholder="Contraseña" name="pass" value="">
+            <input id="logPass" type="text" class="form-control" placeholder="Contraseña" name="pass" value="">
             <div class="clear"></div>
-            <button href="#" class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow">
+            <button type="button" id="loginU"  class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow">
               Iniciar Sesión
             </button>
           </form>

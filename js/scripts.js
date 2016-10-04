@@ -207,3 +207,23 @@ function fullHeight() {
         }
       });  
   });
+
+  $("#loginU").on('click', function(){
+
+      $.ajax({
+        data:  {
+        "login_user" : 1,
+        "mail": $("#logUser").val(),
+        "pass": $("#logPass").val()
+        },
+        url: 'classes/ajaxUsers.php',
+        type: 'post'
+      }).done(function(data){
+        if (data != 0) {
+          alert('loggueado');
+          window.location.replace("main.php");
+        }else{
+          alert('problemas al iniciar session');
+        }
+      });  
+  });
