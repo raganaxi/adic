@@ -11,7 +11,7 @@ class user
 	#Registro de usuarios
 
 	*/
-	public function register($mail, $pass, $r_type){
+	public static function register($mail, $pass, $r_type){
 		$consulta = 'call register_user("'.$mail.'", "'.$pass.'",  "'.$r_type.'")';
         error_log($consulta);
         $PDOMYSQL = new PDOMYSQL;
@@ -23,7 +23,7 @@ class user
         }
     }
 
-    public function login($mail, $pass){
+    public static function login($mail, $pass){
 
 		$consulta = 'SELECT * FROM user where username = "'.$mail.'" and pass = "'.$pass.'"';
 		error_log($consulta);
