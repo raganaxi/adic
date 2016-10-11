@@ -90,10 +90,16 @@ use user AS user;
           <h4 class="modal-title">Registrate</h4>
         </div>
         <div class="modal-body">
-          <form class="form-section">
-            <input id="ruMail" type="text" class="form-control" placeholder="Correo" name="mail" value="">
+          <form id="registerUser" class="form-section">
+
+            <label for="ruMail"></label>
+            <input id="ruMail" type="text" class="form-control" placeholder="Correo" name="ruMail" value="" required>
+
             <div class="clear"></div>
-            <input id="ruPass" type="password" class="form-control" placeholder="Contraseña" name="password" value="">
+
+            <label for="ruPass"></label>
+            <input id="ruPass" type="password" class="form-control" placeholder="Contraseña" name="ruPass" value="" required>
+            
             <div class="clear"></div>
             <button type="button" id="crteAccountE" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow">
               Crear cuenta

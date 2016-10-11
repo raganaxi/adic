@@ -4,5 +4,6 @@
     <script src="js/jquery.touchSwipe.min.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
   </body>
 </html>

@@ -239,3 +239,30 @@ function fullHeight() {
         window.location.replace("index.php");
       });  
   });
+
+
+
+
+
+    window.onload = function () { 
+        $("#registerUser").validate({
+        rules: {
+          ruMail: {
+            required: true,
+            email: true
+          },
+          ruPass: {
+            required: true,
+            minlength: 5
+          }
+        },
+        messages: {
+          ruMail: "Porfavor ingresa un E-mail valido",
+          ruPass: "Ingresa una contraseña con mas de 5 caracteres",
+        }
+      });
+
+      var isValid =  $("#registerUser").valid();
+     }
+
+      
