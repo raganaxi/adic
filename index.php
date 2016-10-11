@@ -55,12 +55,14 @@ use user AS user;
           <h4 class="modal-title">Ingresa</h4>
         </div>
         <div class="modal-body">
-          <form class="form-section">
-            <input id="logUser" type="text" class="form-control" placeholder="Usuario" name="user" value="">
+          <form id="lognUser" class="form-section">
+            <label for="logUser"></label>
+            <input id="logUser" type="text" class="form-control" placeholder="Usuario" name="logUser" value="">
             <div class="clear"></div>
-            <input id="logPass" type="text" class="form-control" placeholder="Contraseña" name="pass" value="">
+            <label for="logPass"></label>
+            <input id="logPass" type="text" class="form-control" placeholder="Contraseña" name="logPass" value="">
             <div class="clear"></div>
-            <button type="button" id="loginU"  class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow">
+            <button type="button" id="loginU"  class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow" disabled>
               Iniciar Sesión
             </button>
           </form>
@@ -101,7 +103,7 @@ use user AS user;
             <input id="ruPass" type="password" class="form-control" placeholder="Contraseña" name="ruPass" value="" required>
             
             <div class="clear"></div>
-            <button type="button" id="crteAccountE" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow">
+            <button type="button" id="crteAccountE" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow" disabled>
               Crear cuenta
             </button>
           </form>

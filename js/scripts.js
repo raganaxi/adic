@@ -245,7 +245,8 @@ function fullHeight() {
 
 
     window.onload = function () { 
-        $("#registerUser").validate({
+        
+    $("#registerUser").validate({
         rules: {
           ruMail: {
             required: true,
@@ -261,8 +262,49 @@ function fullHeight() {
           ruPass: "Ingresa una contraseña con mas de 5 caracteres",
         }
       });
+        
+        
+        
+    $("#lognUser").validate({
+        rules: {
+          logUser: {
+            required: true,
+            email: true
+          },
+          logPass: {
+            required: true,
+            minlength: 5
+          }
+        },
+        messages: {
+          logUser: "Porfavor ingresa un E-mail valido",
+          logPass: "Ingresa una contraseña con mas de 5 caracteres",
+        }
+      });
+        
+        
+        
+        
 
-      var isValid =  $("#registerUser").valid();
      }
 
+    
+    $("#registerUser input").on('keypress change', function(){
+        var valid = $("#registerUser").valid();
+        if(valid == true){
+            $("#crteAccountE").prop("disabled", false);
+        }else{
+            $("#crteAccountE").prop("disabled", "disabled");
+        }
+    });    
+
+
+    $("#lognUser input").on('keypress change', function(){
+        var valid = $("#lognUser").valid();
+        if(valid == true){
+            $("#loginU").prop("disabled", false);
+        }else{
+            $("#loginU").prop("disabled", "disabled");
+        }
+    });  
       
