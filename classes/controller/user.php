@@ -18,6 +18,14 @@ class user
         $result =  $PDOMYSQL->consulta($consulta);
         return $result;
     }
+    
+    public static function registerSoc($name, $phone, $mail, $pass, $r_type){
+		$consulta = 'call register_soc("'.$name.'","'.$phone.'","'.$mail.'", "'.$pass.'",  "'.$r_type.'")';
+        error_log($consulta);
+        $PDOMYSQL = new PDOMYSQL;
+        $result =  $PDOMYSQL->consulta($consulta);
+        return $result;
+    }
 
     public static function login($mail, $pass){
 		$consulta = 'SELECT * FROM user where username = "'.$mail.'" and pass = "'.$pass.'"';

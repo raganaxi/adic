@@ -53,12 +53,12 @@
           <h4 class="modal-title">Ingresa</h4>
         </div>
         <div class="modal-body">
-          <form class="form-section">
-            <input type="text" class="form-control" placeholder="Usuario" name="user" value="">
+          <form id="loginSocio" class="form-section">
+            <input Id="userSoc" type="text" class="form-control" placeholder="Usuario" name="user" value="">
             <div class="clear"></div>
-            <input type="text" class="form-control" placeholder="Contraseña" name="pass" value="">
+            <input Id="passwSoc" type="text" class="form-control" placeholder="Contraseña" name="pass" value="">
             <div class="clear"></div>
-            <button href="profile.php" class="z-btn h50 bgDarkBlue cWhite s20 text-center noTransform boxShadow">
+            <button type="button" id="logSocio" href="profile.php" class="z-btn h50 bgDarkBlue cWhite s20 text-center noTransform boxShadow">
               Iniciar Sesión
             </button>
           </form>
@@ -78,18 +78,18 @@
           <h4 class="modal-title">Registrate</h4>
         </div>
         <div class="modal-body">
-          <form class="form-section">
-            <input type="text" class="form-control" placeholder="Nombre" name="nameSocio" value="">
+          <form id="registerSocio" class="form-section">
+            <input id="nameSocio" type="text" class="form-control" placeholder="Nombre" name="nameSocio" value="">
             <div class="clear"></div>
-            <input type="text" class="form-control" placeholder="Telefono" name="phoneSocio" value="">
+            <input id="telSocio" type="text" class="form-control" placeholder="Telefono" name="telSocio" value="">
             <div class="clear"></div>
-            <input type="text" class="form-control" placeholder="Dirección" name="addressSocio" value="">
+            <input id="addressSocio" type="text" class="form-control" placeholder="Dirección" name="addressSocio" value="" disabled>
             <div class="clear"></div>
-            <input type="text" class="form-control" placeholder="Correo" name="mail" value="">
+            <input id="mailSocio" type="text" class="form-control" placeholder="Correo" name="mailSocio" value="">
             <div class="clear"></div>
-            <input type="password" class="form-control" placeholder="Contraseña" name="password" value="">
+            <input id="passwSocio" type="password" class="form-control" placeholder="Contraseña" name="passwSocio" value="">
             <div class="clear"></div>
-            <button href="profile.php" class="z-btn h50 bgDarkBlue cWhite s20 text-center noTransform boxShadow">
+            <button type="button" id="createSoc" class="z-btn h50 bgDarkBlue cWhite s20 text-center noTransform boxShadow">
               Crear cuenta
             </button>
           </form>
