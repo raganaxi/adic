@@ -44,9 +44,9 @@ use user AS user;
     </div>-->
   </main>
 
-  <div class="modal fade bgDarkClear" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+  <div class="modal fade bgWhite" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
+      <div class="modal-content noShadow noBorder bgTransparent">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Ingresa</h4>
@@ -81,9 +81,9 @@ use user AS user;
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div>
-  <div class="modal fade bgDarkClear" id="regModal" tabindex="-1" role="dialog" aria-labelledby="regModalLabel">
+  <div class="modal fade bgWhite" id="regModal" tabindex="-1" role="dialog" aria-labelledby="regModalLabel" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
+      <div class="modal-content noShadow noBorder bgTransparent">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Registrate</h4>
