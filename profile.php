@@ -17,6 +17,7 @@
                     <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Nombre</h3>
                     <h4 class="noMarign cDark">(871) 260 2226</h4>
                     <h4 class="noMargin cDark">Calle fulana #45, Centro. Torreón, Coahuila.</h4>
+                    <button type="button" ></button>
                   </div>
                 </div>
               </div>
@@ -46,7 +47,7 @@
 
                 <label for="phoneP"></label>
                 <input id="phoneP" type="password" class="form-control" placeholder="Telefono" name="phoneP" value="" required>
-                
+
                 <div class="clear"></div>
 
                 <label for="emailP"></label>
@@ -54,13 +55,13 @@
 
                 <div class="clear"></div>
 
-                
+
                 <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
 
                 <div class="clear"></div>
 
 
-                
+
 
                 <button type="button" id="crteAccountE" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow" disabled>
                   Crear cuenta

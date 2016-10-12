@@ -47,6 +47,9 @@
     <div class="sidebar-nav">
       <div class="list-group bgTransparent noBorder square">
         <a href="main.php" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+          <span class="sidebar-icon fa fa-cutlery cLightGrey"></span> Inicio
+        </a>
+        <a href="main.php" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
           <span class="sidebar-icon fa fa-cutlery cLightGrey"></span> Restaurantes
         </a>
         <a href="main.php" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">

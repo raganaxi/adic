@@ -6,22 +6,15 @@
       <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
         <div class="z-panel z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
           <div class="z-panelHeader noPadding noBorder">
-            <div class="z-row noMargin">
-              <div class="z-col-lg-3 z-col-md-3 z-col-sm-3 z-col-xs-3 noPadding">
-                <div class="z-block h100 panelImg bgBlue">
-                </div>
-              </div>
-              <div class="z-col-lg-9 z-col-md-9 z-col-sm-9 z-col-xs-9">
-                <div class="z-block h100">
-                  <div class="z-content z-contentMiddle">
-                    <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Nombre</h3>
-                    <h4 class="noMarign cDark">(871) 260 2226</h4>
-                    <h4 class="noMargin cDark">Calle fulana #45, Centro. Torreón, Coahuila.</h4>
-                  </div>
+            <div class="z-panel panelImg bgDarkBlue boxShadow noMargin" style="background-image:url('images/profile/01.png')">
+              <div class="clear h150"></div>
+              <div class="z-panelBody z-block h80 bgDarkClear">
+                <div class="z-content z-contentMiddle">
+                  <h3 class="noMargin text-uppercase text-bold s20 text-center cWhite">Nombre completo</h3>
+                  <h4 class="noMargin cLightBlue text-center hidden">Dirección</h4>
                 </div>
               </div>
             </div>
-            <div class="clear"></div>
           </div>
           <div class="z-panelBody z-block overflowHidden noPadding">
             <div class="z-forceBlock h200 border">
