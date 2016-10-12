@@ -32,8 +32,91 @@
   "use strict";
   // Place any jQuery/helper plugins in here.
 
-
   $(document).ready(function(){
+    if($('.splash').length != 0){
+      var welcomescreen_slides = [
+        {
+          id: 'slide0',
+          picture: '<div class="splash slide0"></div><div class="bgCover bgTransparent"></div>',
+          text: '<div class="splashContent">Bienvenido, este es el slide 1.</div>'
+        },
+        {
+          id: 'slide1',
+          picture: '<div class="splash slide1"></div><div class="bgCover bgTransparent"></div>',
+          text: '<div class="splashContent">This is slide 2</div>'
+        },
+        {
+          id: 'slide2',
+          picture: '<div class="splash slide2"></div><div class="bgCover bgTransparent"></div>',
+          text: '<div class="splashContent">This is slide 3</div>'
+        },
+        {
+          id: 'slide3',
+          picture: '<div class="splash slide3"></div><div class="bgCover bgTransparent"></div>',
+          text: '<div class="splashContent">This is slide 4</div>'
+        },
+        {
+          id: 'slide4',
+          picture: '<div class="splash slide4"></div><div class="bgCover"></div>',
+          text:
+            '<div class="splashContent">'+
+              '<div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-sm-offset-0 z-col-xs-8 z-col-xs-offset-2">'+
+                '<a href="#" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow welcomescreen-closebtn close-welcomescreen">'+
+                  'Comienza ya'+
+                '</a>'+
+              '</div>'+
+            '</div>'
+        }
+      ];
+      var options = {
+        'bgcolor': '#333333',
+        'fontcolor': '#fff',
+        'closeButton': true,
+        'cssClass': "bgTransparent",
+        'onClosed': function(){
+          renderMainSplash();
+          fullHeight();
+        },
+        'open': true
+      }
+      var welcomescreen = new Welcomescreen(welcomescreen_slides, options);
+    }
+
+    function renderMainSplash(){
+      $('.splash').addClass('main').removeClass('bgDark').append(
+        '<div class="bgCover"></div>'+
+        '<div class="z-container">'+
+          '<div class="hFull z-block">'+
+            '<div class="z-content z-contentMiddle">'+
+              '<div class="z-row">'+
+                '<div class="z-col-lg-12">'+
+                  '<img src="images/logos/logo.png" class="centered z-forceBlock wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s" />'+
+                '</div>'+
+              '</div>'+
+              '<div class="clear h100"></div>'+
+              '<div class="z-row wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">'+
+                '<div class="z-col-xs-12">'+
+                  '<h1 class="cWhite text-center s25">Bienvenido</h1>'+
+                '</div>'+
+                '<div class="z-col-lg-4 z-col-lg-offset-2 z-col-md-4 z-col-md-offset-2 z-col-sm-4 z-col-sm-offset-2 z-col-xs-8 z-col-xs-offset-2">'+
+                  '<a href="main.html" class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#loginModal">'+
+                    'Inicia sesión<br>'+
+                  '</a>'+
+                  '<div class="clear"></div>'+
+                '</div>'+
+                '<div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-sm-offset-0 z-col-xs-8 z-col-xs-offset-2">'+
+                  '<a href="main.html" class="z-btn btn-rounded h50 bgLightBlue cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#regModal">'+
+                    'Crea una cuenta'+
+                  '</a>'+
+                  '<div class="clear"></div>'+
+                '</div>'+
+              '</div>'+
+            '</div>'+
+          '</div>'+
+        '</div>'
+    );
+    }
+
     var controller = new slidebars();
     controller.init();
 
@@ -134,17 +217,20 @@
       }
     }
 
-    var stickyNavTop = $('.nav').offset().top;
-    var stickyNav = function(){
-      var scrollTop = $(window).scrollTop();
-      if (scrollTop > stickyNavTop) {
-          $('.nav').addClass('sticky');
-      } else {
-          $('.nav').removeClass('sticky');
-      }
-    };
-     
-    stickyNav();
+    if($('.nav').length != 0){
+      var stickyNavTop = $('.nav').offset().top;
+      var stickyNav = function(){
+        var scrollTop = $(window).scrollTop();
+        if (scrollTop > stickyNavTop) {
+            $('.nav').addClass('sticky');
+        } else {
+            $('.nav').removeClass('sticky');
+        }
+      };
+       
+      stickyNav();
+    }
+
      
     $(window).scroll(function() {
       stickyNav();
@@ -203,7 +289,7 @@ function fullHeight() {
         }else{
           alert('Erro usuario no registrado');
         }
-      });  
+      });
   });
 
   $("#loginU").on('click', function(){
@@ -223,7 +309,7 @@ function fullHeight() {
         }else{
           alert('problemas al iniciar session');
         }
-      });  
+      });
   });
 
 
@@ -237,15 +323,15 @@ function fullHeight() {
         type: 'post'
       }).done(function(data){
         window.location.replace("index.php");
-      });  
+      });
   });
 
 
 
 
 
-    window.onload = function () { 
-        
+    window.onload = function () {
+
     $("#registerUser").validate({
         rules: {
           ruMail: {
@@ -262,9 +348,9 @@ function fullHeight() {
           ruPass: "Ingresa una contraseña con mas de 5 caracteres",
         }
       });
-        
-        
-        
+
+
+
     $("#lognUser").validate({
         rules: {
           logUser: {
@@ -281,14 +367,14 @@ function fullHeight() {
           logPass: "Ingresa una contraseña con mas de 5 caracteres",
         }
       });
-        
-        
-        
-        
+
+
+
+
 
      }
 
-    
+
     $("#registerUser input").on('keypress change', function(){
         var valid = $("#registerUser").valid();
         if(valid == true){
@@ -296,7 +382,7 @@ function fullHeight() {
         }else{
             $("#crteAccountE").prop("disabled", "disabled");
         }
-    });    
+    });
 
 
     $("#lognUser input").on('keypress change', function(){
@@ -306,5 +392,4 @@ function fullHeight() {
         }else{
             $("#loginU").prop("disabled", "disabled");
         }
-    });  
-      
+    });
