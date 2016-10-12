@@ -28,8 +28,10 @@
   <!-- build:css css/styles.css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="bower_components/slidebars/dist/slidebars.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.2.7/css/swiper.min.css">
   <link rel="stylesheet" href="css/font-awesome.css">
   <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/welcomescreen.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/helpers.css">
 

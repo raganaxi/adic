@@ -1,6 +1,7 @@
 body {
   background: #fff;
 }
+
 #app * {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8,14 +9,31 @@ body {
   -o-user-select: none;
   user-select: none;
 }
+
 .splash {
-  z-index: 10;
-  background-image: url('../images/splash.jpg');
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /*  background-image: url('../images/splash.jpg');
+*/
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 
+.splashContent {
+  position: absolute;
+  z-index: 0  ;
+  bottom: 10vh;
+  left: 0;
+  right: 0;
+}
+.welcomescreen-text {
+  z-index: 3;
+}
 .bgCover {
   position: absolute;
   top: 0;
@@ -23,6 +41,25 @@ body {
   bottom: 0;
   left: 0;
   background-color: rgba(80, 79, 68, .5)!important;
+}
+
+.splash.slide0{
+  background-image: url('../images/bg/s00.jpg');
+}
+.splash.slide1{
+  background-image: url('../images/bg/s01.jpg');
+}
+.splash.slide2{
+  background-image: url('../images/bg/s02.jpg');
+}
+.splash.slide3{
+  background-image: url('../images/bg/s03.jpg');
+}
+.splash.slide4{
+  background-image: url('../images/bg/s04.jpg');
+}
+.splash.main{
+  background-image: url('../images/bg/splash.jpg');
 }
 
 .nav {
@@ -283,4 +320,8 @@ body {
   bottom: 0;
   right: 0;
   width: 15px;
+}
+
+.welcomescreen-container {
+  z-index: 15!important;
 }

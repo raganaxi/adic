@@ -1,4 +1,4 @@
-<?php 
+<?php
 include ('header.php');
 //autoloader para cargar clases
 require_once(__DIR__.'/classes/autoloader.php');
@@ -10,18 +10,15 @@ use user AS user;
 
 ?>
 
-  <main class="z-container-fluid splash noPadding hFull">
+  <main class="z-container-fluid splash bgDark noPadding hFull">
 
-    <div class="bgCover"></div>
+    <!--<div class="bgCover"></div>
     <div class="z-container">
       <div class="hFull z-block">
         <div class="z-content z-contentMiddle">
           <div class="z-row">
             <div class="z-col-lg-12">
               <img src="images/logos/logo.png" class="centered z-forceBlock wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s" />
-              <!--<h2 class="text-center cLightBlue s35 noMargin text-bold text-shadow wow fadeInDown" data-wow-duration="1s" data-wow-delay=".8s">
-                en la ciudad
-              </h2>-->
             </div>
           </div>
           <div class="clear h100"></div>
@@ -44,7 +41,7 @@ use user AS user;
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
   </main>
 
   <div class="modal fade bgDarkClear" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
@@ -101,7 +98,7 @@ use user AS user;
 
             <label for="ruPass"></label>
             <input id="ruPass" type="password" class="form-control" placeholder="Contraseña" name="ruPass" value="" required>
-            
+
             <div class="clear"></div>
             <button type="button" id="crteAccountE" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow" disabled>
               Crear cuenta
