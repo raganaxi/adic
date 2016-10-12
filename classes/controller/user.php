@@ -16,21 +16,33 @@ class user
         error_log($consulta);
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);
-        if($result){
-        	return $result;
-        }else{
-        	return $result;
-        }
+        return $result;
     }
 
     public static function login($mail, $pass){
-
 		$consulta = 'SELECT * FROM user where username = "'.$mail.'" and pass = "'.$pass.'"';
 		error_log($consulta);
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);
        	return $result;
     }
+    
+    public static function editProfile($name, $phone, $mail, $image, $user_id){
+		$consulta = 'call editProfile("'.$name.'", "'.$phone.'",  "'.$mail.'",  "'.$image.'",  "'.$user_id.'")';
+        error_log($consulta);
+        $PDOMYSQL = new PDOMYSQL;
+        $result =  $PDOMYSQL->consulta($consulta);
+        return $result;
+    }
+    
+    public static function getProfile($userId){
+		$consulta = 'SELECT * FROM user_data where user_id = "'.$userId.'" ';
+		error_log($consulta);
+        $PDOMYSQL = new PDOMYSQL;
+        $result =  $PDOMYSQL->consulta($consulta);
+       	return $result;
+    }
+    
 
 }
 ?>
