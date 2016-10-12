@@ -27,6 +27,7 @@ use user AS user;
                     <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Nombre</h3>
                     <h4 class="noMarign cDark">(871) 260 2226</h4>
                     <h4 class="noMargin cDark">Calle fulana #45, Centro. Torreón, Coahuila.</h4>
+                    <button type="button" ></button>
                   </div>
                 </div>
               </div>
@@ -48,11 +49,13 @@ use user AS user;
             <div class="z-content z-contentMiddle">
                 <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Datos de Perfil</h3>
                 <form id="editProfileF" class="form-section">
-                  <?php
+                  <div class="hidden">
+                <?php
                 $result = user::getProfile($_SESSION['iduser']);
                 echo json_encode($result); 
-                    print_r($result);
                 ?>
+                      </div>
+                    
                 <label for="nameP"></label>
                 <input id="nameP" type="text" class="form-control" placeholder="Nombre completo" name="nameP" value="<?php echo $result[0]['name'] ?>" required>
 
@@ -61,25 +64,23 @@ use user AS user;
                 <label for="phoneP"></label>
                 <input id="phoneP" type="text" class="form-control" placeholder="Telefono" name="phoneP" value="<?php echo $result[0]['number'] ?>" required>
                 
+
                 <div class="clear"></div>
 
                 <label for="emailP"></label>
                 <input id="emailP" type="text" class="form-control" placeholder="E-mail" name="emailP" value="<?php echo $result[0]['mail'] ?>" required>
 
                 <div class="clear"></div>
-
-                
-                <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
+                <div class="form-section">
+                  <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
+                </div>
 
                 <div class="clear"></div>
 
-
-              
-
+                    
                 <button type="button" id="editProfile" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow" >
                   Editar
                 </button>
-
               </form>
             </div>
           </div>
