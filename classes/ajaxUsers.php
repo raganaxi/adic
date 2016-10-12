@@ -47,4 +47,20 @@ if (isset($_POST['editProfile'])) {
 	echo json_encode($result);
 }
 
+
+//Registrar socio
+if (isset($_POST['reg_soc'])) {
+    $_POST['pass'] = sha1($_POST['pass']);
+    $result = user::registerSoc($_POST['name'], $_POST['phone'], $_POST['mail'], $_POST['pass'], 'email');
+    
+    $resultl = user::login($_POST['mail'], $_POST['pass']);
+	if (!empty($result)) {
+		$_SESSION['user'] = $resultl[0]['username'];
+		$_SESSION['rol'] = $resultl[0]['role'];
+		$_SESSION['iduser'] = $resultl[0]['iduser'];
+	}
+    
+	echo json_encode($result[0]);
+}
+
 ?>

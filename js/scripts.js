@@ -292,6 +292,32 @@ function fullHeight() {
       });
   });
 
+
+
+//crear cuenta por email socio
+  $("#createSoc").on('click', function(){
+      $.ajax({
+        data:  {
+        "reg_soc" : 1,
+        "name": $("#nameSocio").val(),
+        "phone": $("#telSocio").val(),
+        "mail": $("#mailSocio").val(),
+        "pass": $("#passwSocio").val()
+        },
+        url: 'classes/ajaxUsers.php',
+        type: 'post'
+      }).done(function(data){
+        data = $.parseJSON( data );
+        console.log(data);
+        if (data.Y == "Y") {
+          alert('Registrado');
+          window.location.replace("main.php");
+        }else{
+          alert('Erro usuario no registrado');
+        }
+      });
+  });
+
   $("#loginU").on('click', function(){
 
       $.ajax({
@@ -311,6 +337,27 @@ function fullHeight() {
         }
       });
   });
+
+
+  $("#logSocio").on('click', function(){
+      $.ajax({
+        data:  {
+        "login_user" : 1,
+        "mail": $("#userSoc").val(),
+        "pass": $("#passwSoc").val()
+        },
+        url: 'classes/ajaxUsers.php',
+        type: 'post'
+      }).done(function(data){
+        if (data != 0) {
+          alert('loggueado');
+          window.location.replace("main.php");
+        }else{
+          alert('problemas al iniciar session');
+        }
+      });
+  });
+
 
 
     $("#logOutbtn").on('click', function(){
@@ -339,7 +386,9 @@ function fullHeight() {
         url: 'classes/ajaxUsers.php',
         type: 'post'
       }).done(function(data){
-        console.log(data);
+        if(data){
+            window.location.replace("profile.php"); 
+        }
       });
       
   });
@@ -367,6 +416,33 @@ function fullHeight() {
         }
       });
 
+        
+    $("#registerSocio").validate({
+        rules: {
+          nameSocio: {
+            required: true
+          },
+          telSocio: {
+            required: true
+          },
+          mailSocio: {
+            required: true,
+            email: true
+          },
+          passwSocio: {
+            required: true,
+            minlength: 5
+          }
+        },
+        messages: {
+          nameSocio: "Porfavor ingresa un nombre",
+          telSocio: "Porfavor ingresa un telefono",
+          mailSocio: "Porfavor ingresa un E-mail valido",
+          passwSocio: "Ingresa una contraseña con mas de 5 caracteres",
+        }
+      });
+        
+        // id de boton createSoc
 
 
     $("#lognUser").validate({
@@ -393,6 +469,15 @@ function fullHeight() {
      }
 
 
+    $("#registerSocio input").on('keypress change', function(){
+        var valid = $("#registerSocio").valid();
+        if(valid == true){
+            $("#createSoc").prop("disabled", false);
+        }else{
+            $("#createSoc").prop("disabled", "disabled");
+        }
+    });
+
     $("#registerUser input").on('keypress change', function(){
         var valid = $("#registerUser").valid();
         if(valid == true){
@@ -411,4 +496,6 @@ function fullHeight() {
             $("#loginU").prop("disabled", "disabled");
         }
     });
+
+
 
