@@ -7,71 +7,46 @@
         <div class="z-panel z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
           <div class="z-panelHeader noPadding noBorder">
             <div class="z-row noMargin">
-              <div class="z-col-lg-3 z-col-md-3 z-col-sm-3 z-col-xs-3 noPadding">
+              <div class="z-col-lg-3 z-col-md-3 z-col-sm-3 z-col-xs-4 noPadding">
                 <div class="z-block h100 panelImg bgBlue">
                 </div>
               </div>
-              <div class="z-col-lg-9 z-col-md-9 z-col-sm-9 z-col-xs-9">
+              <div class="z-col-lg-9 z-col-md-9 z-col-sm-9 z-col-xs-8">
                 <div class="z-block h100">
-                  <div class="z-content z-contentMiddle">
+                  <div class="z-content z-contentTop">
                     <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Nombre</h3>
-                    <h4 class="noMarign cDark">(871) 260 2226</h4>
-                    <h4 class="noMargin cDark">Calle fulana #45, Centro. Torreón, Coahuila.</h4>
+                    <p class="noMargin cDark s15"><span class="fa fa-phone"></span> (871) 260 2226</p>
+                    <p class="noMargin cDark s15"><span class="fa fa-phone"></span> (871) 347 7752</p>
+                    <a class="s15 text-center cDark" type="button" data-toggle="modal" data-target="#mapModal">
+                      <span class="fa fa-map-marker"></span> Ver Ubicacion
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="clear"></div>
           </div>
-          <div class="z-panelBody z-block overflowHidden noPadding">
-            <div class="z-forceBlock h200 border">
-              <iframe width="100%" height="200" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48432.743731799295!2d-103.40225819823375!3d25.545530478674873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdba9bb45b3fb%3A0x8bcc7a9970aea01d!2zVG9ycmXDs24sIENvYWgu!5e0!3m2!1ses!2smx!4v1475615763477" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
-            <a class="z-btn z-block h50 bgDarkBlueClear cWhite hidden">
-              <div class="z-content z-contentMiddle text-center">
-                <span class="fa fa-search-plus"></span> Ver ubicación
-              </div>
-            </a>
-          </div>
-          <div class="z-panelBody z-block overflowHidden noPadding hidden">
-            <div class="clear"></div>
-            <div class="z-block h100">
-              <div class="z-content-fluid h70 bgGrey">
-
-              </div>
-              <div class="z-content-fluid h70 bgGrey">
-
-              </div>
-              <div class="z-content-fluid h70 bgGrey">
-
-              </div>
-              <div class="z-content-fluid h70 bgGrey">
-
-              </div>
-            </div>
-          </div>
-          <div class="z-panelFooter z-block h50 hidden overflowHidden noPadding bgDarkClear">
-            <a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20">
+          <div class="z-panelFooter z-block h40 overflowHidden noPadding">
+            <a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center">
               <span class="fa fa-share"></span>
             </a>
-            <a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20">
+            <a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center">
               <span class="fa fa-thumbs-up"></span>
             </a>
-            <a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20">
+            <a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center">
               <span class="fa fa-tag"></span>
             </a>
           </div>
         </div>
       </div>
       <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
-        <div class="z-panel z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
-          <div id="carousel-example-generic" class="carousel slide h200 bgDarkGrey" data-ride="carousel">
+        <div class="z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
+          <div id="carousel-example-generic" class="carousel slide h200 bgBlue" data-ride="carousel">
             <!-- Indicators -->
-            <ol class="carousel-indicators">
-              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-            </ol>
+            <!--  <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+              </ol>-->
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
@@ -99,6 +74,16 @@
               <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
+          </div>
+          <div class="z-forceBlock overflowHidden noPadding">
+            <div class="z-block h100">
+              <div class="z-content-fluid h50 bgOrange">
+              </div>
+              <div class="z-content-fluid h50 bgGreen">
+              </div>
+              <div class="z-content-fluid h50 bgBlue">
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -343,7 +328,7 @@
 </main>
 <nav class="profileSwitcher">
   <div class="z-block h50 bgBlue">
-    <a role="button" href="profile.php" class="z-content-fluid z-contentMiddle text-center s15 cWhite">
+    <a role="button" href="profile1.php" class="z-content-fluid z-contentMiddle text-center s15 cWhite">
       Tipo 1
     </a>
     <a role="button" href="profile2.php" class="z-content-fluid z-contentMiddle text-center s15 cWhite">
@@ -354,4 +339,16 @@
     </a>
   </div>
 </nav>
+<div class="modal fade bgWhite" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content noShadow noBorder bgTransparent">
+      <div class="modal-header noPadding">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body noPadding">
+        <iframe class="hFull" width="100%" height="100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48432.743731799295!2d-103.40225819823375!3d25.545530478674873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdba9bb45b3fb%3A0x8bcc7a9970aea01d!2zVG9ycmXDs24sIENvYWgu!5e0!3m2!1ses!2smx!4v1475615763477" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
 <?php include ('footer.php'); ?>

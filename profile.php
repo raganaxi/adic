@@ -15,19 +15,20 @@ use user AS user;
     <div class="z-row">
       <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
         <div class="z-panel z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
-          <div class="z-panelHeader noPadding noBorder">
+          <div class="z-panelHeader noPadding noBorder hidden">
             <div class="z-row noMargin">
-              <div class="z-col-lg-3 z-col-md-3 z-col-sm-3 z-col-xs-3 noPadding">
+              <div class="z-col-lg-3 z-col-md-3 z-col-sm-3 z-col-xs-4 noPadding">
                 <div class="z-block h100 panelImg bgBlue">
                 </div>
               </div>
-              <div class="z-col-lg-9 z-col-md-9 z-col-sm-9 z-col-xs-9">
+              <div class="z-col-lg-9 z-col-md-9 z-col-sm-9 z-col-xs-8">
                 <div class="z-block h100">
-                  <div class="z-content z-contentMiddle">
+                  <div class="z-content z-contentTop">
                     <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Nombre</h3>
-                    <h4 class="noMarign cDark">(871) 260 2226</h4>
-                    <h4 class="noMargin cDark">Calle fulana #45, Centro. Torreón, Coahuila.</h4>
-                    <button type="button" ></button>
+                    <p class="noMargin cDark s15"><span class="fa fa-phone"></span> (871) 260 2226</p>
+                    <a class="s15 text-center cDark" type="button" data-toggle="modal" data-target="#mapModal">
+                      <span class="fa fa-map-marker"></span> Ver Ubicacion
+                    </a>
                   </div>
                 </div>
               </div>
@@ -35,52 +36,42 @@ use user AS user;
             <div class="clear"></div>
           </div>
           <div class="z-panelBody z-block overflowHidden noPadding">
-            <div class="z-forceBlock h200 border">
-              <iframe width="100%" height="200" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48432.743731799295!2d-103.40225819823375!3d25.545530478674873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdba9bb45b3fb%3A0x8bcc7a9970aea01d!2zVG9ycmXDs24sIENvYWgu!5e0!3m2!1ses!2smx!4v1475615763477" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
-            <a class="z-btn z-block h50 bgDarkBlueClear cWhite hidden">
-              <div class="z-content z-contentMiddle text-center">
-                <span class="fa fa-search-plus"></span> Ver ubicación
+            <div class="z-block h100">
+              <div class="z-content z-contentMiddle">
+                  <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Datos de Perfil</h3>
+                  <form id="editProfileF" class="form-section">
+
+                  <label for="nameP"></label>
+                  <input id="nameP" type="text" class="form-control" placeholder="Nombre completo" name="nameP" value="" required>
+
+                  <div class="clear"></div>
+
+                  <label for="phoneP"></label>
+                  <input id="phoneP" type="password" class="form-control" placeholder="Telefono" name="phoneP" value="" required>
+
+                  <div class="clear"></div>
+
+                  <label for="emailP"></label>
+                  <input id="emailP" type="password" class="form-control" placeholder="E-mail" name="emailP" value="" required>
+
+                  <div class="clear"></div>
+                  <div class="form-section">
+                    <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
+                  </div>
+
+                  <div class="clear"></div>
+                  <div class="hidden">
+                    <?php
+                      $result = user::getProfile($_SESSION['iduser']);
+                      echo json_encode($result);
+                    ?>
+                  </div>
+                  <button type="button" id="editProfile" class="z-btn bgGreen cWhite text-center noTransform boxShadow" >
+                    Editar
+                  </button>
+                </form>
               </div>
-            </a>
-          </div>
-          <div class="z-panelBody z-block overflowHidden noPadding">
-          <div class="z-block h100">
-            <div class="z-content z-contentMiddle">
-                <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Datos de Perfil</h3>
-                <form id="editProfileF" class="form-section">
-
-                <label for="nameP"></label>
-                <input id="nameP" type="text" class="form-control" placeholder="Nombre completo" name="nameP" value="" required>
-
-                <div class="clear"></div>
-
-                <label for="phoneP"></label>
-                <input id="phoneP" type="password" class="form-control" placeholder="Telefono" name="phoneP" value="" required>
-
-                <div class="clear"></div>
-
-                <label for="emailP"></label>
-                <input id="emailP" type="password" class="form-control" placeholder="E-mail" name="emailP" value="" required>
-
-                <div class="clear"></div>
-                <div class="form-section">
-                  <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
-                </div>
-
-                <div class="clear"></div>
-                <div class="hidden">
-                  <?php
-                    $result = user::getProfile($_SESSION['iduser']);
-                    echo json_encode($result);
-                  ?>
-                </div>
-                <button type="button" id="editProfile" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow" >
-                  Editar
-                </button>
-              </form>
             </div>
-          </div>
           </div>
           <div class="z-panelBody z-block overflowHidden noPadding hidden">
             <div class="clear"></div>
@@ -112,7 +103,7 @@ use user AS user;
           </div>
         </div>
       </div>
-      <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
+      <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12 hidden">
         <div class="z-panel z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
           <div id="carousel-example-generic" class="carousel slide h200 bgDarkGrey" data-ride="carousel">
             <!-- Indicators -->
@@ -151,7 +142,7 @@ use user AS user;
           </div>
         </div>
       </div>
-      <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
+      <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12 hidden">
         <div class="z-panel z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
           <h2 class="wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">Ofertas: Lunes</h2>
           <div class="z-panel z-forceBlock bgTransparent  wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
@@ -387,12 +378,26 @@ use user AS user;
 
         </div>
       </div>
+      <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
+        <h1>Crear publicacion</h1>
+        <form class="form-section" action="" method="post">
+          <div class="clear"></div>
+          <input type="text" class="form-control" placeholder="Nombre de la oferta">
+          <div class="clear"></div>
+          <textarea class="form-control h100" rows="4" placeholder="Descripción"></textarea>
+          <div class="clear"></div>
+          <input class="form-control" type="date" name="name" value="">
+          <div class="clear"></div>
+          <button class="z-btn bgGreen cWhite" type="submit" name="button">Crear</button>
+        </form>
+        <div class="clear h100"></div>
+      </div>
     </div>
   </section>
 </main>
 <nav class="profileSwitcher">
   <div class="z-block h50 bgBlue">
-    <a role="button" href="profile.php" class="z-content-fluid z-contentMiddle text-center s15 cWhite">
+    <a role="button" href="profile1.php" class="z-content-fluid z-contentMiddle text-center s15 cWhite">
       Tipo 1
     </a>
     <a role="button" href="profile2.php" class="z-content-fluid z-contentMiddle text-center s15 cWhite">
@@ -403,4 +408,16 @@ use user AS user;
     </a>
   </div>
 </nav>
+<div class="modal fade bgWhite" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content noShadow noBorder bgTransparent">
+      <div class="modal-header noPadding">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body noPadding">
+        <iframe class="hFull" width="100%" height="100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48432.743731799295!2d-103.40225819823375!3d25.545530478674873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdba9bb45b3fb%3A0x8bcc7a9970aea01d!2zVG9ycmXDs24sIENvYWgu!5e0!3m2!1ses!2smx!4v1475615763477" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
 <?php include ('footer.php'); ?>
