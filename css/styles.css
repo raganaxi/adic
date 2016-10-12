@@ -325,3 +325,10 @@ body {
 .welcomescreen-container {
   z-index: 15!important;
 }
+.profileSwitcher {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
