@@ -37,7 +37,7 @@
           <div class="z-block h100">
             <div class="z-content z-contentMiddle">
                 <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Datos de Perfil</h3>
-                <form id="registerUser" class="form-section">
+                <form id="editProfileF" class="form-section">
 
                 <label for="nameP"></label>
                 <input id="nameP" type="text" class="form-control" placeholder="Nombre completo" name="nameP" value="" required>
@@ -62,8 +62,8 @@
 
                 
 
-                <button type="button" id="crteAccountE" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow" disabled>
-                  Crear cuenta
+                <button type="button" id="editProfile" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow" >
+                  Editar
                 </button>
 
               </form>

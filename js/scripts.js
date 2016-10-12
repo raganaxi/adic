@@ -327,6 +327,26 @@ function fullHeight() {
   });
 
 
+   $("#editProfile").on('click', function(){
+       alert(1);
+
+      $.ajax({
+        data:  {
+            "editProfile" : 1,
+            "name" : $("#nameP").val(),
+            "phone" : $("#phoneP").val(),
+            "mail" : $("#emailP").val(),
+            "file" : $("#file").val()
+        },
+        url: 'classes/ajaxUsers.php',
+        type: 'post'
+      }).done(function(data){
+        console.log(data);
+      });
+      
+  });
+
+
 
 
 
