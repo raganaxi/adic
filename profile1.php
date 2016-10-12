@@ -1,23 +1,26 @@
 <?php include ('header.php'); ?>
 <?php include ('menu.php'); ?>
 <main canvas="container" class="z-container noPadding scroll bgLightGrey">
-  <section class="z-container mainContainer noPadding">
-    <div class="clear h50">
-
-    </div>
-    <div class="z-row noMargin">
-      <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12 noPadding">
-        <div class="z-panel z-forceBlock bgTransparent noMargin wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
+  <section class="z-container mainContainer">
+    <div class="z-row">
+      <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
+        <div class="z-panel z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
           <div class="z-panelHeader noPadding noBorder">
-            <div class="z-panel panelImg bgDarkBlue boxShadow noMargin" style="background-image:url('images/profile/01.png')">
-              <div class="clear h150"></div>
-              <div class="z-panelBody z-block h100 bgDarkClear">
-                <div class="z-content z-contentMiddle text-center">
-                  <h3 class="noMargin text-uppercase text-bold s20 text-center cWhite">Nombre </h3>
-                  <h4 class="noMargin cLightBlue text-center">Dirección #32 col. alguna</h4>
-                  <a class="s15 text-center cLightBlue" type="button" data-toggle="modal" data-target="#mapModal">
-                    <span class="fa fa-map-marker"></span> Ver Ubicacion
-                  </a>
+            <div class="z-row noMargin">
+              <div class="z-col-lg-3 z-col-md-3 z-col-sm-3 z-col-xs-4 noPadding">
+                <div class="z-block h100 panelImg bgBlue">
+                </div>
+              </div>
+              <div class="z-col-lg-9 z-col-md-9 z-col-sm-9 z-col-xs-8">
+                <div class="z-block h100">
+                  <div class="z-content z-contentTop">
+                    <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Nombre</h3>
+                    <p class="noMargin cDark s15"><span class="fa fa-phone"></span> (871) 260 2226</p>
+                    <p class="noMargin cDark s15"><span class="fa fa-phone"></span> (871) 347 7752</p>
+                    <a class="s15 text-center cDark" type="button" data-toggle="modal" data-target="#mapModal">
+                      <span class="fa fa-map-marker"></span> Ver Ubicacion
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -25,16 +28,16 @@
           <div class="z-panelBody z-block overflowHidden noPadding hidden">
             <div class="clear"></div>
             <div class="z-block h100">
-              <div class="z-content-fluid h70 bgGrey">
+              <div class="z-content-fluid h50 bgOrange">
 
               </div>
-              <div class="z-content-fluid h70 bgGrey">
+              <div class="z-content-fluid h50 bgGreen">
 
               </div>
-              <div class="z-content-fluid h70 bgGrey">
+              <div class="z-content-fluid h50 bgRed">
 
               </div>
-              <div class="z-content-fluid h70 bgGrey">
+              <div class="z-content-fluid h50 bgBlue">
 
               </div>
             </div>
@@ -52,9 +55,9 @@
           </div>
         </div>
       </div>
-      <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12 noPadding">
+      <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
         <div class="z-panel z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
-          <div id="carousel-example-generic" class="carousel slide h250 bgDarkBlue" data-ride="carousel">
+          <div id="carousel-example-generic" class="carousel slide h200 bgBlue" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
               <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
