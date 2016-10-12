@@ -24,8 +24,9 @@
                 </div>
               </div>
             </div>
+            <div class="clear"></div>
           </div>
-          <div class="z-panelFooter z-block h40 overflowHidden noPadding">
+          <div class="z-panelFooter z-block h40 overflowHidden noPadding bgGreyClear">
             <a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center">
               <span class="fa fa-share"></span>
             </a>
@@ -77,7 +78,7 @@
           </div>
           <div class="z-forceBlock overflowHidden noPadding">
             <div class="z-block h100">
-              <div class="z-content-fluid h50 bgOrange">
+              <div class="z-content-fluid h50 bgLightBlue">
               </div>
               <div class="z-content-fluid h50 bgGreen">
               </div>
