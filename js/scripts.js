@@ -328,8 +328,6 @@ function fullHeight() {
 
 
    $("#editProfile").on('click', function(){
-       alert(1);
-
       $.ajax({
         data:  {
             "editProfile" : 1,
@@ -413,3 +411,4 @@ function fullHeight() {
             $("#loginU").prop("disabled", "disabled");
         }
     });
+

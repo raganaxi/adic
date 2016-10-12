@@ -34,6 +34,15 @@ class user
         $result =  $PDOMYSQL->consulta($consulta);
         return $result;
     }
+    
+    public static function getProfile($userId){
+		$consulta = 'SELECT * FROM user_data where user_id = "'.$userId.'" ';
+		error_log($consulta);
+        $PDOMYSQL = new PDOMYSQL;
+        $result =  $PDOMYSQL->consulta($consulta);
+       	return $result;
+    }
+    
 
 }
 ?>

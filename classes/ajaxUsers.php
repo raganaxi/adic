@@ -47,5 +47,4 @@ if (isset($_POST['editProfile'])) {
 	echo json_encode($result);
 }
 
-
 ?>
