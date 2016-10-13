@@ -109,6 +109,9 @@
                     'Crea una cuenta'+
                   '</a>'+
                   '<div class="clear"></div>'+
+                  '<a href="socios.php" class="  cWhite s20 text-center noTransform ">'+
+                    'Socios'+
+                  '</a>'+
                 '</div>'+
               '</div>'+
             '</div>'+
