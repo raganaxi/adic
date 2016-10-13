@@ -376,15 +376,15 @@ use user AS user;
       </div>
       <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
         <h1>Crear publicacion</h1>
-        <form class="form-section" action="" method="post">
+        <form id="formPost" class="form-section" action="" method="post">
           <div class="clear"></div>
-          <input type="text" class="form-control" placeholder="Nombre de la oferta">
+          <input id="postTitle" type="text" class="form-control" placeholder="Nombre de la oferta">
           <div class="clear"></div>
-          <textarea class="form-control h100" rows="4" placeholder="Descripción"></textarea>
+          <textarea id="postDescription" class="form-control h100" rows="4" placeholder="Descripción"></textarea>
           <div class="clear"></div>
-          <input class="form-control" type="date" name="name" value="">
+          <input id="postDate" class="form-control" type="date" name="name" value="">
           <div class="clear"></div>
-          <button class="z-btn bgGreen cWhite" type="submit" name="button">Crear</button>
+          <button type="button" id="createPost" class="z-btn bgGreen cWhite" type="submit" name="button">Crear</button>
         </form>
         <div class="clear h100"></div>
       </div>

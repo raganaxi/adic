@@ -47,6 +47,12 @@ if (isset($_POST['editProfile'])) {
 	echo json_encode($result);
 }
 
+//Registrar publicacion
+if (isset($_POST['create_Post'])) {
+    $result = user::regPost($_POST['title'], $_POST['description'], $_POST['date'], $_SESSION['iduser']);
+	echo json_encode($result);
+}
+
 
 //Registrar socio
 if (isset($_POST['reg_soc'])) {
