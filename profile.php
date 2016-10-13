@@ -36,15 +36,15 @@ use user AS user;
             <div class="clear"></div>
           </div>
           <div class="z-panelBody z-block overflowHidden noPadding">
-            <div class="z-block h100 hidden">
+            <div class="z-block h100">
               <div class="z-content z-contentMiddle">
-                  <form id="editProfileF" class="form-section hidden">
-                                        <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Datos de Perfil</h3>
+                  <form id="editProfileF" class="form-section ">
+                    <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Datos de Perfil</h3>
 
                       <div class="hidden">
                 <?php
                 $result = user::getProfile($_SESSION['iduser']);
-                echo json_encode($result); 
+                echo json_encode($result);
                 ?>
                       </div>
                   <label for="nameP"></label>
