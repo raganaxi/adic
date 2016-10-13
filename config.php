@@ -15,4 +15,6 @@
 	define( "DB_HOST", "aav1dgv9gsq87g.cwhaggvv5lvi.us-west-2.rds.amazonaws.com" );
 	define( "DB_NAME", "u913897248_adic");
 
+
+
 ?>
