@@ -284,7 +284,7 @@ function fullHeight() {
         data = $.parseJSON( data );
         console.log(data);
         if (data.Y == "Y") {
-          alert('Registrado');
+          //alert('Registrado');
           window.location.replace("main.php");
         }else{
           alert('Erro usuario no registrado');
@@ -310,7 +310,7 @@ function fullHeight() {
         data = $.parseJSON( data );
         console.log(data);
         if (data.Y == "Y") {
-          alert('Registrado');
+          //alert('Registrado');
           window.location.replace("main.php");
         }else{
           alert('Erro usuario no registrado');
@@ -330,7 +330,7 @@ function fullHeight() {
         type: 'post'
       }).done(function(data){
         if (data != 0) {
-          alert('loggueado');
+          //alert('loggueado');
           window.location.replace("main.php");
         }else{
           alert('problemas al iniciar session');
@@ -350,7 +350,7 @@ function fullHeight() {
         type: 'post'
       }).done(function(data){
         if (data != 0) {
-          alert('loggueado');
+          //alert('loggueado');
           window.location.replace("main.php");
         }else{
           alert('problemas al iniciar session');
@@ -387,10 +387,10 @@ function fullHeight() {
         type: 'post'
       }).done(function(data){
         if(data){
-            window.location.replace("profile.php"); 
+            window.location.replace("profile.php");
         }
       });
-      
+
   });
 
 
@@ -416,7 +416,7 @@ function fullHeight() {
         }
       });
 
-        
+
     $("#registerSocio").validate({
         rules: {
           nameSocio: {
@@ -441,7 +441,7 @@ function fullHeight() {
           passwSocio: "Ingresa una contraseña con mas de 5 caracteres",
         }
       });
-        
+
         // id de boton createSoc
 
 
@@ -496,6 +496,3 @@ function fullHeight() {
             $("#loginU").prop("disabled", "disabled");
         }
     });
-
-
-
