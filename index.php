@@ -8,6 +8,11 @@ require_once(__DIR__.'/config.php');
 use pdomysql AS pdomysql;
 use user AS user;
 
+
+
+if(isset($_SESSION['user'])){
+  header('Location: '.'main.php');
+}
 ?>
 
   <main class="z-container-fluid splash bgDark noPadding hFull">

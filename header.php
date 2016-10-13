@@ -1,7 +1,4 @@
-<?php
-if(isset($_SESSION['user'])){
-  header('Location: '.'main.php');
-} ?>
+
 <!doctype html>
 <html class="no-js" lang="en-US">
 <head>
