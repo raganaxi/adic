@@ -24,20 +24,19 @@ use user AS user;
         ?>
             
             
-          <div class="z-panel z-forceBlock bgTransparent  wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
-            <a href="profile.php" class="z-panelHeader noPadding noBorder">
+          <div class="z-panel z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
+            <a href="profile1.php" class="z-panelHeader noPadding noBorder">
               <div class="z-row noMargin">
-                <div class="z-col-lg-3 z-col-md-3 z-col-sm-3 z-col-xs-3 noPadding">
+                <div class="z-col-lg-3 z-col-md-3 z-col-sm-3 z-col-xs-4 noPadding">
                   <div class="z-block h100 panelImg bgBlue">
                   </div>
                 </div>
-                <div class="z-col-lg-9 z-col-md-9 z-col-sm-9 z-col-xs-9">
+                <div class="z-col-lg-9 z-col-md-9 z-col-sm-9 z-col-xs-8">
                   <div class="z-block h100">
                     <div class="z-content z-contentTop">
                       <h3 class="noMargin text-uppercase text-uppercase s20 cDark text-bold"><?php  echo $resultPost[$key]['title']; ?></h3>
                       <div class="clear"></div>
                       <h4 class="noMargin cDark">Calle fulana #45, Centro. Torreón, Coahuila. Fecha: <?php  echo $resultPost[$key]['date']; ?></h4>
-                        
                     </div>
                   </div>
                 </div>
