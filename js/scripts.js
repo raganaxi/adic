@@ -311,10 +311,26 @@ function fullHeight() {
         console.log(data);
         if (data.Y == "Y") {
           //alert('Registrado');
-          window.location.replace("main.php");
+          window.location.replace("profile.php");
         }else{
           alert('Erro usuario no registrado');
         }
+      });
+  });
+
+//registrar publicacion
+  $("#createPost").on('click', function(){
+      $.ajax({
+        data:  {
+        "create_Post" : 1,
+        "title": $("#postTitle").val(),
+        "description": $("#postDescription").val(),
+        "date": $("#postDate").val()
+        },
+        url: 'classes/ajaxUsers.php',
+        type: 'post'
+      }).done(function(data){
+        console.log(data[0]);
       });
   });
 
@@ -351,7 +367,7 @@ function fullHeight() {
       }).done(function(data){
         if (data != 0) {
           //alert('loggueado');
-          window.location.replace("main.php");
+          window.location.replace("profile.php");
         }else{
           alert('problemas al iniciar session');
         }

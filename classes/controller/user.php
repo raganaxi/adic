@@ -35,6 +35,23 @@ class user
        	return $result;
     }
     
+    
+    public static function getPost(){
+		$consulta = 'SELECT * FROM post';
+		error_log($consulta);
+        $PDOMYSQL = new PDOMYSQL;
+        $result =  $PDOMYSQL->consulta($consulta);
+       	return $result;
+    }
+    
+    public static function regPost($title, $description, $date, $userid){
+		$consulta = 'call register_post("'.$title.'", "'.$description.'",  "'.$date.'",  "'.$userid.'")';
+        error_log($consulta);
+        $PDOMYSQL = new PDOMYSQL;
+        $result =  $PDOMYSQL->consulta($consulta);
+        return $result;
+    }
+    
     public static function editProfile($name, $phone, $mail, $image, $user_id){
 		$consulta = 'call editProfile("'.$name.'", "'.$phone.'",  "'.$mail.'",  "'.$image.'",  "'.$user_id.'")';
         error_log($consulta);
