@@ -51,6 +51,8 @@ use user AS user;
                   <div class="z-block h100 mh100 overflowAuto">
                     <div class="z-content z-contentMiddle">
                       <p class="cDark s15 text-bold s15">
+                      Publicado por: <?php  echo $resultPost[$key]['user_name']; ?>
+                      <br>
                        <?php  echo $resultPost[$key]['description']; ?>
                       </p>
                     </div>

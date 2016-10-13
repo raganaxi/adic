@@ -37,7 +37,7 @@ class user
     
     
     public static function getPost(){
-		$consulta = 'SELECT * FROM post';
+		$consulta = 'SELECT post.*, user_data.name as user_name FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid order by date desc';
 		error_log($consulta);
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);

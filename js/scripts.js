@@ -330,7 +330,9 @@ function fullHeight() {
         url: 'classes/ajaxUsers.php',
         type: 'post'
       }).done(function(data){
-        console.log(data[0]);
+        if (data) {
+           window.location.replace("profile.php");
+        }
       });
   });
 
