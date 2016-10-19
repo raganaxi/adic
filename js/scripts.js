@@ -297,6 +297,23 @@ function fullHeight() {
 
 
 
+  $("#searchBtn").on('click', function(){
+    alert('alert');
+    $("#postContainer").empty();
+       $.ajax({
+        data:  {
+        "search_post" : 1,
+        "search_terms": $("#search").val()
+        },
+        url: 'classes/ajaxUsers.php',
+        type: 'post'
+      }).done(function(data){
+          console.log(data);
+      });
+  });
+
+
+
 //crear cuenta por email socio
   $("#createSoc").on('click', function(){
       $.ajax({

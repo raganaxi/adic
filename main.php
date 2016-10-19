@@ -19,7 +19,7 @@ use user AS user;
 
     <section class="z-container mainContainer">
       <div class="z-row">
-        <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
+        <div id="postContainer" class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
             
         <?php 
         $resultPost = user::getPost();
