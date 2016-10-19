@@ -6,6 +6,7 @@
     <script src="js/wow.min.js"></script>
     <script src="js/welcomescreen.js"></script>
     <script src="js/scripts.js"></script>
+    <script src="js/functions.js"></script>
     <script src="js/jquery.validate.min.js"></script>
   </body>
 </html>

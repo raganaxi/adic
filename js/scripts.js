@@ -298,14 +298,15 @@ function fullHeight() {
 
 
   $("#searchBtn").on('click', function(){
-    alert('alert');
+    
     $("#postContainer").empty();
+    $("#postContainer").append(createpost('demo post', 'asdasfdfsadasdsdasdasd', 'brayan', '19-oct-2016'));
        $.ajax({
         data:  {
         "search_post" : 1,
         "search_terms": $("#search").val()
         },
-        url: 'classes/ajaxUsers.php',
+        url: 'classes/ajaxPosts.php',
         type: 'post'
       }).done(function(data){
           console.log(data);
