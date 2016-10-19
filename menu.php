@@ -13,7 +13,12 @@
       </div>
       <div class="z-content-fluid z-contentMiddle text-right">
         <a id="openSearch" role="button" class="cLightGrey s20 text-bold">
-          Hoy <span class="fa fa-chevron-down s15"></span>
+          Hoy
+          <?php 
+            $day = date("N");
+
+           ?>
+           <span class="fa fa-chevron-down s15"></span>
         </a>
       </div>
     </div>
@@ -71,11 +76,11 @@
     </div>
     <div class="z-row">
       <div class="z-col-lg-8 z-col-md-8 z-col-sm-8 z-col-xs-12">
-        <input class="form-control square" type="text" name="name" value="" placeholder="Buscar...">
+        <input id="search" class="form-control square" type="text" name="search" value="" placeholder="Buscar...">
         <div class="clear"></div>
       </div>
       <div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-xs-12">
-        <button class="z-btn cWhite bgGreen s15 rounded"><span class="fa fa-search"></span></button>
+        <button type="button" id="searchBtn" class="z-btn cWhite bgGreen s15 rounded"><span class="fa fa-search"></span></button>
         <div class="clear"></div>
       </div>
     </div>
