@@ -300,7 +300,6 @@ function fullHeight() {
   $("#searchBtn").on('click', function(){
     
     $("#postContainer").empty();
-    $("#postContainer").append(createpost('demo post', 'asdasfdfsadasdsdasdasd', 'brayan', '19-oct-2016'));
        $.ajax({
         data:  {
         "search_post" : 1,
@@ -309,7 +308,13 @@ function fullHeight() {
         url: 'classes/ajaxPosts.php',
         type: 'post'
       }).done(function(data){
-          console.log(data);
+          data = jQuery.parseJSON(data);
+
+          $.each( data, function(index, value){
+              console.log(data[index]);
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date));
+          });
+
       });
   });
 
@@ -431,10 +436,6 @@ function fullHeight() {
       });
 
   });
-
-
-
-
 
     window.onload = function () {
 

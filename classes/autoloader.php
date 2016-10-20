@@ -2,7 +2,7 @@
 $mapping = array(
     'pdomysql' => __DIR__ . '/controller/pdomysql.php',
     'user' => __DIR__ . '/controller/user.php',
-
+    'posts' => __DIR__ . '/controller/posts.php',
 );
 
 spl_autoload_register(function ($class) use ($mapping) {
