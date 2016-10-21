@@ -397,7 +397,7 @@ use user AS user;
       </div>
        <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
         <h1>Crear Categoria</h1>
-        <form id="formPost" class="form-section" action="" method="post">
+        <form id="formCat" class="form-section" action="" method="post">
           <div class="clear"></div>
           <input id="categoryTitle" type="text" class="form-control" placeholder="Nombre de Categoria">
           <div class="clear"></div>

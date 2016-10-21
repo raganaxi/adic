@@ -318,6 +318,25 @@ function fullHeight() {
       });
   });
 
+  $("#createCategory").on('click', function(){
+    alert(1);
+    
+    $("#postContainer").empty();
+       $.ajax({
+        data:  {
+        "register_Cat" : 1,
+        "name": $("#categoryTitle").val(),
+        "descriptiom": $("#categoryDescription").val(),
+        "subCat": $("#subCategory").val()
+        },
+        url: 'classes/ajaxPosts.php',
+        type: 'post'
+      }).done(function(data){
+        console.log(data);
+      });
+      
+  });
+
 
 
 //crear cuenta por email socio
