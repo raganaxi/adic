@@ -380,7 +380,7 @@ use user AS user;
       </div>
       <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
         <h1>Crear publicacion</h1>
-        <form id="formPost" class="form-section" action="" method="post">
+        <form id="formPost" class="form-section" action="upload.php" method="post" enctype="multipart/form-data">
           <div class="clear"></div>
           <input id="postTitle" type="text" class="form-control" placeholder="Nombre de la oferta">
           <div class="clear"></div>
@@ -391,6 +391,8 @@ use user AS user;
           <select id="category" name="category" class="form-control" >
           </select>
           <div class="clear"></div>
+        <input type="file" id="file" name="file" class="form-control" accept="image/*">
+        <div class="clear"></div>
           <button type="button" id="createPost" class="z-btn bgGreen cWhite"  name="button">Crear</button>
         </form>
         <div class="clear h100"></div>
@@ -401,12 +403,9 @@ use user AS user;
           <div class="clear"></div>
           <input id="categoryTitle" type="text" class="form-control" placeholder="Nombre de Categoria">
           <div class="clear"></div>
-          <textarea id="categoryDescription" class="form-control h100" rows="4" placeholder="Descripción"></textarea>
+          <textarea id="descriptionx" class="form-control h100" rows="4" placeholder="Descripción"></textarea>
           <div class="clear"></div>
-          <select id="subCategory" name="subCategory" class="form-control" >
-          </select>
-          <div class="clear"></div>
-          <button type="button" id="createCategory" class="z-btn bgGreen cWhite" name="button">Crear</button>
+          <button type="button" id="createCategory" class="z-btn bgGreen cWhite" name="createCategory">Crear</button>
         </form>
         <div class="clear h100"></div>
       </div>

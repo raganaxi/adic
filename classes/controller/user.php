@@ -37,16 +37,15 @@ class user
     
     
     public static function getPost(){
-		$consulta = 'SELECT post.*, user_data.name as user_name FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid order by date desc';
+		$consulta = 'SELECT post.*,category.nombre as categoria, user_data.name as user_name FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid INNER JOIN category on post.categoryid = category.idcategory order by date desc';
 		error_log($consulta);
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);
        	return $result;
     }
     
-    public static function regPost($title, $description, $date, $userid){
-		$consulta = 'call register_post("'.$title.'", "'.$description.'",  "'.$date.'",  "'.$userid.'")';
-        error_log($consulta);
+    public static function regPost($title, $description, $date, $userid, $category, $file){
+		$consulta = 'call register_post("'.$title.'", "'.$description.'",  "'.$date.'",  "'.$userid.'",  "'.$category.'",  "'.$file.'")';
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);
         return $result;

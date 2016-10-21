@@ -51,22 +51,22 @@
         <a href="main.php" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
           <span class="sidebar-icon fa fa-home cLightGrey"></span> Inicio
         </a>
-        <a href="main.php" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+        <a id="findRestaurant" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
           <span class="sidebar-icon fa fa-cutlery cLightGrey"></span> Restaurantes
         </a>
-        <a href="main.php" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+        <a id="findBar" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
           <span class="sidebar-icon fa fa-beer cLightGrey"></span> Bares
         </a>
-        <a href="main.php" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+        <a id="findAntro" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
           <span class="sidebar-icon fa fa-glass cLightGrey"></span> Antros
         </a>
-        <a href="main.php" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+        <a id="findFoodTruck"  role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
           <span class="sidebar-icon fa fa-truck cLightGrey"></span> FoodTrucks
         </a>
-        <a href="main.php" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+        <a id="findEvent" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
           <span class="sidebar-icon fa fa-calendar cLightGrey"></span> Eventos
         </a>
-        <a href="main.php" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+        <a id="findUbication" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
           <span class="sidebar-icon fa fa-map cLightGrey"></span> Ubicaciones
         </a>
       </div>

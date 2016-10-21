@@ -49,6 +49,7 @@ use user AS user;
             </a>
             <div class="z-panelBody z-block overflowHidden noPadding">
               <div id="" class="bgDarkBlueClear z-row h300 panelImg">
+                  <img src="<?php  echo $resultPost[$key]['image']; ?>" >
               </div>
               <div class="z-row noMargin">
                 <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">
@@ -56,6 +57,8 @@ use user AS user;
                     <div class="z-content z-contentMiddle">
                       <p class="cDark s15 text-bold s15">
                       Publicado por: <?php  echo $resultPost[$key]['user_name']; ?>
+                    <br>
+                          Categoria: <?php  echo $resultPost[$key]['categoria']; ?>
                       <br>
                        <?php  echo $resultPost[$key]['description']; ?>
                       </p>
