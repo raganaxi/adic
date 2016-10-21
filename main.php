@@ -20,27 +20,27 @@ use user AS user;
     <section class="z-container mainContainer">
       <div class="z-row">
         <div id="postContainer" class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
-            
-        <?php 
+
+        <?php
         $resultPost = user::getPost();
 
         foreach ($resultPost as $key => $value) {
         ?>
-            
-            
+
+
           <div class="z-panel z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
             <a href="profile1.php" class="z-panelHeader noPadding noBorder">
               <div class="z-row noMargin">
-                <div class="z-col-lg-3 z-col-md-3 z-col-sm-3 z-col-xs-4 noPadding">
+                <div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-2 noPadding">
                   <div class="z-block h100 panelImg bgBlue">
                   </div>
                 </div>
-                <div class="z-col-lg-9 z-col-md-9 z-col-sm-9 z-col-xs-8">
+                <div class="z-col-lg-9 z-col-md-9 z-col-sm-10 z-col-xs-10">
                   <div class="z-block h100">
                     <div class="z-content z-contentTop">
-                      <h3 class="noMargin text-uppercase text-uppercase s20 cDark text-bold"><?php  echo $resultPost[$key]['title']; ?></h3>
+                      <h3 class="noMargin text-uppercase text-uppercase s20 cDark text-bold"><?php  echo $resultPost[$key]['user_name']; ?></h3>
                       <div class="clear"></div>
-                      <h4 class="noMargin cDark">Calle fulana #45, Centro. Torreón, Coahuila. Fecha: <?php  echo $resultPost[$key]['date']; ?></h4>
+                      <h4 class="noMargin cDark">Calle fulana #45, Centro. Torreón, Coahuila.</h4>
                     </div>
                   </div>
                 </div>
@@ -55,9 +55,10 @@ use user AS user;
                   <div class="z-block h100 mh100 overflowAuto">
                     <div class="z-content z-contentMiddle">
                       <p class="cDark s15 text-bold s15">
-                      Publicado por: <?php  echo $resultPost[$key]['user_name']; ?>
-                      <br>
-                       <?php  echo $resultPost[$key]['description']; ?>
+                        <?php  echo $resultPost[$key]['title']; ?>
+                        <small>Fecha: <?php  echo $resultPost[$key]['date']; ?></small>
+                        <br>
+                        <?php  echo $resultPost[$key]['description']; ?>
                       </p>
                     </div>
                   </div>
@@ -76,12 +77,12 @@ use user AS user;
               </a>
             </div>
           </div>
-            
-            
+
+
         <?php } ?>
-            
-            
-            
+
+
+
         </div>
       </div>
 
