@@ -33,6 +33,7 @@ use user AS user;
               <div class="z-row noMargin">
                 <div class="z-col-lg-3 z-col-md-3 z-col-sm-3 z-col-xs-4 noPadding">
                   <div class="z-block h100 panelImg bgBlue">
+                      <img src="<?php  echo $resultPost[$key]['user_pic']; ?>" >
                   </div>
                 </div>
                 <div class="z-col-lg-9 z-col-md-9 z-col-sm-9 z-col-xs-8">

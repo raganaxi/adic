@@ -312,7 +312,7 @@ function fullHeight() {
 
           $.each( data, function(index, value){
               console.log(data[index]);
-              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image));
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic ));
           });
 
       });
@@ -334,7 +334,7 @@ function fullHeight() {
 
           $.each( data, function(index, value){
               console.log(data[index]);
-              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image));
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic));
           });
 
       });
@@ -354,7 +354,7 @@ function fullHeight() {
 
           $.each( data, function(index, value){
               console.log(data[index]);
-              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image));
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic));
           });
 
       });
@@ -374,7 +374,7 @@ function fullHeight() {
 
           $.each( data, function(index, value){
               console.log(data[index]);
-              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image));
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic));
           });
 
       });
@@ -394,7 +394,7 @@ function fullHeight() {
 
           $.each( data, function(index, value){
               console.log(data[index]);
-              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image));
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic));
           });
 
       });
@@ -414,7 +414,7 @@ function fullHeight() {
 
           $.each( data, function(index, value){
               console.log(data[index]);
-              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image));
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic));
           });
 
       });
@@ -434,7 +434,7 @@ function fullHeight() {
 
           $.each( data, function(index, value){
               console.log(data[index]);
-              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image));
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic));
           });
 
       });
@@ -491,7 +491,8 @@ function fullHeight() {
         "name": $("#nameSocio").val(),
         "phone": $("#telSocio").val(),
         "mail": $("#mailSocio").val(),
-        "pass": $("#passwSocio").val()
+        "pass": $("#passwSocio").val(),
+        "img": document.getElementById("imgProfile").files[0].name
         },
         url: 'classes/ajaxUsers.php',
         type: 'post'
@@ -500,7 +501,8 @@ function fullHeight() {
         console.log(data);
         if (data.Y == "Y") {
           //alert('Registrado');
-          window.location.replace("profile.php");
+          //window.location.replace("profile.php");
+            $("#registerSocio").submit();
         }else{
           alert('Erro usuario no registrado');
         }
