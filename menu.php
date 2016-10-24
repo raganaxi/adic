@@ -16,7 +16,7 @@
 
 
           Hoy <button class="searchDay bgDark " value="<?php echo date('Y-m-d'); ?>"><?php echo posts::getCurrentDay(strtotime(str_replace('-','/', date('Y-m-d H:i:s')))); ?></button><span class="fa fa-chevron-down s15"></span>
-          
+
 
 
         </a>
@@ -49,6 +49,17 @@
 </nav>
 <aside id="sidebar" off-canvas="asideNav left push" role="navigation" class="mainContainer sidebar boxShadowRight bgLightBlue">
   <form class="z-container-fluid">
+    <div class="clear"></div>
+    <div class="z-row">
+      <div class="z-col-lg-8 z-col-md-8 z-col-sm-8 z-col-xs-12">
+        <input id="search" class="form-control square" type="text" name="search" value="" placeholder="Buscar...">
+        <div class="clear"></div>
+      </div>
+      <div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-xs-12">
+        <button type="button" id="searchBtn" class="z-btn cWhite bgGreen s15 rounded"><span class="fa fa-search"></span></button>
+        <div class="clear"></div>
+      </div>
+    </div>
     <div class="sidebar-nav">
       <div class="list-group bgTransparent noBorder square">
         <a href="main.php" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
@@ -74,16 +85,7 @@
         </a>
       </div>
     </div>
-    <div class="z-row">
-      <div class="z-col-lg-8 z-col-md-8 z-col-sm-8 z-col-xs-12">
-        <input id="search" class="form-control square" type="text" name="search" value="" placeholder="Buscar...">
-        <div class="clear"></div>
-      </div>
-      <div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-xs-12">
-        <button type="button" id="searchBtn" class="z-btn cWhite bgGreen s15 rounded"><span class="fa fa-search"></span></button>
-        <div class="clear"></div>
-      </div>
-    </div>
+
     <div class="z-row">
       <div class="z-forceBlock h50">
         <div class="z-block h150 hidden">
@@ -170,13 +172,13 @@
     </div>-->
     <!--<hr class="separator">-->
     <div class="list-group bgTransparent noBorder square">
-      <?php 
+      <?php
       for ($i = 1; $i <= 5; $i++) {
           $day = date('Y-m-d', strtotime('+'.$i.' day'));
       ?>
        <button type="button"  class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" value="<?php echo $day; ?>">
        <?php
-          
+
             echo posts::getCurrentDay(strtotime(str_replace('-','/', $day)));
         ?>
         </button>
