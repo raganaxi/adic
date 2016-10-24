@@ -253,7 +253,7 @@
     </header>
     <div class="wrapper row-offcanvas row-offcanvas-left">
       <!-- Left side column. contains the logo and sidebar -->
-      <aside class="left-side sidebar-offcanvas">
+      <aside class="left-side sidebar-offcanvas bgDarkBlue">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- Sidebar user panel -->
@@ -307,10 +307,10 @@
         <!-- /.sidebar -->
       </aside>
 
-      <aside class="right-side">
+      <aside class="right-side bgLightGrey">
 
         <!-- Main content -->
-        <section class="content">
+        <section class="content bgTransparent">
 
           <div id="accesos_directos" class="row" style="margin-bottom:5px;">
             <div class="col-md-3">
@@ -350,7 +350,7 @@
           <!-- Main row -->
           <div class="row">
 
-            <div id="grafica_ganancias" class="col-md-8">
+            <div id="grafica_ganancias" class="col-md-12">
               <!--earning graph start-->
               <section class="panel">
                 <header class="panel-heading">
@@ -363,7 +363,7 @@
               <!--earning graph end-->
 
             </div>
-            <div id="notificaciones" class="col-lg-4">
+            <div id="notificaciones" class="col-lg-4 hidden">
 
               <!--chat start-->
               <section class="panel">
