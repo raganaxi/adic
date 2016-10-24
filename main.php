@@ -26,7 +26,7 @@ use user AS user;
               <div class="z-row noMargin">
                 <div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-2 noPadding">
                   <div class="z-block h70">
-                    <a href="profile1.php"  class="z-content z-contentMiddle">
+                    <a href="profile1.php" class="z-content z-contentMiddle">
                       <div class="profileImg panelImg" style="background-image:url('<?php  echo $resultPost[$key]['user_pic']; ?>')">
                       </div>
                     </a>
@@ -35,7 +35,7 @@ use user AS user;
                 <div class="z-col-lg-9 z-col-md-9 z-col-sm-10 z-col-xs-8">
                   <div class="z-block h70">
                     <div class="z-content z-contentMiddle">
-                      <a href="profile1.php"  class="noMargin text-uppercase text-uppercase s15 cDark text-bold"><?php  echo $resultPost[$key]['user_name']; ?></a>
+                      <a href="profile1.php" class="noMargin text-uppercase text-uppercase s15 cDark text-bold"><?php  echo $resultPost[$key]['user_name']; ?></a>
                       <p class="noMargin cDark hidden">Calle fulana #45, Centro. Torreón, Coahuila.</p>
                     </div>
                   </div>
@@ -50,7 +50,7 @@ use user AS user;
               </div>
             </div>
             <div class="z-panelBody z-block overflowHidden noPadding">
-              <div id="" class="bgDarkBlueClear z-row h300 panelImg" style="background-image:url('<?php  echo $resultPost[$key]['image']; ?>')">
+              <div id="" class="bgDarkBlueClear ofertaImg panelImg" style="background-image:url('<?php  echo $resultPost[$key]['image']; ?>')">
               </div>
               <div class="z-row noMargin">
                 <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">

@@ -28,7 +28,7 @@ function createpost(title, description, user, date, category, image, user_pic) {
       '</div>'+
     '</div>'+
     '<div class="z-panelBody z-block overflowHidden noPadding">'+
-      '<div id="" class="bgDarkBlueClear z-row h300 panelImg" style="background-image:url('+image+')">'+
+      '<div id="" class="bgDarkBlueClear ofertaImg panelImg" style="background-image:url('+image+')">'+
       '</div>'+
       '<div class="z-row noMargin">'+
         '<div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">'+
