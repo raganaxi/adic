@@ -39,7 +39,7 @@ use user AS user;
                 <div class="z-col-lg-9 z-col-md-9 z-col-sm-10 z-col-xs-10">
                   <div class="z-block h100">
                     <div class="z-content z-contentTop">
-                      <h3 class="noMargin text-uppercase text-uppercase s20 cDark text-bold"><?php  echo $resultPost[$key]['user_name']; ?></h3>
+                      <h3 class="noMargin text-uppercase text-uppercase s20 cDark text-bold"><?php  echo $resultPost[$key]['title']; ?></h3>
                       <div class="clear"></div>
                       <h4 class="noMargin cDark">Calle fulana #45, Centro. Torreón, Coahuila.</h4>
                     </div>

@@ -318,6 +318,31 @@ function fullHeight() {
       });
   });
 
+
+//busqueda por dias
+  $(".searchDay").on('click', function(){
+   
+    $("#postContainer").empty();
+
+       $.ajax({
+        data:  {
+        "postsDay" : 1,
+        "date": $(this).val()
+        },
+        url: 'classes/ajaxPosts.php',
+        type: 'post'
+      }).done(function(data){
+          data = jQuery.parseJSON(data);
+
+          $.each( data, function(index, value){
+              console.log(data[index]);
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic ));
+          });
+
+      });
+      
+  });
+
 //buscar restaurantes
   $("#findRestaurant").on('click', function(){
     

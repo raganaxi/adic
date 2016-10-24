@@ -14,7 +14,8 @@
       <div class="z-content-fluid z-contentMiddle text-right">
         <a id="openSearch" role="button" class="cLightGrey s20 text-bold">
 
-          Hoy <?php echo date('d-m-Y - H:i N', strtotime(date('Y-m-d H:i:s'))); ?><span class="fa fa-chevron-down s15"></span>
+          Hoy <?php echo posts::getCurrentDay(strtotime(str_replace('-','/', date('Y-m-d H:i:s')))); ?><span class="fa fa-chevron-down s15"></span>
+          
 
         </a>
       </div>
@@ -167,21 +168,20 @@
     </div>-->
     <!--<hr class="separator">-->
     <div class="list-group bgTransparent noBorder square">
-      <a role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
-        Dia siguiente
-      </a>
-      <a role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
-        Otro
-      </a>
-      <a role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
-        Otro
-      </a>
-      <a role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
-        Otro
-      </a>
-      <a role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
-        Otro
-      </a>
+      <?php 
+      for ($i = 1; $i <= 5; $i++) {
+          $day = date('Y-m-d', strtotime('+'.$i.' day'));
+      ?>
+       <button type="button"  class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" value="<?php echo $day; ?>">
+       <?php
+          
+            echo posts::getCurrentDay(strtotime(str_replace('-','/', $day)));
+        ?>
+        </button>
+      <?php
+            }
+       ?>
+
     </div>
   </div>
 </aside>
