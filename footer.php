@@ -8,5 +8,6 @@
     <script src="js/scripts.js"></script>
     <script src="js/functions.js"></script>
     <script src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
   </body>
 </html>
