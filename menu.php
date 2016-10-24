@@ -12,14 +12,14 @@
         </a>
       </div>
       <div class="z-content-fluid z-contentMiddle text-right">
-        <button type="button" id="openSearch" role="button" class="cLightGrey s20 text-bold searchDay" value="<?php echo date('Y-m-d'); ?>">
+        <a  id="openSearch" role="button" class=" cLightGrey s20 text-bold" >
 
 
-          Hoy <?php echo posts::getCurrentDay(strtotime(str_replace('-','/', date('Y-m-d H:i:s')))); ?><span class="fa fa-chevron-down s15"></span>
+          Hoy <button class="searchDay bgDark " value="<?php echo date('Y-m-d'); ?>"><?php echo posts::getCurrentDay(strtotime(str_replace('-','/', date('Y-m-d H:i:s')))); ?></button><span class="fa fa-chevron-down s15"></span>
           
 
 
-        </button>
+        </a>
       </div>
     </div>
   </div>

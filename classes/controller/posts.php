@@ -8,7 +8,13 @@ use posts AS posts;
 class posts
 {
     public static function search($terms = null, $date = null){
-        $date = isset($date)? $date : date('Y-m-d');
+        if (isset($_SESSION['date'])){
+          $date = $_SESSION['date'];
+        }else{
+          $date = isset($date)? $date : date('Y-m-d');
+        }
+      
+
         $consulta = 'SELECT post.*,category.nombre as categoria, user_data.name as user_name, user_data.img as user_pic FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid INNER JOIN category on post.categoryid = category.idcategory where (post.title LIKE "%'.$terms.'%" or category.nombre LIKE "%'.$terms.'%") and date ="'.$date.'"  order by date desc';
         error_log($consulta);
         $PDOMYSQL = new PDOMYSQL;

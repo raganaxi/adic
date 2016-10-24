@@ -518,8 +518,9 @@ function fullHeight() {
         "name": $("#nameSocio").val(),
         "phone": $("#telSocio").val(),
         "mail": $("#mailSocio").val(),
-        "pass": $("#passwSocio").val(),
-        "img": document.getElementById("imgProfile").files[0].name
+        "negocio": $("#nameNegocio").val()
+        //"pass": $("#passwSocio").val(),
+        //"img": document.getElementById("imgProfile").files[0].name
         },
         url: 'classes/ajaxUsers.php',
         type: 'post'
@@ -663,17 +664,12 @@ function fullHeight() {
           mailSocio: {
             required: true,
             email: true
-          },
-          passwSocio: {
-            required: true,
-            minlength: 5
           }
         },
         messages: {
           nameSocio: "Porfavor ingresa un nombre",
           telSocio: "Porfavor ingresa un telefono",
-          mailSocio: "Porfavor ingresa un E-mail valido",
-          passwSocio: "Ingresa una contraseña con mas de 5 caracteres",
+          mailSocio: "Porfavor ingresa un E-mail valido"
         }
       });
 
