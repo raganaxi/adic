@@ -24,5 +24,12 @@ if (isset($_POST['get_Category'])) {
 	echo json_encode($result);
 }
 
+//filtrar publicaciones por dia
+if (isset($_POST['postsDay'])) {
+	$_SESSION['date'] = $_POST['date'];
+	$result = posts::search(null, $_SESSION['date']);
+	echo json_encode($result);
+}
+
 
 ?>

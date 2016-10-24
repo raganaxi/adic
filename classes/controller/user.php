@@ -19,8 +19,8 @@ class user
         return $result;
     }
     
-    public static function registerSoc($name, $phone, $mail, $pass, $r_type, $img){
-		$consulta = 'call register_soc("'.$name.'","'.$phone.'","'.$mail.'", "'.$pass.'",  "'.$r_type.'",  "'.$img.'")';
+    public static function registerSoc($name, $phone, $mail, $pass, $r_type, $img, $negocio){
+		$consulta = 'call register_soc("'.$name.'","'.$phone.'","'.$mail.'", "'.$pass.'",  "'.$r_type.'",  "'.$img.'",  "'.$negocio.'")';
         error_log($consulta);
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);
@@ -37,7 +37,8 @@ class user
     
     
     public static function getPost(){
-		$consulta = 'SELECT post.*,category.nombre as categoria, user_data.name as user_name, user_data.img as user_pic FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid INNER JOIN category on post.categoryid = category.idcategory order by date desc';
+        $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
+		$consulta = 'SELECT post.*,category.nombre as categoria, user_data.name as user_name, user_data.img as user_pic FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid INNER JOIN category on post.categoryid = category.idcategory where date ="'.$date.'" order by date desc';
 		error_log($consulta);
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);

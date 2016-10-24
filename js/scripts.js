@@ -320,6 +320,31 @@ function fullHeight() {
       });
   });
 
+
+//busqueda por dias
+  $(".searchDay").on('click', function(){
+   
+    $("#postContainer").empty();
+
+       $.ajax({
+        data:  {
+        "postsDay" : 1,
+        "date": $(this).val()
+        },
+        url: 'classes/ajaxPosts.php',
+        type: 'post'
+      }).done(function(data){
+          data = jQuery.parseJSON(data);
+
+          $.each( data, function(index, value){
+              console.log(data[index]);
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic ));
+          });
+
+      });
+      
+  });
+
 //buscar restaurantes
   $("#findRestaurant").on('click', function(){
 
@@ -493,8 +518,9 @@ function fullHeight() {
         "name": $("#nameSocio").val(),
         "phone": $("#telSocio").val(),
         "mail": $("#mailSocio").val(),
-        "pass": $("#passwSocio").val(),
-        "img": document.getElementById("imgProfile").files[0].name
+        "negocio": $("#nameNegocio").val()
+        //"pass": $("#passwSocio").val(),
+        //"img": document.getElementById("imgProfile").files[0].name
         },
         url: 'classes/ajaxUsers.php',
         type: 'post'
@@ -638,17 +664,12 @@ function fullHeight() {
           mailSocio: {
             required: true,
             email: true
-          },
-          passwSocio: {
-            required: true,
-            minlength: 5
           }
         },
         messages: {
           nameSocio: "Porfavor ingresa un nombre",
           telSocio: "Porfavor ingresa un telefono",
-          mailSocio: "Porfavor ingresa un E-mail valido",
-          passwSocio: "Ingresa una contraseña con mas de 5 caracteres",
+          mailSocio: "Porfavor ingresa un E-mail valido"
         }
       });
 

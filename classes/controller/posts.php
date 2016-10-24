@@ -7,8 +7,15 @@ use posts AS posts;
 
 class posts
 {
-    public static function search($terms){
-        $consulta = 'SELECT post.*,category.nombre as categoria, user_data.name as user_name, user_data.img as user_pic FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid INNER JOIN category on post.categoryid = category.idcategory where post.title LIKE "%'.$terms.'%" or category.nombre LIKE "%'.$terms.'%"  order by date desc';
+    public static function search($terms = null, $date = null){
+        if (isset($_SESSION['date'])){
+          $date = $_SESSION['date'];
+        }else{
+          $date = isset($date)? $date : date('Y-m-d');
+        }
+      
+
+        $consulta = 'SELECT post.*,category.nombre as categoria, user_data.name as user_name, user_data.img as user_pic FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid INNER JOIN category on post.categoryid = category.idcategory where (post.title LIKE "%'.$terms.'%" or category.nombre LIKE "%'.$terms.'%") and date ="'.$date.'"  order by date desc';
         error_log($consulta);
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);
@@ -29,6 +36,36 @@ class posts
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);
         return $result;
+    }
+
+    public static function getCurrentDay($date){
+      $date = date('N', $date);
+      switch ($date) {
+        case '1':
+          return 'Lunes';
+          break;
+        case '2':
+          return 'Martes';
+          break;
+        case '3':
+          return 'Miercoles';
+          break;
+        case '4':
+          return 'Jueves';
+          break;
+        case '5':
+          return 'Viernes';
+          break;
+        case '6':
+          return 'Sabado';
+          break;
+        case '7':
+          return 'Domingo';
+          break;
+        default:
+          return 'error';
+          break;
+      }  
     }
     
     public static function uploadFile(){
