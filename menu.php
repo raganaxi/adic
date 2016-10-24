@@ -14,7 +14,10 @@
       <div class="z-content-fluid z-contentMiddle text-right">
         <a id="openSearch" role="button" class="cLightGrey s20 text-bold">
 
-          Hoy <?php echo date('d-m-Y - H:i N', strtotime(date('Y-m-d H:i:s'))); ?><span class="fa fa-chevron-down s15"></span>
+          Hoy
+          <span class="hidden">
+            <?php echo date('d-m-Y - H:i N', strtotime(date('Y-m-d H:i:s'))); ?><span class="fa fa-chevron-down s15"></span>
+          </span>
 
         </a>
       </div>
