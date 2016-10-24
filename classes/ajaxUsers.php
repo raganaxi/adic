@@ -49,7 +49,8 @@ if (isset($_POST['editProfile'])) {
 
 //Registrar publicacion
 if (isset($_POST['create_Post'])) {
-    $result = user::regPost($_POST['title'], $_POST['description'], $_POST['date'], $_SESSION['iduser']);
+    $_POST['file'] = 'images/posts/'.$_POST['file'];
+    $result = user::regPost($_POST['title'], $_POST['description'], $_POST['date'], $_SESSION['iduser'], $_POST['category'], $_POST['file']);
 	echo json_encode($result);
 }
 
@@ -57,7 +58,8 @@ if (isset($_POST['create_Post'])) {
 //Registrar socio
 if (isset($_POST['reg_soc'])) {
     $_POST['pass'] = sha1($_POST['pass']);
-    $result = user::registerSoc($_POST['name'], $_POST['phone'], $_POST['mail'], $_POST['pass'], 'email');
+    $_POST['img'] = 'images/profPicture/'.$_POST['img'];
+    $result = user::registerSoc($_POST['name'], $_POST['phone'], $_POST['mail'], $_POST['pass'], 'email', $_POST['img']);
     
     $resultl = user::login($_POST['mail'], $_POST['pass']);
 	if (!empty($result)) {

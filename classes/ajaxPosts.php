@@ -11,9 +11,16 @@ if (isset($_POST['search_post'])) {
 	$result = posts::search($_POST['search_terms']);
 	echo json_encode($result);
 }
+
 //Registrar  categorias
 if (isset($_POST['register_Cat'])) {
-	$result = posts::search($_POST['search_terms']);
+	$result = posts::regCat($_POST['name'], $_POST['desc']);
+	echo json_encode($result);
+}
+
+//listar categorias
+if (isset($_POST['get_Category'])) {
+	$result = posts::getCategory();
 	echo json_encode($result);
 }
 

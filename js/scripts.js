@@ -312,27 +312,171 @@ function fullHeight() {
 
           $.each( data, function(index, value){
               console.log(data[index]);
-              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date));
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic ));
           });
 
       });
   });
 
-  $("#createCategory").on('click', function(){
-    alert(1);
+//buscar restaurantes
+  $("#findRestaurant").on('click', function(){
     
     $("#postContainer").empty();
        $.ajax({
         data:  {
-        "register_Cat" : 1,
-        "name": $("#categoryTitle").val(),
-        "descriptiom": $("#categoryDescription").val(),
-        "subCat": $("#subCategory").val()
+        "search_post" : 1,
+        "search_terms": 'Restaurant'
         },
         url: 'classes/ajaxPosts.php',
         type: 'post'
       }).done(function(data){
-        console.log(data);
+          data = jQuery.parseJSON(data);
+
+          $.each( data, function(index, value){
+              console.log(data[index]);
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic));
+          });
+
+      });
+  });
+//buscar bares
+  $("#findBar").on('click', function(){
+    $("#postContainer").empty();
+       $.ajax({
+        data:  {
+        "search_post" : 1,
+        "search_terms": 'Bar'
+        },
+        url: 'classes/ajaxPosts.php',
+        type: 'post'
+      }).done(function(data){
+          data = jQuery.parseJSON(data);
+
+          $.each( data, function(index, value){
+              console.log(data[index]);
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic));
+          });
+
+      });
+  });
+//buscar antros
+  $("#findAntro").on('click', function(){
+    $("#postContainer").empty();
+       $.ajax({
+        data:  {
+        "search_post" : 1,
+        "search_terms": 'Antro'
+        },
+        url: 'classes/ajaxPosts.php',
+        type: 'post'
+      }).done(function(data){
+          data = jQuery.parseJSON(data);
+
+          $.each( data, function(index, value){
+              console.log(data[index]);
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic));
+          });
+
+      });
+  });
+//buscar foodtrucks
+  $("#findFoodTruck").on('click', function(){
+    $("#postContainer").empty();
+       $.ajax({
+        data:  {
+        "search_post" : 1,
+        "search_terms": 'FoodTrucks'
+        },
+        url: 'classes/ajaxPosts.php',
+        type: 'post'
+      }).done(function(data){
+          data = jQuery.parseJSON(data);
+
+          $.each( data, function(index, value){
+              console.log(data[index]);
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic));
+          });
+
+      });
+  });
+//buscar eventos
+  $("#findEvent").on('click', function(){
+    $("#postContainer").empty();
+       $.ajax({
+        data:  {
+        "search_post" : 1,
+        "search_terms": 'Eventos'
+        },
+        url: 'classes/ajaxPosts.php',
+        type: 'post'
+      }).done(function(data){
+          data = jQuery.parseJSON(data);
+
+          $.each( data, function(index, value){
+              console.log(data[index]);
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic));
+          });
+
+      });
+  });
+//buscar ubicaciones
+  $("#findUbication").on('click', function(){
+    $("#postContainer").empty();
+       $.ajax({
+        data:  {
+        "search_post" : 1,
+        "search_terms": 'Ubicaciones'
+        },
+        url: 'classes/ajaxPosts.php',
+        type: 'post'
+      }).done(function(data){
+          data = jQuery.parseJSON(data);
+
+          $.each( data, function(index, value){
+              console.log(data[index]);
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic));
+          });
+
+      });
+  });
+
+
+  $("#createCategory").on('click', function(){
+       $.ajax({
+        data:  {
+        "register_Cat" : 1,
+        "name": $("#categoryTitle").val(),
+        "desc": $("#descriptionx").val()
+        },
+        url: 'classes/ajaxPosts.php',
+        type: 'post'
+      }).done(function(data){
+        data = jQuery.parseJSON(data);
+           if(data[0].Y){
+             console.log(data);
+               alert('Categoria registrada exitosamente');
+               data = null;
+           }else{
+                       console.log(data);
+               alert('Problemas al registrar Categoria');
+                data = null;
+           }
+      }); 
+      
+    $('#category').empty();
+      
+      $.ajax({
+        data:  {
+        "get_Category" : 1
+        },
+        url: 'classes/ajaxPosts.php',
+        type: 'post'
+      }).done(function(data){
+        data = jQuery.parseJSON(data);
+        $.each( data, function(index, value){
+            $('#category').append(createList(data[index].idcategory, data[index].nombre));
+            console.log(data[index]);
+        });
       });
       
   });
@@ -347,7 +491,8 @@ function fullHeight() {
         "name": $("#nameSocio").val(),
         "phone": $("#telSocio").val(),
         "mail": $("#mailSocio").val(),
-        "pass": $("#passwSocio").val()
+        "pass": $("#passwSocio").val(),
+        "img": document.getElementById("imgProfile").files[0].name
         },
         url: 'classes/ajaxUsers.php',
         type: 'post'
@@ -356,7 +501,8 @@ function fullHeight() {
         console.log(data);
         if (data.Y == "Y") {
           //alert('Registrado');
-          window.location.replace("profile.php");
+          //window.location.replace("profile.php");
+            $("#registerSocio").submit();
         }else{
           alert('Erro usuario no registrado');
         }
@@ -364,19 +510,22 @@ function fullHeight() {
   });
 
 //registrar publicacion
+
   $("#createPost").on('click', function(){
       $.ajax({
         data:  {
         "create_Post" : 1,
         "title": $("#postTitle").val(),
         "description": $("#postDescription").val(),
-        "date": $("#postDate").val()
+        "date": $("#postDate").val(),
+        "category": $('#category').val(),
+        "file": document.getElementById("file").files[0].name
         },
         url: 'classes/ajaxUsers.php',
         type: 'post'
       }).done(function(data){
         if (data) {
-           window.location.replace("profile.php");
+            $("#formPost").submit();
         }
       });
   });
@@ -520,11 +669,6 @@ function fullHeight() {
           logPass: "Ingresa una contraseña con mas de 5 caracteres",
         }
       });
-
-
-
-
-
      }
 
 
@@ -555,3 +699,21 @@ function fullHeight() {
             $("#loginU").prop("disabled", "disabled");
         }
     });
+
+$(document).ready(function(){
+          $.ajax({
+        data:  {
+        "get_Category" : 1
+        },
+        url: 'classes/ajaxPosts.php',
+        type: 'post'
+      }).done(function(data){
+        data = jQuery.parseJSON(data);
+        $.each( data, function(index, value){
+            $('#category').append(createList(data[index].idcategory, data[index].nombre));
+            console.log(data[index]);
+        });
+      });
+});
+
+

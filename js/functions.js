@@ -1,9 +1,10 @@
-function createpost(title, description, user, date) {
+function createpost(title, description, user, date, category, image, user_pic) {
 	    var module =  '<div class="z-panel z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">'+
             '<a href="profile1.php" class="z-panelHeader noPadding noBorder">'+
               '<div class="z-row noMargin">'+
                '<div class="z-col-lg-3 z-col-md-3 z-col-sm-3 z-col-xs-4 noPadding">'+
                   '<div class="z-block h100 panelImg bgBlue">'+
+                        '<img src="'+user_pic+'" >'+
                   '</div>'+
                 '</div>'+
                 '<div class="z-col-lg-9 z-col-md-9 z-col-sm-9 z-col-xs-8">'+
@@ -20,6 +21,7 @@ function createpost(title, description, user, date) {
             '</a>'+
             '<div class="z-panelBody z-block overflowHidden noPadding">'+
               '<div id="" class="bgDarkBlueClear z-row h300 panelImg">'+
+                ' <img src="'+image+'" >'+
               '</div>'+
               '<div class="z-row noMargin">'+
                 '<div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">'+
@@ -27,6 +29,8 @@ function createpost(title, description, user, date) {
                     '<div class="z-content z-contentMiddle">'+
                       '<p class="cDark s15 text-bold s15">'+
                       'Publicado por:'+user+
+                        '<br>'+
+                        'Categoria: '+category+
                       '<br>'+
                        description+
                       '</p>'+
@@ -48,4 +52,10 @@ function createpost(title, description, user, date) {
             '</div>'+
           '</div>';
     return module;     
+}
+
+
+function createList(id, name) {
+    var option = '<option value="'+id+'">'+name+'</option>';
+    return option;
 }

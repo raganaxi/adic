@@ -33,6 +33,7 @@ use user AS user;
               <div class="z-row noMargin">
                 <div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-2 noPadding">
                   <div class="z-block h100 panelImg bgBlue">
+                      <img src="<?php  echo $resultPost[$key]['user_pic']; ?>" >
                   </div>
                 </div>
                 <div class="z-col-lg-9 z-col-md-9 z-col-sm-10 z-col-xs-10">
@@ -49,16 +50,18 @@ use user AS user;
             </a>
             <div class="z-panelBody z-block overflowHidden noPadding">
               <div id="" class="bgDarkBlueClear z-row h300 panelImg">
+                  <img src="<?php  echo $resultPost[$key]['image']; ?>" >
               </div>
               <div class="z-row noMargin">
                 <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">
                   <div class="z-block h100 mh100 overflowAuto">
                     <div class="z-content z-contentMiddle">
                       <p class="cDark s15 text-bold s15">
-                        <?php  echo $resultPost[$key]['title']; ?>
-                        <small>Fecha: <?php  echo $resultPost[$key]['date']; ?></small>
-                        <br>
-                        <?php  echo $resultPost[$key]['description']; ?>
+                      Publicado por: <?php  echo $resultPost[$key]['user_name']; ?>
+                    <br>
+                          Categoria: <?php  echo $resultPost[$key]['categoria']; ?>
+                      <br>
+                       <?php  echo $resultPost[$key]['description']; ?>
                       </p>
                     </div>
                   </div>

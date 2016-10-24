@@ -19,8 +19,8 @@ class user
         return $result;
     }
     
-    public static function registerSoc($name, $phone, $mail, $pass, $r_type){
-		$consulta = 'call register_soc("'.$name.'","'.$phone.'","'.$mail.'", "'.$pass.'",  "'.$r_type.'")';
+    public static function registerSoc($name, $phone, $mail, $pass, $r_type, $img){
+		$consulta = 'call register_soc("'.$name.'","'.$phone.'","'.$mail.'", "'.$pass.'",  "'.$r_type.'",  "'.$img.'")';
         error_log($consulta);
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);
@@ -37,16 +37,15 @@ class user
     
     
     public static function getPost(){
-		$consulta = 'SELECT post.*, user_data.name as user_name FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid order by date desc';
+		$consulta = 'SELECT post.*,category.nombre as categoria, user_data.name as user_name, user_data.img as user_pic FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid INNER JOIN category on post.categoryid = category.idcategory order by date desc';
 		error_log($consulta);
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);
        	return $result;
     }
     
-    public static function regPost($title, $description, $date, $userid){
-		$consulta = 'call register_post("'.$title.'", "'.$description.'",  "'.$date.'",  "'.$userid.'")';
-        error_log($consulta);
+    public static function regPost($title, $description, $date, $userid, $category, $file){
+		$consulta = 'call register_post("'.$title.'", "'.$description.'",  "'.$date.'",  "'.$userid.'",  "'.$category.'",  "'.$file.'")';
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);
         return $result;
