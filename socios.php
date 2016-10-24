@@ -79,18 +79,20 @@
         </div>
         <div class="modal-body">
           <form id="registerSocio" class="form-section" action="uploadPicture.php" method="post" enctype="multipart/form-data">
-            <input id="nameSocio" type="text" class="form-control" placeholder="Nombre" name="nameSocio" value="">
+            <input id="nameNegocio" type="text" class="form-control" placeholder="Nombre Negocio" name="nameBussiness" value="">
             <div class="clear"></div>
-            <input id="telSocio" type="text" class="form-control" placeholder="Telefono" name="telSocio" value="">
+            <input id="nameSocio" type="text" class="form-control" placeholder="Nombre Representante" name="nameSocio" value="">
             <div class="clear"></div>
-            <input id="addressSocio" type="text" class="form-control" placeholder="Dirección" name="addressSocio" value="" disabled>
+            <input id="telSocio" type="text" class="form-control" placeholder="Teléfono" name="telSocio" value="">
             <div class="clear"></div>
+            <input id="addressSocio" type="text" class="form-control hidden" placeholder="Dirección" name="addressSocio" value="" disabled>
+            <div class="clear hidden"></div>
             <input id="mailSocio" type="text" class="form-control" placeholder="Correo" name="mailSocio" value="">
             <div class="clear"></div>
-            <input id="passwSocio" type="password" class="form-control" placeholder="Contraseña" name="passwSocio" value="">
-            <div class="clear"></div>
-            <input type="file" id="imgProfile" name="imgProfile" class="form-control" accept="image/*">
-            <div class="clear"></div>
+            <input id="passwSocio" type="password" class="form-control hidden" placeholder="Contraseña" name="passwSocio" value="">
+            <div class="clear hidden"></div>
+            <input type="file" id="imgProfile" name="imgProfile" class="form-control hidden" accept="image/*">
+            <div class="clear hidden"></div>
             <button type="button" id="createSoc" class="z-btn h50 bgDarkBlue cWhite s20 text-center noTransform boxShadow">
               Crear cuenta
             </button>

@@ -89,7 +89,7 @@
           '<div class="hFull z-block">'+
             '<div class="z-content z-contentMiddle">'+
               '<div class="z-row">'+
-                '<div class="z-col-lg-12">'+
+                '<div class="z-col-lg-6 z-col-md-8 z-col-sm-10 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-2 z-col-sm-offset-1 z-col-xs-offset-0">'+
                   '<img src="images/logos/logo.png" class="centered z-forceBlock wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s" />'+
                 '</div>'+
               '</div>'+
@@ -109,8 +109,10 @@
                     'Crea una cuenta'+
                   '</a>'+
                   '<div class="clear"></div>'+
-                  '<a href="socios.php" class="  cWhite s20 text-center noTransform ">'+
-                    'Socios'+
+                '</div>'+
+                '<div class="z-col-lg-6 z-col-md-8 z-col-sm-10 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-2 z-col-sm-offset-1 z-col-xs-offset-0">'+
+                  '<a href="socios.php" class="cWhite s15 text-center noTransform z-block">'+
+                    'Acceso a Socios'+
                   '</a>'+
                 '</div>'+
               '</div>'+
@@ -298,7 +300,7 @@ function fullHeight() {
 
 
   $("#searchBtn").on('click', function(){
-    
+
     $("#postContainer").empty();
        $.ajax({
         data:  {
@@ -345,7 +347,7 @@ function fullHeight() {
 
 //buscar restaurantes
   $("#findRestaurant").on('click', function(){
-    
+
     $("#postContainer").empty();
        $.ajax({
         data:  {
@@ -486,10 +488,10 @@ function fullHeight() {
                alert('Problemas al registrar Categoria');
                 data = null;
            }
-      }); 
-      
+      });
+
     $('#category').empty();
-      
+
       $.ajax({
         data:  {
         "get_Category" : 1
@@ -503,7 +505,7 @@ function fullHeight() {
             console.log(data[index]);
         });
       });
-      
+
   });
 
 
@@ -715,7 +717,6 @@ function fullHeight() {
         }
     });
 
-
     $("#lognUser input").on('keypress change', function(){
         var valid = $("#lognUser").valid();
         if(valid == true){
@@ -725,20 +726,18 @@ function fullHeight() {
         }
     });
 
-$(document).ready(function(){
-          $.ajax({
-        data:  {
-        "get_Category" : 1
-        },
-        url: 'classes/ajaxPosts.php',
-        type: 'post'
-      }).done(function(data){
-        data = jQuery.parseJSON(data);
-        $.each( data, function(index, value){
-            $('#category').append(createList(data[index].idcategory, data[index].nombre));
-            console.log(data[index]);
-        });
+  $(document).ready(function () {
+    $.ajax({
+      data: {
+        "get_Category": 1
+      },
+      url: 'classes/ajaxPosts.php',
+      type: 'post'
+    }).done(function (data) {
+      data = jQuery.parseJSON(data);
+      $.each(data, function (index, value) {
+        $('#category').append(createList(data[index].idcategory, data[index].nombre));
+        //console.log(data[index]);
       });
-});
-
-
+    });
+  });
