@@ -32,10 +32,11 @@ use user AS user;
                     </a>
                   </div>
                 </div>
+
                 <div class="z-col-lg-9 z-col-md-9 z-col-sm-10 z-col-xs-8">
                   <div class="z-block h70">
                     <div class="z-content z-contentMiddle">
-                      <a href="profile1.php" class="noMargin text-uppercase text-uppercase s15 cDark text-bold"><?php  echo $resultPost[$key]['user_name']; ?></a>
+                      <a href="profile1.php" class="noMargin text-uppercase text-uppercase s15 cDark text-bold"><?php  echo $resultPost[$key]['title']; ?></a>
                       <p class="noMargin cDark hidden">Calle fulana #45, Centro. Torreón, Coahuila.</p>
                     </div>
                   </div>
@@ -44,6 +45,7 @@ use user AS user;
                   <div class="z-block h70">
                     <div class="z-content z-contentMiddle text-center">
                       <span class="fa fa-star-o s20 cGrey"></span>
+
                     </div>
                   </div>
                 </div>
