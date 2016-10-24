@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+
+<?php
+require_once('../classes/autoloader.php');
+require_once('../config.php');
+?>
 <html>
 
   <head>

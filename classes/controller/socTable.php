@@ -1,11 +1,12 @@
 <?php
 	use pdomysql AS pdomysql;
 	use posts AS posts;
+	use ConnectionFactory AS ConnectionFactory;
 
 
     $requestData= $_REQUEST;
-    //error_log(print_r($requestData,true));
     $mysqli = ConnectionFactory::getFactory()->getConnection();
+
     $columns = array(
 	'username', 
 	'user_data.name',
