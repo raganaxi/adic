@@ -13,7 +13,7 @@ use user AS user;
   }
 ?>
 <?php include ('menu.php'); ?>
-  <main canvas="container" class="z-container noPadding scroll bgLightGrey">
+  <main canvas="container" class="z-container noPadding scroll bgLightGrey p2r">
     <section class="z-container mainContainer">
       <div class="z-row">
         <div id="postContainer" class="z-col-lg-6 z-col-md-6 z-col-sm-10 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-3 z-col-sm-offset-1 z-col-xs-offset-0">

@@ -14,7 +14,7 @@ use user AS user;
 
 ?>
 <?php include ('menu.php'); ?>
-<main canvas="container" class="z-container noPadding scroll bgLightGrey">
+<main canvas="container" class="z-container noPadding scroll bgLightGrey p2r">
   <section class="z-container mainContainer noPadding">
     <div class="clear h50"></div>
     <?php $data = user::getProfile($_POST['useridx']); ?>
