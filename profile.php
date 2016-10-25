@@ -14,7 +14,7 @@ use user AS user;
 
 ?>
 <?php include ('menu.php'); ?>
-<main canvas="container" class="z-container noPadding scroll bgLightGrey">
+<main canvas="container" class="z-container noPadding scroll bgLightGrey p2r">
   <section class="z-container mainContainer">
     <div class="z-row">
       <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">

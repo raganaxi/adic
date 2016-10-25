@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="css/font-awesome.css">
   <link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="css/welcomescreen.css">
+  <link rel="stylesheet" href="css/xpull.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/helpers.css">
 

@@ -122,6 +122,12 @@
     );
     }
 
+    $(".p2r").xpull({
+      'callback':function(){
+        location.reload();
+      }
+    });
+
     var controller = new slidebars();
     controller.init();
 
