@@ -599,13 +599,13 @@ function fullHeight() {
             "name" : $("#nameP").val(),
             "phone" : $("#phoneP").val(),
             "mail" : $("#emailP").val(),
-            "file" : $("#file").val()
+            "file" : document.getElementById("fileToUpload").files[0].name
         },
         url: 'classes/ajaxUsers.php',
         type: 'post'
       }).done(function(data){
         if(data){
-            window.location.replace("profile.php");
+           $("#editProfileF").submit();
         }
       });
 

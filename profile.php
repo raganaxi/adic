@@ -42,7 +42,7 @@ use user AS user;
           <div class="z-panelBody z-block overflowHidden noPadding">
             <div class="z-block h100">
               <div class="z-content z-contentMiddle">
-                  <form id="editProfileF" class="form-section ">
+                  <form id="editProfileF" class="form-section "  action="editPpicture.php" method="post" enctype="multipart/form-data">
                     <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Datos de Perfil</h3>
 
                       <div class="hidden">
@@ -63,7 +63,7 @@ use user AS user;
 
                   <div class="clear"></div>
                   <div class="form-section">
-                    <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
+                    <input type="file" class="form-control" name="fileToUpload" id="fileToUpload" name="fileToUpload">
                   </div>
                   <div class="clear"></div>
                   <button type="button" id="editProfile" class="z-btn bgGreen cWhite text-center noTransform boxShadow" >
