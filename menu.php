@@ -13,12 +13,7 @@
       </div>
       <div class="z-content-fluid z-contentMiddle text-right">
         <a  id="openSearch" role="button" class=" cLightGrey s20 text-bold" >
-
-
-          Hoy <button class="searchDay bgDark " value="<?php echo date('Y-m-d'); ?>"><?php echo posts::getCurrentDay(strtotime(str_replace('-','/', date('Y-m-d H:i:s')))); ?></button><span class="fa fa-chevron-down s15"></span>
-
-
-
+          <button class="searchDay bgDark noBorder" value="<?php echo date('Y-m-d'); ?>"><?php echo posts::getCurrentDay(strtotime(str_replace('-','/', date('Y-m-d H:i:s')))); ?></button><span class="fa fa-chevron-down s15"></span>
         </a>
       </div>
     </div>
@@ -107,8 +102,8 @@
         </a>
         <div class="collapse" id="profile-dropdown">
           <div class="list-group bgLightGrey noBorder square">
-            <a href="#" role="button" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
-              link
+            <a href="profile.php" role="button" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+              Editar Perfil (socio)
             </a>
             <a href="#" role="button" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
               link
