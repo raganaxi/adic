@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-
 <?php
 require_once('../classes/autoloader.php');
 require_once('../config.php');
+
 ?>
 <html>
 
@@ -826,9 +826,14 @@ require_once('../config.php');
           },
           "columnDefs":[
                 {
-                  "targets" : [0],
+                  "targets" : [5],
                   "render": function(data,type,full){
-                      return data;
+                      if(data == 1){
+                        return 'Activo';
+                      }else{
+                        return 'Inactivo';
+                      }
+                      
                   }
                 }
               ],

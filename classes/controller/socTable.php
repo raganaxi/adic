@@ -2,7 +2,7 @@
 	use pdomysql AS pdomysql;
 	use posts AS posts;
 	use ConnectionFactory AS ConnectionFactory;
-
+require_once('ConnectionFactory.php');
 
     $requestData= $_REQUEST;
     $mysqli = ConnectionFactory::getFactory()->getConnection();
@@ -44,7 +44,7 @@
 
     error_log(print_r($requestData,true));
 
-    $query = "SELECT username, user_data.name,user_data.negocio, pass, role, active, reg_type from user inner join user_data on user.iduser = user_Id where active = 0".$having.$order;
+    $query = "SELECT username, user_data.name,user_data.negocio, pass, role, active, reg_type from user inner join user_data on user.iduser = user_Id where role = 'socio'".$having.$order;
 		
 		//error_log($query);
         $sqlsl = $mysqli->prepare($query);
