@@ -65,9 +65,9 @@ if (isset($_POST['reg_soc'])) {
     
     $resultl = user::login($_POST['mail'], $_POST['pass']);
 	if (!empty($result)) {
-		$_SESSION['user'] = $resultl[0]['username'];
-		$_SESSION['rol'] = $resultl[0]['role'];
-		$_SESSION['iduser'] = $resultl[0]['iduser'];
+		$_SESSION['user'] = isset($resultl[0]['username'])? $resultl[0]['username'] : null ;
+		$_SESSION['rol'] =  isset($resultl[0]['role'])? $resultl[0]['role'] : null ;
+		$_SESSION['iduser'] = isset($resultl[0]['iduser'])? $resultl[0]['iduser'] : null ;
 	}
     
 	echo json_encode($result[0]);
