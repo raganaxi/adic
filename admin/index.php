@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+
+<?php
+require_once('../classes/autoloader.php');
+require_once('../config.php');
+?>
 <html>
 
   <head>
@@ -38,6 +43,10 @@
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
           <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css"/>
+ 
+
 
     <style type="text/css">
 
@@ -437,90 +446,20 @@
                   Work Progress
                 </header>
                 <div class="panel-body table-responsive">
-                  <table class="table table-hover">
+
+                  <table id="socTabla" class="table table-hover">
                     <thead>
                       <tr>
-                        <th>#</th>
-                        <th>Project</th>
-                        <th>Manager</th>
-                        <!-- <th>Client</th> -->
-                        <th>Deadline</th>
-                        <!-- <th>Price</th> -->
-                        <th>Status</th>
-                        <th>Progress</th>
+                        <th>Mail</th>
+                        <th>Usuario</th>
+                        <th>Negocio</th>
+                        <th>Password</th>
+                        <th>Rol</th>
+                        <th>Estatus</th>
+                        <th>Tipo de registro</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Facebook</td>
-                        <td>Mark</td>
-                        <!-- <td>Steve</td> -->
-                        <td>10/10/2014</td>
-                        <!-- <td>$1500</td> -->
-                        <td><span class="label label-danger">in progress</span></td>
-                        <td><span class="badge badge-info">50%</span></td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Twitter</td>
-                        <td>Evan</td>
-                        <!-- <td>Darren</td> -->
-                        <td>10/8/2014</td>
-                        <!-- <td>$1500</td> -->
-                        <td><span class="label label-success">completed</span></td>
-                        <td><span class="badge badge-success">100%</span></td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Google</td>
-                        <td>Larry</td>
-                        <!-- <td>Nick</td> -->
-                        <td>10/12/2014</td>
-                        <!-- <td>$2000</td> -->
-                        <td><span class="label label-warning">in progress</span></td>
-                        <td><span class="badge badge-warning">75%</span></td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>LinkedIn</td>
-                        <td>Allen</td>
-                        <!-- <td>Rock</td> -->
-                        <td>10/01/2015</td>
-                        <!-- <td>$2000</td> -->
-                        <td><span class="label label-info">in progress</span></td>
-                        <td><span class="badge badge-info">65%</span></td>
-                      </tr>
-                      <tr>
-                        <td>5</td>
-                        <td>Tumblr</td>
-                        <td>David</td>
-                        <!-- <td>HHH</td> -->
-                        <td>01/11/2014</td>
-                        <!-- <td>$2000</td> -->
-                        <td><span class="label label-warning">in progress</span></td>
-                        <td><span class="badge badge-danger">95%</span></td>
-                      </tr>
-                      <tr>
-                        <td>6</td>
-                        <td>Tesla</td>
-                        <td>Musk</td>
-                        <!-- <td>HHH</td> -->
-                        <td>01/11/2014</td>
-                        <!-- <td>$2000</td> -->
-                        <td><span class="label label-info">in progress</span></td>
-                        <td><span class="badge badge-success">95%</span></td>
-                      </tr>
-                      <tr>
-                        <td>7</td>
-                        <td>Ghost</td>
-                        <td>XXX</td>
-                        <!-- <td>HHH</td> -->
-                        <td>01/11/2014</td>
-                        <!-- <td>$2000</td> -->
-                        <td><span class="label label-info">in progress</span></td>
-                        <td><span class="badge badge-success">95%</span></td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -805,6 +744,8 @@
     <!-- Director dashboard demo (This is only for demo purposes) -->
     <script src="js/Director/dashboard.js" type="text/javascript"></script>
 
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
+
     <!-- Director for demo purposes -->
     <script type="text/javascript">
       $('input').on('ifChecked', function(event) {
@@ -864,6 +805,39 @@
         });
 
       });
+
+
+
+
+
+          var table = $('#socTabla').DataTable({
+          "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.10/i18n/Spanish.json"
+          },
+          "iDisplayLength":100,
+          "processing":true,
+          "serverSide":true,
+          //"scrollY": 500,
+          //"scrollX": true,
+          "ajax":{
+              data:{},
+              type:  'post',
+              url: '../classes/controller/socTable.php'
+          },
+          "columnDefs":[
+                {
+                  "targets" : [0],
+                  "render": function(data,type,full){
+                      return data;
+                  }
+                }
+              ],
+          "sDom":'ltrip',
+          "initComplete": function(settings, json) {
+              }
+            });
+
+
       // Chart.defaults.global.responsive = true;
     </script>
   </body>

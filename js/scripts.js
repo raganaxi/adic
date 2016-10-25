@@ -572,6 +572,10 @@ function fullHeight() {
       });
   });
 
+  $(".profileU").on('click', function(){
+    alert($(this).val());
+  });
+
 
 
     $("#logOutbtn").on('click', function(){

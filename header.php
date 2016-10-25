@@ -36,6 +36,10 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/helpers.css">
 
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css"/>
+ 
+
+
   <!-- endbuild -->
 
 </head>
