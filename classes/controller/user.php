@@ -20,7 +20,7 @@ class user
     }
     
     public static function registerSoc($name, $phone, $mail, $pass, $r_type, $img, $negocio){
-		$consulta = 'call register_soc("'.$name.'","'.$phone.'","'.$mail.'", "'.$pass.'",  "'.$r_type.'",  "'.$img.'",  "'.$negocio.'")';
+		$consulta = 'call register_soc("'.$name.'","'.$phone.'","'.$mail.'", "'.user::randomPassword().'",  "'.$r_type.'",  "'.$img.'",  "'.$negocio.'")';
         error_log($consulta);
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);
@@ -66,6 +66,27 @@ class user
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);
        	return $result;
+    }
+
+
+     public static function getSoc(){
+        $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
+        $consulta = 'SELECT user.*, user_data.name, user_data.number, user_data.negocio FROM user inner join user_data on user.iduser = user_data.user_id WHERE role ="socio" and active = 0';
+        error_log($consulta);
+        $PDOMYSQL = new PDOMYSQL;
+        $result =  $PDOMYSQL->consulta($consulta);
+        return $result;
+    }
+
+    public static function randomPassword() {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array(); //remember to declare $pass as an array
+        $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass); //turn the array into a string
     }
     
 
