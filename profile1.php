@@ -15,7 +15,13 @@ use user AS user;
 ?>
 <?php include ('menu.php'); ?>
 <main canvas="container" class="z-container noPadding scroll bgLightGrey">
+
   <section class="z-container mainContainer">
+  <?php
+  $data = user::getProfile($_POST['useridx']);
+  echo json_encode($data);
+   ?>
+    data =
     <div class="z-row">
       <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
         <div class="z-panel z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">

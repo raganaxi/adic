@@ -573,7 +573,7 @@ function fullHeight() {
   });
 
   $(".profileU").on('click', function(){
-    alert($(this).val());
+    $(this).submit();
   });
 
 

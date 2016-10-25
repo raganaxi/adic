@@ -36,7 +36,9 @@ use user AS user;
                 <div class="z-col-lg-9 z-col-md-9 z-col-sm-10 z-col-xs-8">
                   <div class="z-block h70">
                     <div class="z-content z-contentMiddle">
-                      <button href="profile1.php" class="noMargin text-uppercase text-uppercase s15 cDark text-bold profileU" value="<?php  echo $resultPost[$key]['userid']; ?>"><?php  echo $resultPost[$key]['user_name']; ?></button>
+                      <form action="profile1.php" method="post" >
+                      <button name="useridx"  class="noMargin text-uppercase text-uppercase s15 cDark text-bold profileU" value="<?php  echo $resultPost[$key]['userid']; ?>"><?php  echo $resultPost[$key]['user_name']; ?></button>
+                      </form>
                       <p class="noMargin cDark hidden">Calle fulana #45, Centro. Torreón, Coahuila.</p>
                     </div>
                   </div>
