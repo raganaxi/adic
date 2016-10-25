@@ -493,8 +493,9 @@ function fullHeight() {
         "name": $("#nameSocio").val(),
         "phone": $("#telSocio").val(),
         "mail": $("#mailSocio").val(),
-        "pass": $("#passwSocio").val(),
-        "img": document.getElementById("imgProfile").files[0].name
+        "negocio": $("#nameNegocio").val()
+        //"pass": $("#passwSocio").val(),
+        //"img": document.getElementById("imgProfile").files[0].name
         },
         url: 'classes/ajaxUsers.php',
         type: 'post'
