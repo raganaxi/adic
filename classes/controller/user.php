@@ -67,6 +67,16 @@ class user
         $result =  $PDOMYSQL->consulta($consulta);
        	return $result;
     }
+
+
+     public static function getSoc(){
+        $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
+        $consulta = 'SELECT user.*, user_data.name, user_data.number, user_data.negocio FROM user inner join user_data on user.iduser = user_data.user_id WHERE role ="socio" and active = 0';
+        error_log($consulta);
+        $PDOMYSQL = new PDOMYSQL;
+        $result =  $PDOMYSQL->consulta($consulta);
+        return $result;
+    }
     
 
 }

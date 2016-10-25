@@ -3,6 +3,10 @@
 require_once('../classes/autoloader.php');
 require_once('../config.php');
 
+//invocacion de clases
+use pdomysql AS pdomysql;
+use user AS user;
+
 ?>
 <html>
 
@@ -461,9 +465,30 @@ require_once('../config.php');
                         <th>Rol</th>
                         <th>Estatus</th>
                         <th>Tipo de registro</th>
+                        <th>Activacion</th>
                       </tr>
                     </thead>
                     <tbody>
+                    <?php 
+                    $socios = user::getSoc(); 
+
+                    foreach ($socios as $key => $value) {
+
+                      $socios[$key]['active'] = ($socios[$key]['active'] == 0)? 'Inactivo' : 'activo';
+
+                      $row = '<tr>'.
+                        '<td>'.$socios[$key]['username'].'</td>'.
+                        '<td>'.$socios[$key]['name'].'</td>'.
+                        '<td>'.$socios[$key]['negocio'].'</td>'.
+                        '<td>'.$socios[$key]['pass'].'</td>'.
+                        '<td>'.$socios[$key]['role'].'</td>'.
+                        '<td>'.$socios[$key]['active'].'</td>'.
+                        '<td>'.$socios[$key]['reg_type'].'</td>'.
+                        '<td><form id="ActiveSoc"><button id="activeBtn" type="button" value="'.$socios[$key]['username'].'">Activar</button></form></td>'.
+                        '</tr>';
+                      echo $row;
+                    }
+                    ?>
                     </tbody>
                   </table>
                 </div>
@@ -828,7 +853,7 @@ require_once('../config.php');
 
 
 
-
+/*
           var table = $('#socTabla').DataTable({
           "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.10/i18n/Spanish.json"
@@ -860,7 +885,7 @@ require_once('../config.php');
           "initComplete": function(settings, json) {
               }
             });
-
+*/
 
       // Chart.defaults.global.responsive = true;
     </script>
