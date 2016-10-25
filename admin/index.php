@@ -484,7 +484,7 @@ use user AS user;
                         '<td>'.$socios[$key]['role'].'</td>'.
                         '<td>'.$socios[$key]['active'].'</td>'.
                         '<td>'.$socios[$key]['reg_type'].'</td>'.
-                        '<td><form id="ActiveSoc"><button id="activeBtn" type="button" value="'.$socios[$key]['username'].'">Activar</button></form></td>'.
+                        '<td><form class="ActiveSoc" action="activateuser.php" method="post"><input type="hidden" value="'.$socios[$key]['username'].'" name="usuario"><button class="activeBtn"  type="button" >Activar</button></form></td>'.
                         '</tr>';
                       echo $row;
                     }
@@ -792,6 +792,13 @@ use user AS user;
 
     <!-- Director for demo purposes -->
     <script type="text/javascript">
+
+
+    $('.activeBtn').on('click', function(){
+      $(this).closest("form").submit();
+    });
+
+
       $('input').on('ifChecked', function(event) {
         // var element = $(this).parent().find('input:checkbox:first');
         // element.parent().parent().parent().addClass('highlight');

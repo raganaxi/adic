@@ -28,7 +28,7 @@ class user
     }
 
     public static function login($mail, $pass){
-		$consulta = 'SELECT * FROM user where username = "'.$mail.'" and pass = "'.$pass.'"';
+		$consulta = 'SELECT * FROM user where username = "'.$mail.'" and pass = "'.$pass.'" and active = 1';
 		error_log($consulta);
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);
@@ -87,6 +87,13 @@ class user
             $pass[] = $alphabet[$n];
         }
         return implode($pass); //turn the array into a string
+    }
+
+    public static function activateUser($user) {
+        $consulta = 'Update user set active = 1 where username = "'.$user.'"';
+        $PDOMYSQL = new PDOMYSQL;
+        $result =  $PDOMYSQL->consulta($consulta);
+        return $result;
     }
     
 
