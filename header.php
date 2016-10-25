@@ -37,7 +37,7 @@
   <link rel="stylesheet" href="css/helpers.css">
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css"/>
- 
+  <link href="https://fonts.googleapis.com/css?family=Monda:400,700" rel="stylesheet">
 
 
   <!-- endbuild -->

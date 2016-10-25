@@ -397,7 +397,7 @@ use user AS user;
         </form>
         <div class="clear h100"></div>
       </div>
-       <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
+       <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12 hidden">
         <h1>Crear Categoria</h1>
         <form id="formCat" class="form-section" action="" method="post">
           <div class="clear"></div>
@@ -412,7 +412,7 @@ use user AS user;
     </div>
   </section>
 </main>
-<nav class="profileSwitcher">
+<nav class="profileSwitcher hidden">
   <div class="z-block h50 bgBlue">
     <a role="button" href="profile1.php" class="z-content-fluid z-contentMiddle text-center s15 cWhite">
       Tipo 1

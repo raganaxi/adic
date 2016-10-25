@@ -16,27 +16,27 @@ use user AS user;
 <?php include ('menu.php'); ?>
 <main canvas="container" class="z-container noPadding scroll bgLightGrey">
   <section class="z-container mainContainer noPadding">
-    <div class="clear h50">
-
-    </div>
+    <div class="clear h50"></div>
+    <?php $data = user::getProfile($_POST['useridx']); ?>
     <div class="z-row noMargin">
       <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12 noPadding">
-        <div class="z-panel z-forceBlock bgTransparent noMargin wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
-          <div class="z-panelHeader noPadding noBorder">
-            <div class="z-panel panelImg bgDarkBlue boxShadow noMargin" style="background-image:url('images/profile/01.png')">
-              <div class="clear h150"></div>
-              <div class="z-panelBody z-block h100 bgDarkClear">
-                <div class="z-content z-contentMiddle text-center">
-                  <h3 class="noMargin text-uppercase text-bold s20 text-center cWhite">Nombre </h3>
-                  <h4 class="noMargin cLightBlue text-center">Dirección #32 col. alguna</h4>
-                  <a class="s15 text-center cLightBlue" type="button" data-toggle="modal" data-target="#mapModal">
-                    <span class="fa fa-map-marker"></span> Ver Ubicacion
-                  </a>
-                </div>
+        <div class="z-forceBlock bgTransparent noMargin wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
+          <div class="z-block panelImg bgDarkBlue h50vh" style="background-image:url('images/profPicture/<?= $data[0]['img']; ?>')">
+            <div class="clear h30vh"></div>
+            <div class="z-panelBody z-block h20vh bgDarkClear">
+              <div class="z-content z-contentMiddle text-center">
+                <h3 class="noMargin text-uppercase text-bold s20 text-center cWhite"><?= $data[0]['name']; ?> </h3>
+                <p class="noMargin cWhite text-center text-lowercase">
+                  <?= $data[0]['number']; ?><br>
+                  <?= $data[0]['mail']; ?>
+                </p>
+                <a class="s15 text-center cLightBlue hidden" type="button" data-toggle="modal" data-target="#mapModal">
+                  <span class="fa fa-map-marker"></span> Ver Ubicacion
+                </a>
               </div>
             </div>
           </div>
-          <div class="z-panelBody z-block overflowHidden noPadding hidden">
+          <div class="z-block overflowHidden noPadding hidden">
             <div class="clear"></div>
             <div class="z-block h100">
               <div class="z-content-fluid h70 bgGrey">
@@ -53,7 +53,7 @@ use user AS user;
               </div>
             </div>
           </div>
-          <div class="z-panelFooter z-block h50 hidden overflowHidden noPadding bgDarkClear">
+          <div class="z-block h50 hidden overflowHidden noPadding bgDarkClear">
             <a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20">
               <span class="fa fa-share"></span>
             </a>
@@ -105,7 +105,7 @@ use user AS user;
           </div>
         </div>
       </div>
-      <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
+      <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12 hidden">
         <div class="z-panel z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
           <h2 class="wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">Ofertas: Lunes</h2>
           <div class="z-panel z-forceBlock bgTransparent  wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
@@ -344,7 +344,7 @@ use user AS user;
     </div>
   </section>
 </main>
-<nav class="profileSwitcher">
+<nav class="profileSwitcher hidden">
   <div class="z-block h50 bgBlue">
     <a role="button" href="profile1.php" class="z-content-fluid z-contentMiddle text-center s15 cWhite">
       Tipo 1

@@ -56,7 +56,7 @@
           <form id="loginSocio" class="form-section">
             <input Id="userSoc" type="text" class="form-control" placeholder="Usuario" name="user" value="">
             <div class="clear"></div>
-            <input Id="passwSoc" type="text" class="form-control" placeholder="Contraseña" name="pass" value="">
+            <input Id="passwSoc" type="password" class="form-control" placeholder="Contraseña" name="pass" value="">
             <div class="clear"></div>
             <button type="button" id="logSocio" href="profile.php" class="z-btn h50 bgDarkBlue cWhite s20 text-center noTransform boxShadow">
               Iniciar Sesión

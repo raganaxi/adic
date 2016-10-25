@@ -62,7 +62,7 @@ if(isset($_SESSION['user'])){
             <input id="logUser" type="text" class="form-control" placeholder="Usuario" name="logUser" value="">
             <div class="clear"></div>
             <label for="logPass"></label>
-            <input id="logPass" type="text" class="form-control" placeholder="Contraseña" name="logPass" value="">
+            <input id="logPass" type="password" class="form-control" placeholder="Contraseña" name="logPass" value="">
             <div class="clear"></div>
             <button type="button" id="loginU"  class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow" disabled>
               Iniciar Sesión

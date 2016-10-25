@@ -45,7 +45,7 @@ require_once('../config.php');
           <![endif]-->
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css"/>
- 
+
 
 
     <style type="text/css">
@@ -71,7 +71,7 @@ require_once('../config.php');
         <div class="navbar-right">
           <ul class="nav navbar-nav">
             <!-- Messages: style can be found in dropdown.less-->
-            <li class="dropdown messages-menu">
+            <li class="dropdown messages-menu hidden">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-envelope"></i>
                 <span class="label label-success">4</span>
@@ -138,7 +138,7 @@ require_once('../config.php');
                 <li class="footer"><a href="#">See All Messages</a></li>
               </ul>
             </li>
-            <li class="dropdown tasks-menu">
+            <li class="dropdown tasks-menu hidden">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-tasks"></i>
                 <span class="label label-danger">9</span>
@@ -213,15 +213,20 @@ require_once('../config.php');
               </ul>
             </li>
             <!-- User Account: style can be found in dropdown.less -->
+            <li class="">
+              <a href="../main.php">
+                <i class="fa fa-home"></i>
+                <span>Inicio</span>
+              </a>
+            </li>
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-user"></i>
-                <span>Jane Doe <i class="caret"></i></span>
+                <span>Admin <i class="caret"></i></span>
               </a>
               <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
                 <li class="dropdown-header text-center">Account</li>
-
-                <li>
+                <li class="hidden">
                   <a href="#">
                     <i class="fa fa-clock-o fa-fw pull-right"></i>
                     <span class="badge badge-success pull-right">10</span> Updates</a>
@@ -264,10 +269,10 @@ require_once('../config.php');
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="img/26115.jpg" class="img-circle" alt="User Image" />
+              <img src="../images/profile/01.png" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>Hello, Jane</p>
+              <p>Admin</p>
 
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -315,10 +320,10 @@ require_once('../config.php');
       <aside class="right-side bgLightGrey">
 
         <!-- Main content -->
-        <section class="content bgTransparent">
-
+        <section class="content bgTransparent noPadding">
+          <div class="clear"></div>
           <div id="accesos_directos" class="row" style="margin-bottom:5px;">
-            <div class="col-md-3">
+            <div class="col-md-3 col-xs-6">
               <div class="sm-st clearfix">
                 <span class="sm-st-icon st-red"><i class="fa fa-check-square-o"></i></span>
                 <div class="sm-st-info">
@@ -326,7 +331,7 @@ require_once('../config.php');
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-xs-6">
               <div class="sm-st clearfix">
                 <span class="sm-st-icon st-violet"><i class="fa fa-envelope-o"></i></span>
                 <div class="sm-st-info">
@@ -334,7 +339,7 @@ require_once('../config.php');
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-xs-6">
               <div class="sm-st clearfix">
                 <span class="sm-st-icon st-blue"><i class="fa fa-dollar"></i></span>
                 <div class="sm-st-info">
@@ -342,7 +347,7 @@ require_once('../config.php');
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-xs-6">
               <div class="sm-st clearfix">
                 <span class="sm-st-icon st-green"><i class="fa fa-paperclip"></i></span>
                 <div class="sm-st-info">
@@ -355,7 +360,7 @@ require_once('../config.php');
           <!-- Main row -->
           <div class="row">
 
-            <div id="grafica_ganancias" class="col-md-12">
+            <div id="grafica_ganancias" class="col-lg-8 col-md-8 hidden">
               <!--earning graph start-->
               <section class="panel">
                 <header class="panel-heading">
@@ -369,7 +374,6 @@ require_once('../config.php');
 
             </div>
             <div id="notificaciones" class="col-lg-4 hidden">
-
               <!--chat start-->
               <section class="panel">
                 <header class="panel-heading">
@@ -440,10 +444,10 @@ require_once('../config.php');
           </div>
           <div class="row">
 
-            <div id="solicitudes_socios" class="col-md-12">
+            <div id="solicitudes_socios" class="col-md-lg-8 col-md-8">
               <section class="panel">
                 <header class="panel-heading">
-                  Work Progress
+                  Solicitudes
                 </header>
                 <div class="panel-body table-responsive">
 
@@ -466,6 +470,21 @@ require_once('../config.php');
               </section>
 
 
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <form id="formCat" class="form-section panel" action="" method="post">
+                <header class="panel-heading">
+                  Crear Categoria
+                </header>
+                <div class="panel-body">
+                  <input id="categoryTitle" type="text" class="form-control" placeholder="Nombre de Categoria">
+                  <div class="clear"></div>
+                  <textarea id="descriptionx" class="form-control h100" rows="4" placeholder="Descripción"></textarea>
+                </div>
+                <div class="panel-body">
+                  <button type="button" id="createCategory" class="z-btn bgGreen cWhite" name="createCategory">Crear</button>
+                </div>
+              </form>
             </div>
             <!--end col-6 -->
             <div class="col-md-4 hidden">
@@ -833,7 +852,7 @@ require_once('../config.php');
                       }else{
                         return 'Inactivo';
                       }
-                      
+
                   }
                 }
               ],
