@@ -166,7 +166,7 @@
     <!--<hr class="separator">-->
     <div class="list-group bgTransparent noBorder square">
       <?php
-      for ($i = 1; $i <= 5; $i++) {
+      for ($i = 1; $i <= 6; $i++) {
           $day = date('Y-m-d', strtotime('+'.$i.' day'));
       ?>
        <button type="button"  class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" value="<?php echo $day; ?>">
