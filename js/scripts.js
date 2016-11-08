@@ -306,7 +306,6 @@ function fullHeight() {
 
 
   $("#searchBtn").on('click', function(){
-
     $("#postContainer").empty();
        $.ajax({
         data:  {
@@ -328,7 +327,6 @@ function fullHeight() {
 
 //buscar restaurantes
   $("#findRestaurant").on('click', function(){
-
     $("#postContainer").empty();
        $.ajax({
         data:  {
@@ -347,6 +345,7 @@ function fullHeight() {
 
       });
   });
+
 //buscar bares
   $("#findBar").on('click', function(){
     $("#postContainer").empty();
@@ -710,6 +709,26 @@ function fullHeight() {
         }else{
             $("#loginU").prop("disabled", "disabled");
         }
+    });
+
+    $(".searchDay").on('click', function(){
+      $("#postContainer").empty();
+      $.ajax({
+        data:  {
+        "postsDay" : 1,
+        "date": $(this).val()
+        },
+        url: 'classes/ajaxPosts.php',
+        type: 'post'
+      }).done(function(data){
+          data = jQuery.parseJSON(data);
+
+          $.each( data, function(index, value){
+              console.log(data[index]);
+              $("#postContainer").append(createpost(data[index].title, data[index].description, 'brayan', data[index].date, data[index].categoria, data[index].image, data[index].user_pic));
+          });
+
+      });
     });
 
   $(document).ready(function () {
