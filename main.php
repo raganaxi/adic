@@ -25,12 +25,12 @@ use user AS user;
             <div class="z-panelHeader noPadding noBorder">
               <div class="z-row noMargin">
                 <div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-3 noPadding">
-                  <div class="z-block h70">
-                    <a href="profile2.php" class="z-content z-contentMiddle">
+                  <form class="z-block h70">
+                    <button name="useridx"  value="<?php  echo $resultPost[$key]['userid']; ?>" class="z-content z-contentMiddle">
                       <div class="profileImg panelImg" style="background-image:url('images/profPicture/<?php  echo $resultPost[$key]['user_pic']; ?>');">
                       </div>
-                    </a>
-                  </div>
+                    </button>
+                  </form>
                 </div>
                 <div class="z-col-lg-9 z-col-md-9 z-col-sm-10 z-col-xs-7 noPadding">
                   <div class="z-block h70">
