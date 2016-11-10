@@ -2,6 +2,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<?php
+require_once('../classes/autoloader.php');
+require_once('../config.php');
+
+//invocacion de clases
+use pdomysql AS pdomysql;
+use user AS user;
+
+?>
  <meta charset="utf-8">
     <title>Login</title>
     
@@ -17,7 +26,7 @@
               <input type="text" id="user" placeholder="Username">
            
             <span class="fontawesome-lock"></span>
-              <input type="password" id"pass" placeholder="Password">
+              <input type="password" id="pass" placeholder="Password">
             
             <input id="loginAdmin" type="button" value="Login">
 
