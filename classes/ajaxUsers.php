@@ -72,5 +72,45 @@ if (isset($_POST['reg_soc'])) {
     
 	echo json_encode($result[0]);
 }
+/* codigo nuevo */
+$mensaje="";
+$error="no_error";
+$continuar="no_ok";
+$datos="";
+$action="";
+switch($_SERVER['REQUEST_METHOD'])
+{
+	case 'GET':
+	if (isset($_GET["action"]) && !empty($_GET["action"])) {
+		$action=$_GET["action"];
+	}
+	break;
+	case 'POST':
+	if (isset($_POST["action"]) && !empty($_POST["action"])) {
+		$action=$_POST["action"];
+	}
+	break;
+	default:
+}
+if (is_ajax()){
+	if ($action!="") { /*Checks if action value exists*/
+		
+		switch($action) { /*//Switch case for value of action*/
+			case 'sesion':sesion_function();break;
+			case 'login': login_function(); break;
+			case 'logout': logout_function();break;
 
+		}
+	}else{
+		$continuar="no_ok";
+		$mensaje="no hay accion";
+	}
+
+	$return = json_encode(array('continuar' => $continuar,'error'=>$error,'mensaje'=> $mensaje,'datos'=>$datos),JSON_FORCE_OBJECT );
+	header('Content-type: application/json; charset=utf-8');
+	echo $return;
+}
+function is_ajax() {
+	return true;//isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+}
 ?>
