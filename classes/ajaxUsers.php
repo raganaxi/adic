@@ -73,11 +73,13 @@ if (isset($_POST['reg_soc'])) {
 	echo json_encode($result[0]);
 }
 /* codigo nuevo */
+
 $mensaje="";
 $error="no_error";
 $continuar="no_ok";
 $datos="";
 $action="";
+
 switch($_SERVER['REQUEST_METHOD'])
 {
 	case 'GET':
@@ -92,6 +94,7 @@ switch($_SERVER['REQUEST_METHOD'])
 	break;
 	default:
 }
+/* dependiendo de la accion es la funcion que se ejecutara */
 if (is_ajax()){
 	if ($action!="") { /*Checks if action value exists*/
 		
@@ -105,7 +108,6 @@ if (is_ajax()){
 		$continuar="no_ok";
 		$mensaje="no hay accion";
 	}
-
 	$return = json_encode(array('continuar' => $continuar,'error'=>$error,'mensaje'=> $mensaje,'datos'=>$datos),JSON_FORCE_OBJECT );
 	header('Content-type: application/json; charset=utf-8');
 	echo $return;
@@ -113,4 +115,66 @@ if (is_ajax()){
 function is_ajax() {
 	return true;//isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 }
+/* funcion que sirve para verificar el token de session emula el uso de la session en php */
+function sesion_function(){
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$user_email="";
+	$token="";
+	switch($_SERVER['REQUEST_METHOD'])
+	{
+		case 'GET':
+		
+		if (isset($_GET["token"]) && !empty($_GET["token"])) {
+			$token=$_GET["token"];
+		}
+		break;
+		case 'POST':		
+		if (isset($_POST["token"]) && !empty($_POST["token"])) {
+			$token=$_POST["token"];
+		}
+		break;
+		default:
+	}
+	if ($token!="") {
+		$validate=user::tokenValidate($token);
+		if ($validate) {
+			$continuar="ok";
+			$error="no_error";
+			return;
+		}
+	}
+	$continuar="no_ok";
+	$error="no_error";
+	$mensaje="no ha iniciado session";
+	return;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
