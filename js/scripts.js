@@ -539,7 +539,6 @@ function fullHeight() {
   });
 
   $("#loginU").on('click', function(){
-
       $.ajax({
         data:  {
         "login_user" : 1,
