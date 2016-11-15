@@ -37,7 +37,8 @@ class PDOMYSQL
 		$datos = 0;
 		try {
 			$query = $this->PDO->prepare($query); 
-			foreach($arregloas $i => $valor){
+			foreach($arreglo as $i => $valor){
+
 				$query->bindParam($i,$valor);
 			}
 			$query->execute();			

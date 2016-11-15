@@ -20,7 +20,7 @@ if (isset($_POST['reg_user'])) {
 	}
 	echo json_encode($result[0]);
 }
-//Login
+/*//Login
 if (isset($_POST['login_user'])) {
 //	$_POST['pass'] = isset($_POST['pass'])? $_POST['pass'] : 'admin123';
 //    $_POST['pass'] = sha1($_POST['pass']);
@@ -35,7 +35,7 @@ if (isset($_POST['login_user'])) {
 		echo 0;
 	}
 }
-
+*/
 //Logout
 if (isset($_POST['logout'])) {
 	session_destroy();
@@ -99,8 +99,8 @@ if (is_ajax()){
 	if ($action!="") { /*Checks if action value exists*/
 		
 		switch($action) { /*//Switch case for value of action*/
-			case 'sesion':sesion_function();break;
-			case 'login': login_function(); break;
+			case 'sesion': sesion_function();break;
+			case 'loginU': login_function(); break;
 			case 'logout': logout_function();break;
 
 		}
@@ -115,6 +115,67 @@ if (is_ajax()){
 function is_ajax() {
 	return true;//isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 }
+function login_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$logUser="";
+	$logPass="";	
+	switch($_SERVER['REQUEST_METHOD'])
+	{
+		case 'GET':
+		
+		if (isset($_GET["logUser"]) && !empty($_GET["logUser"])) {
+			$logUser=$_GET["logUser"];
+		}
+		if (isset($_GET["logPass"]) && !empty($_GET["logPass"])) {
+			$logPass=$_GET["logPass"];
+		}
+		break;
+		case 'POST':		
+		if (isset($_POST["logUser"]) && !empty($_POST["logUser"])) {
+			$logUser=$_POST["logUser"];
+		}
+		if (isset($_POST["logPass"]) && !empty($_POST["logPass"])) {
+			$logPass=$_POST["logPass"];
+		}
+		break;
+		default:
+	}
+	if($logUser!=""){
+		$logUser = trim($logUser);
+		$logPass = trim($logPass);
+		//$logPass = md5($logPass);
+		$result = user::login($logUser, $logPass);
+		if (!empty($result)) {
+			$continuar ="ok"; /*login on*/
+			$datos['row']=$result;
+			$newToken=	user::obtenToken512($logUser,$result['iduser'],"localhost","prueba");
+			if($newToken){
+				$datos['token']=$newToken;
+			}	
+		}
+		else{
+			$continuar="no_ok";
+			$error="no_ok";
+			$mensaje="email o contraseña no existen "; /* wrong details */
+		}		
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_error";
+		$mensaje="favor de revisar los campos requeridos";
+
+	}
+}
+
+
+
+
+
+
 /* funcion que sirve para verificar el token de session emula el uso de la session en php */
 function sesion_function(){
 	global $continuar;

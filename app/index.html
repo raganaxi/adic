@@ -23,7 +23,7 @@
 	<!--<link rel="icon" sizes="228x228" href="favicon/favicon-coast.png" >-->
 
 	<!-- build:css css/styles.css -->
-	<link href="jquery.mobile/jquery.mobile.structure-1.4.5.min.css" rel="stylesheet" type="text/css"/>
+	<link href="jquery.mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" href="bower_components/slidebars/dist/slidebars.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.2.7/css/swiper.min.css">
@@ -67,13 +67,13 @@
               <h1 class="cWhite text-center s25">Bienvenido</h1>
             </div>
             <div class="z-col-lg-4 z-col-lg-offset-2 z-col-md-4 z-col-md-offset-2 z-col-sm-4 z-col-sm-offset-2 z-col-xs-8 z-col-xs-offset-2">
-              <a href="main.html" class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#loginModal">
+              <a  class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#loginModal">
                 Inicia sesión<br>
               </a>
               <div class="clear"></div>
             </div>
             <div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-sm-offset-0 z-col-xs-8 z-col-xs-offset-2">
-              <a href="main.html" class="z-btn btn-rounded h50 bgLightBlue cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#regModal">
+              <a class="z-btn btn-rounded h50 bgLightBlue cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#regModal">
                 Crea una cuenta
               </a>
               <div class="clear"></div>
@@ -83,7 +83,6 @@
       </div>
   </div>-->
 </main>
-
 <div class="modal fade bgWhite" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" data-keyboard="false" data-backdrop="static">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content noShadow noBorder bgTransparent">
@@ -93,6 +92,7 @@
 			</div>
 			<div class="modal-body">
 				<form id="lognUser" class="form-section">
+					<input type="hidden" id="action" value="loginU" name="action">
 					<label for="logUser"></label>
 					<input id="logUser" type="text" class="form-control" placeholder="Usuario" name="logUser" value="">
 					<div class="clear"></div>

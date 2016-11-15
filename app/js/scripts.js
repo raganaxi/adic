@@ -99,13 +99,13 @@
         '<h1 class="cWhite text-center s25">Bienvenido</h1>'+
         '</div>'+
         '<div class="z-col-lg-4 z-col-lg-offset-2 z-col-md-4 z-col-md-offset-2 z-col-sm-4 z-col-sm-offset-2 z-col-xs-8 z-col-xs-offset-2">'+
-        '<a href="main.html" class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#loginModal">'+
+        '<a  class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#loginModal">'+
         'Inicia sesión<br>'+
         '</a>'+
         '<div class="clear"></div>'+
         '</div>'+
         '<div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-sm-offset-0 z-col-xs-8 z-col-xs-offset-2">'+
-        '<a href="main.html" class="z-btn btn-rounded h50 bgLightBlue cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#regModal">'+
+        '<a  class="z-btn btn-rounded h50 bgLightBlue cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#regModal">'+
         'Crea una cuenta'+
         '</a>'+
         '<div class="clear"></div>'+
@@ -538,25 +538,6 @@ $("#createPost").on('click', function(){
   });
 });
 
-$("#loginU").on('click', function(){
-
-  $.ajax({
-    data:  {
-      "login_user" : 1,
-      "mail": $("#logUser").val(),
-      "pass": $("#logPass").val()
-    },
-    url: '../classes/ajaxUsers.php',
-    type: 'post'
-  }).done(function(data){
-    if (data != 0) {
-          //alert('loggueado');
-          window.location.replace("main.php");
-        }else{
-          alert('problemas al iniciar session');
-        }
-      });
-});
 
 
 $("#logSocio").on('click', function(){

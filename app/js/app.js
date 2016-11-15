@@ -3,6 +3,14 @@ var email;
 var token;
 var name;
 /**********************/
+$(document).bind("mobileinit", function(){
+	
+	$.mobile.defaultPageTransition = "slidedown";
+	$.mobile.loadingMessage = "Cargando app.";
+	
+	
+	
+});
 $(document).ready(function() {
 	loaderMain();
 	function loaderMain(){
@@ -29,7 +37,7 @@ $(document).ready(function() {
 				logeado
 				*/
 				$.mobile.changePage("#main");
-				$("#saludo").html('hola '+name);
+				//$("#saludo").html('hola '+name);
 			}
 			else{
 				if(data.error!="error")
@@ -50,9 +58,53 @@ $(document).ready(function() {
 			});
 		}
 		else{
-		/* no logueado*/
-		$.mobile.changePage("#login");
-		
+			/* no logueado*/
+			$.mobile.changePage("#login");
+			
 		}
+	}
+	$("#loginU").on('click', function(event) {
+		event.preventDefault();
+		submitFormsubmitFormLogin();
+	});
+	/* funcion para login */
+	function submitFormsubmitFormLogin()
+	{  
+		var data = $("#lognUser").serialize();
+
+		$.ajax({
+
+			type : 'POST',
+			url  : '../classes/ajaxUsers.php',
+			dataType: "json",
+			data : data,
+			cache: false,			
+		})
+		.done(function( data, textStatus, jqXHR ) {
+			if(data.continuar==="ok"){
+				localStorage.removeItem('token');
+				localStorage.removeItem('email');
+				localStorage.setItem('token', data.datos.token);
+				localStorage.setItem('email', data.datos.row.user_email);
+				localStorage.removeItem('name');
+				localStorage.setItem('name', data.datos.row.user_name);
+				token=data.datos.token;
+				email=data.datos.row.user_email;
+				name=data.datos.row.user_name;     
+				$.mobile.changePage("#main");
+				is_logged_in();
+			}
+			else{
+
+				alertMensaje('problemas al iniciar session');
+			}
+		})
+		.fail(function( jqXHR, textStatus, errorThrown ) {
+			alertMensaje('problemas al iniciar session'+errorThrown);
+		});
+
+	}
+	function alertMensaje(mensaje){
+		alert(mensaje);
 	}
 });
