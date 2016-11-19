@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+
 require_once('../classes/autoloader.php');
 require_once('../config.php');
 
@@ -7,6 +8,10 @@ require_once('../config.php');
 use pdomysql AS pdomysql;
 use user AS user;
 
+
+if ( $_SESSION['rol'] != 'administrador') {
+    header("Location: index.php");
+}
 ?>
 <html>
 
@@ -451,8 +456,10 @@ use user AS user;
             <div id="solicitudes_socios" class="col-md-lg-8 col-md-8">
               <section class="panel">
                 <header class="panel-heading">
-                  Solicitudes
+                  Solicitudes<br>
+
                 </header>
+
                 <div class="panel-body table-responsive">
 
                   <table id="socTabla" class="table table-hover">
