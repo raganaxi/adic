@@ -155,95 +155,14 @@ $(document).ready(function() {
 		$menu.each(function(index, el) {
 			$(this).html(app.menu);
 		});
-		$( '#openAside' ).click(function(e){
+		$('#openAside').click(function(e){
 		  e.preventDefault();
 		  e.stopPropagation();
 		  toggleAside();
 		})
-		$("#do_drag").swipe({
-		  swipeStatus: function (event, phase, direction, distance, duration, fingers) {
-		    if (phase == "move" && direction == "right") {
-		      openAside();
-		      return false;
-		    }
-		    if (phase == "move" && direction == "left") {
-		      closeAside();
-		      return false;
-		    }
-		  }
-		});
-		$("#do_drag_search_open").swipe({
-		  swipeStatus: function (event, phase, direction, distance, duration, fingers) {
-		    if (phase == "move" && direction == "left") {
-		      openAsideSearch();
-		      return false;
-		    }
-		    if (phase == "move" && direction == "right") {
-		      closeAsideSearch();
-		      return false;
-		    }
-		  }
-		});
+
 	}
-	function toggleAside(){
-      controller.toggle('asideNav');
-      toggleSwipeArea();
-    }
-    function openAside(){
-      controller.open('asideNav');
-      toggleSwipeArea();
-    }
-    function closeAside(){
-      controller.close('asideNav');
-      toggleSwipeArea();
-    }
-
-    function toggleAsideSearch(){
-      controller.toggle('searchNav');
-      /*toggleSwipeArea();*/
-    }
-    function openAsideSearch(){
-      controller.open('searchNav');
-      /*toggleSwipeArea();*/
-    }
-    function closeAsideSearch(){
-      controller.close('searchNav');
-      /*toggleSwipeArea();*/
-    }
-
-    function toggleSwipeArea(){
-      if($('#do_drag').hasClass('navOpen')){
-        $('#do_drag').removeClass('navOpen');
-      } else {
-        $('#do_drag').addClass('navOpen');
-      }
-    }
-    function toggleSwipeAreaSearch(){
-      if($('#do_drag_search_open').hasClass('navOpen')){
-        $('#do_drag_search_open').removeClass('navOpen');
-      } else {
-        $('#do_drag_search_open').addClass('navOpen');
-      }
-    }
-    var stickyNav = function(){
-      var scrollTop = $(window).scrollTop();
-      if (scrollTop > stickyNavTop) {
-            $('.nav').addClass('sticky');
-      } else {
-            $('.nav').removeClass('sticky');
-      }
-    };
-    if($('.nav').length != 0){
-      var stickyNavTop = $('.nav').offset().top;
-      
-       
-      stickyNav();
-    }
-
-     
-    $(window).scroll(function() {
-        stickyNav();
-    });
+	
 	function getJsonApp(){
 		app=JSON.parse(storage.app);
 		return app;
