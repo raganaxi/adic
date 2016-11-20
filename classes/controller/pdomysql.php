@@ -34,17 +34,13 @@ class PDOMYSQL
 		return $datos;
 	}
 	public  function consultaSegura($query, $arreglo){
-		$datos = 0;
-		try {
-			$query = $this->PDO->prepare($query); 
-			foreach($arreglo as $i => $valor){
-
-				$query->bindParam($i,$valor);
-			}
-			$query->execute();			
-			while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+		$datos=array();
+		try {			
+			$statement  = $this->PDO->prepare($query);
+			$statement->execute($arreglo);	
+			while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
 				$datos = array();
-				$datos[] =$row;
+				$datos[] =$row;				
 			}
 		} catch (PDOException $e) {
 			error_log($e);

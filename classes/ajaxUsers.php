@@ -152,7 +152,7 @@ function login_function(){
 		if (!empty($result)) {
 			$continuar ="ok"; /*login on*/
 			$datos['row']=$result;
-			$newToken=	user::obtenToken512($logUser,$result['iduser'],"localhost","prueba");
+			$newToken=	user::obtenToken512($logUser,$result[0]['iduser'],"localhost","prueba");
 			if($newToken){
 				$datos['token']=$newToken;
 			}	

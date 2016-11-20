@@ -28,12 +28,13 @@ class user
   }
 
   public static function login($mail, $pass){
-    $consulta = "SELECT * FROM user";// where username = ? and pass = ? and active = '1'";
-    $parametros = array(1 => $mail,2 =>  $pass);
+    
+    
+    $consulta = "SELECT * FROM user where username = ? and pass = ? and active = '1'";
+    $parametros = array($mail,$pass);
     error_log($consulta);
     $db_con = new PDOMYSQL;
     $result =  $db_con->consultaSegura($consulta,$parametros);
-    var_dump($result);
     return $result;
   }
   
@@ -100,7 +101,7 @@ class user
 
   public static function tokenValidate($token){
     $consulta ="SELECT * FROM tbl_tokens WHERE tx_token=? and active=true";
-    $parametros = array(1 => $token);
+    $parametros = array($token);
     error_log($consulta);
     $db_con = new PDOMYSQL;
     $result =  $db_con->consultaSegura($consulta,$parametros);
@@ -119,12 +120,12 @@ class user
     $token="";
     for ($i=0; $i < 5; $i++) {
       $tmpToken= openssl_digest($email.Time(), 'sha512');
-      $consulta = "SELECT * FROM tbl_tokens WHERE user_id=? AND tx_token=?";
-      $parametros = array(1 => $id, 2 => $tmpToken);
+      $consulta = "SELECT * FROM tbl_tokens WHERE tx_token=?";
+      $parametros = array($tmpToken);
       error_log($consulta);
       $db_con = new PDOMYSQL;
       $result =  $db_con->consultaSegura($consulta,$parametros);
-      if (!empty($result)) {
+      if (empty($result)) {
         $token=$tmpToken;
         break;
       }
@@ -132,7 +133,7 @@ class user
     /*verificamos si el token se guardara o devolveremos error*/
     if (strlen($token)>0) {
       $consulta = "INSERT INTO tbl_tokens (tx_token,user_id,creation_date,ip,id_dispositivo,active) values(?,?,now(),?,?,true)";
-    $parametros = array(1 => $token, 2 => $id,3 => $ip, 4 =>$id_dispositivo);
+    $parametros = array($token, $id,$ip, $id_dispositivo);
     error_log($consulta);
     $db_con = new PDOMYSQL;
     $result =  $db_con->consultaSegura($consulta,$parametros);

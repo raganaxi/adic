@@ -1,7 +1,8 @@
 /*variables de session*/
-var email;
-var token;
-var name;
+var storage;
+var $menu;
+var app={};
+var controller;
 /**********************/
 $(document).bind("mobileinit", function(){
 	
@@ -12,14 +13,18 @@ $(document).bind("mobileinit", function(){
 	
 });
 $(document).ready(function() {
+
 	loaderMain();
 	function loaderMain(){
+		inicializar();
 		is_logged_in();
+		
 	}
 	function is_logged_in(){
-		email=localStorage.email;
-		name=localStorage.name;
-		token=localStorage.token;
+		app=getJsonApp();
+		email=app.user.email;
+		name=app.user.name;
+		token=app.user.token;
 
 		if (token!==""||email!==""){
 			var data = {'action': 'sesion','token':token,'user_email':email};
@@ -82,15 +87,14 @@ $(document).ready(function() {
 		})
 		.done(function( data, textStatus, jqXHR ) {
 			if(data.continuar==="ok"){
-				localStorage.removeItem('token');
-				localStorage.removeItem('email');
-				localStorage.setItem('token', data.datos.token);
-				localStorage.setItem('email', data.datos.row.user_email);
-				localStorage.removeItem('name');
-				localStorage.setItem('name', data.datos.row.user_name);
-				token=data.datos.token;
-				email=data.datos.row.user_email;
-				name=data.datos.row.user_name;     
+				var user=app.user;
+				user.token=data.datos.token;
+				user.email=data.datos.row[0].username;
+				user.name=data.datos.row[0].username;
+				user.rol=data.datos.row[0].role;
+				user.id=data.datos.row[0].iduser;				
+				app.user=user;
+				storage.app=JSON.stringify(app);
 				$.mobile.changePage("#main");
 				is_logged_in();
 			}
@@ -106,5 +110,159 @@ $(document).ready(function() {
 	}
 	function alertMensaje(mensaje){
 		alert(mensaje);
+	}
+	function inicializar(){
+		/* cambiamos nombre a local storage para un uso mas sensillo y para corregir problemas de navegadores que no lo soportan mas adelante*/
+		try {
+		    if (localStorage.getItem) {
+		        storage = localStorage;
+		    }
+		} catch(e) {
+		    storage = {};
+		}
+		controller = new slidebars();
+    	controller.init();
+		$menu=$(".menu-pages");
+		var menuTemplate=getMenuTemplate();
+		if (storage.app===undefined) {
+			var user={
+				token:"",
+				email:"",
+				name:"",
+			};
+			app={
+				/* aqui llenaria el menu inicial*/
+				menu:menuTemplate,
+				user:user
+			};
+			storage.app=JSON.stringify(app);
+		}else{
+			app=getJsonApp();
+			app.menu=menuTemplate;
+			if (app.user===undefined) {
+				app.user={
+					token:"",
+					email:"",
+					name:"",
+				};
+			}
+			storage.app=JSON.stringify(app);				
+		}
+			
+			
+	}
+	function cargarMenus(){
+		$menu.each(function(index, el) {
+			$(this).html(app.menu);
+		});
+		$( '#openAside' ).click(function(e){
+		  e.preventDefault();
+		  e.stopPropagation();
+		  toggleAside();
+		})
+		$("#do_drag").swipe({
+		  swipeStatus: function (event, phase, direction, distance, duration, fingers) {
+		    if (phase == "move" && direction == "right") {
+		      openAside();
+		      return false;
+		    }
+		    if (phase == "move" && direction == "left") {
+		      closeAside();
+		      return false;
+		    }
+		  }
+		});
+		$("#do_drag_search_open").swipe({
+		  swipeStatus: function (event, phase, direction, distance, duration, fingers) {
+		    if (phase == "move" && direction == "left") {
+		      openAsideSearch();
+		      return false;
+		    }
+		    if (phase == "move" && direction == "right") {
+		      closeAsideSearch();
+		      return false;
+		    }
+		  }
+		});
+	}
+	function toggleAside(){
+      controller.toggle('asideNav');
+      toggleSwipeArea();
+    }
+    function openAside(){
+      controller.open('asideNav');
+      toggleSwipeArea();
+    }
+    function closeAside(){
+      controller.close('asideNav');
+      toggleSwipeArea();
+    }
+
+    function toggleAsideSearch(){
+      controller.toggle('searchNav');
+      /*toggleSwipeArea();*/
+    }
+    function openAsideSearch(){
+      controller.open('searchNav');
+      /*toggleSwipeArea();*/
+    }
+    function closeAsideSearch(){
+      controller.close('searchNav');
+      /*toggleSwipeArea();*/
+    }
+
+    function toggleSwipeArea(){
+      if($('#do_drag').hasClass('navOpen')){
+        $('#do_drag').removeClass('navOpen');
+      } else {
+        $('#do_drag').addClass('navOpen');
+      }
+    }
+    function toggleSwipeAreaSearch(){
+      if($('#do_drag_search_open').hasClass('navOpen')){
+        $('#do_drag_search_open').removeClass('navOpen');
+      } else {
+        $('#do_drag_search_open').addClass('navOpen');
+      }
+    }
+    var stickyNav = function(){
+      var scrollTop = $(window).scrollTop();
+      if (scrollTop > stickyNavTop) {
+            $('.nav').addClass('sticky');
+      } else {
+            $('.nav').removeClass('sticky');
+      }
+    };
+    if($('.nav').length != 0){
+      var stickyNavTop = $('.nav').offset().top;
+      
+       
+      stickyNav();
+    }
+
+     
+    $(window).scroll(function() {
+        stickyNav();
+    });
+	function getJsonApp(){
+		app=JSON.parse(storage.app);
+		return app;
+	}
+	function getMenuTemplate(){
+		$.ajax({
+
+			type : 'GET',
+			url  : '../menu.html',
+			cache: false,			
+		})
+		.done(function( data, textStatus, jqXHR ) {
+			app=getJsonApp();
+			app.menu=data;
+			cargarMenus();
+			storage.app=JSON.stringify(app);
+		})
+		.fail(function( jqXHR, textStatus, errorThrown ) {
+			//problema con la carga
+		});
 	}
 });
