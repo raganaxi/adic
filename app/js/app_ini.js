@@ -1,6 +1,5 @@
 /*variables de session*/
 var storage;
-var $menu;
 var app={};
 var controller;
 /**********************/
@@ -36,23 +35,24 @@ $(document).ready(function() {
 				cache: false,
 			})
 			.done(function( data, textStatus, jqXHR ) {
-				if(data.continuar==="ok"){
-				/*
-				logeado
-				*/
-				$.mobile.changePage("#main");
-				//$("#saludo").html('hola '+name);
-			}
-			else{
-				if(data.error!="error")
-				{
-					
-					$.mobile.changePage("#index");
-					
-				}				
-			}
-			
-		})
+				if(data.continuar==="ok"){				
+					$.mobile.changePage("#main");
+
+				}
+				else{
+					var user={
+						token:"",
+						email:"",
+						name:"",
+					};
+					app={				
+						user:user
+					};
+					setJsonApp(app);
+					$.mobile.changePage("#index");				
+				}
+
+			})
 			.fail(function( jqXHR, textStatus, errorThrown ) {
 				$.mobile.changePage("#index");
 			});
@@ -70,6 +70,7 @@ $(document).ready(function() {
 	/* funcion para login */
 	function submitFormsubmitFormLogin()
 	{  
+		
 		var data = $("#lognUser").serialize();
 
 		$.ajax({
@@ -92,6 +93,7 @@ $(document).ready(function() {
 				storage.app=JSON.stringify(app);
 				$.mobile.changePage("#main");
 				is_logged_in();
+				$('.modal').modal('hide');
 			}
 			else{
 
@@ -114,9 +116,7 @@ $(document).ready(function() {
 			}
 		} catch(e) {
 			storage = {};
-		}		
-		//$menu=$(".menu-pages");
-		var menuTemplate=getMenuTemplate();
+		}
 		if (storage.app===undefined) {
 			var user={
 				token:"",
@@ -124,14 +124,11 @@ $(document).ready(function() {
 				name:"",
 			};
 			app={
-				/* aqui llenaria el menu inicial*/
-				menu:menuTemplate,
 				user:user
 			};
 			storage.app=JSON.stringify(app);
 		}else{
-			app=getJsonApp();
-			app.menu=menuTemplate;
+			app=getJsonApp();			
 			if (app.user===undefined) {
 				app.user={
 					token:"",
@@ -167,49 +164,84 @@ $(document).ready(function() {
 				logPass: "Ingresa una contraseña con mas de 5 caracteres",
 			}
 		});
+		/* validaciones de botones disabled */
 		$("#lognUser input").on('keypress change', function(){
-		    var valid = $("#lognUser").valid();
-		    if(valid == true){
-		        $("#loginU").prop("disabled", false);
-		    }else{
-		        $("#loginU").prop("disabled", "disabled");
-		    }
+			var valid = $("#lognUser").valid();
+			if(valid == true){
+				$("#loginU").prop("disabled", false);
+			}else{
+				$("#loginU").prop("disabled", "disabled");
+			}
+		});
+		$("#registerUser input").on('keypress change', function(){
+			var valid = $("#registerUser").valid();
+			if(valid == true){
+				$("#crteAccountE").prop("disabled", false);
+			}else{
+				$("#crteAccountE").prop("disabled", "disabled");
+			}
 		});
 
 
 
 	}
-	function cargarMenus(){
-		/*$menu.each(function(index, el) {
-			$(this).html(app.menu);
-		});
-		$('#openAside').click(function(e){
-			e.preventDefault();
-			e.stopPropagation();
-			toggleAside();
-		})*/
 
-	}
-	
 	function getJsonApp(){
 		app=JSON.parse(storage.app);
 		return app;
 	}
-	function getMenuTemplate(){
-		/*$.ajax({
-
-			type : 'GET',
-			url  : '../menu.html',
-			cache: false,			
-		})
-		.done(function( data, textStatus, jqXHR ) {
-			app=getJsonApp();
-			app.menu=data;
-			cargarMenus();
-			storage.app=JSON.stringify(app);
-		})
-		.fail(function( jqXHR, textStatus, errorThrown ) {
-			//problema con la carga
-		});*/
+	function setJsonApp(app){
+		storage.app=JSON.stringify(app);
 	}
+	/* funcion para logout */
+	$("#logOutbtn").on('click', function(){
+		var data= {'action': 'logout','token':app.user.token};
+		$.ajax({
+			data:  data,
+			url: '../classes/ajaxUsers.php',
+			type: 'post'
+		}).done(function(data){
+			if (data.continuar==="ok") {
+				var user={
+					token:"",
+					email:"",
+					name:"",
+				};
+				app={				
+					user:user
+				};
+				setJsonApp(app);
+				is_logged_in();
+			}
+
+		});
+	});
+	/*crear cuenta por email*/
+	$("#crteAccountE").on('click', function(){		
+		var data= {'action': 'registerU',"mail": $("#ruMail").val(),"pass": $("#ruPass").val()};
+		$.ajax({
+			data:  data,
+			url: '../classes/ajaxUsers.php',
+			type: 'post'
+		}).done(function(data){
+			if(data.continuar==="ok"){
+				var user=app.user;
+				user.token=data.datos.token;
+				user.email=data.datos.row[0].username;
+				user.name=data.datos.row[0].username;
+				user.rol=data.datos.row[0].role;
+				user.id=data.datos.row[0].iduser;				
+				app.user=user;
+				storage.app=JSON.stringify(app);
+				$.mobile.changePage("#main");
+				is_logged_in();
+				$('.modal').modal('hide');
+			}
+			else{
+
+				alertMensaje('problemas al iniciar session');
+			}
+
+		});
+	});
 });

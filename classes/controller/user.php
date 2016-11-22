@@ -28,8 +28,8 @@ class user
   }
 
   public static function login($mail, $pass){
-    
-    
+
+
     $consulta = "SELECT * FROM user where username = ? and pass = ? and active = '1'";
     $parametros = array($mail,$pass);
     error_log($consulta);
@@ -100,7 +100,7 @@ class user
   }
 
   public static function tokenValidate($token){
-    $consulta ="SELECT * FROM tbl_tokens WHERE tx_token=? and active=true";
+    $consulta ="SELECT * FROM tbl_tokens WHERE tx_token=? and active=1";
     $parametros = array($token);
     error_log($consulta);
     $db_con = new PDOMYSQL;
@@ -132,16 +132,25 @@ class user
     }
     /*verificamos si el token se guardara o devolveremos error*/
     if (strlen($token)>0) {
-      $consulta = "INSERT INTO tbl_tokens (tx_token,user_id,creation_date,ip,id_dispositivo,active) values(?,?,now(),?,?,true)";
-    $parametros = array($token, $id,$ip, $id_dispositivo);
-    error_log($consulta);
-    $db_con = new PDOMYSQL;
-    $result =  $db_con->consultaSegura($consulta,$parametros);
+      $consulta = "INSERT INTO tbl_tokens (tx_token,user_id,creation_date,ip,id_dispositivo,active) values(?,?,now(),?,?,1)";
+      $parametros = array($token, $id,$ip, $id_dispositivo);
+      error_log($consulta);
+      $db_con = new PDOMYSQL;
+      $result =  $db_con->consultaSegura($consulta,$parametros);
     }
     else{
       return false;
     }
     return $token;
-    }
+  }
+  public static function tokenValidateDelete($token){  
+    $consulta="UPDATE tbl_tokens SET active = 0 WHERE tx_token=?";
+    $parametros = array($token);
+    error_log($consulta);
+    $PDOMYSQL = new PDOMYSQL;
+    $result =  $PDOMYSQL->consultaSegura($consulta,$parametros);
+    return $result;
+  }
+
 }
 ?>

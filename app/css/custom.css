@@ -65,4 +65,8 @@ button#searchBtn {
     margin: 0;
     border-bottom: 4px solid rgba(51, 30, 30, 0.85);
     padding-right: 40px;
+    height: 43px;
+}
+#left-panel a{
+	font-weight: 500;
 }
