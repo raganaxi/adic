@@ -7,10 +7,10 @@ require_once(__DIR__.'/config.php');
 //invocacion de clases
 use pdomysql AS pdomysql;
 use user AS user;
-
+/*
   if(!isset($_SESSION['user'])){
     header('Location: '.'index.php');
-  }
+  }*/
 ?>
 <?php include ('menu.php'); ?>
   <main canvas="container" class="z-container noPadding scroll bgLightGrey p2r">
