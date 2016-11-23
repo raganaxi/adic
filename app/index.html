@@ -166,13 +166,13 @@
 							</a>
 						</div>
 						<div class="z-content-fluid z-contentMiddle text-center">
-							<a href="main.php" role="button" class="cLightGrey s15">
+							<a href="#main" role="button" class="cLightGrey s15">
 								<img class="h35" src="images/logos/48x48.png" alt="logo">
 							</a>
 						</div>
 						<div class="z-content-fluid z-contentMiddle text-right">
 							<div id="openSearch" class="cLightGrey s20 text-bold" href="#right-panel">
-								<a href="#right-panel" class="searchDay bgDark noBorder">Lunes<span class="fa fa-chevron-down s15"></span></a>
+								<a href="#right-panel" class="searchDay bgDark noBorder"><span class="primerDiaSemana">Lunes</span><span class="fa fa-chevron-down s15"></span></a>
 							</div>
 						</div>
 					</div>
@@ -180,14 +180,22 @@
 			</nav>
 		</div>
 		<div role="main" class="ui-content">
-			        <div class="article">
-				            <p><img  alt="Fixed Gear bike"></p>
-				            <h2>Fixed Gear</h2>
-				            <p>A fixed-gear or fixed-wheel bicycle, commonly known as a fixie, is a bicycle that has a drivetrain with no freewheel mechanism. The freewheel was developed early in the history of bicycle design but the fixed-gear bicycle remained the standard track racing design. More recently the 'fixie' has become a popular alternative among mainly urban cyclists, offering the advantages of simplicity compared with the standard multi-geared bicycle.</p>
-				            <p><small>Source: Wikipedia</small></p>
-				            <p><a href="#right-panel" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-mini">Share</a></p>
-			        </div><!-- /article -->
-		    </div><!-- /content -->
+			<main canvas="container" class="z-container noPadding scroll bgLightGrey p2r">
+				<br>
+				<section class="z-container mainContainer">
+					<div class="z-row">
+						<div id="postContainer" class="z-col-lg-6 z-col-md-6 z-col-sm-10 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-3 z-col-sm-offset-1 z-col-xs-offset-0">
+						</div>
+					</div>
+
+				</section>
+			</main>
+			<svg class="hidden" version="1.1" xmlns="http://www.w3.org/2000/svg">
+				<filter id="blur">
+					<feGaussianBlur stdDeviation="30" />
+				</filter>
+			</svg>
+		</div>
 		<div data-role="panel" id="left-panel" class="bgLightBlue">
 			<form class="">				
 				<div class="z-row">
@@ -198,83 +206,94 @@
 						</div>
 					</div>
 				</div>
-				<div class="sidebar-nav">
-					<div class="list-group bgTransparent noBorder square">
-						<a href="main.php" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
-							<span class="sidebar-icon fa fa-home cLightGrey"></span> Inicio
-						</a>
-						<a id="findRestaurant" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
-							<span class="sidebar-icon fa fa-cutlery cLightGrey"></span> Restaurantes
-						</a>
-						<a id="findBar" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
-							<span class="sidebar-icon fa fa-beer cLightGrey"></span> Bares
-						</a>
-						<a id="findAntro" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
-							<span class="sidebar-icon fa fa-glass cLightGrey"></span> Antros
-						</a>
-						<a id="findFoodTruck"  role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
-							<span class="sidebar-icon fa fa-truck cLightGrey"></span> FoodTrucks
-						</a>
-						<a id="findEvent" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
-							<span class="sidebar-icon fa fa-calendar cLightGrey"></span> Eventos
-						</a>
-						<a id="findUbication" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
-							<span class="sidebar-icon fa fa-map cLightGrey"></span> Ubicaciones
-						</a>
+			</form>
+			<div class="sidebar-nav">
+				<div class="list-group bgTransparent noBorder square">
+					<a href="#main" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+						<span class="sidebar-icon fa fa-home cLightGrey"></span> Inicio
+					</a>
+					<a id="findRestaurant" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+						<span class="sidebar-icon fa fa-cutlery cLightGrey"></span> Restaurantes
+					</a>
+					<a id="findBar" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+						<span class="sidebar-icon fa fa-beer cLightGrey"></span> Bares
+					</a>
+					<a id="findAntro" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+						<span class="sidebar-icon fa fa-glass cLightGrey"></span> Antros
+					</a>
+					<a id="findFoodTruck"  role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+						<span class="sidebar-icon fa fa-truck cLightGrey"></span> FoodTrucks
+					</a>
+					<a id="findEvent" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+						<span class="sidebar-icon fa fa-calendar cLightGrey"></span> Eventos
+					</a>
+					<a id="findUbication" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+						<span class="sidebar-icon fa fa-map cLightGrey"></span> Ubicaciones
+					</a>
+				</div>
+			</div>
+			<div class="z-row">
+				<div class="z-forceBlock h50">
+					<div class="z-block h150 hidden">
+						<div class="z-content z-contentMiddle">
+							<a href="#user" class="sidebar-image panelImg bgDark "></a>
+						</div>
+					</div>
+					<a data-toggle="collapse" href="#profile-dropdown" role="button" class="z-block h50 cWhite bgDarkClear">
+						<div class="z-content z-contentMiddle">
+							<div class="z-panelBody">
+								<span class="fa fa-user"></span>
+								<span class="usuario_mostrar">usuario</span>
+								<span class="fa fa-caret-down pull-right"></span>
+							</div>
+						</div>
+					</a>
+					<div class="collapse" id="profile-dropdown">
+						<div class="list-group bgLightGrey noBorder square">
+							<a href="#profile" role="button" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+								Editar Perfil (socio)
+							</a>
+							<a href="#" role="button" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+								link
+							</a>
+							<a role="button" id="logOutbtn" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+								Cerrar sesión
+							</a>
+						</div>
 					</div>
 				</div>
-
-				<div class="z-row">
-					<div class="z-forceBlock h50">
-						<div class="z-block h150 hidden">
-							<div class="z-content z-contentMiddle">
-								<a href="user.php" class="sidebar-image panelImg bgDark ">
-								</a>
-							</div>
-						</div>
-						<a data-toggle="collapse" href="#profile-dropdown" role="button" class="z-block h50 cWhite bgDarkClear">
-							<div class="z-content z-contentMiddle">
-								<div class="z-panelBody">
-									<span class="fa fa-user"></span>
-									usuario
-									<span class="fa fa-caret-down pull-right"></pan>
-									</div>
-								</div>
-							</a>
-							<div class="collapse" id="profile-dropdown">
-								<div class="list-group bgLightGrey noBorder square">
-									<a href="profile.php" role="button" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
-										Editar Perfil (socio)
-									</a>
-									<a href="#" role="button" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
-										link
-									</a>
-									<a role="button" id="logOutbtn" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
-										Cerrar sesión
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
 			</div>
-			<div data-role="panel" id="right-panel" data-display="overlay" data-position="right">
-				        <ul data-role="listview" data-icon="false">
-					            <li data-icon="delete"><a href="#" data-rel="close">Close</a></li>
-					            <li data-role="list-divider">Share this page</li>
-					            <li><a href="#">Twitter</a></li>
-					            <li><a href="#">Facebook</a></li>
-					            <li><a href="#">Google +</a></li>
-					            <li><a href="#">Mail</a></li>
-				        </ul>
-			    </div><!-- /panel -->
-		</div>
 
-		<script src="bower_components/jquery/dist/jquery.js"></script>
-		<script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
-		<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-		<script src="plugins/owl/owl.carousel.js"></script>
-		<script src="js/jquery.validate.min.js"></script>
-		<script type="text/javascript" src="js/app_ini.js"></script>
-	</body>
-	</html>
+		</div>
+		<div data-role="panel" id="right-panel" data-display="push" data-position="right" class="bgLightBlue">
+			<div class="list-group bgTransparent noBorder square " id="diasSemana">
+				<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" >
+					Miercoles        
+				</button>
+				<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" >
+					Jueves        
+				</button>
+				<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" >
+					Viernes        
+				</button>
+				<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" >
+					Sabado        
+				</button>
+				<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" >
+					Domingo        
+				</button>
+				<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" >
+					Lunes        
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="plugins/owl/owl.carousel.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/app_ini.js"></script>
+</body>
+</html>

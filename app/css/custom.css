@@ -70,3 +70,15 @@ button#searchBtn {
 #left-panel a{
 	font-weight: 500;
 }
+/* main right panel */
+#right-panel button{
+    box-shadow: none !important;
+}
+a.searchDay {
+    color: #f0f0f6!important;
+    text-decoration: none;
+}
+/* main content */
+#main .ui-content {
+    padding: 0;
+}

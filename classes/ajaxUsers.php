@@ -103,6 +103,7 @@ if (is_ajax()){
 			case 'loginU': login_function(); break;
 			case 'logout': logout_function();break;
 			case 'registerU': register_user();break;
+			case 'getPost': getPost_function();break;
 
 		}
 	}else{
@@ -307,9 +308,30 @@ function logout_function(){
 		$error="no_error";
 		$mensaje="token vacio";
 	}
-	
-
 }
+function getPost_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+
+	$post=user::getPost();
+	if (!empty($post)){
+		$datos=$post;
+		$continuar="ok";
+		$error="no_error";
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_error";
+		$datos=$post;
+		$mensaje="ocurrio algo";
+	}
+	
+}
+
+/* fin*/
 
 
 
