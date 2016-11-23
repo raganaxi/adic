@@ -1,5 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin:".$_SERVER['HTTP_ORIGIN']);
+header('Access-Control-Allow-Credentials: true');
 
 require_once('autoloader.php');
 require_once('../config.php');
@@ -16,7 +17,7 @@ use user AS user;
 
 	$resultl = user::login($_POST['mail'], $_POST['pass']);
 	if (!empty($result)) {
-		$_SESSION['user'] = $resultl[0]['username'];
+		$_SESSION['userproble'] = $resultl[0]['username'];
 		$_SESSION['rol'] = $resultl[0]['role'];
 		$_SESSION['iduser'] = $resultl[0]['iduser'];
 	}

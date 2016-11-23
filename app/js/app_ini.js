@@ -31,7 +31,10 @@ $(document).ready(function() {
 			var data = {'action': 'sesion','token':token,'user_email':email};
 			$.ajax({
 				type : 'POST',
-				crossDomain: true,			
+				crossDomain: true,
+				xhrFields: {
+				withCredentials: true
+			},			
 				url  : urlAjax+'classes/ajaxUsers.php',
 				dataType: "json",
 				data : data,
@@ -74,11 +77,14 @@ $(document).ready(function() {
 	function submitFormsubmitFormLogin()
 	{  
 		
-		var data = $("#lognUser").serialize();
-
+		var data = {'action': 'loginU','logUser':$("#logUser").val(),'logPass':$("#logPass").val()};
 		$.ajax({
 
 			type : 'POST',
+			crossDomain: true,
+			xhrFields: {
+				withCredentials: true
+			},
 			url  : urlAjax+'classes/ajaxUsers.php',
 			dataType: "json",
 			data : data,
@@ -211,6 +217,10 @@ $(document).ready(function() {
 		var data= {'action': 'logout','token':app.user.token};
 		$.ajax({
 			data:  data,
+			crossDomain: true,
+			xhrFields: {
+				withCredentials: true
+			},
 			url: urlAjax+'classes/ajaxUsers.php',
 			type: 'post'
 		}).done(function(data){
@@ -234,6 +244,10 @@ $(document).ready(function() {
 		var data= {'action': 'registerU',"mail": $("#ruMail").val(),"pass": $("#ruPass").val()};
 		$.ajax({
 			data:  data,
+			crossDomain: true,
+			xhrFields: {
+				withCredentials: true
+			},
 			url: urlAjax+'classes/ajaxUsers.php',
 			type: 'post'
 		}).done(function(data){
@@ -280,6 +294,10 @@ $(document).ready(function() {
 		var data= {'action': 'getPost'};	
 		$.ajax({			
 			data:data,
+			crossDomain: true,
+			xhrFields: {
+				withCredentials: true
+			},
 			url: urlAjax+'classes/ajaxUsers.php',
 			type: 'post'
 		}).done(function(data){
