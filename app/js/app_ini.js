@@ -4,7 +4,7 @@ var app={};
 var controller;
 var urlLocal="../";
 var urlRemoto="http://pruebasapi.esy.es/adic/development/";
-var urlAjax=urlLocal;
+var urlAjax=urlRemoto;
 /**********************/
 $(document).bind("mobileinit", function(){
 	

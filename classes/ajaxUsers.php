@@ -1,4 +1,6 @@
 <?php
+header("Access-Control-Allow-Origin:".$_SERVER['HTTP_ORIGIN']);
+
 require_once('autoloader.php');
 require_once('../config.php');
 
