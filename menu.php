@@ -92,7 +92,11 @@
             <div class="z-panelBody">
               <span class="fa fa-user"></span>
           <?php
-          echo $_SESSION['user'] ;
+          if(isset($_SESSION['user'])) {
+            echo $_SESSION['user'];
+          } else {
+            echo "no";
+          }
            ?>
               <span class="fa fa-caret-down pull-right"></pan>
             </div>

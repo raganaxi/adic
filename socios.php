@@ -2,42 +2,34 @@
   <main class="z-container-fluid noPadding hFull bgBlue">
     <div class="bgCover"></div>
     <div class="z-container">
-      <div class="hFull z-block">
-        <div class="z-content z-contentMiddle">
-          <div class="z-row">
-            <div class="z-col-lg-12">
-              <!--<img src="images/logos/logo.png" class="centered z-forceBlock wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s" />-->
-              <!--<h2 class="text-center cLightBlue s35 noMargin text-bold text-shadow wow fadeInDown" data-wow-duration="1s" data-wow-delay=".8s">
-                en la ciudad
-              </h2>-->
-            </div>
-          </div>
-          <!--<div class="clear h100"></div>-->
-          <div class="z-row wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
-            <div class="z-col-xs-12">
-              <div class="z-forceBlock text-center">
-                <img src="images/logos/logo.png" class=" h60"/>
+      <div class="z-row">
+        <div class="z-col-lg-6 z-col-md-6 z-col-sm-8 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-3 z-col-sm-offset-2 z-col-xs-offset-0">
+          <div class="hFull z-block">
+            <div class="z-content z-contentMiddle">
+              <div class="wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
+                <div class="z-forceBlock text-center">
+                  <img src="images/logos/logo.png" class=" h60"/>
+                  <h1 class="cLightGrey text-center s35">Bienvenido Socio</h1>
+                  <p class="cLightGrey">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                </div>
               </div>
-              <h1 class="cLightGrey text-center s35">Bienvenido Socio</h1>
-              <p class="cLightGrey">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </div>
-          </div>
-          <div class="clear h50"></div>
-          <div class="z-row wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
-            <hr>
-            <div class="z-col-lg-4 z-col-lg-offset-2 z-col-md-4 z-col-md-offset-2 z-col-sm-4 z-col-sm-offset-2 z-col-xs-8 z-col-xs-offset-2">
-              <a href="main.html" class="z-block h50 cLightGrey s20 text-center noTransform text-uppercase" data-toggle="modal" data-target="#loginModal">
-                <div class="z-content z-contentMiddle">
-                  Inicia sesión
-                </div>
-              </a>
-              <a href="main.html" class="z-block h50 cLightGrey s20 text-center noTransform text-uppercase" data-toggle="modal" data-target="#regModal">
-                <div class="z-content z-contentMiddle">
-                  Crea una cuenta
-                </div>
-              </a>
+              <div class="clear h20"></div>
+              <hr>
+              <div class="clear h20"></div>
+              <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                <a href="main.html" class="z-block h50 cLightGrey s20 text-center noTransform text-uppercase" data-toggle="modal" data-target="#loginModal">
+                  <div class="z-content z-contentMiddle">
+                    Inicia sesión
+                  </div>
+                </a>
+                <a href="main.html" class="z-block h50 cLightGrey s20 text-center noTransform text-uppercase" data-toggle="modal" data-target="#regModal">
+                  <div class="z-content z-contentMiddle">
+                    Crea una cuenta
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
