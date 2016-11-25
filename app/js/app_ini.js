@@ -1,10 +1,11 @@
 /*variables de session*/
 var storage;
 var app={};
+var appS={};
 var controller;
 var urlLocal="../";
 var urlRemoto="http://pruebasapi.esy.es/adic/development/";
-var urlAjax=urlRemoto;
+var urlAjax=urlLocal;
 /**********************/
 $(document).bind("mobileinit", function(){
 	
@@ -32,13 +33,13 @@ $(document).ready(function() {
 			$.ajax({
 				type : 'POST',
 				crossDomain: true,
+				cache: false,
 				xhrFields: {
-				withCredentials: true
-			},			
-				url  : urlAjax+'classes/ajaxUsers.php',
+					withCredentials: true
+				},			
+				url  : urlAjax+'classes/ajaxApp.php',
 				dataType: "json",
 				data : data,
-				cache: false,
 			})
 			.done(function( data, textStatus, jqXHR ) {
 				if(data.continuar==="ok"){				
@@ -82,13 +83,13 @@ $(document).ready(function() {
 
 			type : 'POST',
 			crossDomain: true,
+			cache: false,
 			xhrFields: {
 				withCredentials: true
 			},
-			url  : urlAjax+'classes/ajaxUsers.php',
+			url  : urlAjax+'classes/ajaxApp.php',
 			dataType: "json",
-			data : data,
-			cache: false,			
+			data : data,		
 		})
 		.done(function( data, textStatus, jqXHR ) {
 			if(data.continuar==="ok"){
@@ -99,7 +100,7 @@ $(document).ready(function() {
 				user.rol=data.datos.row[0].role;
 				user.id=data.datos.row[0].iduser;				
 				app.user=user;
-				storage.app=JSON.stringify(app);
+				setAppJson(app);
 				$.mobile.changePage("#main");
 				is_logged_in();
 				$('.modal').modal('hide');
@@ -122,31 +123,15 @@ $(document).ready(function() {
 		try {
 			if (localStorage.getItem) {
 				storage = localStorage;
+				storageS = sessionStorage;
 			}
 		} catch(e) {
 			storage = {};
+			storageS = {};
 		}
-		if (storage.app===undefined) {
-			var user={
-				token:"",
-				email:"",
-				name:"",
-			};
-			app={
-				user:user
-			};
-			storage.app=JSON.stringify(app);
-		}else{
-			app=getAppJson();			
-			if (app.user===undefined) {
-				app.user={
-					token:"",
-					email:"",
-					name:"",
-				};
-			}
-			storage.app=JSON.stringify(app);				
-		}
+		app=getAppJson();
+		appS=getAppSession();
+
 		/* codigo para splash*/
 		$("#splash").owlCarousel({
 			
@@ -198,19 +183,72 @@ $(document).ready(function() {
 				$(".primerDiaSemana").html(semana.primerDia);
 				$("#diasSemana").html(semana.botones);
 				getPost();
+
 			}
 		});
 
 
-
+		/* fin inicializar */
 	}
-
+	/* localstorage */
 	function getAppJson(){
-		app=JSON.parse(storage.app);
+		if (storage.app===undefined) {
+			var user={
+				token:"",
+				email:"",
+				name:"",
+			};
+			app={
+				user:user
+			};
+			setAppJson(app);
+		}
+		else{
+			app=JSON.parse(storage.app);		
+			if (app.user===undefined) {
+				app.user={
+					token:"",
+					email:"",
+					name:"",
+				};
+				setAppJson(app);			
+			}
+			
+		}
+		
+		
 		return app;
 	}
 	function setAppJson(app){
 		storage.app=JSON.stringify(app);
+	}
+	/* session storage */
+	function getAppSession(){
+		if (storageS.appS===undefined) {
+			var user={
+				fecha:"",
+				categoria:"",
+			};
+			appS={
+				user:user
+			};
+			setAppSession(app);
+		}
+		else{
+			appS=JSON.parse(storageS.appS);		
+			if (appS.user===undefined) {
+				appS.user={
+					fecha:"",
+					categoria:"",
+				};
+				setAppSession(app);			
+			}
+			
+		}
+		return appS;
+	}
+	function setAppSession(appS){
+		storageS.appS=JSON.stringify(appS);
 	}
 	/* funcion para logout */
 	$("#logOutbtn").on('click', function(){
@@ -218,10 +256,11 @@ $(document).ready(function() {
 		$.ajax({
 			data:  data,
 			crossDomain: true,
+			cache: false,
 			xhrFields: {
 				withCredentials: true
 			},
-			url: urlAjax+'classes/ajaxUsers.php',
+			url: urlAjax+'classes/ajaxApp.php',
 			type: 'post'
 		}).done(function(data){
 			if (data.continuar==="ok") {
@@ -245,10 +284,11 @@ $(document).ready(function() {
 		$.ajax({
 			data:  data,
 			crossDomain: true,
+			cache: false,
 			xhrFields: {
 				withCredentials: true
 			},
-			url: urlAjax+'classes/ajaxUsers.php',
+			url: urlAjax+'classes/ajaxApp.php',
 			type: 'post'
 		}).done(function(data){
 			if(data.continuar==="ok"){
@@ -259,7 +299,7 @@ $(document).ready(function() {
 				user.rol=data.datos.row[0].role;
 				user.id=data.datos.row[0].iduser;				
 				app.user=user;
-				storage.app=JSON.stringify(app);
+				setAppJson(app);
 				$.mobile.changePage("#main");
 				is_logged_in();
 				$('.modal').modal('hide');
@@ -295,10 +335,11 @@ $(document).ready(function() {
 		$.ajax({			
 			data:data,
 			crossDomain: true,
+			cache: false,
 			xhrFields: {
 				withCredentials: true
 			},
-			url: urlAjax+'classes/ajaxUsers.php',
+			url: urlAjax+'classes/ajaxApp.php',
 			type: 'post'
 		}).done(function(data){
 			if(data.continuar==="ok"){
@@ -306,20 +347,32 @@ $(document).ready(function() {
 				for(var i in data.datos) {
 					datahtml+=getHtmlPost(data.datos[i]);
 				}
-				$("#postContainer").html(datahtml);
+				$("#postContainer").html(datahtml).on('click', '.botonFiltroUsuario', function(event) {
+					event.preventDefault();
+					
+				});
+				
 			}
 			else{
 			}
 
 		});
 	}
+	function getPostUsuario(){
+
+	}
+	$('#sectionPost').xpull({
+		'callback':function(){
+			getPost();
+		}
+	});
 	function getHtmlPost(json){
 		return '<div class="z-panel z-forceBlock bgWhite wow fadeInUp boxShadow" data-wow-duration=".5s" data-wow-delay=".2s">'+
 		'<div class="z-panelHeader noPadding noBorder">'+
 		'<div class="z-row noMargin">'+
 		'<div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-3 noPadding">'+
 		'<form class="z-block h70">'+
-		'<button name="useridx"  value="'+json.userid+'" class="z-content z-contentMiddle">'+
+		'<button name="useridx"  value="'+json.userid+'" class="z-content z-contentMiddle botonFiltroUsuario">'+
 		'<div class="profileImg panelImg" style="background-image:url(\''+urlAjax+'images/profPicture/'+json.user_pic+'\');">'+
 		'</div>'+
 		'</button>'+
@@ -382,5 +435,5 @@ $(document).ready(function() {
 
 
 
-		/* fin del ready */	
-	});
+	/* fin del ready */	
+});
