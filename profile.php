@@ -14,6 +14,20 @@ if(!isset($_SESSION['user'])){
 ?>
 <?php include ('menu.php'); ?>
 <main canvas="container" class="z-container noPadding scroll bgLightGrey p2r">
+  <section class="tab-panel bgDark">
+    <ul class="z-block h40">
+      <li class="z-content z-contentMiddle text-uppercase cLightGrey">
+        perfil
+      </li>
+      <li class="z-content z-contentMiddle text-uppercase cLightGrey">
+        ofertas
+      </li>
+      <li class="z-content z-contentMiddle text-uppercase cLightGrey">
+        eventos
+      </li>
+    </ul>
+  </section>
+
   <section class="z-container mainContainer">
     <div class="z-row">
       <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
