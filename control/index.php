@@ -8,7 +8,7 @@
             <div class="z-content z-contentMiddle">
               <div class="wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
                 <div class="z-forceBlock text-center">
-                  <img src="images/logos/logo.png" class=" h60"/>
+                  <img src="../images/logos/logo.png" class=" h60"/>
                   <h1 class="cLightGrey text-center s35">Bienvenido Socio</h1>
                   <p class="cLightGrey">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -50,7 +50,7 @@
             <div class="clear"></div>
             <input Id="passwSoc" type="password" class="form-control" placeholder="Contraseña" name="pass" value="">
             <div class="clear"></div>
-            <button type="button" id="logSocio" href="profile.php" class="z-btn h50 bgDarkBlue cWhite s20 text-center noTransform boxShadow">
+            <button type="button" id="logSocio" href="dashboard.php" class="z-btn h50 bgDarkBlue cWhite s20 text-center noTransform boxShadow">
               Iniciar Sesión
             </button>
           </form>

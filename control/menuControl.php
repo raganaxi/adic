@@ -12,9 +12,9 @@
         </a>
       </div>
       <div class="z-content-fluid z-contentMiddle text-right">
-        <div id="openSearch" class="cLightGrey s20 text-bold" >
+        <!-- <div id="openSearch" class="cLightGrey s20 text-bold" >
           <button class="searchDay bgDark noBorder" value="<?php echo date('Y-m-d'); ?>"><?php echo posts::getCurrentDay(strtotime(str_replace('-','/', date('Y-m-d H:i:s')))); ?></button><span class="fa fa-chevron-down s15"></span>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

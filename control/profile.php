@@ -1,8 +1,8 @@
 <?php
 include ('header.php');
 //autoloader para cargar clases
-require_once(__DIR__.'/classes/autoloader.php');
-require_once(__DIR__.'/config.php');
+require_once(__DIR__.'/../classes/autoloader.php');
+require_once(__DIR__.'/../config.php');
 
 //invocacion de clases
 use pdomysql AS pdomysql;
@@ -12,7 +12,7 @@ if(!isset($_SESSION['user'])){
   header('Location: '.'index.php');
 }
 ?>
-<?php include ('menu.php'); ?>
+<?php include ('menuControl.php'); ?>
 <main canvas="container" class="z-container noPadding scroll bgLightGrey p2r">
   <section class="tab-panel bgDark">
     <ul class="z-block h40">
@@ -41,10 +41,10 @@ if(!isset($_SESSION['user'])){
               <div class="z-col-lg-9 z-col-md-9 z-col-sm-9 z-col-xs-8">
                 <div class="z-block h100">
                   <div class="z-content z-contentTop">
-                    <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Nombre</h3>
-                    <p class="noMargin cDark s15"><span class="fa fa-phone"></span> (871) 260 2226</p>
+                    <h3 class="noMargin text-uppercase text-bold text-uppercase s20"></h3>
+                    <p class="noMargin cDark s15"><span class="fa fa-phone"></span></p>
                     <a class="s15 text-center cDark" type="button" data-toggle="modal" data-target="#mapModal">
-                      <span class="fa fa-map-marker"></span> Ver Ubicacion
+                      <span class="fa fa-map-marker"></span>
                     </a>
                   </div>
                 </div>
