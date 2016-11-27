@@ -7,125 +7,92 @@ require_once(__DIR__.'/config.php');
 //invocacion de clases
 use pdomysql AS pdomysql;
 use user AS user;
-
-
-
-if(isset($_SESSION['user'])){
-  header('Location: '.'main.php');
-}
+/*
+  if(!isset($_SESSION['user'])){
+    header('Location: '.'index.php');
+  }*/
 ?>
-
-  <main class="z-container-fluid splash bgDark noPadding hFull">
-
-    <!--<div class="bgCover"></div>
-    <div class="z-container">
-      <div class="hFull z-block">
-        <div class="z-content z-contentMiddle">
-          <div class="z-row">
-            <div class="z-col-lg-12">
-              <img src="images/logos/logo.png" class="centered z-forceBlock wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s" />
+<?php include ('menuControl.php'); ?>
+  <main canvas="container" class="z-container noPadding scroll bgLightGrey p2r">
+    <section class="z-container mainContainer">
+      <div class="z-row">
+        <div id="postContainer" class="z-col-lg-6 z-col-md-6 z-col-sm-10 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-3 z-col-sm-offset-1 z-col-xs-offset-0">
+        <?php
+        $resultPost = user::getPost();
+        foreach ($resultPost as $key => $value) {
+        ?>
+          <div class="z-panel z-forceBlock bgWhite wow fadeInUp boxShadow" data-wow-duration=".5s" data-wow-delay=".2s">
+            <div class="z-panelHeader noPadding noBorder">
+              <div class="z-row noMargin">
+                <div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-3 noPadding">
+                  <form class="z-block h70">
+                    <button name="useridx"  value="<?php  echo $resultPost[$key]['userid']; ?>" class="z-content z-contentMiddle noBorder bgTransparent">
+                      <div class="profileImg panelImg" style="background-image:url('../images/profPicture/<?php  echo $resultPost[$key]['user_pic']; ?>');">
+                      </div>
+                    </button>
+                  </form>
+                </div>
+                <div class="z-col-lg-9 z-col-md-9 z-col-sm-10 z-col-xs-7 noPadding">
+                  <div class="z-block h70">
+                    <div class="z-content z-contentMiddle">
+                      <form action="profile2.php" method="post" >
+                        <button name="useridx" class="noMargin text-uppercase text-uppercase s15 cDark text-bold profileU noBorder bgTransparent noPadding" value="<?php  echo $resultPost[$key]['userid']; ?>"><?php  echo $resultPost[$key]['user_name']; ?></button>
+                      </form>
+                      <p class="noMargin cDark">Calle fulana #45, Centro. Torreón, Coahuila.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-2 noPadding">
+                  <div class="z-block h70">
+                    <div class="z-content z-contentMiddle text-center">
+                      <span class="fa fa-star-o s20 cGrey"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="z-panelBody z-block overflowHidden noPadding">
+              <div id="" class="bgDarkBlueClear ofertaImg panelImg" style="background-image:url('<?php  echo $resultPost[$key]['image']; ?>')">
+              </div>
+              <div class="z-row noMargin">
+                <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">
+                  <div class="z-block h80 mh80 overflowAuto">
+                    <div class="z-content z-contentMiddle">
+                      <p class="cDark s15">
+                        <span class="text-bold text-uppercase"><?php  echo $resultPost[$key]['title']; ?> </span>
+                        <span class="hidden"><?php  echo $resultPost[$key]['categoria']; ?> </span><br>
+                        <?php  echo $resultPost[$key]['description']; ?>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="z-panelFooter z-block h40 overflowHidden noPadding bgTransparent">
+              <a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20 noBorder noPadding">
+                <span class="fa fa-share"></span>
+              </a>
+              <a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20 noBorder noPadding">
+                <span class="fa fa-thumbs-up"></span>
+              </a>
+              <a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20 noBorder noPadding">
+                <span class="fa fa-tag"></span>
+              </a>
             </div>
           </div>
-          <div class="clear h100"></div>
-          <div class="z-row wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
-            <div class="z-col-xs-12">
-              <h1 class="cWhite text-center s25">Bienvenido</h1>
-            </div>
-            <div class="z-col-lg-4 z-col-lg-offset-2 z-col-md-4 z-col-md-offset-2 z-col-sm-4 z-col-sm-offset-2 z-col-xs-8 z-col-xs-offset-2">
-              <a href="main.html" class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#loginModal">
-                Inicia sesión<br>
-              </a>
-              <div class="clear"></div>
-            </div>
-            <div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-sm-offset-0 z-col-xs-8 z-col-xs-offset-2">
-              <a href="main.html" class="z-btn btn-rounded h50 bgLightBlue cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#regModal">
-                Crea una cuenta
-              </a>
-              <div class="clear"></div>
-            </div>
-          </div>
+        <?php } ?>
+
+
+
         </div>
       </div>
-    </div>-->
+
+    </section>
   </main>
 
-  <div class="modal fade bgWhite" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content noShadow noBorder bgTransparent">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Ingresa</h4>
-        </div>
-        <div class="modal-body">
-          <form id="lognUser" class="form-section">
-            <label for="logUser"></label>
-            <input id="logUser" type="text" class="form-control" placeholder="Usuario" name="logUser" value="">
-            <div class="clear"></div>
-            <label for="logPass"></label>
-            <input id="logPass" type="password" class="form-control" placeholder="Contraseña" name="logPass" value="">
-            <div class="clear"></div>
-            <button type="button" id="loginU"  class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow" disabled>
-              Iniciar Sesión
-            </button>
-          </form>
-          <hr>
-          <div class="form-section">
-            <a href="main.php" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow">
-              Facebook
-            </a>
-            <div class="clear"></div>
-            <a href="main.php" class="z-btn btn-rounded h50 bgRed cWhite s20 text-center noTransform boxShadow">
-              Google+
-            </a>
-          </div>
-        </div>
-        <!--<div class="modal-footer">
-          <a type="button" class="btn btn-default" data-dismiss="modal">Close</a>
-          <button type="submit" class="btn btn-primary">Save changes</button>
-        </div>-->
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div>
-  <div class="modal fade bgWhite" id="regModal" tabindex="-1" role="dialog" aria-labelledby="regModalLabel" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content noShadow noBorder bgTransparent">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Registrate</h4>
-        </div>
-        <div class="modal-body">
-          <form id="registerUser" class="form-section">
-
-            <label for="ruMail"></label>
-            <input id="ruMail" type="text" class="form-control" placeholder="Correo" name="ruMail" value="" required>
-
-            <div class="clear"></div>
-
-            <label for="ruPass"></label>
-            <input id="ruPass" type="password" class="form-control" placeholder="Contraseña" name="ruPass" value="" required>
-
-            <div class="clear"></div>
-            <button type="button" id="crteAccountE" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow" disabled>
-              Crear cuenta
-            </button>
-          </form>
-          <hr>
-          <div class="form-section">
-            <a href="main.php" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow">
-              Facebook
-            </a>
-            <div class="clear"></div>
-            <a href="main.<?php  ?>" class="z-btn btn-rounded h50 bgRed cWhite s20 text-center noTransform boxShadow">
-              Google+
-            </a>
-          </div>
-        </div>
-        <!--<div class="modal-footer">
-          <a type="button" class="btn btn-default" data-dismiss="modal">Close</a>
-          <button type="submit" class="btn btn-primary">Save changes</button>
-        </div>-->
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div>
-
+  <svg class="hidden" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="30" />
+    </filter>
+  </svg>
 <?php include ('footer.php'); ?>
