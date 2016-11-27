@@ -27,7 +27,7 @@ use user AS user;
                 <div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-3 noPadding">
                   <form class="z-block h70">
                     <button name="useridx"  value="<?php  echo $resultPost[$key]['userid']; ?>" class="z-content z-contentMiddle noBorder bgTransparent">
-                      <div class="profileImg panelImg" style="background-image:url('../images/profPicture/<?php  echo $resultPost[$key]['user_pic']; ?>');">
+                      <div class="profileImg panelImg" style="background-image:url('images/profPicture/<?php  echo $resultPost[$key]['user_pic']; ?>');">
                       </div>
                     </button>
                   </form>

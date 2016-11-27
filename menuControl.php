@@ -7,8 +7,8 @@
         </a>
       </div>
       <div class="z-content-fluid z-contentMiddle text-center">
-        <a href="main.php" role="button" class="cLightGrey s15">
-          <img class="h35" src="../images/logos/48x48.png" alt="logo" />
+        <a href="index.php" role="button" class="cLightGrey s15">
+          <img class="h35" src="images/logos/48x48.png" alt="logo" />
         </a>
       </div>
       <div class="z-content-fluid z-contentMiddle text-right">

@@ -12,7 +12,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
 
   <!-- Standard Favicon -->
-  <link rel="icon" sizes="32x32" type="image/x-icon" href="../images/logos/40x40.png" />
+  <link rel="icon" sizes="32x32" type="image/x-icon" href="/images/logos/58x58.png" />
   <!-- For iPhone 4 Retina display: -->
   <!--<link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicon/apple-touch-icon-114x114-precomposed.png">-->
   <!-- For iPad: -->
