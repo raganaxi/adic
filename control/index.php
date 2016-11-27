@@ -37,6 +37,11 @@
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>
 
+      <div class="clear h40"></div>
+      <div class="z-block centered">
+        <img src="../images/logos/logo.png" alt="..." class="h100">
+      </div>
+      <div class="clearfix"></div>
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
@@ -73,7 +78,6 @@
             </form>
           </section>
         </div>
-
         <div id="register" class="animate form registration_form">
           <section class="login_content">
             <form id="registerSocio" enctype="multipart/form-data" method="post">

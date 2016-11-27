@@ -506,7 +506,17 @@ $( "#createSoc" ).on( 'click', function () {
     if ( data.Y == "Y" ) {
       //alert('Registrado');
       //window.location.replace("profile.php");
-      $( "#registerSocio" ).submit();
+      $( "#registerSocio" ).empty();
+      $("#registerSocio").append(
+        '<h1>¡Gracias!</h1>'+
+        '<p>Tu solicitud es muy importante para nosotros, te pedimos de favor que estes al pendiente de tu correo o telefono.</p>'+
+        '<p>Nos comunicaremos contigo a la brevedad posible.</p>'+
+        '<div class="clearfix"></div>'+
+        '<div class="separator">'+
+          '<div class="hidden">'+
+          '  <p>Copyright (c) 2015 Copyright Holder All Rights Reserved.</p>'+
+          '</div>'+
+        '</div>');
     }
     else {
       alert( 'Erro usuario no registrado' );
