@@ -1,11 +1,3 @@
-/*
- * Front-End Lab's - v0.0.1
- *
- * Application Core (Scripts)
- *
- */
-
-// Avoid `console` errors in browsers that lack a console.
 'use strict';
 
 ( function () {
