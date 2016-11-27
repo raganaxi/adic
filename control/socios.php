@@ -17,10 +17,11 @@ if(!isset($_SESSION['user'])){
             <thead>
               <tr>
                 <th>Mail</th>
-                <th>Usuario</th>
+                <th>Contacto</th>
+                <th>Telefono</th>
                 <th>Negocio</th>
                 <th>Password</th>
-                <th>Rol</th>
+                <!-- <th>Rol</th> -->
                 <!-- <th>Estatus</th> -->
                 <th>Tipo de registro</th>
                 <!-- <th>Activacion</th> -->
@@ -37,9 +38,10 @@ if(!isset($_SESSION['user'])){
               $row = '<tr>'.
                 '<td>'.$socios[$key]['username'].'</td>'.
                 '<td>'.$socios[$key]['name'].'</td>'.
+                '<td>'.$socios[$key]['number'].'</td>'.
                 '<td>'.$socios[$key]['negocio'].'</td>'.
                 '<td>'.$socios[$key]['pass'].'</td>'.
-                '<td>'.$socios[$key]['role'].'</td>'.
+                // '<td>'.$socios[$key]['role'].'</td>'.
                 // '<td>'.$socios[$key]['active'].'</td>'.
                 '<td>'.$socios[$key]['reg_type'].'</td>'.
                 //'<td><form class="ActiveSoc" action="activateuser.php" method="post"><input type="hidden" value="'.$socios[$key]['username'].'" name="usuario"><button class="activeBtn"  type="button" >Activar</button></form></td>'.

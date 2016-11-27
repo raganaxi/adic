@@ -1,8 +1,8 @@
       <!-- /page content -->
 
       <footer>
-        <div class="pull-right hidden">
-          A donde ir en la ciudad - by <a href="https://unbound-it.com">Unbound-IT</a>
+        <div class="pull-right">
+          A donde ir en la ciudad - by <a target="_blank" href="https://unbound-it.com">Unbound-IT</a>
         </div>
         <div class="clearfix"></div>
       </footer>

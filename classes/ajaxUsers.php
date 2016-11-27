@@ -37,6 +37,15 @@ if (isset($_POST['login_user'])) {
 	}
 }
 
+if (isset($_POST['activate_soc'])) {
+	$result = user::activateUser($_POST['isuser']);
+	if (!empty($result)) {
+		echo json_encode($result);
+	}else{
+		echo 0;
+	}
+}
+
 //Logout en desuso
 if (isset($_POST['logout'])) {
 	session_destroy();

@@ -76,7 +76,7 @@
 
         <div id="register" class="animate form registration_form">
           <section class="login_content">
-            <form id="registerSocio" enctype="multipart/form-data">
+            <form id="registerSocio" enctype="multipart/form-data" method="post">
               <h1>Crear Cuenta</h1>
               <div>
                 <input id="nameNegocio" type="text" class="form-control" placeholder="Nombre Negocio" name="nameBussiness" value="">
@@ -92,7 +92,7 @@
               </div>
               <div class="clear"></div>
               <div>
-                <button type="button" id="createSoc" class="btn bgDarkBlue cWhite s20 text-center noTransform boxShadow">
+                <button type="button" id="createSoc" class="btn bgGreen cWhite s20 text-center noTransform boxShadow">
                   Crear cuenta
                 </button>
               </div>

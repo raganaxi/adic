@@ -26,6 +26,7 @@
   // Place any jQuery/helper plugins in here.
 
   $( document ).ready( function () {
+    /*
     if ( $( '.splash' ).length != 0 ) {
       var welcomescreen_slides = [
         {
@@ -113,7 +114,7 @@
         '</div>'
       );
     }
-
+*/
     $( ".p2r" ).xpull( {
       'callback': function () {
         location.reload();
@@ -554,6 +555,27 @@ $( "#createPost" ).on( 'click', function () {
 //   } );
 // } );
 
+$( ".activeBtn" ).on( 'click', function () {
+  var $activeBtn = $(this);
+  var $userID = $($activeBtn).closest('tr').find('.iduser').val();
+  $.ajax( {
+    data: {
+      "activate_Soc": 1,
+      "iduser": $userID
+    },
+    url: '../classes/ajaxUsers.php',
+    type: 'post'
+  } ).done( function ( data ) {
+    if ( data != 0 ) {
+      console.log(data);
+      //window.location.replace( "dashboard.php" );
+    }
+    else {
+      console.log( 'problemas al activar usuario' );
+      console.log(data);
+    }
+  } );
+} );
 
 $( "#logSocio" ).on( 'click', function () {
   $.ajax( {
