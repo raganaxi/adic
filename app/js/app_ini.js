@@ -5,7 +5,7 @@ var appS={};
 var controller;
 var urlLocal="../";
 var urlRemoto="http://pruebasapi.esy.es/adic/development/";
-var urlAjax=urlLocal;
+var urlAjax=urlRemoto;
 /**********************/
 $(document).bind("mobileinit", function(){
 	
@@ -181,8 +181,16 @@ $(document).ready(function() {
 				$(".usuario_mostrar").html(app.user.name);
 				var semana=getDiaSemana();
 				$(".primerDiaSemana").html(semana.primerDia);
-				$("#diasSemana").html(semana.botones);
+				$("#diasSemana").html(semana.botones).on('click', '.searchDay', function(event) {
+					event.preventDefault();
+					appS=getAppSession();
+					appS.user.fecha=$(this).val();
+					setAppSession(appS);
+				});
+
 				getPost();
+				
+				
 
 			}
 		});
@@ -232,7 +240,7 @@ $(document).ready(function() {
 			appS={
 				user:user
 			};
-			setAppSession(app);
+			setAppSession(appS);
 		}
 		else{
 			appS=JSON.parse(storageS.appS);		
@@ -241,7 +249,7 @@ $(document).ready(function() {
 					fecha:"",
 					categoria:"",
 				};
-				setAppSession(app);			
+				setAppSession(appS);			
 			}
 			
 		}
@@ -319,7 +327,7 @@ $(document).ready(function() {
 		var buttonEnd='</button>';
 		var dias = new Array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
 		semana.primerDia=	dias[dia];
-		var botones='';
+		var botones=buttonStart+' value="'+ahora.getFullYear()+'-'+(ahora.getMonth() + 1)+'-'+ahora.getDate()+'" >Hoy'+buttonEnd;
 		for (var i = 1; i < 6; i++) {			
 			despues = ahora.setTime(ahora.getTime() + (1*24*60*60*1000));
 			despues = new Date(despues);
@@ -330,7 +338,8 @@ $(document).ready(function() {
 
 		return semana;
 	}
-	function getPost(){	
+	function getPost(){
+
 		var data= {'action': 'getPost'};	
 		$.ajax({			
 			data:data,
@@ -349,7 +358,7 @@ $(document).ready(function() {
 				}
 				$("#postContainer").html(datahtml).on('click', '.botonFiltroUsuario', function(event) {
 					event.preventDefault();
-					
+					$.mobile.changePage("#profile");
 				});
 				
 			}
@@ -358,9 +367,7 @@ $(document).ready(function() {
 
 		});
 	}
-	function getPostUsuario(){
-
-	}
+	
 	$('#sectionPost').xpull({
 		'callback':function(){
 			getPost();
@@ -431,7 +438,7 @@ $(document).ready(function() {
 		'</div>';
 	}
 
-
+	
 
 
 

@@ -155,8 +155,11 @@
 	<div data-role="page" id="socios">
 		asdas
 	</div>
+	<div data-role="page" id="profile">
+		asdas
+	</div>
 	<div data-role="page" id="main">
-		<div data-role="header" role="banner" class="ui-header ui-bar-inherit">
+		<div data-role="header" role="banner"  data-position="fixed" class="ui-header ui-bar-inherit">
 			<nav class="nav z-container-fluid bgDark boxShadow">
 				<div class="z-row noMargin">
 					<div class="z-block h50">
@@ -180,11 +183,11 @@
 			</nav>
 		</div>
 		<div role="main" class="ui-content">
-			<main canvas="container" class="z-container noPadding scroll bgLightGrey p2r">
+			<main canvas="container" class="z-container noPadding  bgLightGrey p2r">
 				<br>
 				<section id="sectionPost" class="z-container mainContainer">
 					<div class="z-row">
-						<div id="postContainer" class="z-col-lg-6 z-col-md-6 z-col-sm-10 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-3 z-col-sm-offset-1 z-col-xs-offset-0">
+						<div id="postContainer" class="z-col-lg-6 z-col-md-6 z-col-sm-10 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-3 z-col-sm-offset-1 z-col-xs-offset-0 scroll">
 						</div>
 					</div>
 
@@ -196,7 +199,7 @@
 				</filter>
 			</svg>
 		</div>
-		<div data-role="panel" id="left-panel" class="bgLightBlue">
+		<div data-role="panel" id="left-panel" class="bgLightBlue" data-position-fixed="true">
 			<form class="">				
 				<div class="z-row">
 					<div class="z-col-lg-8 z-col-md-8 z-col-sm-8 z-col-xs-12">
@@ -265,7 +268,7 @@
 			</div>
 
 		</div>
-		<div data-role="panel" id="right-panel"  data-position="right" class="bgLightBlue">
+		<div data-role="panel" id="right-panel"  data-position="right" class="bgLightBlue" data-position-fixed="true">
 			<div class="list-group bgTransparent noBorder square " id="diasSemana">
 				<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" >
 					Miercoles        
@@ -295,6 +298,7 @@
 	<script src="plugins/owl/owl.carousel.js"></script>
 	<script src="js/jquery.validate.min.js"></script>
 	<script src="js/xpull.js"></script>
+	<script src="js/wow.min.js"></script>
 	<script type="text/javascript" src="js/app_ini.js"></script>
 </body>
 </html>

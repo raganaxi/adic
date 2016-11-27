@@ -62,20 +62,6 @@ body {
   background-image: url('../images/bg/splash.jpg');
 }
 
-.nav {
-  position: fixed!important;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9;
-}
-
-.nav-movil {
-  position: fixed;
-  z-index: 10;
-  right: 10px;
-  bottom: 10px;
-}
 
 .fab {
   font-size: 36px;
@@ -195,10 +181,6 @@ body {
   /*border-top: 0;*/
 }
 
-.mainContainer {
-    padding-top: 40px;
-    padding-bottom: 15px;
-}
 
 .panelImg {
   background-repeat: no-repeat;
@@ -353,49 +335,49 @@ p {
 /* custom para splash */
 .ui-page-theme-a .ui-btn.close-splash{
 	position: fixed;
-    right: 0;
-    z-index: 1;
-    background: transparent;
-    border: none;
-    color:#fff;
+  right: 0;
+  z-index: 1;
+  background: transparent;
+  border: none;
+  color:#fff;
 }
 #splash .owl-controls {
-    position: fixed;
-    z-index: 1;
-    bottom: 0;
-    width: 100%;
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  width: 100%;
 }
 .img-splash {
-    width: 100%;
-    background-size: cover !important;
-    padding-bottom: 100%;
-    height: 100vh;
+  width: 100%;
+  background-size: cover !important;
+  padding-bottom: 100%;
+  height: 100vh;
 }
 .text-splash {
-    position: fixed;
-    z-index: 1;
-    bottom: 15%;
-    width: 100%;
-    text-align: center;
-    color: #fff;
+  position: fixed;
+  z-index: 1;
+  bottom: 15%;
+  width: 100%;
+  text-align: center;
+  color: #fff;
 }
 
 /* fin custom para splash */
 
 /*custom login */
 #main_login {
-    background-image: url(../images/bg/splash.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  background-image: url(../images/bg/splash.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .bgCover {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(80, 79, 68, .5)!important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(80, 79, 68, .5)!important;
 }
 .close-modal{
 	background-color: transparent !important;
@@ -406,40 +388,44 @@ p {
 }
 /* main left panel */
 button#searchBtn {
-    width: 40px;
-    margin: 0;
-    border-bottom: 4px solid rgba(0, 0, 0, .2);
-    height: 43px;
-    border-radius: 0 5px 5px 0 !important;
+  width: 40px;
+  margin: 0;
+  border-bottom: 4px solid rgba(0, 0, 0, .2);
+  height: 43px;
+  border-radius: 0 5px 5px 0 !important;
 }
 
 .input-search {
-    height: 40px;
-    margin: 0;
-    border-bottom: 4px solid rgba(51, 30, 30, 0.85);
-    padding-right: 40px;
-    height: 43px;
+  height: 40px;
+  margin: 0;
+  border-bottom: 4px solid rgba(51, 30, 30, 0.85);
+  padding-right: 40px;
+  height: 43px;
 }
 #left-panel a{
 	font-weight: 500;
-    text-decoration: none;
+  text-decoration: none;
 }
 /* main right panel */
 #right-panel button{
-    box-shadow: none !important;
+  box-shadow: none !important;
 }
 a.searchDay {
-    color: #f0f0f6!important;
-    text-decoration: none;
+  color: #f0f0f6!important;
+  text-decoration: none;
+}
+/* main header */
+.ui-header-fixed,.ui-header-fixed.ui-fixed-hidden{
+  top: -2px;
 }
 /* main content */
 #main .ui-content {
-    padding: 0;
+  padding: 0;
 }
 #postContainer button {
-    outline: none !important;
-    border: none;
-    background: transparent;
+  outline: none !important;
+  border: none;
+  background: transparent;
 }
 .ofertaImg {
   width: 100%;
