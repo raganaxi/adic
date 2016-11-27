@@ -269,7 +269,7 @@
 
 .nav_menu {
   float: left;
-  background: #EDEDED;
+  background: #323232;
   border-bottom: 1px solid #D9DEE4;
   margin-bottom: 10px;
   width: 100%;
@@ -301,7 +301,7 @@ body .container.body .right_col {
 .nav_title {
   width: 230px;
   float: left;
-  background: #2A3F54;
+  background: #323232;
   border-radius: 0;
   height: 57px; }
 
@@ -420,7 +420,8 @@ body .container.body .right_col {
 
 body {
   color: #73879C;
-  background: #2A3F54;
+  background-color: #375467;
+  /*background: #2A3F54;*/
   font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
   font-size: 13px;
   font-weight: 400;
@@ -717,7 +718,8 @@ a:hover, a:focus {
 .toggle a {
   padding: 15px 15px 0;
   margin: 0;
-  cursor: pointer; }
+  cursor: pointer;
+  color: #515356; }
 
 .toggle a i {
   font-size: 26px; }
@@ -1510,7 +1512,7 @@ span.right {
   padding: 5px 0 0 0;
   position: fixed;
   width: 230px;
-  background: #2A3F54; }
+  /*background: #2A3F54;*/ }
 
 .sidebar-footer a {
   padding: 7px 0 3px;
@@ -1519,7 +1521,9 @@ span.right {
   font-size: 17px;
   display: block;
   float: left;
-  background: #172D44; }
+  color: #fff;
+  background-color: #323232;
+  /*background: #172D44;*/ }
 
 .sidebar-footer a:hover {
   background: #425567; }

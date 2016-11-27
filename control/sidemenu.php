@@ -1,6 +1,6 @@
 <!--sidemenu-->
-<div class="col-md-3 left_col">
-  <div class="left_col scroll-view">
+<div class="col-md-3 left_col bgDarkBlue">
+  <div class="left_col scroll-view bgDarkBlue">
     <div class="navbar nav_title" style="border: 0;">
       <a href="index.php" class="site_title text-center noPadding">
         <img src="../images/logos/logo.png" alt="..." class="h60">
