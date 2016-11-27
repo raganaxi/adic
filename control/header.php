@@ -1,3 +1,12 @@
+<?php
+  //autoloader para cargar clases
+  require_once(__DIR__.'/../classes/autoloader.php');
+  require_once(__DIR__.'/../config.php');
+
+  //invocacion de clases
+  use pdomysql AS pdomysql;
+  use user AS user;
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

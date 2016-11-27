@@ -9,7 +9,6 @@ class user
 {
 	/*
 	#Registro de usuarios
-
 	*/
 	public static function register($mail, $pass, $r_type){
 		$consulta = 'call register_user("'.$mail.'", "'.$pass.'",  "'.$r_type.'")';
@@ -75,6 +74,14 @@ class user
   public static function getSoc(){
     $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
     $consulta = 'SELECT user.*, user_data.name, user_data.number, user_data.negocio FROM user inner join user_data on user.iduser = user_data.user_id WHERE role ="socio" and active = 0';
+    error_log($consulta);
+    $PDOMYSQL = new PDOMYSQL;
+    $result =  $PDOMYSQL->consulta($consulta);
+    return $result;
+  }
+  public static function getRegSoc(){
+    $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
+    $consulta = 'SELECT user.*, user_data.name, user_data.number, user_data.negocio FROM user inner join user_data on user.iduser = user_data.user_id WHERE role ="socio" and active = 1';
     error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consulta($consulta);

@@ -2,8 +2,8 @@
 <div class="col-md-3 left_col">
   <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
-      <a href="index.php" class="site_title">
-        <img src="../images/logos/logo.png" alt="..." class="h60 z-block centered">
+      <a href="index.php" class="site_title text-center noPadding">
+        <img src="../images/logos/logo.png" alt="..." class="h60">
         <!-- <i class="fa fa-code"></i> <span>asd</span> -->
       </a>
     </div>
@@ -33,40 +33,75 @@
     <!-- sidebar menu -->
     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
       <?php
-       ?>
-      <div class="menu_section">
-        <h3>Acciones</h3>
-        <ul class="nav side-menu">
-          <li>
-            <a href="publicacion.php"><i class="fa fa-dollar"></i> Crear Promocion</a>
-          </li>
-          <li>
-            <a href="event.php"><i class="fa fa-calendar-check-o"></i> Crear Evento</a>
-          </li>
-        </ul>
-      </div>
-      <div class="menu_section">
-        <h3>Reportes</h3>
-        <ul class="nav side-menu">
-          <li>
-            <a href="index.php"><i class="fa fa-bar-chart"></i> Tipo Reporte 1</a>
-          </li>
-          <li>
-            <a href="index.php"><i class="fa fa-th-list"></i> Tipo Reporte 2</a>
-          </li>
-        </ul>
-      </div>
-      <div class="menu_section">
-        <h3>Configuración</h3>
-        <ul class="nav side-menu">
-          <li>
-            <a href="profile.php"><i class="fa fa-users"></i> Cuenta</a>
-          </li>
-          <li>
-            <a href="pagos.php"><i class="fa fa-credit-card"></i> Pagos</a>
-          </li>
-        </ul>
-      </div>
+      if (isset($_SESSION['rol']) && $_SESSION['rol'] != '') {
+        switch ($_SESSION['rol']) {
+          case 'administrador': ?>
+            <div class="menu_section">
+              <h3>Socios</h3>
+              <ul class="nav side-menu">
+                <li>
+                  <a href="solicitudes.php"><i class="fa fa-check"></i> Solicitudes de Registro</a>
+                </li>
+                <li>
+                  <a href="socios.php"><i class="fa fa-users"></i> Ver Socios Registrados</a>
+                </li>
+              </ul>
+            </div>
+            <div class="menu_section">
+              <h3>Reportes</h3>
+              <ul class="nav side-menu">
+                <li>
+                  <a href="index.php"><i class="fa fa-bar-chart"></i> Tipo Reporte 1</a>
+                </li>
+                <li>
+                  <a href="index.php"><i class="fa fa-th-list"></i> Tipo Reporte 2</a>
+                </li>
+              </ul>
+            </div>
+          <?php break;
+          case 'socio': ?>
+            <div class="menu_section">
+              <h3>Acciones</h3>
+              <ul class="nav side-menu">
+                <li>
+                  <a href="publicacion.php"><i class="fa fa-dollar"></i> Crear Promocion</a>
+                </li>
+                <li>
+                  <a href="event.php"><i class="fa fa-calendar-check-o"></i> Crear Evento</a>
+                </li>
+              </ul>
+            </div>
+            <div class="menu_section">
+              <h3>Reportes</h3>
+              <ul class="nav side-menu">
+                <li>
+                  <a href="index.php"><i class="fa fa-bar-chart"></i> Tipo Reporte 1</a>
+                </li>
+                <li>
+                  <a href="index.php"><i class="fa fa-th-list"></i> Tipo Reporte 2</a>
+                </li>
+              </ul>
+            </div>
+            <div class="menu_section">
+              <h3>Configuración</h3>
+              <ul class="nav side-menu">
+                <li>
+                  <a href="profile.php"><i class="fa fa-users"></i> Cuenta</a>
+                </li>
+                <li>
+                  <a href="pagos.php"><i class="fa fa-credit-card"></i> Pagos</a>
+                </li>
+              </ul>
+            </div>
+          <?php break;
+          case 'usuario': ?>
+          <?php break;
+          default:
+            break;
+        }
+      } else {
+        echo 'nope';
+      } ?>
     </div>
     <!-- /sidebar menu -->
 

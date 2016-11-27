@@ -56,7 +56,6 @@
     <script src="js/xpull.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/scripts.js"></script>
-    <script src="js/main_scripts.js"></script>
     <script src="js/functions.js"></script>
     <script src="js/jquery.validate.min.js"></script>
   </body>
