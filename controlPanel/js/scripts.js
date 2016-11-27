@@ -1,4 +1,4 @@
-function login(){
+/*function login(){
   $('.submit_login').click(function(e){
     e.preventDefault();
     $.ajax({
@@ -152,7 +152,8 @@ function saveExistencias(){
     }
   })
 }
-
+*/
+/*
 $(document).ready(function(){
   if($('#login').length!=0){
     login();
@@ -206,3 +207,4 @@ $(document).ready(function(){
     saveExistencias();
   }
 })
+*/

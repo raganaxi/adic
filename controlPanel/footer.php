@@ -2,7 +2,7 @@
 
       <footer>
         <div class="pull-right hidden">
-          Control de Almacen - by <a href="https://unbound-it.com">Unbound-IT</a>
+          A donde ir en la ciudad - by <a href="https://unbound-it.com">Unbound-IT</a>
         </div>
         <div class="clearfix"></div>
       </footer>

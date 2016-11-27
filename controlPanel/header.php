@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title><?= isset($_SESSION['user']) ? $_SESSION['user'] : 'Almacen'; ?> | </title>
+    <title><?= isset($_SESSION['user']) ? $_SESSION['user'] : 'A donde ir en la Ciudad'; ?> | </title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
