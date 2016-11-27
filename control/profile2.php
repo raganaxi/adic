@@ -21,7 +21,7 @@ use user AS user;
     <div class="z-row noMargin">
       <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12 noPadding">
         <div class="z-forceBlock bgTransparent noMargin wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
-          <div class="z-block panelImg bgDarkBlue h50vh" style="background-image:url('images/profPicture/<?= $data[0]['img']; ?>')">
+          <div class="z-block panelImg bgDarkBlue h50vh" style="background-image:url('../images/profPicture/<?= $data[0]['img']; ?>')">
             <div class="clear h30vh"></div>
             <div class="z-panelBody z-block h20vh bgDarkClear">
               <div class="z-content z-contentMiddle text-center">

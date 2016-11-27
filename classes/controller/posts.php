@@ -13,14 +13,14 @@ class posts
         }else{
           $date = isset($date)? $date : date('Y-m-d');
         }
-      
+
 
         $consulta = 'SELECT post.*,category.nombre as categoria, user_data.name as user_name, user_data.img as user_pic FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid INNER JOIN category on post.categoryid = category.idcategory where (post.title LIKE "%'.$terms.'%" or category.nombre LIKE "%'.$terms.'%") and date ="'.$date.'"  order by date desc';
         error_log($consulta);
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);
         return $result;
-    } 
+    }
 
     public static function regCat($name, $description){
         $consulta = 'CALL regCat("'.$name.'","'.$description.'");';
@@ -28,8 +28,8 @@ class posts
         $PDOMYSQL = new PDOMYSQL;
         $result =  $PDOMYSQL->consulta($consulta);
         return $result;
-    }    
-    
+    }
+
     public static function getCategory(){
         $consulta = 'SELECT * FROM category';
         error_log($consulta);
@@ -65,9 +65,9 @@ class posts
         default:
           return 'error';
           break;
-      }  
+      }
     }
-    
+
     public static function uploadFile(){
 
        if(isset($_FILES['image'])){
@@ -92,12 +92,12 @@ class posts
              move_uploaded_file($file_tmp,"images/".$file_name);
              echo "Success";
           }else{
-             print_r($errors);
+             error_log(print_r($errors, true));
           }
        }
 
         return $result;
-    }    
+    }
 
 }
 ?>

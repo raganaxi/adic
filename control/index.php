@@ -19,12 +19,12 @@
               <hr>
               <div class="clear h20"></div>
               <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
-                <a href="main.html" class="z-block h50 cLightGrey s20 text-center noTransform text-uppercase" data-toggle="modal" data-target="#loginModal">
+                <a href="#" class="z-block h50 cLightGrey s20 text-center noTransform text-uppercase" data-toggle="modal" data-target="#loginModal">
                   <div class="z-content z-contentMiddle">
                     Inicia sesión
                   </div>
                 </a>
-                <a href="main.html" class="z-block h50 cLightGrey s20 text-center noTransform text-uppercase" data-toggle="modal" data-target="#regModal">
+                <a href="#" class="z-block h50 cLightGrey s20 text-center noTransform text-uppercase" data-toggle="modal" data-target="#regModal">
                   <div class="z-content z-contentMiddle">
                     Crea una cuenta
                   </div>
@@ -50,7 +50,7 @@
             <div class="clear"></div>
             <input Id="passwSoc" type="password" class="form-control" placeholder="Contraseña" name="pass" value="">
             <div class="clear"></div>
-            <button type="button" id="logSocio" href="dashboard.php" class="z-btn h50 bgDarkBlue cWhite s20 text-center noTransform boxShadow">
+            <button type="button" id="logSocio" href="perfil.php" class="z-btn h50 bgDarkBlue cWhite s20 text-center noTransform boxShadow">
               Iniciar Sesión
             </button>
           </form>

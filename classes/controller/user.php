@@ -37,8 +37,8 @@ class user
     $result =  $db_con->consultaSegura($consulta,$parametros);
     return $result;
   }
-  
-  
+
+
   public static function getPost(){
     $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
     $consulta = 'SELECT post.*,category.nombre as categoria, user_data.name as user_name, user_data.img as user_pic FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid INNER JOIN category on post.categoryid = category.idcategory where date ="'.$date.'" order by date desc';
@@ -65,7 +65,7 @@ class user
 
   public static function getProfile($userId){
     $consulta = 'SELECT * FROM user_data where user_id = "'.$userId.'" ';
-    error_log($consulta);
+    error_log(print_r($consulta, true));
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consulta($consulta);
     return $result;
@@ -143,7 +143,7 @@ class user
     }
     return $token;
   }
-  public static function tokenValidateDelete($token){  
+  public static function tokenValidateDelete($token){
     $consulta="UPDATE tbl_tokens SET active = 0 WHERE tx_token=?";
     $parametros = array($token);
     error_log($consulta);
@@ -155,14 +155,14 @@ class user
     /*SELECT post.*
     ,category.nombre as categoria
     ,user_data.name as user_name
-    , user_data.img as user_pic 
-    FROM post 
-    INNER JOIN user 
-    on user.iduser = post.userid 
-    INNER JOIN user_data 
-    ON user_data.user_id = post.userid 
-    INNER JOIN category 
-    on post.categoryid = category.idcategory 
+    , user_data.img as user_pic
+    FROM post
+    INNER JOIN user
+    on user.iduser = post.userid
+    INNER JOIN user_data
+    ON user_data.user_id = post.userid
+    INNER JOIN category
+    on post.categoryid = category.idcategory
     where user.iduser = ?
     order by date desc,idpost desc limit 500
     */

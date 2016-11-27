@@ -13,22 +13,23 @@ if(!isset($_SESSION['user'])){
 }
 ?>
 <?php include ('menuControl.php'); ?>
-<main canvas="container" class="z-container noPadding scroll bgLightGrey p2r">
-  <section class="tab-panel bgDark">
-    <ul class="z-block h40">
-      <li class="z-content z-contentMiddle text-uppercase cLightGrey">
-        perfil
-      </li>
-      <li class="z-content z-contentMiddle text-uppercase cLightGrey">
-        ofertas
-      </li>
-      <li class="z-content z-contentMiddle text-uppercase cLightGrey">
-        eventos
-      </li>
-    </ul>
-  </section>
-
+<main class="z-container-fluid scroll bgLightGrey p2r">
   <section class="z-container mainContainer">
+    <div class="z-row">
+      <nav class="tab-panel bgDark noPadding z-hidden-lg z-hidden-md">
+        <ul class="z-block h40">
+          <li class="z-content-fluid z-contentMiddle text-uppercase cLightGrey text-center">
+            perfil
+          </li>
+          <li class="z-content-fluid z-contentMiddle text-uppercase cLightGrey text-center">
+            ofertas
+          </li>
+          <li class="z-content-fluid z-contentMiddle text-uppercase cLightGrey text-center">
+            eventos
+          </li>
+        </ul>
+      </nav>
+    </div>
     <div class="z-row">
       <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
         <div class="z-panel z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
@@ -55,24 +56,23 @@ if(!isset($_SESSION['user'])){
           <div class="z-panelBody z-block overflowHidden noPadding">
             <div class="z-block h100">
               <div class="z-content z-contentMiddle">
-                  <form id="editProfileF" class="form-section "  action="editPpicture.php" method="post" enctype="multipart/form-data">
-                    <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Datos de Perfil</h3>
-
-                      <div class="hidden">
-                <?php
-                $result = user::getProfile($_SESSION['iduser']);
-                echo json_encode($result);
-                ?>
-                      </div>
+                <form id="editProfileF" class="form-section "  action="editPpicture.php" method="post" enctype="multipart/form-data">
+                  <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Datos de Perfil</h3>
+                  <div class="hidden">
+                    <?php
+                    $result = user::getProfile($_SESSION['iduser']);
+                    echo json_encode($result);
+                    ?>
+                  </div>
                   <label for="nameP"></label>
-                <input id="nameP" type="text" class="form-control" placeholder="Nombre completo" name="nameP" value="<?php echo $result[0]['name'] ?>" required>
+                  <input id="nameP" type="text" class="form-control" placeholder="Nombre completo" name="nameP" value="<?php echo $result[0]['name'] ?>" required>
                   <div class="clear"></div>
-                <label for="phoneP"></label>
-                <input id="phoneP" type="text" class="form-control" placeholder="Telefono" name="phoneP" value="<?php echo $result[0]['number'] ?>" required>
+                  <label for="phoneP"></label>
+                  <input id="phoneP" type="text" class="form-control" placeholder="Telefono" name="phoneP" value="<?php echo $result[0]['number'] ?>" required>
 
                   <div class="clear"></div>
-                <label for="emailP"></label>
-                <input id="emailP" type="text" class="form-control" placeholder="E-mail" name="emailP" value="<?php echo $result[0]['mail'] ?>" required>
+                  <label for="emailP"></label>
+                  <input id="emailP" type="text" class="form-control" placeholder="E-mail" name="emailP" value="<?php echo $result[0]['mail'] ?>" required>
 
                   <div class="clear"></div>
                   <div class="form-section">
@@ -425,29 +425,4 @@ if(!isset($_SESSION['user'])){
     </div>
   </section>
 </main>
-<nav class="profileSwitcher hidden">
-  <div class="z-block h50 bgBlue">
-    <a role="button" href="profile1.php" class="z-content-fluid z-contentMiddle text-center s15 cWhite">
-      Tipo 1
-    </a>
-    <a role="button" href="profile2.php" class="z-content-fluid z-contentMiddle text-center s15 cWhite">
-      Tipo 2
-    </a>
-    <a role="button" href="profile3.php" class="z-content-fluid z-contentMiddle text-center s15 cWhite">
-      Tipo 3
-    </a>
-  </div>
-</nav>
-<div class="modal fade bgWhite" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content noShadow noBorder bgTransparent">
-      <div class="modal-header noPadding">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body noPadding">
-        <iframe class="hFull" width="100%" height="100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48432.743731799295!2d-103.40225819823375!3d25.545530478674873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdba9bb45b3fb%3A0x8bcc7a9970aea01d!2zVG9ycmXDs24sIENvYWgu!5e0!3m2!1ses!2smx!4v1475615763477" frameborder="0" style="border:0" allowfullscreen></iframe>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div>
 <?php include ('footer.php'); ?>

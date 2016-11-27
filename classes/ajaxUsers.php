@@ -10,10 +10,9 @@ use pdomysql AS pdomysql;
 use user AS user;
 
 //Registrar  usuario
-/*if (isset($_POST['reg_user'])) {
+if (isset($_POST['reg_user'])) {
 //	$_POST['pass'] = sha1($_POST['pass']);
 	$result = user::register($_POST['mail'], $_POST['pass'], "email");
-
 
 	$resultl = user::login($_POST['mail'], $_POST['pass']);
 	if (!empty($result)) {
@@ -22,8 +21,8 @@ use user AS user;
 		$_SESSION['iduser'] = $resultl[0]['iduser'];
 	}
 	echo json_encode($result[0]);
-}*/
-/*//Login
+}
+//Login
 if (isset($_POST['login_user'])) {
 //	$_POST['pass'] = isset($_POST['pass'])? $_POST['pass'] : 'admin123';
 //    $_POST['pass'] = sha1($_POST['pass']);
@@ -32,17 +31,16 @@ if (isset($_POST['login_user'])) {
 		$_SESSION['user'] = $result[0]['username'];
 		$_SESSION['rol'] = $result[0]['role'];
 		$_SESSION['iduser'] = $result[0]['iduser'];
-
 		echo json_encode($result);
 	}else{
 		echo 0;
 	}
 }
-*/
+
 //Logout en desuso
-/*if (isset($_POST['logout'])) {
+if (isset($_POST['logout'])) {
 	session_destroy();
-}*/
+}
 
 //Editar Perfil
 if (isset($_POST['editProfile'])) {
@@ -75,8 +73,9 @@ if (isset($_POST['reg_soc'])) {
 
 	echo json_encode($result[0]);
 }
-/* codigo nuevo */
 
+/* codigo nuevo */
+/*
 $mensaje="";
 $error="no_error";
 $continuar="no_ok";
@@ -96,12 +95,13 @@ switch($_SERVER['REQUEST_METHOD'])
 	}
 	break;
 	default:
-}
+}*/
 /* dependiendo de la accion es la funcion que se ejecutara */
+/*
 if (is_ajax()){
-	if ($action!="") { /*Checks if action value exists*/
-		
-		switch($action) { /*//Switch case for value of action*/
+	if ($action!="") { //Checks if action value exists
+
+		switch($action) { //Switch case for value of action
 			case 'sesion': sesion_function();break;
 			case 'loginU': login_function(); break;
 			case 'logout': logout_function();break;
@@ -116,22 +116,22 @@ if (is_ajax()){
 	$return = json_encode(array('continuar' => $continuar,'error'=>$error,'mensaje'=> $mensaje,'datos'=>$datos),JSON_FORCE_OBJECT );
 	header('Content-type: application/json; charset=utf-8');
 	echo $return;
-}
-function is_ajax() {
+}*/
+/*function is_ajax() {
 	return true;//isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
-}
-function register_user(){
+}*/
+/*function register_user(){
 	global $db_con;
 	global $continuar;
 	global $error;
 	global $datos;
 	global $mensaje;
 	$logUser="";
-	$logPass="";	
+	$logPass="";
 	switch($_SERVER['REQUEST_METHOD'])
 	{
 		case 'GET':
-		
+
 		if (isset($_GET["mail"]) && !empty($_GET["mail"])) {
 			$logUser=$_GET["mail"];
 		}
@@ -139,7 +139,7 @@ function register_user(){
 			$logPass=$_GET["pass"];
 		}
 		break;
-		case 'POST':		
+		case 'POST':
 		if (isset($_POST["mail"]) && !empty($_POST["mail"])) {
 			$logUser=$_POST["mail"];
 		}
@@ -148,25 +148,26 @@ function register_user(){
 		}
 		break;
 		default:
-	}	
+	}
+
 	if($logUser!=""){
 		$logUser = trim($logUser);
 		$logPass = trim($logPass);
 		$register_result = user::register($logUser, $logPass, "email");
 		$result = user::login($logUser, $logPass);
 		if (!empty($result)) {
-			$continuar ="ok"; /*login on*/
+			$continuar ="ok"; //login on
 			$datos['row']=$result;
 			$newToken=	user::obtenToken512($logUser,$result[0]['iduser'],"localhost","prueba");
 			if($newToken){
 				$datos['token']=$newToken;
-			}	
+			}
 		}
 		else{
 			$continuar="no_ok";
 			$error="no_ok";
-			$mensaje="email o contraseña no existen "; /* wrong details */
-		}		
+			$mensaje="email o contraseña no existen "; // wrong details
+		}
 	}
 	else{
 		$continuar="no_ok";
@@ -174,19 +175,19 @@ function register_user(){
 		$mensaje="favor de revisar los campos requeridos";
 
 	}
-}
-function login_function(){
+}*/
+/*function login_function(){
 	global $db_con;
 	global $continuar;
 	global $error;
 	global $datos;
 	global $mensaje;
 	$logUser="";
-	$logPass="";	
+	$logPass="";
 	switch($_SERVER['REQUEST_METHOD'])
 	{
 		case 'GET':
-		
+
 		if (isset($_GET["logUser"]) && !empty($_GET["logUser"])) {
 			$logUser=$_GET["logUser"];
 		}
@@ -194,7 +195,7 @@ function login_function(){
 			$logPass=$_GET["logPass"];
 		}
 		break;
-		case 'POST':		
+		case 'POST':
 		if (isset($_POST["logUser"]) && !empty($_POST["logUser"])) {
 			$logUser=$_POST["logUser"];
 		}
@@ -210,18 +211,18 @@ function login_function(){
 		//$logPass = md5($logPass);
 		$result = user::login($logUser, $logPass);
 		if (!empty($result)) {
-			$continuar ="ok"; /*login on*/
+			$continuar ="ok"; //login on
 			$datos['row']=$result;
 			$newToken=	user::obtenToken512($logUser,$result[0]['iduser'],"localhost","prueba");
 			if($newToken){
 				$datos['token']=$newToken;
-			}	
+			}
 		}
 		else{
 			$continuar="no_ok";
 			$error="no_ok";
-			$mensaje="email o contraseña no existen "; /* wrong details */
-		}		
+			$mensaje="email o contraseña no existen "; // wrong details
+		}
 	}
 	else{
 		$continuar="no_ok";
@@ -229,7 +230,7 @@ function login_function(){
 		$mensaje="favor de revisar los campos requeridos";
 
 	}
-}
+}*/
 
 
 
@@ -237,43 +238,44 @@ function login_function(){
 
 
 /* funcion que sirve para verificar el token de session emula el uso de la session en php */
-function sesion_function(){
-	global $continuar;
-	global $error;
-	global $datos;
-	global $mensaje;
-	$user_email="";
-	$token="";
-	switch($_SERVER['REQUEST_METHOD'])
-	{
-		case 'GET':
-		
-		if (isset($_GET["token"]) && !empty($_GET["token"])) {
-			$token=$_GET["token"];
-		}
-		break;
-		case 'POST':		
-		if (isset($_POST["token"]) && !empty($_POST["token"])) {
-			$token=$_POST["token"];
-		}
-		break;
-		default:
-	}
-	if ($token!="") {
-		$validate=user::tokenValidate($token);
-		if ($validate) {
-			$continuar="ok";
-			$error="no_error";
-			return;
-		}
-	}
-	$continuar="no_ok";
-	$error="no_error";
-	$mensaje="no ha iniciado session";
-	return;
-}
+// function sesion_function(){
+// 	global $continuar;
+// 	global $error;
+// 	global $datos;
+// 	global $mensaje;
+// 	$user_email="";
+// 	$token="";
+// 	switch($_SERVER['REQUEST_METHOD'])
+// 	{
+// 		case 'GET':
+//
+// 		if (isset($_GET["token"]) && !empty($_GET["token"])) {
+// 			$token=$_GET["token"];
+// 		}
+// 		break;
+// 		case 'POST':
+// 		if (isset($_POST["token"]) && !empty($_POST["token"])) {
+// 			$token=$_POST["token"];
+// 		}
+// 		break;
+// 		default:
+// 	}
+// 	if ($token!="") {
+// 		$validate=user::tokenValidate($token);
+// 		if ($validate) {
+// 			$continuar="ok";
+// 			$error="no_error";
+// 			return;
+// 		}
+// 	}
+// 	$continuar="no_ok";
+// 	$error="no_error";
+// 	$mensaje="no ha iniciado session";
+// 	return;
+// }
 
 /* logout function */
+/*
 function logout_function(){
 	global $db_con;
 	global $continuar;
@@ -285,12 +287,12 @@ function logout_function(){
 	switch($_SERVER['REQUEST_METHOD'])
 	{
 		case 'GET':
-		
+
 		if (isset($_GET["token"]) && !empty($_GET["token"])) {
 			$token=$_GET["token"];
 		}
 		break;
-		case 'POST':		
+		case 'POST':
 		if (isset($_POST["token"]) && !empty($_POST["token"])) {
 			$token=$_POST["token"];
 		}
@@ -303,8 +305,8 @@ function logout_function(){
 		$continuar="ok";
 		$error="no_error";
 		return;
-		
-		
+
+
 	}
 	else{
 		$continuar="no_ok";
@@ -331,8 +333,8 @@ function getPost_function(){
 		$datos=$post;
 		$mensaje="ocurrio algo";
 	}
-	
-}
+
+}*/
 
 
 /* fin*/
