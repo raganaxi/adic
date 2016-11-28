@@ -5,7 +5,7 @@ var appS={};
 var controller;
 var urlLocal="../";
 var urlRemoto="http://pruebasapi.esy.es/adic/development/";
-var urlAjax=urlRemoto;
+var urlAjax=urlLocal;
 /**********************/
 $(document).bind("mobileinit", function(){
 	
@@ -175,20 +175,28 @@ $(document).ready(function() {
 				$("#crteAccountE").prop("disabled", "disabled");
 			}
 		});
+		$("#postContainer").on('click', '.botonFiltroUsuario', function(event) {
+			event.preventDefault();
+			$.mobile.changePage("#profile");
+		});
+		$("#diasSemana").on('click', '.searchDayClick', function(event) {
+			event.preventDefault();
+			appS=getAppSession();
+			appS.user.fecha=$(this).val();
+			appS.user.fechaNombre=$(this).html();
+			setAppSession(appS);
+			getPost();
+			getDiaSemana();
+			$(".ui-panel").panel("close");
+
+		});
 		$(document).on("pagebeforeshow","#main",function(event){
 			app=getAppJson();
 			if (app.user.name!=="") {
-				$(".usuario_mostrar").html(app.user.name);
-				var semana=getDiaSemana();
-				$(".primerDiaSemana").html(semana.primerDia);
-				$("#diasSemana").html(semana.botones).on('click', '.searchDay', function(event) {
-					event.preventDefault();
-					appS=getAppSession();
-					appS.user.fecha=$(this).val();
-					setAppSession(appS);
-				});
-
+				$(".usuario_mostrar").html(app.user.name);				
+				getDiaSemana();
 				getPost();
+
 				
 				
 
@@ -320,10 +328,11 @@ $(document).ready(function() {
 		});
 	});
 	function getDiaSemana(){
+		appS=getAppSession();
 		var ahora = new Date();
 		var dia= ahora.getDay();
 		var semana={};
-		var buttonStart='<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay"';
+		var buttonStart='<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay searchDayClick"';
 		var buttonEnd='</button>';
 		var dias = new Array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
 		semana.primerDia=	dias[dia];
@@ -336,11 +345,19 @@ $(document).ready(function() {
 		}
 		semana.botones=botones;
 
-		return semana;
+		if (appS.user.fecha!=="") {
+			$(".primerDiaSemana").html(appS.user.fechaNombre);
+		}
+		else{
+			$(".primerDiaSemana").html(semana.primerDia);
+		}
+		$("#diasSemana").html(semana.botones);
+
 	}
 	function getPost(){
-
-		var data= {'action': 'getPost'};	
+		ajaxLoader("inicia"); 
+		appS=getAppSession();
+		var data= {'action': 'getPost','fecha':appS.user.fecha,'categoria':appS.user.categoria};	
 		$.ajax({			
 			data:data,
 			crossDomain: true,
@@ -356,14 +373,13 @@ $(document).ready(function() {
 				for(var i in data.datos) {
 					datahtml+=getHtmlPost(data.datos[i]);
 				}
-				$("#postContainer").html(datahtml).on('click', '.botonFiltroUsuario', function(event) {
-					event.preventDefault();
-					$.mobile.changePage("#profile");
-				});
+				$("#postContainer").html(datahtml);
 				
 			}
 			else{
+				$("#postContainer").html('<div class="h50">Sin publicaciones :(');
 			}
+			ajaxLoader("termina");
 
 		});
 	}
@@ -436,6 +452,21 @@ $(document).ready(function() {
 		'</a>'+
 		'</div>'+
 		'</div>';
+	}
+	function ajaxLoader(action){
+		if (action==="inicia") {
+			$.mobile.loading( "show", {
+				text: "Cargando...",
+				textVisible: true,
+				theme: "b",
+				html: "<span class='ui-bar ui-overlay-a ui-corner-all'><img src='images/logos/48x48.png' />Cargando...</span>"
+			});
+		}
+		else{
+			if (action==="termina") {
+				$.mobile.loading( "hide" );
+			}
+		}
 	}
 
 	

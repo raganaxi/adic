@@ -415,6 +415,16 @@ a.searchDay {
   text-decoration: none;
 }
 /* main header */
+.menu-app{
+  display: -ms-flex !important;
+    display: -webkit-flex !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: stretch;
+    align-items: center;
+}
+
 .ui-header-fixed,.ui-header-fixed.ui-fixed-hidden{
   top: -2px;
 }
