@@ -159,41 +159,7 @@ class user
     $result =  $PDOMYSQL->consultaSegura($consulta,$parametros);
     return $result;
   }
-    public static function getPostUserID($userID){
-    /*SELECT post.*
-    ,category.nombre as categoria
-    ,user_data.name as user_name
-    , user_data.img as user_pic
-    FROM post
-    INNER JOIN user
-    on user.iduser = post.userid
-    INNER JOIN user_data
-    ON user_data.user_id = post.userid
-    INNER JOIN category
-    on post.categoryid = category.idcategory
-    where user.iduser = ?
-    order by date desc,idpost desc limit 500
-    */
-    $consulta = 'SELECT post.*'+
-    ',category.nombre as categoria'+
-    ',user_data.name as user_name'+
-    ', user_data.img as user_pic '+
-    'FROM post '+
-    'INNER JOIN user '+
-    'on user.iduser = post.userid '+
-    'INNER JOIN user_data '+
-    'ON user_data.user_id = post.userid '+
-    'INNER JOIN category '+
-    'on post.categoryid = category.idcategory '+
-    'where user.iduser = ?'+
-    'order by date desc,idpost desc limit 500'+
-    '';
-    $parametros = array($userid);
-    error_log($consulta);
-    $PDOMYSQL = new PDOMYSQL;
-    $result =  $PDOMYSQL->consultaSegura($consulta,$userid);
-    return $result;
-  }
 
+ /*fin de la clase */
 }
 ?>

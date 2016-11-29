@@ -105,7 +105,7 @@ public static function getPost($categoria,$fecha){
   $result="";
   if ($categoria=="") {
     if ($fecha=="") {
-      $consulta.=' curdate() order by date desc';
+      $consulta.="CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date) order by date desc";
       $result =  $db_con->consulta($consulta);
       
     }
@@ -117,7 +117,7 @@ public static function getPost($categoria,$fecha){
     }
   }else{
     if ($fecha=="") {
-      $consulta.=' curdate() and category.idcategory = ? order by date desc';
+      $consulta.=" CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date) and category.idcategory = ? order by date desc";
       $parametros = array($categoria);
       $result =  $db_con->consultaSegura($consulta,$parametros);
       
@@ -130,6 +130,26 @@ public static function getPost($categoria,$fecha){
     }
   }
   return $result; 
+}
+public static function searchInput($input){
+  $db_con = new PDOMYSQL;
+  /*SELECT post.*
+  ,category.nombre as categoria
+  , user_data.name as user_name
+  , user_data.img as user_pic 
+  FROM post 
+  INNER JOIN user on user.iduser = post.userid 
+  INNER JOIN user_data ON user_data.user_id = post.userid 
+  INNER JOIN category on post.categoryid = category.idcategory 
+  where (post.title LIKE '%a%' or category.nombre LIKE '%a%') 
+  and date >= CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date)  
+  order by date desc;*/
+  $consulta=  "SELECT post.*,category.nombre as categoria, user_data.name as user_name, user_data.img as user_pic FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid INNER JOIN category on post.categoryid = category.idcategory where (post.title LIKE ? or category.nombre LIKE ?) and date >= CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date)  order by date desc";
+  $input='%'.$input.'%';
+  $parametros = array($input,$input);
+  $result =  $db_con->consultaSegura($consulta,$parametros);
+  return $result; 
+
 }
 
 

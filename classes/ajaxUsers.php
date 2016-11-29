@@ -56,6 +56,10 @@ if (isset($_POST['activate_soc'])) {
 if (isset($_POST['logout'])) {
 	session_destroy();
 }
+//Logout en desuso
+if (isset($_GET['logout'])) {
+	session_destroy();
+}
 
 //Editar Perfil
 if (isset($_POST['editProfile'])) {
