@@ -49,6 +49,7 @@ if (is_ajax()){
 			case 'logout': logout_function();break;
 			case 'registerU': register_user();break;
 			case 'getPost': getPost_function();break;
+			case 'getCat': getCat_function();break;
 
 		}
 	}else{
@@ -295,6 +296,28 @@ function getPost_function(){
 		$continuar="no_ok";
 		$error="no_error";
 		$datos=$post;
+		$mensaje="ocurrio algo";
+	}
+	
+}
+function getCat_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$categoria=posts::getCategory();
+	
+	
+	if (!empty($categoria)){
+		$datos=$categoria;
+		$continuar="ok";
+		$error="no_error";
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_error";
+		$datos=$categoria;
 		$mensaje="ocurrio algo";
 	}
 	
