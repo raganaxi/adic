@@ -37,9 +37,9 @@ class PDOMYSQL
 		$datos=array();
 		try {			
 			$statement  = $this->PDO->prepare($query);
-			$statement->execute($arreglo);	
-			while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-				$datos = array();
+			$statement->execute($arreglo);
+			$datos = array();
+			while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {				
 				$datos[] =$row;				
 			}
 		} catch (PDOException $e) {
