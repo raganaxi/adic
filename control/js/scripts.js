@@ -442,7 +442,6 @@ $( "#findUbication" ).on( 'click', function () {
   } );
 } );
 
-
 $( "#createCategory" ).on( 'click', function () {
   $.ajax( {
     data: {
@@ -484,8 +483,6 @@ $( "#createCategory" ).on( 'click', function () {
 
 } );
 
-
-
 //crear cuenta por email socio
 $( "#createSoc" ).on( 'click', function () {
   $.ajax( {
@@ -525,7 +522,6 @@ $( "#createSoc" ).on( 'click', function () {
 } );
 
 //registrar publicacion
-
 $( "#createPost" ).on( 'click', function () {
   $.ajax( {
     data: {
