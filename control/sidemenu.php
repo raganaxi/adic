@@ -45,6 +45,9 @@
                 <li>
                   <a href="socios.php"><i class="fa fa-users"></i> Ver Socios Registrados</a>
                 </li>
+                <li>
+                  <a href="new.php"><i class="fa fa-plus"></i> Registrar Socio</a>
+                </li>
               </ul>
             </div>
             <div class="menu_section">

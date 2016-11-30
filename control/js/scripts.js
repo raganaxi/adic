@@ -485,12 +485,20 @@ $( "#createCategory" ).on( 'click', function () {
 
 //crear cuenta por email socio
 $( "#createSoc" ).on( 'click', function () {
+  var type;
+  if($('#registerSocio').length != 0 ){
+    type = "mail";
+  }
+  if($('#registerSocio-admin').length != 0 ){
+    type = "admininstrador";
+  }
   $.ajax( {
     data: {
       "reg_soc": 1,
       "name": $( "#nameSocio" ).val(),
       "phone": $( "#telSocio" ).val(),
       "mail": $( "#mailSocio" ).val(),
+      "typeReg" : type,
       "negocio": $( "#nameNegocio" ).val()
         //"pass": $("#passwSocio").val(),
         //"img": document.getElementById("imgProfile").files[0].name
@@ -500,20 +508,25 @@ $( "#createSoc" ).on( 'click', function () {
   } ).done( function ( data ) {
     data = $.parseJSON( data );
     console.log( data );
-    if ( data.Y == "Y" ) {
+    if ( data ) {
       //alert('Registrado');
       //window.location.replace("profile.php");
-      $( "#registerSocio" ).empty();
-      $("#registerSocio").append(
-        '<h1>¡Gracias!</h1>'+
-        '<p>Tu solicitud es muy importante para nosotros, te pedimos de favor que estes al pendiente de tu correo o telefono.</p>'+
-        '<p>Nos comunicaremos contigo a la brevedad posible.</p>'+
-        '<div class="clearfix"></div>'+
-        '<div class="separator">'+
-          '<div class="hidden">'+
-          '  <p>Copyright (c) 2015 Copyright Holder All Rights Reserved.</p>'+
-          '</div>'+
-        '</div>');
+      if($('#registerSocio').length != 0 ){
+        $( "#registerSocio" ).empty();
+        $("#registerSocio").append(
+          '<h1>¡Gracias!</h1>'+
+          '<p>Tu solicitud es muy importante para nosotros, te pedimos de favor que estes al pendiente de tu correo o telefono.</p>'+
+          '<p>Nos comunicaremos contigo a la brevedad posible.</p>'+
+          '<div class="clearfix"></div>'+
+          '<div class="separator">'+
+            '<div class="hidden">'+
+            '  <p>Copyright (c) 2015 Copyright Holder All Rights Reserved.</p>'+
+            '</div>'+
+          '</div>');
+      }
+      if($('#registerSocio-admin').length != 0){
+        $('#registerSocio-admin').trigger('reset');
+      }
     }
     else {
       alert( 'Erro usuario no registrado' );
