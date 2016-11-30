@@ -43,8 +43,8 @@ if (isset($_POST['login_user'])) {
 	}
 }
 
-if (isset($_POST['activate_soc'])) {
-	$result = user::activateUser($_POST['isuser']);
+if (isset($_POST['activate_soc']) && $_POST['activate_soc'] == 1) {
+	$result = user::activateUser($_POST['iduser']);
 	if (!empty($result)) {
 		echo json_encode($result);
 	}else{
@@ -54,10 +54,6 @@ if (isset($_POST['activate_soc'])) {
 
 //Logout en desuso
 if (isset($_POST['logout'])) {
-	session_destroy();
-}
-//Logout en desuso
-if (isset($_GET['logout'])) {
 	session_destroy();
 }
 

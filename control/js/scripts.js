@@ -561,20 +561,23 @@ $( "#createPost" ).on( 'click', function () {
 //   } );
 // } );
 
+//activacion de socios
 $( ".activeBtn" ).on( 'click', function () {
   var $activeBtn = $(this);
   var $userID = $($activeBtn).closest('tr').find('.iduser').val();
   $.ajax( {
     data: {
-      "activate_Soc": 1,
+      "activate_soc": 1,
       "iduser": $userID
     },
     url: '../classes/ajaxUsers.php',
     type: 'post'
-  } ).done( function ( data ) {
+  }).done( function ( data ) {
     if ( data != 0 ) {
-      console.log(data);
-      //window.location.replace( "dashboard.php" );
+      $($activeBtn).closest('tr').addClass('bgGreenClear');
+      setTimeout(function(){
+        $($activeBtn).closest('tr').addClass('hidden');
+      },400);
     }
     else {
       console.log( 'problemas al activar usuario' );

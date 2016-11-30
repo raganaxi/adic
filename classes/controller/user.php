@@ -101,8 +101,10 @@ class user
 
   public static function activateUser($user) {
     $consulta = 'UPDATE user SET active = 1 WHERE iduser = '.$user.'';
+    $check = 'SELECT * FROM user WHERE active = 1 and iduser = '. $user .'';
     $PDOMYSQL = new PDOMYSQL;
-    $result =  $PDOMYSQL->consulta($consulta);
+    $update =  $PDOMYSQL->consulta($consulta);
+    $result = $PDOMYSQL->consulta($check);
     error_log(print_r($result, true));
     return $result;
   }
