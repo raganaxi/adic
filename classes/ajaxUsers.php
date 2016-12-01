@@ -52,6 +52,15 @@ if (isset($_POST['activate_soc']) && $_POST['activate_soc'] == 1) {
 	}
 }
 
+if (isset($_POST['deactivate_soc']) && $_POST['deactivate_soc'] == 1) {
+	$result = user::deactivateUser($_POST['iduser']);
+	if (!empty($result)) {
+		echo json_encode($result);
+	}else{
+		echo 0;
+	}
+}
+
 //Logout en desuso
 if (isset($_POST['logout'])) {
 	session_destroy();

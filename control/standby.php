@@ -30,7 +30,7 @@ if(!isset($_SESSION['user'])){
             </thead>
             <tbody>
               <?php
-              $socios = user::getSoc();
+              $socios = user::getStanbySoc();
 
               foreach ($socios as $key => $value) {
 

@@ -24,7 +24,7 @@ if(!isset($_SESSION['user'])){
                 <!-- <th>Rol</th> -->
                 <!-- <th>Estatus</th> -->
                 <th>Tipo de registro</th>
-                <!-- <th>Activacion</th> -->
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -45,6 +45,10 @@ if(!isset($_SESSION['user'])){
                 // '<td>'.$socios[$key]['active'].'</td>'.
                 '<td>'.$socios[$key]['reg_type'].'</td>'.
                 //'<td><form class="ActiveSoc" action="activateuser.php" method="post"><input type="hidden" value="'.$socios[$key]['username'].'" name="usuario"><button class="activeBtn"  type="button" >Activar</button></form></td>'.
+                '<td>
+                  <input class="iduser" type="hidden" value="'.$socios[$key]['iduser'].'" name="iduser">
+                  <button class="deactiveBtn" type="button" >Desactivar</button>
+                </td>'.
                 '</tr>';
               echo $row;
             }

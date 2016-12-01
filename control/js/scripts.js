@@ -599,6 +599,31 @@ $( ".activeBtn" ).on( 'click', function () {
   } );
 } );
 
+//desactivacion de socios
+$( ".deactiveBtn" ).on( 'click', function () {
+  var $deactiveBtn = $(this);
+  var $userID = $($deactiveBtn).closest('tr').find('.iduser').val();
+  $.ajax( {
+    data: {
+      "deactivate_soc": 1,
+      "iduser": $userID
+    },
+    url: '../classes/ajaxUsers.php',
+    type: 'post'
+  }).done( function ( data ) {
+    if ( data != 0 ) {
+      $($deactiveBtn).closest('tr').addClass('bgRedClear');
+      setTimeout(function(){
+        $($deactiveBtn).closest('tr').addClass('hidden');
+      },400);
+    }
+    else {
+      console.log( 'problemas al activar usuario' );
+      console.log(data);
+    }
+  } );
+} );
+
 $( "#logSocio" ).on( 'click', function () {
   $.ajax( {
     data: {

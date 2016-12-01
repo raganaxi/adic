@@ -87,6 +87,14 @@ class user
     $result =  $PDOMYSQL->consulta($consulta);
     return $result;
   }
+  public static function getStanbySoc(){
+    $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
+    $consulta = 'SELECT user.*, user_data.name, user_data.number, user_data.negocio FROM user inner join user_data on user.iduser = user_data.user_id WHERE role ="socio" and active = 2';
+    error_log($consulta);
+    $PDOMYSQL = new PDOMYSQL;
+    $result =  $PDOMYSQL->consulta($consulta);
+    return $result;
+  }
 
   public static function randomPassword() {
     $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
@@ -102,6 +110,16 @@ class user
   public static function activateUser($user) {
     $consulta = 'UPDATE user SET active = 1 WHERE iduser = '.$user.'';
     $check = 'SELECT * FROM user WHERE active = 1 and iduser = '. $user .'';
+    $PDOMYSQL = new PDOMYSQL;
+    $update =  $PDOMYSQL->consulta($consulta);
+    $result = $PDOMYSQL->consulta($check);
+    error_log(print_r($result, true));
+    return $result;
+  }
+
+  public static function deactivateUser($user) {
+    $consulta = 'UPDATE user SET active = 2 WHERE iduser = '.$user.'';
+    $check = 'SELECT * FROM user WHERE active = 2 and iduser = '. $user .'';
     $PDOMYSQL = new PDOMYSQL;
     $update =  $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
