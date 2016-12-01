@@ -6,8 +6,8 @@ if(!isset($_SESSION['user'])){
 }
 ?>
 <div id="solicitudes" class="right_col" role="main">
-  <div class="z-row">
-    <div class="z-col-lg-12">
+  <div class="row">
+    <div class="col-lg-12">
       <section class="x_panel">
         <div class="x_title">
           <h2>Registrar usuario</h2>
@@ -15,22 +15,45 @@ if(!isset($_SESSION['user'])){
         </div>
         <div class="x_content">
           <form id="registerSocio-admin" enctype="multipart/form-data" method="post">
-            <h1>Crear Cuenta</h1>
-            <div>
-              <input id="nameNegocio" type="text" class="form-control" placeholder="Nombre Negocio" name="nameBussiness" value="">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
+                Nombre del Negocio
+              </div>
+              <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12">
+                <input id="nameNegocio" type="text" class="form-control" placeholder="Nombre Negocio" name="nameBussiness" value="">
+                <div class="clear"></div>
+              </div>
             </div>
-            <div>
-              <input id="nameSocio" type="text" class="form-control" placeholder="Nombre Representante" name="nameSocio" value="">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
+                Nombre del Socio
             </div>
-            <div>
-              <input id="telSocio" type="text" class="form-control" placeholder="Teléfono" name="telSocio" value="">
+              <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12">
+                <input id="nameSocio" type="text" class="form-control" placeholder="Nombre Representante" name="nameSocio" value="">
+                <div class="clear"></div>
+              </div>
             </div>
-            <div>
-              <input id="mailSocio" type="text" class="form-control" placeholder="Correo" name="mailSocio" value="">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
+                Telefono
+              </div>
+              <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12">
+                <input id="telSocio" type="text" class="form-control" placeholder="Teléfono" name="telSocio" value="">
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
+                Correo
+              </div>
+              <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12">
+                <input id="mailSocio" type="text" class="form-control" placeholder="Correo" name="mailSocio" value="">
+                <div class="clear"></div>
+              </div>
             </div>
             <div class="clear"></div>
             <div>
-              <button type="button" id="createSoc" class="btn bgGreen cWhite s20 text-center noTransform boxShadow">
+              <button type="button" id="createSoc" class="btn bgGreen cWhite s20 text-center noTransform boxShadow pull-right">
                 Crear cuenta
               </button>
             </div>
