@@ -14,7 +14,7 @@ if(!isset($_SESSION['user'])){
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-          <div class="table-responsive">
+          <div class="table-responsive hidden">
             <table id="publicacionesSocio" class="table table-hover jambo_table">
               <thead>
                 <tr>
@@ -31,7 +31,7 @@ if(!isset($_SESSION['user'])){
               </thead>
               <tbody>
                 <?php
-                $posts = user::getPostsSocio($_SESSION['user']);
+                /*$posts = user::getPostsSocio($_SESSION['user']);
 
                 foreach ($posts as $key => $value) {
 
@@ -46,7 +46,7 @@ if(!isset($_SESSION['user'])){
                     '<td>'.$posts[$key]['reg_type'].'</td>'.
                   '</tr>';
                   echo $row;
-                }
+                }*/
                 ?>
               </tbody>
             </table>
