@@ -70,9 +70,9 @@
               <h3>Acciones</h3>
               <ul class="nav side-menu">
                 <li>
-                  <a href="publicacion.php"><i class="fa fa-dollar"></i> Crear Promocion</a>
+                  <a href="publicaciones.php"><i class="fa fa-dollar"></i> Publicaciones</a>
                 </li>
-                <li>
+                <li class="hidden">
                   <a href="event.php"><i class="fa fa-calendar-check-o"></i> Crear Evento</a>
                 </li>
               </ul>

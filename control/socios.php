@@ -30,31 +30,31 @@ if(!isset($_SESSION['user'])){
                 </tr>
               </thead>
               <tbody>
-              <?php
-              $socios = user::getRegSoc();
+                <?php
+                $socios = user::getRegSoc();
 
-              foreach ($socios as $key => $value) {
+                foreach ($socios as $key => $value) {
 
-                $socios[$key]['active'] = ($socios[$key]['active'] == 0)? 'Inactivo' : 'activo';
+                  $socios[$key]['active'] = ($socios[$key]['active'] == 0)? 'Inactivo' : 'activo';
 
-                $row = '<tr>'.
-                  '<td>'.$socios[$key]['username'].'</td>'.
-                  '<td>'.$socios[$key]['name'].'</td>'.
-                  '<td>'.$socios[$key]['number'].'</td>'.
-                  '<td>'.$socios[$key]['negocio'].'</td>'.
-                  '<td>'.$socios[$key]['pass'].'</td>'.
-                  // '<td>'.$socios[$key]['role'].'</td>'.
-                  // '<td>'.$socios[$key]['active'].'</td>'.
-                  '<td>'.$socios[$key]['reg_type'].'</td>'.
-                  //'<td><form class="ActiveSoc" action="activateuser.php" method="post"><input type="hidden" value="'.$socios[$key]['username'].'" name="usuario"><button class="activeBtn"  type="button" >Activar</button></form></td>'.
-                  '<td>
-                    <input class="iduser" type="hidden" value="'.$socios[$key]['iduser'].'" name="iduser">
-                    <button class="deactiveBtn" type="button" >Desactivar</button>
-                  </td>'.
-                  '</tr>';
-                echo $row;
-              }
-              ?>
+                  $row = '<tr>'.
+                    '<td>'.$socios[$key]['username'].'</td>'.
+                    '<td>'.$socios[$key]['name'].'</td>'.
+                    '<td>'.$socios[$key]['number'].'</td>'.
+                    '<td>'.$socios[$key]['negocio'].'</td>'.
+                    '<td>'.$socios[$key]['pass'].'</td>'.
+                    // '<td>'.$socios[$key]['role'].'</td>'.
+                    // '<td>'.$socios[$key]['active'].'</td>'.
+                    '<td>'.$socios[$key]['reg_type'].'</td>'.
+                    //'<td><form class="ActiveSoc" action="activateuser.php" method="post"><input type="hidden" value="'.$socios[$key]['username'].'" name="usuario"><button class="activeBtn"  type="button" >Activar</button></form></td>'.
+                    '<td>
+                      <input class="iduser" type="hidden" value="'.$socios[$key]['iduser'].'" name="iduser">
+                      <button class="deactiveBtn" type="button" >Desactivar</button>
+                    </td>'.
+                    '</tr>';
+                  echo $row;
+                }
+                ?>
               </tbody>
             </table>
           </div>
