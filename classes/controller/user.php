@@ -36,6 +36,14 @@ class user
     $result =  $db_con->consultaSegura($consulta,$parametros);
     return $result;
   }
+    public static function loginFacebook($mail){
+    $consulta = "SELECT * FROM user where username = ? and active = '1'";
+    $parametros = array($mail,$pass);
+    error_log($consulta);
+    $db_con = new PDOMYSQL;
+    $result =  $db_con->consultaSegura($consulta,$parametros);
+    return $result;
+  }
 
 
   public static function getPost(){
