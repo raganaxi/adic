@@ -522,13 +522,15 @@ $(document).ready(function() {
 			mainFunction();
 		});
 		$(document).on('click', '.lgn-with-fb', function(event) {
-			event.preventDefault();
-			checkFbStatus();
+			//event.preventDefault();
+
+			//checkFbStatus();
 		});
 		function checkFbStatus(){
 			app=getAppJson();
-			var data = {'action': 'loginU','logUser':app.facebook.email};
+			
 			if (app.facebook.status==='connected') {
+				var data = {'action': 'loginU','logUser':app.facebook.email};
 				$.ajax({
 					type : 'POST',
 					crossDomain: true,
@@ -577,8 +579,9 @@ $(document).ready(function() {
 								app.facebook.email=response.email;
 								app.facebook.user=response.user;
 								app.facebook.status=status;
-								var data = {'action': 'loginU','logUser':app.facebook.email};
+								
 								if (app.facebook.status==='connected') {
+									var data = {'action': 'loginU','logUser':app.facebook.email};
 									$.ajax({
 										type : 'POST',
 										crossDomain: true,
