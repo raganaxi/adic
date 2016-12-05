@@ -13,17 +13,11 @@
     <!-- menu profile quick info -->
     <div class="profile">
       <div class="profile_pic">
-        <img src="../images/profile/01.png" alt="..." class="img-circle profile_img">
+        <div style="background-image: url(../images/profPicture/<?= $profile['0']['img'] ?>);" class="img-circle profile_img profile_img_sidemenu"></div>
       </div>
       <div class="profile_info">
         <span>Bienvenido,</span>
-        <h2><?php
-        if(isset($_SESSION['user'])) {
-          echo $_SESSION['user'];
-        } else {
-          echo "no";
-        }
-         ?></h2>
+        <h2><?= $profile['0']['name'] ?></h2>
       </div>
     </div>
     <!-- /menu profile quick info -->

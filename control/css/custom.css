@@ -3984,3 +3984,13 @@ ul.notifications {
   border: 1px solid #e5e5e5; }
 
 /** /Dropzone.js **/
+
+
+/*-----*/
+.profile_img_sidemenu {
+  background-position: center center!important;
+  background-repeat: no-repeat!important;
+  background-size: 120%!important;
+  width: 7vh!important;
+  height: 7vh!important;
+}

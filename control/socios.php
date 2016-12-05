@@ -1,8 +1,12 @@
 <?php
 include ('header.php');
 
-if(!isset($_SESSION['user'])){
+if(!isset($_SESSION['rol'])){
   header('Location: '.'index.php');
+} else {
+  if($_SESSION['rol'] == 'usuario' ){
+    header('Location: '.'logout.php');
+  }
 }
 ?>
 <div id="socios" class="right_col" role="main">

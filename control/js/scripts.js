@@ -635,8 +635,14 @@ $( "#logSocio" ).on( 'click', function () {
     type: 'post'
   } ).done( function ( data ) {
     if ( data != 0 ) {
-      //console.log(data);
-      window.location.replace( "dashboard.php" );
+      data = jQuery.parseJSON( data );
+      if(data[0].role !== 'usuario'){
+        //console.log(data);
+        window.location.replace( "dashboard.php" );
+      } else {
+        alert('acceso solo para socios')
+        window.location.replace( "logout.php" );
+      }
     }
     else {
       console.log( 'problemas al iniciar session' );
@@ -650,7 +656,6 @@ $( ".profileU" ).on( 'click', function () {
 } );
 
 $( "#logOutbtn" ).on( 'click', function () {
-
   $.ajax( {
     data: {
       "logout": 1

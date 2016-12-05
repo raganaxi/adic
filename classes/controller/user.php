@@ -27,23 +27,20 @@ class user
   }
 
   public static function login($mail, $pass){
-
-
     $consulta = "SELECT * FROM user where username = ? and pass = ? and active = '1'";
     $parametros = array($mail,$pass);
     error_log($consulta);
     $db_con = new PDOMYSQL;
-    $result =  $db_con->consultaSegura($consulta,$parametros);
+    $result = $db_con->consultaSegura($consulta,$parametros);
     return $result;
   }
-
 
   public static function getPost(){
     $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
     $consulta = 'SELECT post.*,category.nombre as categoria, user_data.name as user_name, user_data.img as user_pic FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid INNER JOIN category on post.categoryid = category.idcategory where date ="'.$date.'" order by date desc';
     error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
-    $result =  $PDOMYSQL->consulta($consulta);
+    $result = $PDOMYSQL->consulta($consulta);
     return $result;
   }
 
@@ -70,7 +67,6 @@ class user
     return $result;
   }
 
-
   public static function getSoc(){
     $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
     $consulta = 'SELECT user.*, user_data.name, user_data.number, user_data.negocio FROM user inner join user_data on user.iduser = user_data.user_id WHERE role ="socio" and active = 0';
@@ -79,6 +75,7 @@ class user
     $result =  $PDOMYSQL->consulta($consulta);
     return $result;
   }
+
   public static function getRegSoc(){
     $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
     $consulta = 'SELECT user.*, user_data.name, user_data.number, user_data.negocio FROM user inner join user_data on user.iduser = user_data.user_id WHERE role ="socio" and active = 1';
@@ -87,6 +84,7 @@ class user
     $result =  $PDOMYSQL->consulta($consulta);
     return $result;
   }
+
   public static function getStanbySoc(){
     $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
     $consulta = 'SELECT user.*, user_data.name, user_data.number, user_data.negocio FROM user inner join user_data on user.iduser = user_data.user_id WHERE role ="socio" and active = 2';
@@ -105,6 +103,16 @@ class user
       $pass[] = $alphabet[$n];
     }
     return implode($pass); /*turn the array into a string*/
+  }
+
+  public static function changePassword($user, $oldPass, $newPass) {
+    $consulta = 'UPDATE user SET pass = '.$newPass.' WHERE iduser = '.$user.' and pass = '.$oldPass.'';
+    $check = 'SELECT * FROM user WHERE pass = '.$newPass.' and iduser = '. $user .'';
+    $PDOMYSQL = new PDOMYSQL;
+    $update =  $PDOMYSQL->consulta($consulta);
+    $result = $PDOMYSQL->consulta($check);
+    error_log(print_r($result, true));
+    return $result;
   }
 
   public static function activateUser($user) {
