@@ -5,7 +5,7 @@ var appS={};
 var controller;
 var urlLocal="../";
 var urlRemoto="http://pruebasapi.esy.es/adic/development/";
-var urlAjax=urlLocal;
+var urlAjax=urlRemoto;
 /**********************/
 $(document).bind("mobileinit", function(){
 	
@@ -15,7 +15,9 @@ $(document).bind("mobileinit", function(){
 	
 	
 });
-$(document).ready(function() {	
+
+$(document).ready(function() {
+
 	loaderMain();
 	function loaderMain(){
 		inicializar();
@@ -384,11 +386,16 @@ $(document).ready(function() {
 		}
 	}
 	function mainFunction(){
+		is_logged_in();
 		app=getAppJson();
 		if (app.user.name!=="") {$(".usuario_mostrar").html(app.user.name);}
 		getDiaSemana();
 		getPost();
 		getMenuCategorias();
+	}
+	function ubicacionesFunction(){
+		app=getAppJson();
+		
 	}
 
 	
@@ -447,11 +454,12 @@ $(document).ready(function() {
 			else{
 				if (id==="-1") {
 					appS.user.categoria="0";
-					appS.user.categoriaNombre="Ubicaciones";
+					appS.user.categoriaNombre="Inicio";
 					appS.user.classIcon=icon;
 					setAppSession(appS);
-					mainFunction();
-					$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
+					$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
+					$.mobile.changePage("#ubicaciones");
+					ubicacionesFunction();
 				}
 				else{
 					appS.user.categoria=id;
@@ -465,15 +473,15 @@ $(document).ready(function() {
 			
 			$(".ui-panel").panel("close");
 
-		});
-		$("#masterfab").on('click', '.search-fixed', function(event) {
-			event.preventDefault();
-			$("#left-panel").panel("open");
-			$("#search").focus();
-		});
+		});		
 		$("#form_search").submit(function( event ) {
 			$("#searchBtn").click();
 			event.preventDefault();
+		});
+		$(document).on('click','.lgn-with-fb',function(event) {
+			var token='asd';
+			var html='<a src="'+urlAjax+'facebook.php?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow">Facebook</a>';
+			$("#iframemodal .modal-body").html(html);
 		});
 		$("#searchBtn").on('click', function(event) {
 			ajaxLoader("inicia");
@@ -520,9 +528,134 @@ $(document).ready(function() {
 		$(document).on("pagebeforeshow","#main",function(event){
 			mainFunction();
 		});
+		function checkFbStatus(){
+			app=getAppJson();
+			
+			if (app.facebook.status==='connected') {
+				var data = {'action': 'loginU','logUser':app.facebook.email};
+				$.ajax({
+					type : 'POST',
+					crossDomain: true,
+					cache: false,
+					xhrFields: {
+						withCredentials: true
+					},
+					url  : urlAjax+'classes/ajaxApp.php',
+					dataType: "json",
+					data : data,		
+				})
+				.done(function( data, textStatus, jqXHR ) {
+					if(data.continuar==="ok"){
+						var user=app.user;
+						user.token=data.datos.token;
+						user.email=data.datos.row[0].username;
+						user.name=data.datos.row[0].username;
+						user.rol=data.datos.row[0].role;
+						user.id=data.datos.row[0].iduser;				
+						app.user=user;
+						setAppJson(app);
+						$.mobile.changePage("#main");
+						is_logged_in();
+						$('.modal').modal('hide');
+					}
+					else{
+
+						alertMensaje('usuario no registrado con facebook');
+					}
+				})
+				.fail(function( jqXHR, textStatus, errorThrown ) {
+					alertMensaje('problemas inesperado ');
+				});
+			}
+			else {
+				if (app.facebook.status==='not_authorized') {
+					alertMensaje('usuario no registrado con facebook');
+				}
+				else{
+					FB.login(function(response) {
+						var status=response.status;
+						var email="";
+						var name="";
+						if (response.status === 'connected') {
+							FB.api('/me',{fields: 'name, email'}, function(response) {
+								app.facebook.email=response.email;
+								app.facebook.user=response.user;
+								app.facebook.status=status;
+								
+								if (app.facebook.status==='connected') {
+									var data = {'action': 'loginU','logUser':app.facebook.email};
+									$.ajax({
+										type : 'POST',
+										crossDomain: true,
+										cache: false,
+										xhrFields: {
+											withCredentials: true
+										},
+										url  : urlAjax+'classes/ajaxApp.php',
+										dataType: "json",
+										data : data,		
+									})
+									.done(function( data, textStatus, jqXHR ) {
+										if(data.continuar==="ok"){
+											var user=app.user;
+											user.token=data.datos.token;
+											user.email=data.datos.row[0].username;
+											user.name=data.datos.row[0].username;
+											user.rol=data.datos.row[0].role;
+											user.id=data.datos.row[0].iduser;				
+											app.user=user;
+											setAppJson(app);
+											$.mobile.changePage("#main");
+											is_logged_in();
+											$('.modal').modal('hide');
+										}
+										else{
+
+											alertMensaje('usuario no registrado con facebook');
+										}
+									})
+									.fail(function( jqXHR, textStatus, errorThrown ) {
+										alertMensaje('problemas inesperado ');
+									});
+
+								}
+							});
+						}
+						else if (response.status === 'not_authorized') {
+							alertMensaje('usuario no registrado con facebook');
+						} 
+						else {
+							alertMensaje('problemas al iniciar session con facebook');
+						}
+
+					}, {scope: 'public_profile,email'});
+				}
+			}
+		}
+
+
+
+
+
+		/*mainFunction();*/
 
 
 		/* fin inicializar */
+	}
+	function showHelp(url) {
+
+	    var target = "_blank";
+
+	    var options = "location=yes,hidden=yes";
+
+	    inAppBrowserRef = cordova.InAppBrowser.open(url, target, options);
+
+	    inAppBrowserRef.addEventListener('loadstart', loadStartCallBack);
+
+	    inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
+
+	    inAppBrowserRef.addEventListener('loaderror', loadErrorCallBack);
+
 	}
 	/* fin del ready */	
 });

@@ -46,6 +46,7 @@ if (is_ajax()){
 		switch($action) { /*//Switch case for value of action*/
 			case 'sesion': sesion_function();break;
 			case 'loginU': login_function(); break;
+			case 'loginFacebook': login_functionf(); break;
 			case 'logout': logout_function();break;
 			case 'registerU': register_user();break;
 			case 'getPost': getPost_function();break;
@@ -171,6 +172,51 @@ function login_function(){
 		$continuar="no_ok";
 		$error="no_error";
 		$mensaje="favor de revisar los campos requeridos";
+
+	}
+}
+function login_functionf(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$logUser="";
+	switch($_SERVER['REQUEST_METHOD'])
+	{
+		case 'GET':
+		
+		if (isset($_GET["logUser"]) && !empty($_GET["logUser"])) {
+			$logUser=$_GET["logUser"];
+		}
+		case 'POST':		
+		if (isset($_POST["logUser"]) && !empty($_POST["logUser"])) {
+			$logUser=$_POST["logUser"];
+		}
+		break;
+		default:
+	}
+	if($logUser!=""){
+		$logUser = trim($logUser);
+		$result = user::loginFacebook($logUser);
+		if (!empty($result)) {
+			$continuar ="ok"; 
+			$datos['row']=$result;
+			$newToken=	user::obtenToken512($logUser,$result[0]['iduser'],"localhost","prueba");
+			if($newToken){
+				$datos['token']=$newToken;
+			}	
+		}
+		else{
+			$continuar="no_ok";
+			$error="no_ok";
+			$mensaje="usuario no registrado con facebook, favor de registrarse";
+		}		
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_error";
+		$mensaje="ocurrio un problema inesperado";
 
 	}
 }
