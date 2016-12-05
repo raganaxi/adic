@@ -108,14 +108,14 @@ var urlAjax=urlRemoto;
     })
     .done(function( data, textStatus, jqXHR ) {
       if(data.continuar==="ok"){
-        alert('token activado')
+        console.log('token activado')
       }
       else{
-        alert('token no activado');
+        console.log('token no activado');
       }
     })
     .fail(function( jqXHR, textStatus, errorThrown ) {
-      alert('error de conexion ');
+      console.log('error de conexion ');
     });
   }
 
