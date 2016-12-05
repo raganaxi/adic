@@ -15,7 +15,9 @@ $(document).bind("mobileinit", function(){
 	
 	
 });
-$(document).ready(function() {	
+
+$(document).ready(function() {
+
 	loaderMain();
 	function loaderMain(){
 		inicializar();
@@ -476,6 +478,11 @@ $(document).ready(function() {
 			$("#searchBtn").click();
 			event.preventDefault();
 		});
+		$(document).on('click','.lgn-with-fb',function(event) {
+			var token='asd';
+			var html='<iframe src="'+urlAjax+'facebook.php?token='+token+'" width="480" height="320" seamless="" class="iframeModal embed-responsive embed-responsive-16by9"></iframe>';
+			$("#iframemodal .modal-body").html(html);
+		});
 		$("#searchBtn").on('click', function(event) {
 			ajaxLoader("inicia");
 			event.preventDefault();
@@ -520,11 +527,6 @@ $(document).ready(function() {
 		});
 		$(document).on("pagebeforeshow","#main",function(event){
 			mainFunction();
-		});
-		$(document).on('click', '.lgn-with-fb', function(event) {
-			//event.preventDefault();
-
-			//checkFbStatus();
 		});
 		function checkFbStatus(){
 			app=getAppJson();
