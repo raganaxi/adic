@@ -16,7 +16,7 @@ use Facebook\HttpClients\FacebookHttpable;
 // init app with app id and secret
 FacebookSession::setDefaultApplication( '1749228825402429','82029e2eca7987fb0ba532a7dad6107b' );
 // login helper with redirect_uri
-    $helper = new FacebookRedirectLoginHelper('http://pruebasapi.esy.es/adic/development/facebook/fbconfig.php' );
+    $helper = new FacebookRedirectLoginHelper('http://www.pruebasapi.esy.es/adic/development/Facebook/fbconfig.php' );
 try {
   $session = $helper->getSessionFromRedirect();
 } catch( FacebookRequestException $ex ) {
