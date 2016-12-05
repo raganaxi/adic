@@ -1,15 +1,19 @@
 <?php
 include ('header.php');
 //autoloader para cargar clases
-require_once(__DIR__.'/../classes/autoloader.php');
-require_once(__DIR__.'/../config.php');
+//require_once(__DIR__.'/../classes/autoloader.php');
+//require_once(__DIR__.'/../config.php');
 
 //invocacion de clases
 use pdomysql AS pdomysql;
 use user AS user;
 
-if(!isset($_SESSION['user'])){
+if(!isset($_SESSION['rol'])){
   header('Location: '.'index.php');
+} else {
+  if($_SESSION['rol'] == 'usuario' ){
+    header('Location: '.'logout.php');
+  }
 }
 ?>
 <div id="crear_oferta" class="right_col" role="main">
@@ -21,12 +25,6 @@ if(!isset($_SESSION['user'])){
             <div class="z-content z-contentMiddle">
               <form id="editProfileF" class="form-section "  action="editPpicture.php" method="post" enctype="multipart/form-data">
                 <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Datos de Perfil</h3>
-                <div class="hidden">
-                  <?php
-                  $result = user::getProfile($_SESSION['iduser']);
-                  echo json_encode($result);
-                  ?>
-                </div>
                 <label for="nameP"></label>
                 <input id="nameP" type="text" class="form-control" placeholder="Nombre completo" name="nameP" value="<?php echo $result[0]['name'] ?>" required>
                 <div class="clear"></div>

@@ -6,6 +6,8 @@
   //invocacion de clases
   use pdomysql AS pdomysql;
   use user AS user;
+
+  $profile = user::getProfile($_SESSION['iduser']);
 ?>
 <!DOCTYPE html>
 <html lang="es">

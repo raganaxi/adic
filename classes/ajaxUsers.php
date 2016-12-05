@@ -43,8 +43,17 @@ if (isset($_POST['login_user'])) {
 	}
 }
 
-if (isset($_POST['activate_soc'])) {
-	$result = user::activateUser($_POST['isuser']);
+if (isset($_POST['activate_soc']) && $_POST['activate_soc'] == 1) {
+	$result = user::activateUser($_POST['iduser']);
+	if (!empty($result)) {
+		echo json_encode($result);
+	}else{
+		echo 0;
+	}
+}
+
+if (isset($_POST['deactivate_soc']) && $_POST['deactivate_soc'] == 1) {
+	$result = user::deactivateUser($_POST['iduser']);
 	if (!empty($result)) {
 		echo json_encode($result);
 	}else{
@@ -54,10 +63,6 @@ if (isset($_POST['activate_soc'])) {
 
 //Logout en desuso
 if (isset($_POST['logout'])) {
-	session_destroy();
-}
-//Logout en desuso
-if (isset($_GET['logout'])) {
 	session_destroy();
 }
 
@@ -81,16 +86,14 @@ if (isset($_POST['reg_soc'])) {
  //  $_POST['pass'] = isset($_POST['pass'])? $_POST['pass'] : 'admin123';
 //   $_POST['pass'] = sha1($_POST['pass']);
   //  $_POST['img'] = 'images/profPicture/'.$_POST['img'];
-	$result = user::registerSoc($_POST['name'], $_POST['phone'], $_POST['mail'], $_POST['pass'] = null, 'email', $_POST['img'] = null, $_POST['negocio']);
-
-	$resultl = user::login($_POST['mail'], $_POST['pass']);
-	if (!empty($result)) {
-		$_SESSION['user'] = isset($resultl[0]['username'])? $resultl[0]['username'] : null ;
-		$_SESSION['rol'] =  isset($resultl[0]['role'])? $resultl[0]['role'] : null ;
-		$_SESSION['iduser'] = isset($resultl[0]['iduser'])? $resultl[0]['iduser'] : null ;
-	}
-
-	echo json_encode($result[0]);
+	$result = user::registerSoc($_POST['name'], $_POST['phone'], $_POST['mail'], $_POST['pass'] = null, $_POST['typeReg'], $_POST['img'] = "01.png", $_POST['negocio']);
+	//$resultl = user::login($_POST['mail'], $_POST['pass']);
+	//if (!empty($result)) {
+		// $_SESSION['user'] = isset($resultl[0]['username'])? $resultl[0]['username'] : null ;
+		// $_SESSION['rol'] =  isset($resultl[0]['role'])? $resultl[0]['role'] : null ;
+		// $_SESSION['iduser'] = isset($resultl[0]['iduser'])? $resultl[0]['iduser'] : null ;
+	//}
+  echo json_encode($result[0]);
 }
 
 /* codigo nuevo */

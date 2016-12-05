@@ -485,12 +485,20 @@ $( "#createCategory" ).on( 'click', function () {
 
 //crear cuenta por email socio
 $( "#createSoc" ).on( 'click', function () {
+  var type;
+  if($('#registerSocio').length != 0 ){
+    type = "mail";
+  }
+  if($('#registerSocio-admin').length != 0 ){
+    type = "admininstrador";
+  }
   $.ajax( {
     data: {
       "reg_soc": 1,
       "name": $( "#nameSocio" ).val(),
       "phone": $( "#telSocio" ).val(),
       "mail": $( "#mailSocio" ).val(),
+      "typeReg" : type,
       "negocio": $( "#nameNegocio" ).val()
         //"pass": $("#passwSocio").val(),
         //"img": document.getElementById("imgProfile").files[0].name
@@ -500,20 +508,25 @@ $( "#createSoc" ).on( 'click', function () {
   } ).done( function ( data ) {
     data = $.parseJSON( data );
     console.log( data );
-    if ( data.Y == "Y" ) {
+    if ( data ) {
       //alert('Registrado');
       //window.location.replace("profile.php");
-      $( "#registerSocio" ).empty();
-      $("#registerSocio").append(
-        '<h1>¡Gracias!</h1>'+
-        '<p>Tu solicitud es muy importante para nosotros, te pedimos de favor que estes al pendiente de tu correo o telefono.</p>'+
-        '<p>Nos comunicaremos contigo a la brevedad posible.</p>'+
-        '<div class="clearfix"></div>'+
-        '<div class="separator">'+
-          '<div class="hidden">'+
-          '  <p>Copyright (c) 2015 Copyright Holder All Rights Reserved.</p>'+
-          '</div>'+
-        '</div>');
+      if($('#registerSocio').length != 0 ){
+        $( "#registerSocio" ).empty();
+        $("#registerSocio").append(
+          '<h1>¡Gracias!</h1>'+
+          '<p>Tu solicitud es muy importante para nosotros, te pedimos de favor que estes al pendiente de tu correo o telefono.</p>'+
+          '<p>Nos comunicaremos contigo a la brevedad posible.</p>'+
+          '<div class="clearfix"></div>'+
+          '<div class="separator">'+
+            '<div class="hidden">'+
+            '  <p>Copyright (c) 2015 Copyright Holder All Rights Reserved.</p>'+
+            '</div>'+
+          '</div>');
+      }
+      if($('#registerSocio-admin').length != 0){
+        $('#registerSocio-admin').trigger('reset');
+      }
     }
     else {
       alert( 'Erro usuario no registrado' );
@@ -561,20 +574,48 @@ $( "#createPost" ).on( 'click', function () {
 //   } );
 // } );
 
+//activacion de socios
 $( ".activeBtn" ).on( 'click', function () {
   var $activeBtn = $(this);
   var $userID = $($activeBtn).closest('tr').find('.iduser').val();
   $.ajax( {
     data: {
-      "activate_Soc": 1,
+      "activate_soc": 1,
       "iduser": $userID
     },
     url: '../classes/ajaxUsers.php',
     type: 'post'
-  } ).done( function ( data ) {
+  }).done( function ( data ) {
     if ( data != 0 ) {
+      $($activeBtn).closest('tr').addClass('bgGreenClear');
+      setTimeout(function(){
+        $($activeBtn).closest('tr').addClass('hidden');
+      },400);
+    }
+    else {
+      console.log( 'problemas al activar usuario' );
       console.log(data);
-      //window.location.replace( "dashboard.php" );
+    }
+  } );
+} );
+
+//desactivacion de socios
+$( ".deactiveBtn" ).on( 'click', function () {
+  var $deactiveBtn = $(this);
+  var $userID = $($deactiveBtn).closest('tr').find('.iduser').val();
+  $.ajax( {
+    data: {
+      "deactivate_soc": 1,
+      "iduser": $userID
+    },
+    url: '../classes/ajaxUsers.php',
+    type: 'post'
+  }).done( function ( data ) {
+    if ( data != 0 ) {
+      $($deactiveBtn).closest('tr').addClass('bgRedClear');
+      setTimeout(function(){
+        $($deactiveBtn).closest('tr').addClass('hidden');
+      },400);
     }
     else {
       console.log( 'problemas al activar usuario' );
@@ -594,8 +635,14 @@ $( "#logSocio" ).on( 'click', function () {
     type: 'post'
   } ).done( function ( data ) {
     if ( data != 0 ) {
-      //console.log(data);
-      window.location.replace( "dashboard.php" );
+      data = jQuery.parseJSON( data );
+      if(data[0].role !== 'usuario'){
+        //console.log(data);
+        window.location.replace( "dashboard.php" );
+      } else {
+        alert('acceso solo para socios')
+        window.location.replace( "logout.php" );
+      }
     }
     else {
       console.log( 'problemas al iniciar session' );
@@ -609,7 +656,6 @@ $( ".profileU" ).on( 'click', function () {
 } );
 
 $( "#logOutbtn" ).on( 'click', function () {
-
   $.ajax( {
     data: {
       "logout": 1
