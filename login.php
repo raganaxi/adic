@@ -8,7 +8,7 @@ $fb = new Facebook\Facebook([
 $helper = $fb->getRedirectLoginHelper();
 
 $permissions = ['email,name']; /*/Optional permissions*/
-$loginUrl = $helper->getLoginUrl('localhost/fb-callback.php', $permissions);
+$loginUrl = $helper->getLoginUrl('http://pruebasapi.esy.es/adic/development/fb-callback.php', $permissions);
 
 echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
 
