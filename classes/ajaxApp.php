@@ -288,23 +288,6 @@ function activateToken_function(){
 
 		}
 
-
-
-		$logUser = trim($logUser);
-		$result = user::loginFacebook($logUser);
-		if (!empty($result)) {
-			$continuar ="ok"; 
-			$datos['row']=$result;
-			$newToken=	user::obtenToken512($logUser,$result[0]['iduser'],"localhost","prueba");
-			if($newToken){
-				$datos['token']=$newToken;
-			}	
-		}
-		else{
-			$continuar="no_ok";
-			$error="no_ok";
-			$mensaje="usuario no registrado con facebook, favor de registrarse";
-		}		
 	}
 	else{
 		$continuar="no_ok";
