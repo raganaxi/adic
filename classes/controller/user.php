@@ -3,6 +3,7 @@
 /*invocacion de clases*/
 use pdomysql AS pdomysql;
 use user AS user;
+use admin AS admin;
 
 
 class user
@@ -110,9 +111,12 @@ class user
   public static function activateUser($user) {
     $consulta = 'UPDATE user SET active = 1 WHERE iduser = '.$user.'';
     $check = 'SELECT * FROM user WHERE active = 1 and iduser = '. $user .'';
+		$queryDataU = "SELECT * FROM user_data WHERE user_id = $user";
     $PDOMYSQL = new PDOMYSQL;
     $update =  $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
+		$rsDataUsr = $PDOMYSQL->consulta($queryDataU);
+		admin::sendEmailActivation($rsDataUsr[0]["mail"],$result[0]["username"], $result[0]["pass"], $rsDataUsr[0]["name"]);
     error_log(print_r($result, true));
     return $result;
   }
