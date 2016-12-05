@@ -624,6 +624,35 @@ $( ".deactiveBtn" ).on( 'click', function () {
   } );
 } );
 
+//desactivacion de socios
+$( "#changeAccess" ).on( 'click', function () {
+  var change = $(this);
+  var userID = $(change).closest('form').find('#userID').val();
+  var username = $(change).closest('form').find('#usernameP').val();
+  var newPass = $(change).closest('form').find('#newPassP').val();
+  var oldPass = $(change).closest('form').find('#oldPassP').val();
+  $.ajax( {
+    data: {
+      "change_access": 1,
+      "iduser": userID,
+      "username": username,
+      "oldPass": oldPass,
+      "newPass": newPass
+    },
+    url: '../classes/ajaxUsers.php',
+    type: 'post'
+  }).done( function ( data ) {
+    if ( data != 0 ) {
+      console.log('actualizado');
+      console.log(data);
+    }
+    else {
+      console.log( 'problemas al actualizar usuario' );
+      console.log(data);
+    }
+  } );
+} );
+
 $( "#logSocio" ).on( 'click', function () {
   $.ajax( {
     data: {
@@ -668,19 +697,19 @@ $( "#logOutbtn" ).on( 'click', function () {
 } );
 
 $( "#editProfile" ).on( 'click', function () {
-  var profilePic;
-  if (document.getElementById( "fileToUpload" ).files[ 0 ].name == undefined) {
-    profilePic = "01.png";
-  } else {
-    profilePic = document.getElementById( "fileToUpload" ).files[ 0 ].name;
-  }
+  // var profilePic;
+  // if (document.getElementById( "fileToUpload" ).files[ 0 ].name == undefined) {
+  //   profilePic = "01.png";
+  // } else {
+  //   profilePic = document.getElementById( "fileToUpload" ).files[ 0 ].name;
+  // }
   $.ajax( {
     data: {
       "editProfile": 1,
       "name": $( "#nameP" ).val(),
-      "phone": $( "#phoneP" ).val(),
-      "mail": $( "#emailP" ).val(),
-      "file": profilePic
+      "number": $( "#phoneP" ).val(),
+      "negocio": $( "#negocioP" ).val(),
+      //"file": profilePic
     },
     url: '../classes/ajaxUsers.php',
     type: 'post'

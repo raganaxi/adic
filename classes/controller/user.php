@@ -60,19 +60,30 @@ class user
     return $result;
   }
 
-  public static function editProfile($name, $phone, $mail, $image, $user_id){
+  public static function editProfileData($name, $number, $negocio, $user_id){
+    $consulta = 'UPDATE user_data SET name='.$name.', number='.$number.', negocio='.$negocio.' WHERE user_id='.$user_id.'';
+    $check = 'SELECT * FROM user_data WHERE name='.$name.', number='.$number.', negocio='.$negocio.' AND user_id='.$user_id.'';
+    error_log($consulta);
+    $PDOMYSQL = new PDOMYSQL;
+    $update = $PDOMYSQL->consulta($consulta);
+    $result = $PDOMYSQL->consulta($check);
+    return $result;
+  }
+
+  /*public static function editProfile($name, $phone, $mail, $image, $user_id){
     $consulta = 'call editProfile("'.$name.'", "'.$phone.'",  "'.$mail.'",  "'.$image.'",  "'.$user_id.'")';
     error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consulta($consulta);
     return $result;
-  }
+  }*/
 
   public static function getProfile($userId){
-    $consulta = 'SELECT * FROM user_data where user_id = "'.$userId.'" ';
-    error_log(print_r($consulta, true));
+    $consulta2 = 'SELECT user.*, user_data.* FROM user inner join user_data on user.iduser = user_data.user_id WHERE iduser ='.$userId.'';
+    //$consulta = 'SELECT * FROM user_data where user_id = "'.$userId.'" ';
+    error_log(print_r($consulta2, true));
     $PDOMYSQL = new PDOMYSQL;
-    $result =  $PDOMYSQL->consulta($consulta);
+    $result =  $PDOMYSQL->consulta($consulta2);
     return $result;
   }
 
@@ -114,9 +125,9 @@ class user
     return implode($pass); /*turn the array into a string*/
   }
 
-  public static function changePassword($user, $oldPass, $newPass) {
-    $consulta = 'UPDATE user SET pass = '.$newPass.' WHERE iduser = '.$user.' and pass = '.$oldPass.'';
-    $check = 'SELECT * FROM user WHERE pass = '.$newPass.' and iduser = '. $user .'';
+  public static function changeAccess($user, $username, $oldPass, $newPass) {
+    $consulta = 'UPDATE user SET pass = '.$newPass.', username = '.$username.' WHERE iduser = '.$user.' and pass = '.$oldPass.'';
+    $check = 'SELECT * FROM user WHERE pass = '.$newPass.' and username = '.$username.' and iduser = '. $user .'';
     $PDOMYSQL = new PDOMYSQL;
     $update =  $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);

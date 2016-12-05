@@ -16,34 +16,87 @@ if(!isset($_SESSION['rol'])){
   }
 }
 ?>
-<div id="crear_oferta" class="right_col" role="main">
+<div id="perfil_socio" class="right_col" role="main">
   <div class="z-row">
-    <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
-      <div class="z-panel z-forceBlock bgTransparent wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".2s">
-        <div class="z-panelBody z-block overflowHidden noPadding">
-          <div class="z-block h100">
-            <div class="z-content z-contentMiddle">
-              <form id="editProfileF" class="form-section "  action="editPpicture.php" method="post" enctype="multipart/form-data">
-                <h3 class="noMargin text-uppercase text-bold text-uppercase s20">Datos de Perfil</h3>
-                <label for="nameP"></label>
-                <input id="nameP" type="text" class="form-control" placeholder="Nombre completo" name="nameP" value="<?php echo $result[0]['name'] ?>" required>
-                <div class="clear"></div>
-                <label for="phoneP"></label>
-                <input id="phoneP" type="text" class="form-control" placeholder="Telefono" name="phoneP" value="<?php echo $result[0]['number'] ?>" required>
-
-                <div class="clear"></div>
-                <label for="emailP"></label>
-                <input id="emailP" type="text" class="form-control" placeholder="E-mail" name="emailP" value="<?php echo $result[0]['mail'] ?>" required>
-
-                <div class="clear"></div>
-                <div class="form-section">
-                  <input type="file" class="form-control" name="fileToUpload" id="fileToUpload" name="fileToUpload">
-                </div>
-                <div class="clear"></div>
-                <button type="button" id="editProfile" class="z-btn bgGreen cWhite text-center noTransform boxShadow" >
-                  Editar
-                </button>
-              </form>
+    <div class="col-xs-12">
+      <div class="" role="tabpanel" data-example-id="togglable-tabs">
+        <div class="x_panel">
+          <div class="x_title">
+            <ul id="myTab" class="nav nav-tabs " role="tablist">
+              <li role="presentation" class="active"><a href="#tab_datos" id="datos-tab" role="tab" data-toggle="tab" aria-expanded="true">Perfil y Contacto</a>
+              </li>
+              <li role="presentation" class=""><a href="#tab_imagenPerfil" role="tab" id="imagenPerfil-tab" data-toggle="tab" aria-expanded="false">Imagen de Perfil</a>
+              </li>
+              <li role="presentation" class=""><a href="#tab_acceso" role="tab" id="acceso-tab" data-toggle="tab" aria-expanded="false">Cuenta</a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div id="myTabContent" class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="tab_datos" aria-labelledby="datos-tab">
+              <div class="x_content">
+                <form id="editProfileF" class="form-section "  action="editPpicture.php" method="post" enctype="multipart/form-data">
+                  <div class="form-section">
+                    <label for="nameP">Nombre de contacto</label>
+                    <input id="nameP" type="text" class="form-control" placeholder="Nombre completo" name="nameP" value="<?php echo $profile[0]['name'] ?>" required>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="form-section">
+                    <label for="phoneP">Telefono</label>
+                    <input id="phoneP" type="text" class="form-control" placeholder="Telefono" name="phoneP" value="<?php echo $profile[0]['number'] ?>" required>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="form-section">
+                    <label for="emailP">Correo</label>
+                    <input id="emailP" type="email" class="form-control" placeholder="E-mail" name="emailP" value="<?php echo $profile[0]['mail'] ?>" required>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="form-section">
+                    <label for="negocioP">Nombre del negocio</label>
+                    <input id="negocioP" type="text" class="form-control" placeholder="Nombre" name="negocioP" value="<?php echo $profile[0]['negocio'] ?>" required>
+                    <div class="clear"></div>
+                  </div>
+                  <button type="button" id="editProfile" class="btn bgGreen cWhite pull-right" >
+                    Editar
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tab_imagenPerfil" aria-labelledby="imagenPerfil-tab">
+              <div class="x_content">
+                <form class="" action="">
+                  <div class="form-section">
+                    <input type="file" class="form-control" name="fileToUpload" id="fileToUpload" name="fileToUpload">
+                  </div>
+                  <label for="emailP"></label>
+                  <input id="emailP" type="text" class="form-control" placeholder="E-mail" name="emailP" value="<?php echo $profile[0]['mail'] ?>" required>
+                </form>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tab_acceso" aria-labelledby="acceso-tab">
+              <div class="x_content">
+                <form class="" action="">
+                  <div class="form-section">
+                    <input type="hidden" id="userID" name="userID" value="<?= $profile['0']['iduser']?>">
+                    <label for="usernameP">Usuario</label>
+                    <input id="usernameP" type="text" class="form-control" placeholder="username" name="usernameP" value="<?php echo $profile[0]['username'] ?>" required>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="form-section">
+                    <label for="newPassP">Contraseña Actual</label>
+                    <input id="newPassP" type="password" class="form-control" placeholder="" name="newPassP" value="" required>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="form-section">
+                    <label for="oldPassP">Contraseña Nueva</label>
+                    <input id="oldPassP" type="password" class="form-control" placeholder="" name="oldPassP" value="">
+                    <div class="clear"></div>
+                  </div>
+                  <button type="button" id="changeAccess" class="btn bgGreen cWhite pull-right" >
+                    Editar
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>

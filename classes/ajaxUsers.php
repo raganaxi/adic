@@ -61,6 +61,15 @@ if (isset($_POST['deactivate_soc']) && $_POST['deactivate_soc'] == 1) {
 	}
 }
 
+if (isset($_POST['change_access']) && $_POST['change_access'] == 1) {
+  $result = user::changeAccess($_POST['iduser'], $_POST['username'], $_POST['oldPass'], $_POST['newPass'] );
+	if (!empty($result)) {
+		echo json_encode($result);
+	}else{
+		echo 0;
+	}
+}
+
 //Logout en desuso
 if (isset($_POST['logout'])) {
 	session_destroy();
@@ -68,8 +77,8 @@ if (isset($_POST['logout'])) {
 
 //Editar Perfil
 if (isset($_POST['editProfile'])) {
-	$_POST['file'] = isset($_POST['file'])?  $_POST['file'] : null;
-	$result = user::editProfile($_POST['name'], $_POST['phone'], $_POST['mail'], $_POST['file'], $_SESSION['iduser']);
+	//$_POST['file'] = isset($_POST['file'])?  $_POST['file'] : null;
+	$result = user::editProfileData($_POST['name'], $_POST['number'], $_POST['negocio'], $_SESSION['iduser']);
 	echo json_encode($result);
 }
 
