@@ -480,7 +480,7 @@ $(document).ready(function() {
 		});
 		$(document).on('click','.lgn-with-fb',function(event) {
 			var token='asd';
-			var html='<iframe src="'+urlAjax+'facebook.php?token='+token+'" width="480" height="320" seamless="" class="iframeModal embed-responsive embed-responsive-16by9"></iframe>';
+			var html='<a src="'+urlAjax+'facebook.php?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow">Facebook</a>';
 			$("#iframemodal .modal-body").html(html);
 		});
 		$("#searchBtn").on('click', function(event) {
@@ -641,6 +641,21 @@ $(document).ready(function() {
 
 
 		/* fin inicializar */
+	}
+	function showHelp(url) {
+
+	    var target = "_blank";
+
+	    var options = "location=yes,hidden=yes";
+
+	    inAppBrowserRef = cordova.InAppBrowser.open(url, target, options);
+
+	    inAppBrowserRef.addEventListener('loadstart', loadStartCallBack);
+
+	    inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
+
+	    inAppBrowserRef.addEventListener('loaderror', loadErrorCallBack);
+
 	}
 	/* fin del ready */	
 });
