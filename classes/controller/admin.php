@@ -8,36 +8,20 @@ class admin
 {
 
   //envio de Email
-  public static function sendEmailActivation($mail, $user, $pass){
+  public static function sendEmailActivation($mail, $user, $pass, $nameContact){
     $subject = "Activacion 'A donde ir en la ciudad'";
     //Cuerpo del email
-    $message = "
-      <html>
-      <head>
-      <title>HTML email</title>
-      </head>
-      <body>
-      <p>This email contains HTML Tags!</p>
-      <table>
-      <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      </tr>
-      <tr>
-      <td>John</td>
-      <td>Doe</td>
-      </tr>
-      </table>
-      </body>
-      </html>
-      ";
-    // Always set content-type when sending HTML email
-    $headers = "MIME-Version: 1.0" . "\r\n";
-    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    // More headers
-    $headers .= 'From: Administrador<reiter.der.schwarzung@gmail.com>' . "\r\n";
-    $headers .= 'Cc: ae.tello@hotmail.com' . "\r\n";
-    mail($mail,$subject,$message,$headers);
+    $email_message = file_get_contents("../templates/email/bienvenido_socio.html");
+    $email_message = str_replace('###NOMBRE_CONTACTO###', $nameContact, $email_message);
+    $email_message = str_replace('###USUARIO###', $user, $email_message);
+    $email_message = str_replace('###MAIL###', $mail, $email_message);
+    $email_message = str_replace('###PASSWORD###', $pass, $email_message);
+    $email_message = preg_replace('/\\\\/','', $email_message);
+    $headers = "From: atello@awsoftware.mx\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=utf-8\r\n";
+    $headers .= "Content-Transfer-Encoding: 8bit\r\n";
+    return mail($mail, $subject, $email_message, $headers);
   }
 }
 
