@@ -52,6 +52,7 @@ if (is_ajax()){
 			case 'getPost': getPost_function();break;
 			case 'getCat': getCat_function();break;
 			case 'buscar': buscar_function();break;
+			case 'activateT': activateToken_function();break;
 
 		}
 	}else{
@@ -197,6 +198,98 @@ function login_functionf(){
 		default:
 	}
 	if($logUser!=""){
+		$logUser = trim($logUser);
+		$result = user::loginFacebook($logUser);
+		if (!empty($result)) {
+			$continuar ="ok"; 
+			$datos['row']=$result;
+			$newToken=	user::obtenToken512($logUser,$result[0]['iduser'],"localhost","prueba");
+			if($newToken){
+				$datos['token']=$newToken;
+			}	
+		}
+		else{
+			$continuar="no_ok";
+			$error="no_ok";
+			$mensaje="usuario no registrado con facebook, favor de registrarse";
+		}		
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_error";
+		$mensaje="ocurrio un problema inesperado";
+
+	}
+}
+function activateToken_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$token="";
+	$email="";
+	switch($_SERVER['REQUEST_METHOD'])
+	{
+		case 'GET':
+		
+		if (isset($_GET["token"]) && !empty($_GET["token"])) {
+			$token=$_GET["token"];
+		}
+		if (isset($_GET["email"]) && !empty($_GET["email"])) {
+			$email=$_GET["email"];
+		}
+		break;
+		case 'POST':		
+		if (isset($_POST["token"]) && !empty($_POST["token"])) {
+			$token=$_POST["token"];
+		}
+		if (isset($_POST["email"]) && !empty($_POST["email"])) {
+			$email=$_POST["email"];
+		}
+		break;
+		default:
+	}
+	if($email!=""){
+		$user=user::userExist($email);
+		if (!empty($user)) {
+			/*activado normal*/
+			$activate=user::tokenActivate($token);
+			if ($activate) {
+				$continuar ="ok"; 
+			}
+			else{
+				$continuar="no_ok";
+				$error="no_error";
+				$mensaje="no se activo el token";
+			}
+			
+		}
+		else{
+			/*registro de usuario y activado*/
+			$user=user::registerOnMailDefault($email);
+			if (!empty($user)) {
+				$activate=user::tokenActivate($token);
+				if ($activate) {
+					$continuar ="ok"; 
+				}
+				else{
+					$continuar="no_ok";
+					$error="no_error";
+					$mensaje="no se activo el token";
+				}
+			}
+			else{
+				$continuar="no_ok";
+				$error="no_error";
+				$mensaje="ocurrio un problema inesperado";
+
+			}
+
+		}
+
+
+
 		$logUser = trim($logUser);
 		$result = user::loginFacebook($logUser);
 		if (!empty($result)) {

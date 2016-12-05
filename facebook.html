@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Facebook Login JavaScript Example</title>
+  <meta charset="UTF-8">
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+</head>
+<body>
+  <div id="ready"></div>
+  <script>
+
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    if (response.status === 'connected') {
+
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+
+      document.getElementById('status').innerHTML = 'Please log ' +
+      'into this app.';
+    } else {
+
+      document.getElementById('status').innerHTML = 'Please log ' +
+      'into Facebook.';
+    }
+  }
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+      'Thanks for logging in, ' + response.name + '!';
+    });
+  }
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  $(document).ready(function() {
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1749228825402429',
+        cookie     : true,
+        xfbml      : true,  
+        version    : 'v2.8' 
+      });
+      $("#ready").html('cargando...')
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+    };
+
+  
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  $(document).on('DOMSubtreeModified','#ready', function () {
+    console.log('isLoaded');
+    var token = getParameterByName("token");
+    if (token==='') {
+    }
+    else{
+      FB.login(function(response) {
+        if (response.status === 'connected') {
+          console.log('Logged into your app and Facebook.'); 
+        } else if (response.status === 'not_authorized') {
+          console.log('The person is logged into Facebook, but not your app.');
+        } else {
+          console.log('The person is not logged into Facebook, so we\'re not sure if they are logged into this app or not.');
+        }
+      });
+    }
+  });
+
+
+  $(document).on('click', '#login', function(event) {
+    event.preventDefault();
+    FB.login(function(response) {
+      if (response.status === 'connected') {
+        console.log('Logged into your app and Facebook.');
+
+      } else if (response.status === 'not_authorized') {
+        console.log('The person is logged into Facebook, but not your app.');
+      } else {
+        console.log('The person is not logged into Facebook, so we\'re not sure if they are logged into this app or not.');
+      }
+    });
+  });
+
+
+});
+  function activateT(token){
+    var data = {'action': 'activateT','token':token};
+    $.ajax({
+      type : 'POST',
+      crossDomain: true,
+      cache: false,
+      xhrFields: {
+        withCredentials: true
+      },
+      url  : urlAjax+'classes/ajaxApp.php',
+      dataType: "json",
+      data : data,    
+    })
+    .done(function( data, textStatus, jqXHR ) {
+      if(data.continuar==="ok"){
+        alert('token activado')
+      }
+      else{
+        alertMensaje('token no activado');
+      }
+    })
+    .fail(function( jqXHR, textStatus, errorThrown ) {
+      alertMensaje('error de conexion ');
+    });
+  }
+
+</script>
+
+<a href="#" id="login">Login</a>
+<div id="status">
+</div>
+
+</body>
+</html>

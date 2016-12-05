@@ -146,7 +146,31 @@ class user
     error_log(print_r($result, true));
     return $result;
   }
+public static function userExist($email) {
+    $consulta = 'SELECT * from user WHERE username = ?';
+    $parametros = array($email);
+    $db_con = new PDOMYSQL;
+    $result =  $db_con->consultaSegura($consulta,$parametros);
+    return $result;
+  }
+  public static function registerOnMailDefault($mail){
+    $pass=randomPassword();
 
+    $consulta = 'call register_user(?,?,?)';
+    $parametros = array($email,$pass,'usuario');
+
+    $db_con = new PDOMYSQL;
+    $result =  $db_con->consultaSegura($consulta,$parametros);
+    $check=userExist($email);
+    return $check;
+  }  
+  public static function tokenActivate($token,$iduser){
+    $consulta ="UPDATE tbl_tokens SET active=1,user_id=? WHERE tx_token=?";
+    $parametros = array($iduser,$token);
+    $db_con = new PDOMYSQL;
+    $result =  $db_con->consultaSegura($consulta,$parametros);
+    return tokenValidate($token);
+  }
   public static function tokenValidate($token){
     $consulta ="SELECT * FROM tbl_tokens WHERE tx_token=? and active=1";
     $parametros = array($token);
