@@ -8,7 +8,9 @@
 <body>
   <div id="ready"></div>
   <script>
-
+var urlLocal="./";
+var urlRemoto="http://pruebasapi.esy.es/adic/development/";
+var urlAjax=urlRemoto;
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -77,35 +79,22 @@
     else{
       FB.login(function(response) {
         if (response.status === 'connected') {
-          console.log('Logged into your app and Facebook.'); 
+          console.log('Logged into your app and Facebook.');
+          FB.api('/me',{fields: 'name, email'}, function(response) {
+                activateT(token,response.email);
+          });
         } else if (response.status === 'not_authorized') {
           console.log('The person is logged into Facebook, but not your app.');
         } else {
           console.log('The person is not logged into Facebook, so we\'re not sure if they are logged into this app or not.');
         }
-      });
+      },{scope: 'public_profile,email'});
     }
   });
 
-
-  $(document).on('click', '#login', function(event) {
-    event.preventDefault();
-    FB.login(function(response) {
-      if (response.status === 'connected') {
-        console.log('Logged into your app and Facebook.');
-
-      } else if (response.status === 'not_authorized') {
-        console.log('The person is logged into Facebook, but not your app.');
-      } else {
-        console.log('The person is not logged into Facebook, so we\'re not sure if they are logged into this app or not.');
-      }
-    });
-  });
-
-
 });
-  function activateT(token){
-    var data = {'action': 'activateT','token':token};
+  function activateT(token,email){
+    var data = {'action': 'activateT','token':token,'email':email};
     $.ajax({
       type : 'POST',
       crossDomain: true,
@@ -122,17 +111,16 @@
         alert('token activado')
       }
       else{
-        alertMensaje('token no activado');
+        alert('token no activado');
       }
     })
     .fail(function( jqXHR, textStatus, errorThrown ) {
-      alertMensaje('error de conexion ');
+      alert('error de conexion ');
     });
   }
 
 </script>
 
-<a href="#" id="login">Login</a>
 <div id="status">
 </div>
 

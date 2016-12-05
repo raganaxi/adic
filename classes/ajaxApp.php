@@ -253,8 +253,10 @@ function activateToken_function(){
 	if($email!=""){
 		$user=user::userExist($email);
 		if (!empty($user)) {
+			
+			/*var_dump($user);*/
 			/*activado normal*/
-			$activate=user::tokenActivate($token);
+			$activate=user::tokenActivate($token,$user[0]['iduser']);
 			if ($activate) {
 				$continuar ="ok"; 
 			}
@@ -269,7 +271,7 @@ function activateToken_function(){
 			/*registro de usuario y activado*/
 			$user=user::registerOnMailDefault($email);
 			if (!empty($user)) {
-				$activate=user::tokenActivate($token);
+				$activate=user::tokenActivate($token,$email);
 				if ($activate) {
 					$continuar ="ok"; 
 				}

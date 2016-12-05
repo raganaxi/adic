@@ -164,15 +164,15 @@ public static function userExist($email) {
     $result =  $db_con->consultaSegura($consulta,$parametros);
     return $result;
   }
-  public static function registerOnMailDefault($mail){
-    $pass=randomPassword();
+  public static function registerOnMailDefault($email){
+    $pass=self::randomPassword();
 
     $consulta = 'call register_user(?,?,?)';
     $parametros = array($email,$pass,'usuario');
 
     $db_con = new PDOMYSQL;
     $result =  $db_con->consultaSegura($consulta,$parametros);
-    $check=userExist($email);
+    $check=self::userExist($email);
     return $check;
   }  
   public static function tokenActivate($token,$iduser){
@@ -180,7 +180,7 @@ public static function userExist($email) {
     $parametros = array($iduser,$token);
     $db_con = new PDOMYSQL;
     $result =  $db_con->consultaSegura($consulta,$parametros);
-    return tokenValidate($token);
+    return self::tokenValidate($token);
   }
   public static function tokenValidate($token){
     $consulta ="SELECT * FROM tbl_tokens WHERE tx_token=? and active=1";
