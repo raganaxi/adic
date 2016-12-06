@@ -125,15 +125,18 @@ class user
     return implode($pass); /*turn the array into a string*/
   }
 
-  public static function changeAccess($user, $username, $oldPass, $newPass) {
-    $consulta = 'UPDATE user SET pass = '.$newPass.', username = '.$username.' WHERE iduser = '.$user.' and pass = '.$oldPass.'';
-    $check = 'SELECT * FROM user WHERE pass = '.$newPass.' and username = '.$username.' and iduser = '. $user .'';
+//terminar
+/*  public static function changeAccess($user, $username, $oldPass, $newPass) {
+    $getID = 'SELECT iduser FROM user WHERE username = '.$username.' AND pass = '.$oldPass.'';
     $PDOMYSQL = new PDOMYSQL;
+    $id = $PDOMYSQL->consulta($getID);
+    $consulta = 'UPDATE user SET pass = '.$newPass.' WHERE iduser = '.$id.'';
+    $check = 'SELECT * FROM user WHERE pass = '.$newPass.' and iduser = '. $user .'';
     $update =  $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
     error_log(print_r($result, true));
     return $result;
-  }
+  }*/
 
   public static function activateUser($user) {
     $consulta = 'UPDATE user SET active = 1 WHERE iduser = '.$user.'';
@@ -174,7 +177,7 @@ public static function userExist($email) {
     $result =  $db_con->consultaSegura($consulta,$parametros);
     $check=self::userExist($email);
     return $check;
-  }  
+  }
   public static function tokenActivate($token,$iduser){
     $consulta ="UPDATE tbl_tokens SET active=1,user_id=? WHERE tx_token=?";
     $parametros = array($iduser,$token);
