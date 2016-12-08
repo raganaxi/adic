@@ -126,13 +126,12 @@ class user
   }
 
   public static function changeAccess($user, $username, $oldPass, $newPass) {
-    //UPDATE `u913897248_adic`.`user` SET `username`='ubit2', `pass`='123123123' WHERE `iduser`='66';
-
-    $consulta = 'UPDATE user SET username = '.$username.', pass = '.$newPass.' WHERE iduser = '.$user.' AND pass ='.$oldPass.'';
-    $check = 'SELECT * FROM user WHERE iduser = '.$user.' and pass = '.$newPass.' and username = '. $username .'';
+    $consulta = 'UPDATE user SET pass = "'.$newPass.'" WHERE iduser = '.$user.' AND pass = "'.$oldPass.'"';
+    $check = 'SELECT * FROM user WHERE pass = "'.$newPass.'" and iduser = '. $user .'';
     $PDOMYSQL = new PDOMYSQL;
-    $update =  $PDOMYSQL->consulta($consulta);
+    $update = $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
+    error_log(print_r($update, true));
     error_log(print_r($result, true));
     return $result;
   }

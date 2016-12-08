@@ -629,12 +629,8 @@ $( "#changeAccess" ).on( 'click', function () {
   var change = $(this);
   var userID = $(change).closest('form').find('#userID').val();
   var username = $(change).closest('form').find('#usernameP').val();
-  var newPass = $(change).closest('form').find('#newPassP').val();
   var oldPass = $(change).closest('form').find('#oldPassP').val();
-  console.log(userID);
-  console.log(username);
-  console.log(newPass);
-  console.log(oldPass);
+  var newPass = $(change).closest('form').find('#newPassP').val();
   $.ajax( {
     data: {
       "change_access": 1,
@@ -647,8 +643,7 @@ $( "#changeAccess" ).on( 'click', function () {
     type: 'post'
   }).done( function ( data ) {
     if ( data != 0 ) {
-      console.log('actualizado');
-      console.log(data);
+      window.location.replace( "dashboard.php" );
     }
     else {
       console.log( 'problemas al actualizar usuario' );

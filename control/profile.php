@@ -35,7 +35,7 @@ if(!isset($_SESSION['rol'])){
           <div id="myTabContent" class="tab-content">
             <div role="tabpanel" class="tab-pane fade active in" id="tab_datos" aria-labelledby="datos-tab">
               <div class="x_content">
-                <form id="editProfileF" class="form-section "  action="editPpicture.php" method="post" enctype="multipart/form-data">
+                <form id="editProfileF"><!--action="editPpicture.php" method="post" enctype="multipart/form-data"-->
                   <div class="form-section">
                     <label for="nameP">Nombre de contacto</label>
                     <input id="nameP" type="text" class="form-control" placeholder="Nombre completo" name="nameP" value="<?php echo $profile[0]['name'] ?>" required>
@@ -61,21 +61,9 @@ if(!isset($_SESSION['rol'])){
                   </button>
                 </form>
               </div>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="tab_imagenPerfil" aria-labelledby="imagenPerfil-tab">
+              <hr>
               <div class="x_content">
-                <form class="" action="">
-                  <div class="form-section">
-                    <input type="file" class="form-control" name="fileToUpload" id="fileToUpload" name="fileToUpload">
-                  </div>
-                  <label for="emailP"></label>
-                  <input id="emailP" type="text" class="form-control" placeholder="E-mail" name="emailP" value="<?php echo $profile[0]['mail'] ?>" required>
-                </form>
-              </div>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="tab_acceso" aria-labelledby="acceso-tab">
-              <div class="x_content">
-                <form class="" action="">
+                <form class="" method="post">
                   <div class="form-section">
                     <input type="hidden" id="userID" name="userID" value="<?= $profile['0']['iduser']?>">
                     <label for="usernameP">Usuario</label>
@@ -83,13 +71,39 @@ if(!isset($_SESSION['rol'])){
                     <div class="clear"></div>
                   </div>
                   <div class="form-section">
+                    <label for="emailP"></label>
+                    <input id="emailP" type="text" class="form-control" placeholder="E-mail" name="emailP" value="<?php echo $profile[0]['mail'] ?>" required>
+                    <div class="clear"></div>
+                  </div>
+                  <button type="button" id="editProfileUser" class="btn bgGreen cWhite pull-right" >
+                    Editar
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tab_imagenPerfil" aria-labelledby="imagenPerfil-tab">
+              <div class="x_content">
+                <form class="" action="">
+                  <div class="form-section">
+                    <input type="file" class="form-control" name="fileToUpload" id="fileToUpload" name="fileToUpload">
+                  </div>
+                </form>
+                <button type="button" id="editProfilePic" class="btn bgGreen cWhite pull-right" >
+                  Editar
+                </button>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tab_acceso" aria-labelledby="acceso-tab">
+              <div class="x_content">
+                <form class="" action="">
+                  <div class="form-section">
                     <label for="oldPassP">Contraseña Actual</label>
-                    <input id="oldPassP" type="password" class="form-control" placeholder="" name="oldPassP" value="" required>
+                    <input id="oldPassP" type="password" class="form-control" placeholder="" name="oldPassP" value="">
                     <div class="clear"></div>
                   </div>
                   <div class="form-section">
                     <label for="newPassP">Contraseña Nueva</label>
-                    <input id="newPassP" type="password" class="form-control" placeholder="" name="newPassP" value="">
+                    <input id="newPassP" type="password" class="form-control" placeholder="" name="newPassP" value="" required>
                     <div class="clear"></div>
                   </div>
                   <button type="button" id="changeAccess" class="btn bgGreen cWhite pull-right" >
