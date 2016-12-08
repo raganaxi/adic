@@ -17,7 +17,7 @@ class admin
     $email_message = str_replace('###MAIL###', $mail, $email_message);
     $email_message = str_replace('###PASSWORD###', $pass, $email_message);
     $email_message = preg_replace('/\\\\/','', $email_message);
-    $headers = "From: atello@awsoftware.mx\r\n";
+    $headers = "From: bienvenido@adondeirenlaciudad.com\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=utf-8\r\n";
     $headers .= "Content-Transfer-Encoding: 8bit\r\n";

@@ -125,18 +125,17 @@ class user
     return implode($pass); /*turn the array into a string*/
   }
 
-//terminar
-/*  public static function changeAccess($user, $username, $oldPass, $newPass) {
-    $getID = 'SELECT iduser FROM user WHERE username = '.$username.' AND pass = '.$oldPass.'';
+  public static function changeAccess($user, $username, $oldPass, $newPass) {
+    //UPDATE `u913897248_adic`.`user` SET `username`='ubit2', `pass`='123123123' WHERE `iduser`='66';
+
+    $consulta = 'UPDATE user SET username = '.$username.', pass = '.$newPass.' WHERE iduser = '.$user.' AND pass ='.$oldPass.'';
+    $check = 'SELECT * FROM user WHERE iduser = '.$user.' and pass = '.$newPass.' and username = '. $username .'';
     $PDOMYSQL = new PDOMYSQL;
-    $id = $PDOMYSQL->consulta($getID);
-    $consulta = 'UPDATE user SET pass = '.$newPass.' WHERE iduser = '.$id.'';
-    $check = 'SELECT * FROM user WHERE pass = '.$newPass.' and iduser = '. $user .'';
     $update =  $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
     error_log(print_r($result, true));
     return $result;
-  }*/
+  }
 
   public static function activateUser($user) {
     $consulta = 'UPDATE user SET active = 1 WHERE iduser = '.$user.'';

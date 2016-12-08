@@ -83,13 +83,13 @@ if(!isset($_SESSION['rol'])){
                     <div class="clear"></div>
                   </div>
                   <div class="form-section">
-                    <label for="newPassP">Contraseña Actual</label>
-                    <input id="newPassP" type="password" class="form-control" placeholder="" name="newPassP" value="" required>
+                    <label for="oldPassP">Contraseña Actual</label>
+                    <input id="oldPassP" type="password" class="form-control" placeholder="" name="oldPassP" value="" required>
                     <div class="clear"></div>
                   </div>
                   <div class="form-section">
-                    <label for="oldPassP">Contraseña Nueva</label>
-                    <input id="oldPassP" type="password" class="form-control" placeholder="" name="oldPassP" value="">
+                    <label for="newPassP">Contraseña Nueva</label>
+                    <input id="newPassP" type="password" class="form-control" placeholder="" name="newPassP" value="">
                     <div class="clear"></div>
                   </div>
                   <button type="button" id="changeAccess" class="btn bgGreen cWhite pull-right" >
