@@ -134,9 +134,9 @@ public static function getPost($categoria,$fecha){
 }
 public static function getNegocios($categoria){
   $db_con = new PDOMYSQL;
-  $consulta = 'SELECT category.nombre as categoria, user_data.name as user_name, user_data.img as user_pic FROM user  INNER JOIN user_data ON user_data.user_id = user.userid';
+  $consulta = "SELECT negocio as nombre,iduser as userid,img as userpic FROM user INNER JOIN user_data ON user_data.user_id = user.iduser WHERE user.role = 'socio'";
   $result =  $db_con->consulta($consulta);
-  
+
   
   return $result;
 }
