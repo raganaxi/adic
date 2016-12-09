@@ -132,6 +132,14 @@ public static function getPost($categoria,$fecha){
   }
   return $result;
 }
+public static function getNegocios($categoria){
+  $db_con = new PDOMYSQL;
+  $consulta = 'SELECT category.nombre as categoria, user_data.name as user_name, user_data.img as user_pic FROM user  INNER JOIN user_data ON user_data.user_id = user.userid';
+  $result =  $db_con->consulta($consulta);
+  
+  
+  return $result;
+}
 
 /*public static function getPostsSocio($categoria,$fecha){
   $db_con = new PDOMYSQL;

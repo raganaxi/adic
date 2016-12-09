@@ -50,6 +50,7 @@ if (is_ajax()){
 			case 'logout': logout_function();break;
 			case 'registerU': register_user();break;
 			case 'getPost': getPost_function();break;
+			case 'getNegocios': getNegocios_function();break;
 			case 'getCat': getCat_function();break;
 			case 'buscar': buscar_function();break;
 			case 'activateT': activateToken_function();break;
@@ -412,6 +413,44 @@ function getPost_function(){
 	$post=posts::getPost($categoria,$fecha);
 	
 	
+	if (!empty($post)){
+		$datos=$post;
+		$continuar="ok";
+		$error="no_error";
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_error";
+		$datos=$post;
+		$mensaje="ocurrio algo";
+	}
+	
+}
+function getNegocios_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$categoria="";
+	switch($_SERVER['REQUEST_METHOD'])
+	{
+		case 'GET':
+		
+		
+		if (isset($_GET["categoria"]) && !empty($_GET["categoria"])) {
+			$categoria=$_GET["categoria"];
+		}
+		break;
+		case 'POST':
+		if (isset($_POST["categoria"]) && !empty($_POST["categoria"])) {
+			$categoria=$_POST["categoria"];
+		}		
+		
+		break;
+		default:
+	}
+	$post=posts::getNegocios($categoria);	
 	if (!empty($post)){
 		$datos=$post;
 		$continuar="ok";
