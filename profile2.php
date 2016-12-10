@@ -13,22 +13,27 @@ use user AS user;
   <section class="z-container mainContainer noPadding">
     <div class="clear h50"></div>
     <div class="z-row noMargin">
-      <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12 noPadding">
-        <div class="z-forceBlock bgTransparent noMargin">
-          <div class="z-block panelImg bgDarkBlue h50vh" style="background-image:url('images/profPicture/01.png')">
-            <div class="clear h30vh"></div>
-            <div class="z-panelBody z-block h20vh bgDarkClear">
-              <div class="z-content z-contentMiddle text-center">
-                <h3 class="noMargin text-uppercase text-bold s20 text-center cWhite">Negocio</h3>
-                <p class="noMargin cWhite text-center text-lowercase">
-                  telefono<br>
-                  correo
-                </p>
-                <a class="s15 text-center cLightBlue" type="button" data-toggle="modal" data-target="#mapModal">
-                  <span class="fa fa-map-marker"></span> Ver Ubicacion
-                </a>
-              </div>
+      <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
+        <div class="z-forceBlock bgTransparent noMargin boxShadow">
+          <div class="z-block panelImg bgDarkBlue h100vw" style="background-image:url('images/profile/01.png')">
+          </div>
+          <div class="z-block h10vh bgDarkClear">
+            <div class="z-content z-contentMiddle text-center">
+              <h3 class="noMargin text-uppercase text-bold text-center cWhite">Negocio</h3>
+              <a class="s15 text-center cLightBlue" type="button" data-toggle="modal" data-target="#mapModal">
+                <span class="fa fa-map-marker"></span> Ver Ubicacion
+              </a>
             </div>
+          </div>
+          <div class="z-block h20vh bgWhite">
+            <ul class="noMargin cDark text-lowercase">
+              <li>
+                telefono:
+              </li>
+              <li>
+                correo:
+              </li>
+            </ul>
           </div>
         </div>
       </div>
