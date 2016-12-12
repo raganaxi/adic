@@ -3,8 +3,8 @@ var storage;
 var app={};
 var appS={};
 var controller;
-var urlLocal="../";
-var urlRemoto="http://pruebasapi.esy.es/adic/development/";
+var urlLocal="http://localhost:8080/cache/adic/";
+var urlRemoto="http://adondeirenlaciudad.com/";
 var urlAjax=urlRemoto;
 /**********************/
 $(document).bind("mobileinit", function(){
@@ -25,6 +25,7 @@ $(document).ready(function() {
 		
 	}
 	function is_logged_in(){
+
 		app=getAppJson();
 		email=app.user.email;
 		name=app.user.name;
@@ -78,7 +79,7 @@ $(document).ready(function() {
 	});
 	/* funcion para login */
 	function submitFormsubmitFormLogin(){  
-		
+		ajaxLoader("inicia"); 
 		var data = {'action': 'loginU','logUser':$("#logUser").val(),'logPass':$("#logPass").val()};
 		$.ajax({
 
@@ -105,13 +106,15 @@ $(document).ready(function() {
 				$.mobile.changePage("#main");
 				is_logged_in();
 				$('.modal').modal('hide');
+				ajaxLoader("termina");
 			}
 			else{
-
+				ajaxLoader("termina");
 				alertMensaje('usuario o contraseña no son correctos');
 			}
 		})
 		.fail(function( jqXHR, textStatus, errorThrown ) {
+			ajaxLoader("termina");
 			alertMensaje('problemas al iniciar session'+errorThrown);
 		});
 
@@ -158,6 +161,7 @@ $(document).ready(function() {
 			var user={
 				fecha:"",
 				categoria:"",
+				vista:"promociones",
 			};
 			appS={
 				user:user
@@ -170,6 +174,7 @@ $(document).ready(function() {
 				appS.user={
 					fecha:"",
 					categoria:"",
+					vista:"promociones",
 				};
 				setAppSession(appS);			
 			}
@@ -182,6 +187,7 @@ $(document).ready(function() {
 	}
 	/* funcion para logout */
 	$("#logOutbtn").on('click', function(){
+		ajaxLoader("inicia"); 
 		var data= {'action': 'logout','token':app.user.token};
 		$.ajax({
 			data:  data,
@@ -204,12 +210,14 @@ $(document).ready(function() {
 				};
 				setAppJson(app);
 				is_logged_in();
+				ajaxLoader("termina");
 			}
 
 		});
 	});
 	/*crear cuenta por email*/
-	$("#crteAccountE").on('click', function(){		
+	$("#crteAccountE").on('click', function(){
+	ajaxLoader("inicia"); 	
 		var data= {'action': 'registerU',"mail": $("#ruMail").val(),"pass": $("#ruPass").val()};
 		$.ajax({
 			data:  data,
@@ -233,14 +241,30 @@ $(document).ready(function() {
 				$.mobile.changePage("#main");
 				is_logged_in();
 				$('.modal').modal('hide');
+				ajaxLoader("termina");
 			}
 			else{
-
+				ajaxLoader("termina");
 				alertMensaje('problemas al iniciar session');
 			}
 
 		});
 	});
+	$(document).on('click', '.toggle-view-promociones', function(event) {
+		event.preventDefault();
+		appS=getAppSession();
+		if (appS.user.vista==="promociones") {
+			appS.user.vista="negocios";
+			
+		}else{
+			appS.user.vista="promociones";
+			
+		}
+		setAppSession(appS);
+		mainFunction();
+
+		/* Act on the event */
+	});		
 	function getMenuCategorias(){	
 		/*codigo ajax para despues traernos el menu de categorias */
 	}
@@ -298,14 +322,89 @@ $(document).ready(function() {
 			}
 			ajaxLoader("termina");
 
+		}).fail(function( jqXHR, textStatus, errorThrown ) {
+			$("#postContainer").html('<div class="h50">Sin publicaciones :(');
+			ajaxLoader("termina");
 		});
+	}
+	
+	/*$('#sectionPost').xpull({
+		'callback':function(){
+			getPost();
+		}
+	});*/
+	function getNegocios(){
+		ajaxLoader("inicia"); 
+		appS=getAppSession();
+		var data= {'action': 'getNegocios','categoria':appS.user.categoria};	
+		$.ajax({			
+			data:data,
+			crossDomain: true,
+			cache: false,
+			xhrFields: {
+				withCredentials: true
+			},
+			url: urlAjax+'classes/ajaxApp.php',
+			type: 'post'
+		}).done(function(data){
+			if(data.continuar==="ok"){
+				var datahtml="";
+				for(var i in data.datos) {
+					datahtml+=getHTMLNegocios(data.datos[i]);
+				}
+				$("#postContainer").html(datahtml);
+				
+			}
+			else{
+				$("#postContainer").html('<div class="h50">Sin negocios :(');
+			}
+			ajaxLoader("termina");
+
+		}).fail(function( jqXHR, textStatus, errorThrown ) {
+			$("#postContainer").html('<div class="h50">Sin negocios :(');
+			ajaxLoader("termina");
+		});
+		/*
+		var datos={
+			userid:"1",
+			nombre:"nombre",
+			userpic:"http://wingsfactory.com.mx/wp-content/uploads/2015/05/menu-image.png",
+			categoria:"Categoria",
+			categoriaid:"1",
+
+		};*/
+		
+
 	}
 	
 	$('#sectionPost').xpull({
 		'callback':function(){
-			getPost();
+			mainFunction();
 		}
 	});
+	function getHTMLNegocios(json){
+		return '<div class="card-negocio">'+
+		'<div class="flex-negocio">'+
+		'<div class="col-xs-4 div-flex-negocio">'+
+		'<a class="profile product-content-image flex-negocio .div-flex-negocio" data-userid="'+json.userid+'">'+
+		'<div class="image-swap img-responsive" style="background-image: url('+json.userpic+');">'+
+		'</div>'+
+		'</a>'+
+		'</div>'+
+		'<div class="col-xs-8">'+
+		'<div class="categoria">'+
+		'<a data-id="'+json.categoriaid+'" class="categoriaClick negocio-link ">'+json.categoria+'</a>'+
+		'</div>'+
+
+		'<p class="titulo-negocio">'+
+		'<a data-id="'+json.userid+'" class="negocio-link">'+json.nombre+'</a>'+
+		'</p>'+
+		'<div class="descripcion-negocio">descripcion'+
+		'</div>	'+
+		'</div>'+
+		'</div>'+
+		'</div>';
+	}
 	function getHtmlPost(json){
 		return '<div class="z-panel z-forceBlock bgWhite wow fadeInUp boxShadow" data-wow-duration=".5s" data-wow-delay=".2s">'+
 		'<div class="z-panelHeader noPadding noBorder">'+
@@ -326,14 +425,6 @@ $(document).ready(function() {
 		json.userid+'">'+json.user_name+
 		'</button>'+
 		'</form>'+
-		'<p class="noMargin cDark">Calle fulana #45, Centro. Torreón, Coahuila.</p>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
-		'<div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-2 noPadding">'+
-		'<div class="z-block h70">'+
-		'<div class="z-content z-contentMiddle text-center">'+
-		'<span class="fa fa-star-o s20 cGrey"></span>'+
 		'</div>'+
 		'</div>'+
 		'</div>'+
@@ -350,23 +441,10 @@ $(document).ready(function() {
 		'<p class="cDark s15">'+
 		'<span class="text-bold text-uppercase">'+json.title+'</span>'+
 		'<span class="hidden">'+json.categoria+
-		'</span><br>'+json.descripcion+
-		'</p>'+
 		'</div>'+
 		'</div>'+
 		'</div>'+
 		'</div>'+
-		'</div>'+
-		'<div class="z-panelFooter z-block h40 overflowHidden noPadding bgTransparent">'+
-		'<a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20 noBorder noPadding">'+
-		'<span class="fa fa-share"></span>'+
-		'</a>'+
-		'<a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20 noBorder noPadding">'+
-		'<span class="fa fa-thumbs-up"></span>'+
-		'</a>'+
-		'<a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20 noBorder noPadding">'+
-		'<span class="fa fa-tag"></span>'+
-		'</a>'+
 		'</div>'+
 		'</div>';
 	}
@@ -388,10 +466,19 @@ $(document).ready(function() {
 	function mainFunction(){
 		is_logged_in();
 		app=getAppJson();
+		appS=getAppSession();
 		if (app.user.name!=="") {$(".usuario_mostrar").html(app.user.name);}
 		getDiaSemana();
-		getPost();
 		getMenuCategorias();
+		$vista= $(".toggle-view-promociones");
+		if (appS.user.vista==="promociones") {
+			getPost();
+			$vista.attr('tooltip', 'Negocios');
+		}
+		else{
+			$vista.attr('tooltip', 'Promociones');
+			getNegocios();
+		}
 	}
 	function ubicacionesFunction(){
 		app=getAppJson();
@@ -478,6 +565,23 @@ $(document).ready(function() {
 			$("#searchBtn").click();
 			event.preventDefault();
 		});
+		$(document).on('click','.lgn-with-fb',function(event) {
+			var token='swd';
+			//var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
+			var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
+			//$("#iframemodal .modal-body").html(html);
+		});
+		$(document).on('click','.link', function(event) {
+			event.preventDefault();
+			url = $(this).attr("rel");
+			//navigator.app.loadUrl(url, {openExternal: true});
+			window.open(url,'_blank', 'location=yes');
+		});
+
+		function loadURL(url){
+			navigator.app.loadUrl(url, { openExternal:true });
+			return false;
+		}
 		$("#searchBtn").on('click', function(event) {
 			ajaxLoader("inicia");
 			event.preventDefault();
@@ -527,25 +631,34 @@ $(document).ready(function() {
 
 
 
-		/*mainFunction();*/
+
+
+		mainFunction();
 
 
 		/* fin inicializar */
 	}
-	function showHelp(url) {
-
-	    var target = "_blank";
-
-	    var options = "location=yes,hidden=yes";
-
-	    inAppBrowserRef = cordova.InAppBrowser.open(url, target, options);
-
-	    inAppBrowserRef.addEventListener('loadstart', loadStartCallBack);
-
-	    inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
-
-	    inAppBrowserRef.addEventListener('loaderror', loadErrorCallBack);
-
+	function openInAppBrowserBlank(url)
+	{
+		try {
+			ref = window.open(encodeURI(url),'_blank','location=no');
+			ref.addEventListener('loadstop', LoadStop);
+			ref.addEventListener('exit', Close);
+		}
+		catch (err)    
+		{
+			alert(err);
+		}
 	}
+	function LoadStop(event) {
+		if(event.url == "http://www.mypage.com/closeInAppBrowser.html"){
+			/*alert("fun load stop runs");*/
+			ref.close();
+		}    
+	}
+	function Close(event) {
+		ref.removeEventListener('loadstop', LoadStop);
+		ref.removeEventListener('exit', Close);
+	} 
 	/* fin del ready */	
 });
