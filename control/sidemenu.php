@@ -17,7 +17,7 @@
       </div>
       <div class="profile_info">
         <span>Bienvenido,</span>
-        <h2><?= $profile['0']['name'] ?></h2>
+        <h2><?php if(isset($profile['0']['name'])){ echo $profile['0']['name']; }; ?></h2>
       </div>
     </div>
     <!-- /menu profile quick info -->

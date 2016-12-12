@@ -126,11 +126,12 @@ class user
   }
 
   public static function changeAccess($user, $username, $oldPass, $newPass) {
-    $consulta = 'UPDATE user SET pass = '.$newPass.', username = '.$username.' WHERE iduser = '.$user.' and pass = '.$oldPass.'';
-    $check = 'SELECT * FROM user WHERE pass = '.$newPass.' and username = '.$username.' and iduser = '. $user .'';
+    $consulta = 'UPDATE user SET pass = "'.$newPass.'" WHERE iduser = '.$user.' AND pass = "'.$oldPass.'"';
+    $check = 'SELECT * FROM user WHERE pass = "'.$newPass.'" and iduser = '. $user .'';
     $PDOMYSQL = new PDOMYSQL;
-    $update =  $PDOMYSQL->consulta($consulta);
+    $update = $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
+    error_log(print_r($update, true));
     error_log(print_r($result, true));
     return $result;
   }
@@ -157,7 +158,18 @@ class user
     error_log(print_r($result, true));
     return $result;
   }
-public static function userExist($email) {
+
+  public static function reg_address($calle, $numero, $municipio, $estado, $pais, $cp, $uid){
+    $consulta = 'INSERT INTO address (calle, numero, municipio, estado, pais, cp, user_Id) VALUES ("'.$calle.'", "'.$numero.'", "'.$municipio.'", "'.$estado.'", "'.$pais.'", "'.$cp.'", "'.$uid.'")';
+    $check = 'SELECT * FROM address WHERE user_id = '.$uid.' and calle = '.$calle.' and numero = '.$numero.' and municipio = '.$municipio.' and estado = '.$estado.' and pais = '.$pais.' and cp = '.$$cp.' ';
+    $PDOMYSQL = new PDOMYSQL;
+    $consulta =  $PDOMYSQL->consulta($consulta);
+    $result = $PDOMYSQL->consulta($check);
+    error_log(print_r($result, true));
+    return $result;
+  }
+
+  public static function userExist($email) {
     $consulta = 'SELECT * from user WHERE username = ?';
     $parametros = array($email);
     $db_con = new PDOMYSQL;
@@ -174,7 +186,7 @@ public static function userExist($email) {
     $result =  $db_con->consultaSegura($consulta,$parametros);
     $check=self::userExist($email);
     return $check;
-  }  
+  }
   public static function tokenActivate($token,$iduser){
     $consulta ="UPDATE tbl_tokens SET active=1,user_id=? WHERE tx_token=?";
     $parametros = array($iduser,$token);
