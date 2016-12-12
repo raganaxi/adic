@@ -158,7 +158,18 @@ class user
     error_log(print_r($result, true));
     return $result;
   }
-public static function userExist($email) {
+
+  public static function reg_address($calle, $numero, $municipio, $estado, $pais, $cp, $uid){
+    $consulta = 'INSERT INTO address (calle, numero, municipio, estado, pais, cp, user_Id) VALUES ("'.$calle.'", "'.$numero.'", "'.$municipio.'", "'.$estado.'", "'.$pais.'", "'.$cp.'", "'.$uid.'")';
+    $check = 'SELECT * FROM address WHERE user_id = '.$uid.' and calle = '.$calle.' and numero = '.$numero.' and municipio = '.$municipio.' and estado = '.$estado.' and pais = '.$pais.' and cp = '.$$cp.' ';
+    $PDOMYSQL = new PDOMYSQL;
+    $consulta =  $PDOMYSQL->consulta($consulta);
+    $result = $PDOMYSQL->consulta($check);
+    error_log(print_r($result, true));
+    return $result;
+  }
+
+  public static function userExist($email) {
     $consulta = 'SELECT * from user WHERE username = ?';
     $parametros = array($email);
     $db_con = new PDOMYSQL;
