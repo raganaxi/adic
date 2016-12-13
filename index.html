@@ -35,7 +35,7 @@
           <button type="button" class="navbar-toggle bgTransparent noBorder s20 noMargin collapsed s25" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only"></span><i class="fa fa-bars"></i>
           </button>
-          <a class="navbar-brand page-scroll" href="#page-top">A donde ir en la ciudad</a>
+          <a class="navbar-brand page-scroll cDark" href="#page-top"><span class="hidden-lg hidden-md">A dónde ir en la ciudad</span></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -48,6 +48,9 @@
               <a class="page-scroll" href="#features">Características</a>
             </li>
             <li>
+              <a class="page-scroll" href="#socios">Asóciate</a>
+            </li>
+            <li>
               <a class="page-scroll" href="#contact">Síguenos</a>
             </li>
           </ul>
@@ -57,14 +60,17 @@
       <!-- /.container-fluid -->
     </nav>
 
-    <header class="bgLightBlue">
+    <header class="">
+      <div class="overlay bgDarkClear"></div>
       <div class="container">
         <div class="row">
           <div class="col-sm-7">
             <div class="header-content">
               <div class="header-content-inner">
-                <h1>Encuentra las mejores promociones de los lugares cercanos a ti</h1>
-                <a href="#download" class="btn btn-outline btn-xl page-scroll">¡Descargala ya!</a>
+                <img src="images/logos/logo.png" alt="..." class="mh150 img-responsive">
+                <div class="clear"></div>
+                <h1>Encuentra las mejores promociones de los lugares cercanos a tí</h1>
+                <a href="#download" class="btn btn-outline btn-xl page-scroll">¡Descárgala ya!</a>
               </div>
             </div>
           </div>
@@ -93,7 +99,7 @@
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
             <h2 class="section-heading cWhite">¡Encuentra los mejores lugares para salir en tu ciuidad!</h2>
-            <p class="cLightGrey">Estamos disponibles para cualquier dispositivo movil, ¡Búscanos en tu appstore!</p>
+            <p class="cLightGrey">Estámos disponibles para cualquier dispositivo móvil, ¡Búscanos en tu appStore!</p>
             <div class="badges">
               <a class="badge-link" href="#"><img src="images/google-play-badge.svg" alt=""></a>
               <a class="badge-link" href="#"><img src="images/app-store-badge.svg" alt=""></a>
@@ -147,11 +153,13 @@
       </div>
     </section>
 
-    <section class="cta hidden">
+    <section id="socios" class="cta">
       <div class="cta-content">
         <div class="container">
-          <h2>Stop waiting.<br>Start building.</h2>
-          <a href="#contact" class="btn btn-outline btn-xl page-scroll">Let's Get Started!</a>
+          <h1 class="s60 cWhite text-right">¿Eres dueño de un negocio?</h1>
+          <h2 class="s30 text-right pull-right">Conviertete en socio y anúnciate con nosotros.</h2>
+          <div class="clearfix"></div>
+          <a href="control/index.php" class="btn btn-outline btn-xl page-scroll pull-right">Solicita tu registro</a>
         </div>
       </div>
       <div class="overlay"></div>
@@ -159,7 +167,7 @@
 
     <section id="contact" class="contact bgLightBlue">
       <div class="container">
-        <h2>Siguenos en nuestras redes sociales <i class="fa fa-thumbs-up cLightGrey"></i></h2>
+        <h2>Síguenos en nuestras redes sociales <i class="fa fa-thumbs-up cLightGrey"></i></h2>
         <ul class="list-inline list-social">
           <li class="social-twitter">
             <a href="#" class="boxShadow"><i class="fa fa-twitter"></i></a>
@@ -176,7 +184,7 @@
 
     <footer class="bgDark">
       <div class="container">
-        <p>&copy; <span class="text-uppercase">A donde ir en la ciudad.</span><br>Todos los derechos reservados.</p>
+        <p>&copy; <span class="text-uppercase">A dónde ir en la ciudad.</span><br>Todos los derechos reservados.</p>
         <ul class="list-inline">
           <li>
             <a href="#">Privacidad</a>

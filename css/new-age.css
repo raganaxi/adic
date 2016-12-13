@@ -147,9 +147,13 @@ header {
   width: 100%;
   min-height: auto;
   overflow-y: hidden;
-  /*background: url("../img/bg-pattern.png"), #7b4397;
-  background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #dc2430);
-  background: url("../img/bg-pattern.png"), linear-gradient(to left, #7b4397, #dc2430);*/
+  background-image: url('../images/bg/s04.jpg');
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /*background: url("../images/bg-pattern.png"), #7b4397;
+  background: url("../images/bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #dc2430);
+  background: url("../images/bg-pattern.png"), linear-gradient(to left, #7b4397, #dc2430);*/
   color: white;
 }
 header .header-content {
@@ -295,7 +299,7 @@ section.cta {
   background-size: cover;
   -o-background-size: cover;
   background-position: center;
-  background-image: url('../img/bg-cta.jpg');
+  background-image: url('../images/bg/s03.jpg');
   padding: 250px 0;
 }
 section.cta .cta-content {
@@ -314,7 +318,7 @@ section.cta .cta-content h2 {
     font-size: 80px;
   }
 }
-section.cta .overlay {
+.overlay {
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
