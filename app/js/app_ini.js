@@ -3,9 +3,9 @@ var storage;
 var app={};
 var appS={};
 var controller;
-var urlLocal="http://localhost:8080/cache/adic/";
+var urlLocal="http://localhost/cache/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
-var urlAjax=urlRemoto;
+var urlAjax=urlLocal;
 /**********************/
 $(document).bind("mobileinit", function(){
 	
@@ -364,15 +364,6 @@ $(document).ready(function() {
 			$("#postContainer").html('<div class="h50">Sin negocios :(');
 			ajaxLoader("termina");
 		});
-		/*
-		var datos={
-			userid:"1",
-			nombre:"nombre",
-			userpic:"http://wingsfactory.com.mx/wp-content/uploads/2015/05/menu-image.png",
-			categoria:"Categoria",
-			categoriaid:"1",
-
-		};*/
 		
 
 	}
@@ -387,7 +378,7 @@ $(document).ready(function() {
 		'<div class="flex-negocio">'+
 		'<div class="col-xs-4 div-flex-negocio">'+
 		'<a class="profile product-content-image flex-negocio .div-flex-negocio" data-userid="'+json.userid+'">'+
-		'<div class="image-swap img-responsive" style="background-image: url('+json.userpic+');">'+
+		'<div class="image-swap img-responsive" style="background-image: url('+urlAjax+'images/profPicture/'+json.userpic+');">'+
 		'</div>'+
 		'</a>'+
 		'</div>'+
