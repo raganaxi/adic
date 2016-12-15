@@ -5,7 +5,7 @@ var appS={};
 var controller;
 var urlLocal="http://localhost/cache/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
-var urlAjax=urlLocal;
+var urlAjax=urlRemoto;
 /**********************/
 $(document).bind("mobileinit", function(){
 	
