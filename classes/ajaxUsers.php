@@ -95,7 +95,7 @@ if (isset($_POST['reg_soc'])) {
  //  $_POST['pass'] = isset($_POST['pass'])? $_POST['pass'] : 'admin123';
 //   $_POST['pass'] = sha1($_POST['pass']);
   //  $_POST['img'] = 'images/profPicture/'.$_POST['img'];
-	$result = user::registerSoc($_POST['name'], $_POST['phone'], $_POST['mail'], $_POST['pass'] = null, $_POST['typeReg'], $_POST['img'] = "01.png", $_POST['negocio']);
+	$result = user::registerSoc($_POST['name'], $_POST['phone'], $_POST['mail'], $_POST['pass'] = null, $_POST['typeReg'], $_POST['img'] = "01.png", $_POST['negocio'], $_POST['category']);
 	//$resultl = user::login($_POST['mail'], $_POST['pass']);
 	//if (!empty($result)) {
 		// $_SESSION['user'] = isset($resultl[0]['username'])? $resultl[0]['username'] : null ;

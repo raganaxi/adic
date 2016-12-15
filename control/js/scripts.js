@@ -335,7 +335,7 @@ $( "#findRestaurant" ).on( 'click', function () {
 
     $.each( data, function ( index, value ) {
       console.log( data[ index ] );
-      $( "#postContainer" ).append( createpost( data[ index ].title, data[ index ].description, 'brayan', data[ index ].date, data[ index ].categoria, data[ index ].image, data[ index ].user_pic ) );
+      $( "#postContainer" ).append( createpost( data[ index ].title, data[ index ].description, '', data[ index ].date, data[ index ].categoria, data[ index ].image, data[ index ].user_pic ) );
     } );
 
   } );
@@ -356,7 +356,7 @@ $( "#findBar" ).on( 'click', function () {
 
     $.each( data, function ( index, value ) {
       console.log( data[ index ] );
-      $( "#postContainer" ).append( createpost( data[ index ].title, data[ index ].description, 'brayan', data[ index ].date, data[ index ].categoria, data[ index ].image, data[ index ].user_pic ) );
+      $( "#postContainer" ).append( createpost( data[ index ].title, data[ index ].description, '', data[ index ].date, data[ index ].categoria, data[ index ].image, data[ index ].user_pic ) );
     } );
 
   } );
@@ -376,7 +376,7 @@ $( "#findAntro" ).on( 'click', function () {
 
     $.each( data, function ( index, value ) {
       console.log( data[ index ] );
-      $( "#postContainer" ).append( createpost( data[ index ].title, data[ index ].description, 'brayan', data[ index ].date, data[ index ].categoria, data[ index ].image, data[ index ].user_pic ) );
+      $( "#postContainer" ).append( createpost( data[ index ].title, data[ index ].description, '', data[ index ].date, data[ index ].categoria, data[ index ].image, data[ index ].user_pic ) );
     } );
 
   } );
@@ -396,7 +396,7 @@ $( "#findFoodTruck" ).on( 'click', function () {
 
     $.each( data, function ( index, value ) {
       console.log( data[ index ] );
-      $( "#postContainer" ).append( createpost( data[ index ].title, data[ index ].description, 'brayan', data[ index ].date, data[ index ].categoria, data[ index ].image, data[ index ].user_pic ) );
+      $( "#postContainer" ).append( createpost( data[ index ].title, data[ index ].description, '', data[ index ].date, data[ index ].categoria, data[ index ].image, data[ index ].user_pic ) );
     } );
 
   } );
@@ -416,7 +416,7 @@ $( "#findEvent" ).on( 'click', function () {
 
     $.each( data, function ( index, value ) {
       console.log( data[ index ] );
-      $( "#postContainer" ).append( createpost( data[ index ].title, data[ index ].description, 'brayan', data[ index ].date, data[ index ].categoria, data[ index ].image, data[ index ].user_pic ) );
+      $( "#postContainer" ).append( createpost( data[ index ].title, data[ index ].description, '', data[ index ].date, data[ index ].categoria, data[ index ].image, data[ index ].user_pic ) );
     } );
 
   } );
@@ -436,7 +436,7 @@ $( "#findUbication" ).on( 'click', function () {
 
     $.each( data, function ( index, value ) {
       console.log( data[ index ] );
-      $( "#postContainer" ).append( createpost( data[ index ].title, data[ index ].description, 'brayan', data[ index ].date, data[ index ].categoria, data[ index ].image, data[ index ].user_pic ) );
+      $( "#postContainer" ).append( createpost( data[ index ].title, data[ index ].description, '', data[ index ].date, data[ index ].categoria, data[ index ].image, data[ index ].user_pic ) );
     } );
 
   } );
@@ -486,11 +486,13 @@ $( "#createCategory" ).on( 'click', function () {
 //crear cuenta por email socio
 $( "#createSoc" ).on( 'click', function () {
   var type;
+  var category = '';
   if($('#registerSocio').length != 0 ){
     type = "mail";
   }
   if($('#registerSocio-admin').length != 0 ){
     type = "admininstrador";
+    category = $( '#category' ).val();
   }
   $.ajax( {
     data: {
@@ -499,7 +501,8 @@ $( "#createSoc" ).on( 'click', function () {
       "phone": $( "#telSocio" ).val(),
       "mail": $( "#mailSocio" ).val(),
       "typeReg" : type,
-      "negocio": $( "#nameNegocio" ).val()
+      "negocio": $( "#nameNegocio" ).val(),
+      "category": category
         //"pass": $("#passwSocio").val(),
         //"img": document.getElementById("imgProfile").files[0].name
     },
@@ -542,7 +545,7 @@ $( "#createPost" ).on( 'click', function () {
       "title": $( "#postTitle" ).val(),
       "description": $( "#postDescription" ).val(),
       "date": $( "#postDate" ).val(),
-      "category": $( '#category' ).val(),
+      //"category": $( '#category' ).val(),
       "file": document.getElementById( "file" ).files[ 0 ].name
     },
     url: '../classes/ajaxUsers.php',

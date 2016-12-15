@@ -19,8 +19,8 @@ class user
     return $result;
   }
 
-  public static function registerSoc($name, $phone, $mail, $pass, $r_type, $img, $negocio){
-    $consulta = 'call register_soc("'.$name.'","'.$phone.'","'.$mail.'", "'.user::randomPassword().'",  "'.$r_type.'",  "'.$img.'",  "'.$negocio.'")';
+  public static function registerSoc($name, $phone, $mail, $pass, $r_type, $img, $negocio, $category){
+    $consulta = 'call register_soc("'.$name.'","'.$phone.'","'.$mail.'", "'.user::randomPassword().'",  "'.$r_type.'",  "'.$img.'",  "'.$negocio.'", "'.$category.'")';
     error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consulta($consulta);

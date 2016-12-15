@@ -55,6 +55,16 @@ if(!isset($_SESSION['rol'])){
                 <div class="clear"></div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
+                Categoría
+              </div>
+              <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12">
+                <select id="category" name="category" class="form-control" >
+                </select>
+                <div class="clear"></div>
+              </div>
+            </div>
             <div class="clear"></div>
             <div>
               <button type="button" id="createSoc" class="btn bgGreen cWhite s20 text-center noTransform boxShadow pull-right">
