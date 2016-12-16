@@ -135,14 +135,13 @@ public static function getPost($categoria,$fecha){
 public static function getNegocios($categoria){
 
   $db_con = new PDOMYSQL;
-  $consulta = "SELECT IF(negocio is null, 'Sin Nombre', negocio) AS nombre,iduser as userid, case img when NULL then 'default.jpg' when '' then 'default.jpg' else img end as userpic, category.nombre as categoria , category.idcategory as categoriaid FROM user INNER JOIN user_data ON user_data.user_id = user.iduser INNER JOIN category on category.idcategory = user_data.category_id WHERE user.role = ?;
-
-";
+  $consulta = "SELECT IF(negocio is null, 'Sin Nombre', negocio) AS nombre,iduser as userid, case img when NULL then 'default.jpg' when '' then 'default.jpg' else img end as userpic, category.nombre as categoria , category.idcategory as categoriaid FROM user INNER JOIN user_data ON user_data.user_id = user.iduser INNER JOIN category on category.idcategory = user_data.category_id WHERE user.role = ? ";
   $socio='socio';
   $parametros = array($socio);
   if($categoria!=""){
-    $consulta.=" and category.idcategory=?";
+    $consulta.=" and user_data.category_id = ?";
     $parametros = array($socio,$categoria);
+    //var_dump($consulta);
   }
   
   $result =  $db_con->consultaSegura($consulta,$parametros);
