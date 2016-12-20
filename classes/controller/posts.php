@@ -150,38 +150,23 @@ public static function getNegocios($categoria){
   return $result;
 }
 
-/*public static function getPostsSocio($categoria,$fecha){
+public static function getAddress($categoria){
   $db_con = new PDOMYSQL;
-  $consulta = 'SELECT post.*,category.nombre as categoria, user_data.name as user_name, user_data.img as user_pic FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid INNER JOIN category on post.categoryid = category.idcategory where date = ';
-  $result="";
-  if ($categoria=="") {
-    if ($fecha=="") {
-      $consulta.="CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date) order by date desc";
-      $result =  $db_con->consulta($consulta);
-
-    }
-    else{
-      $consulta.=' ? order by date desc';
-      $parametros = array($fecha);
-      $result =  $db_con->consultaSegura($consulta,$parametros);
-
-    }
-  }else{
-    if ($fecha=="") {
-      $consulta.=" CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date) and category.idcategory = ? order by date desc";
-      $parametros = array($categoria);
-      $result =  $db_con->consultaSegura($consulta,$parametros);
-
-    }
-    else{
-      $consulta.=' ? and category.idcategory = ? order by date desc';
-      $parametros = array($fecha,$categoria);
-      $result =  $db_con->consultaSegura($consulta,$parametros);
-
-    }
+  $consulta = "SELECT iduser as userid, if( address.calle is NULL,'', address.calle) as calle, if( address.numero is NULL,'',address.numero) as numero, if( address.municipio is NULL,'', address.municipio)  as municipio, if( address.estado is NULL,'', address.estado) as estado, if( address.pais is NULL,'', address.pais) as pais, if( address.cp is NULL,'', address.cp) as cp, if( address.lat is NULL,'', address.lat) as latitud, if( address.long is NULL,'', address.long) as longitud, if( address.idaddress is NULL,'', address.idaddress) as idaddress FROM user INNER JOIN user_data ON user_data.user_id = user.iduser INNER JOIN category on category.idcategory = user_data.category_id inner JOIN address on address.user_id = user_data.user_id WHERE user.role = ?";
+  $socio='socio';
+  $parametros = array($socio);
+  if($categoria!=""){
+    $consulta.=" and user_data.category_id = ? ";
+    $parametros = array($socio,$categoria);
+    //var_dump($consulta);
   }
+  $consulta.=" order by userid";
+  
+  $result =  $db_con->consultaSegura($consulta,$parametros);
+
+  
   return $result;
-}*/
+}
 
 public static function searchInput($input){
   $db_con = new PDOMYSQL;

@@ -328,11 +328,7 @@ $(document).ready(function() {
 		});
 	}
 	
-	/*$('#sectionPost').xpull({
-		'callback':function(){
-			getPost();
-		}
-	});*/
+
 	function getNegocios(){
 		ajaxLoader("inicia"); 
 		appS=getAppSession();
@@ -349,10 +345,21 @@ $(document).ready(function() {
 		}).done(function(data){
 			if(data.continuar==="ok"){
 				var datahtml="";
+				var datos=data.datos;
+				var datahtml=''+
+				'<form class="ui-filterable">'+
+				'<input id="filterNegociosInput" data-type="search">'+
+				'</form>'+
+				'<div class="elements" data-filter="true" data-input="#filterNegociosInput" id="filterNegocios">';
+				
 				for(var i in data.datos) {
 					datahtml+=getHTMLNegocios(data.datos[i]);
 				}
+				datahtml+='</div>';
 				$("#postContainer").html(datahtml);
+				$('#filterNegociosInput').textinput();
+				$('#filterNegocios').filterable();
+
 				
 			}
 			else{
@@ -374,7 +381,9 @@ $(document).ready(function() {
 		}
 	});
 	function getHTMLNegocios(json){
-		return '<div class="card-negocio">'+
+
+		return '<li>'+
+		'<div class="card-negocio">'+
 		'<div class="flex-negocio">'+
 		'<div class="col-xs-4 div-flex-negocio">'+
 		'<a class="profile product-content-image flex-negocio .div-flex-negocio" data-userid="'+json.userid+'">'+
@@ -388,11 +397,12 @@ $(document).ready(function() {
 		'</div>'+
 
 		'<p class="titulo-negocio">'+
-		'<a data-id="'+json.userid+'" class="negocio-link">'+json.nombre+'</a>'+
+		'<a data-id="'+json.userid+'" class="goProfile negocio-link">'+json.nombre+'</a>'+
 		'</p>'+
 		'</div>'+
 		'</div>'+
-		'</div>';
+		'</div>'+
+		'</li>';
 	}
 	function getHtmlPost(json){
 		return '<div class="z-panel z-forceBlock bgWhite wow fadeInUp boxShadow" data-wow-duration=".5s" data-wow-delay=".2s">'+
@@ -400,7 +410,7 @@ $(document).ready(function() {
 		'<div class="z-row noMargin">'+
 		'<div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-3 noPadding">'+
 		'<form class="z-block h70">'+
-		'<button name="useridx"  value="'+json.userid+'" class="z-content z-contentMiddle botonFiltroUsuario">'+
+		'<button name="useridx"  data-id="'+json.userid+'" class="goProfile z-content z-contentMiddle botonFiltroUsuario">'+
 		'<div class="profileImg panelImg" style="background-image:url(\''+urlAjax+'images/profPicture/'+json.user_pic+'\');">'+
 		'</div>'+
 		'</button>'+
@@ -409,8 +419,8 @@ $(document).ready(function() {
 		'<div class="z-col-lg-9 z-col-md-9 z-col-sm-10 z-col-xs-7 noPadding">'+
 		'<div class="z-block h70">'+
 		'<div class="z-content z-contentMiddle">'+
-		'<form action="profile2.php" method="post" >'+
-		'<button name="useridx" class="noMargin text-uppercase text-uppercase s15 cDark text-bold profileU noBorder bgTransparent noPadding" value="'+
+		'<form action="" method="post" >'+
+		'<button name="useridx" class="goProfile noMargin text-uppercase text-uppercase s15 cDark text-bold profileU noBorder bgTransparent noPadding" data-id="'+
 		json.userid+'">'+json.user_name+
 		'</button>'+
 		'</form>'+
@@ -539,6 +549,12 @@ $(document).ready(function() {
 				case 5 :icon="fa-calendar";break;
 			}
 			cambioCategoria(id,icon);
+		});
+		$(document).on('click', '.goProfile', function(event) {
+			event.preventDefault();
+			/* Act on the event */
+			var id =$(this).attr('data-id');
+			console.log('go profile '+id);
 		});
 
 		$("#form_search").submit(function( event ) {
