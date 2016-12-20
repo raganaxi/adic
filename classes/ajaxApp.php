@@ -451,17 +451,29 @@ function getNegocios_function(){
 		break;
 		default:
 	}
-	$post=posts::getNegocios($categoria);	
+	$post=posts::getNegocios($categoria);
+
 	if (!empty($post)){
 		$datos=$post;
-		$continuar="ok";
-		$error="no_error";
+		$address=posts::getAddress($categoria);	
+		if (!empty($address)){
+			$array = array('negocios' => $post, 'address' =>$address);
+			$datos=$array;
+			$continuar="ok";
+			$error="no_error";
+		}
+		else{
+			$continuar="ok";
+			$error="no_error";
+			$datos=$address;
+			$mensaje="ocurrio algo";
+		}
 	}
 	else{
 		$continuar="no_ok";
-		$error="no_error";
+		$error="error";
 		$datos=$post;
-		$mensaje="ocurrio algo";
+		$mensaje="no hay negocios";
 	}
 	
 }

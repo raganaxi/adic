@@ -6,7 +6,7 @@ var controller;
 var urlLocal="http://localhost/cache/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
 var urlAjax=urlRemoto;
-/**********************/
+
 $(document).bind("mobileinit", function(){
 	
 	$.mobile.defaultPageTransition = "slidedown";
@@ -217,7 +217,7 @@ $(document).ready(function() {
 	});
 	/*crear cuenta por email*/
 	$("#crteAccountE").on('click', function(){
-	ajaxLoader("inicia"); 	
+		ajaxLoader("inicia"); 	
 		var data= {'action': 'registerU',"mail": $("#ruMail").val(),"pass": $("#ruPass").val()};
 		$.ajax({
 			data:  data,
@@ -345,16 +345,19 @@ $(document).ready(function() {
 		}).done(function(data){
 			if(data.continuar==="ok"){
 				var datahtml="";
-				var datos=data.datos;
+				var datos=data.datos.negocios;
 				var datahtml=''+
 				'<form class="ui-filterable">'+
 				'<input id="filterNegociosInput" data-type="search">'+
 				'</form>'+
 				'<div class="elements" data-filter="true" data-input="#filterNegociosInput" id="filterNegocios">';
 				
-				for(var i in data.datos) {
-					datahtml+=getHTMLNegocios(data.datos[i]);
+				for(var i in datos) {
+					datahtml+=getHTMLNegocios(datos[i]);
 				}
+				appS=getAppSession();
+				appS.address=data.datos.address;
+				setAppSession(appS);
 				datahtml+='</div>';
 				$("#postContainer").html(datahtml);
 				$('#filterNegociosInput').textinput();
@@ -636,34 +639,34 @@ $(document).ready(function() {
 	}
 	function cambioCategoria(id,icon,name){
 		$("html, body").animate({ scrollTop: 0 }, "slow");
-			appS=getAppSession();			
-			if (id==="0") {
+		appS=getAppSession();			
+		if (id==="0") {
+			appS.user.categoria="0";
+			appS.user.categoriaNombre="Inicio";
+			appS.user.classIcon=icon;
+			setAppSession(appS);
+			mainFunction();
+			$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
+		}
+		else{
+			if (id==="-1") {
 				appS.user.categoria="0";
 				appS.user.categoriaNombre="Inicio";
 				appS.user.classIcon=icon;
 				setAppSession(appS);
-				mainFunction();
 				$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
+				$.mobile.changePage("#ubicaciones");
+				ubicacionesFunction();
 			}
 			else{
-				if (id==="-1") {
-					appS.user.categoria="0";
-					appS.user.categoriaNombre="Inicio";
-					appS.user.classIcon=icon;
-					setAppSession(appS);
-					$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
-					$.mobile.changePage("#ubicaciones");
-					ubicacionesFunction();
-				}
-				else{
-					appS.user.categoria=id;
-					appS.user.categoriaNombre=name;
-					appS.user.classIcon=icon;
-					setAppSession(appS);
-					mainFunction();
-					$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
-				}
+				appS.user.categoria=id;
+				appS.user.categoriaNombre=name;
+				appS.user.classIcon=icon;
+				setAppSession(appS);
+				mainFunction();
+				$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
 			}
+		}
 	}
 	function openInAppBrowserBlank(url)
 	{
