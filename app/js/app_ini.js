@@ -3,17 +3,18 @@ var storage;
 var app={};
 var appS={};
 var controller;
-var urlLocal="http://localhost/cache/adic/";
-var urlRemoto="http://adondeirenlaciudad.com/";
+var urlLocal="http://localhost:8080/adic/";
+//var urlRemoto="http://adondeirenlaciudad.com/";
+var urlRemoto = urlLocal;
 var urlAjax=urlRemoto;
 
 $(document).bind("mobileinit", function(){
-	
+
 	$.mobile.defaultPageTransition = "slidedown";
 	$.mobile.loadingMessage = "Cargando app.";
 
-	
-	
+
+
 });
 
 $(document).ready(function() {
@@ -22,7 +23,7 @@ $(document).ready(function() {
 	function loaderMain(){
 		inicializar();
 		is_logged_in();
-		
+
 	}
 	function is_logged_in(){
 
@@ -39,13 +40,13 @@ $(document).ready(function() {
 				cache: false,
 				xhrFields: {
 					withCredentials: true
-				},			
+				},
 				url  : urlAjax+'classes/ajaxApp.php',
 				dataType: "json",
 				data : data,
 			})
 			.done(function( data, textStatus, jqXHR ) {
-				if(data.continuar==="ok"){				
+				if(data.continuar==="ok"){
 					$.mobile.changePage("#main");
 
 				}
@@ -55,11 +56,11 @@ $(document).ready(function() {
 						email:"",
 						name:"",
 					};
-					app={				
+					app={
 						user:user
 					};
 					setAppJson(app);
-					$.mobile.changePage("#login");				
+					$.mobile.changePage("#login");
 				}
 
 			})
@@ -70,7 +71,7 @@ $(document).ready(function() {
 		else{
 			/* no logueado*/
 			$.mobile.changePage("#login");
-			
+
 		}
 	}
 	$("#loginU").on('click', function(event) {
@@ -78,8 +79,8 @@ $(document).ready(function() {
 		submitFormsubmitFormLogin();
 	});
 	/* funcion para login */
-	function submitFormsubmitFormLogin(){  
-		ajaxLoader("inicia"); 
+	function submitFormsubmitFormLogin(){
+		ajaxLoader("inicia");
 		var data = {'action': 'loginU','logUser':$("#logUser").val(),'logPass':$("#logPass").val()};
 		$.ajax({
 
@@ -91,7 +92,7 @@ $(document).ready(function() {
 			},
 			url  : urlAjax+'classes/ajaxApp.php',
 			dataType: "json",
-			data : data,		
+			data : data,
 		})
 		.done(function( data, textStatus, jqXHR ) {
 			if(data.continuar==="ok"){
@@ -100,7 +101,7 @@ $(document).ready(function() {
 				user.email=data.datos.row[0].username;
 				user.name=data.datos.row[0].username;
 				user.rol=data.datos.row[0].role;
-				user.id=data.datos.row[0].iduser;				
+				user.id=data.datos.row[0].iduser;
 				app.user=user;
 				setAppJson(app);
 				$.mobile.changePage("#main");
@@ -137,19 +138,19 @@ $(document).ready(function() {
 			setAppJson(app);
 		}
 		else{
-			app=JSON.parse(storage.app);		
+			app=JSON.parse(storage.app);
 			if (app.user===undefined) {
 				app.user={
 					token:"",
 					email:"",
 					name:"",
 				};
-				setAppJson(app);			
+				setAppJson(app);
 			}
-			
+
 		}
-		
-		
+
+
 		return app;
 	}
 	function setAppJson(app){
@@ -169,16 +170,16 @@ $(document).ready(function() {
 			setAppSession(appS);
 		}
 		else{
-			appS=JSON.parse(storageS.appS);		
+			appS=JSON.parse(storageS.appS);
 			if (appS.user===undefined) {
 				appS.user={
 					fecha:"",
 					categoria:"",
 					vista:"promociones",
 				};
-				setAppSession(appS);			
+				setAppSession(appS);
 			}
-			
+
 		}
 		return appS;
 	}
@@ -187,7 +188,7 @@ $(document).ready(function() {
 	}
 	/* funcion para logout */
 	$("#logOutbtn").on('click', function(){
-		ajaxLoader("inicia"); 
+		ajaxLoader("inicia");
 		var data= {'action': 'logout','token':app.user.token};
 		$.ajax({
 			data:  data,
@@ -205,7 +206,7 @@ $(document).ready(function() {
 					email:"",
 					name:"",
 				};
-				app={				
+				app={
 					user:user
 				};
 				setAppJson(app);
@@ -217,7 +218,7 @@ $(document).ready(function() {
 	});
 	/*crear cuenta por email*/
 	$("#crteAccountE").on('click', function(){
-		ajaxLoader("inicia"); 	
+		ajaxLoader("inicia");
 		var data= {'action': 'registerU',"mail": $("#ruMail").val(),"pass": $("#ruPass").val()};
 		$.ajax({
 			data:  data,
@@ -235,7 +236,7 @@ $(document).ready(function() {
 				user.email=data.datos.row[0].username;
 				user.name=data.datos.row[0].username;
 				user.rol=data.datos.row[0].role;
-				user.id=data.datos.row[0].iduser;				
+				user.id=data.datos.row[0].iduser;
 				app.user=user;
 				setAppJson(app);
 				$.mobile.changePage("#main");
@@ -255,17 +256,17 @@ $(document).ready(function() {
 		appS=getAppSession();
 		if (appS.user.vista==="promociones") {
 			appS.user.vista="negocios";
-			
+
 		}else{
 			appS.user.vista="promociones";
-			
+
 		}
 		setAppSession(appS);
 		mainFunction();
 
 		/* Act on the event */
-	});		
-	function getMenuCategorias(){	
+	});
+	function getMenuCategorias(){
 		/*codigo ajax para despues traernos el menu de categorias */
 	}
 	function getDiaSemana(){
@@ -278,7 +279,7 @@ $(document).ready(function() {
 		var dias = new Array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
 		semana.primerDia=	dias[dia];
 		var botones=buttonStart+' value="'+ahora.getFullYear()+'-'+(ahora.getMonth() + 1)+'-'+ahora.getDate()+'" >Hoy'+buttonEnd;
-		for (var i = 1; i < 6; i++) {			
+		for (var i = 1; i < 6; i++) {
 			despues = ahora.setTime(ahora.getTime() + (1*24*60*60*1000));
 			despues = new Date(despues);
 			var diaDespues=despues.getDay();
@@ -296,10 +297,10 @@ $(document).ready(function() {
 
 	}
 	function getPost(){
-		ajaxLoader("inicia"); 
+		ajaxLoader("inicia");
 		appS=getAppSession();
-		var data= {'action': 'getPost','fecha':appS.user.fecha,'categoria':appS.user.categoria};	
-		$.ajax({			
+		var data= {'action': 'getPost','fecha':appS.user.fecha,'categoria':appS.user.categoria};
+		$.ajax({
 			data:data,
 			crossDomain: true,
 			cache: false,
@@ -315,7 +316,7 @@ $(document).ready(function() {
 					datahtml+=getHtmlPost(data.datos[i]);
 				}
 				$("#postContainer").html(datahtml);
-				
+
 			}
 			else{
 				$("#postContainer").html('<div class="h50">Sin publicaciones :(');
@@ -327,13 +328,13 @@ $(document).ready(function() {
 			ajaxLoader("termina");
 		});
 	}
-	
+
 
 	function getNegocios(){
-		ajaxLoader("inicia"); 
+		ajaxLoader("inicia");
 		appS=getAppSession();
-		var data= {'action': 'getNegocios','categoria':appS.user.categoria};	
-		$.ajax({			
+		var data= {'action': 'getNegocios','categoria':appS.user.categoria};
+		$.ajax({
 			data:data,
 			crossDomain: true,
 			cache: false,
@@ -351,7 +352,7 @@ $(document).ready(function() {
 				'<input id="filterNegociosInput" data-type="search">'+
 				'</form>'+
 				'<div class="elements" data-filter="true" data-input="#filterNegociosInput" id="filterNegocios">';
-				
+
 				for(var i in datos) {
 					datahtml+=getHTMLNegocios(datos[i]);
 				}
@@ -363,7 +364,7 @@ $(document).ready(function() {
 				$('#filterNegociosInput').textinput();
 				$('#filterNegocios').filterable();
 
-				
+
 			}
 			else{
 				$("#postContainer").html('<div class="h50">Sin negocios :(');
@@ -374,10 +375,10 @@ $(document).ready(function() {
 			$("#postContainer").html('<div class="h50">Sin negocios :(');
 			ajaxLoader("termina");
 		});
-		
+
 
 	}
-	
+
 	$('#sectionPost').xpull({
 		'callback':function(){
 			mainFunction();
@@ -484,10 +485,10 @@ $(document).ready(function() {
 	}
 	function ubicacionesFunction(){
 		app=getAppJson();
-		
+
 	}
 
-	
+
 
 
 	function inicializar(){
@@ -521,7 +522,7 @@ $(document).ready(function() {
 				logPass: "Ingresa una contraseña con mas de 5 caracteres",
 			}
 		});
-		
+
 		$("#postContainer").on('click', '.botonFiltroUsuario', function(event) {
 			event.preventDefault();
 			$.mobile.changePage("#profile");
@@ -532,7 +533,7 @@ $(document).ready(function() {
 			var icon=$(this).attr('data-icon');
 			var name=$(this).attr('data-name');
 			cambioCategoria(id,icon);
-			
+
 			$(".ui-panel").panel("close");
 
 		});
@@ -542,7 +543,7 @@ $(document).ready(function() {
 			var name=$(this).attr('data-name');
 			var icon="";
 			switch(+id){
-				
+
 				case -1 :icon="";break;
 				case 0 :icon="";break;
 				case 1 :icon="fa-beer";break;
@@ -610,7 +611,7 @@ $(document).ready(function() {
 				ajaxLoader("termina");
 
 			});
-			
+
 		});
 		$("#diasSemana").on('click', '.searchDayClick', function(event) {
 			event.preventDefault();
@@ -626,7 +627,7 @@ $(document).ready(function() {
 		$(document).on("pagebeforeshow","#main",function(event){
 			mainFunction();
 		});
-		
+
 
 
 
@@ -639,7 +640,7 @@ $(document).ready(function() {
 	}
 	function cambioCategoria(id,icon,name){
 		$("html, body").animate({ scrollTop: 0 }, "slow");
-		appS=getAppSession();			
+		appS=getAppSession();
 		if (id==="0") {
 			appS.user.categoria="0";
 			appS.user.categoriaNombre="Inicio";
@@ -675,7 +676,7 @@ $(document).ready(function() {
 			ref.addEventListener('loadstop', LoadStop);
 			ref.addEventListener('exit', Close);
 		}
-		catch (err)    
+		catch (err)
 		{
 			alert(err);
 		}
@@ -684,11 +685,11 @@ $(document).ready(function() {
 		if(event.url == "http://www.mypage.com/closeInAppBrowser.html"){
 			/*alert("fun load stop runs");*/
 			ref.close();
-		}    
+		}
 	}
 	function Close(event) {
 		ref.removeEventListener('loadstop', LoadStop);
 		ref.removeEventListener('exit', Close);
-	} 
-	/* fin del ready */	
+	}
+	/* fin del ready */
 });
