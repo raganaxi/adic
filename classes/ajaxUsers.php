@@ -85,7 +85,7 @@ if (isset($_POST['editProfile'])) {
 //Registrar publicacion
 if (isset($_POST['create_Post'])) {
 	$_POST['file'] = 'images/posts/'.$_POST['file'];
-	$result = user::regPost($_POST['title'], $_POST['description'], $_POST['date'], $_SESSION['iduser'], $_POST['category'], $_POST['file']);
+	$result = user::regPost($_POST['title'], $_POST['description'], $_POST['date'], $_SESSION['iduser'], $_POST['file']);
 	echo json_encode($result);
 }
 

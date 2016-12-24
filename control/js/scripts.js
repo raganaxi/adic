@@ -552,7 +552,8 @@ $( "#createPost" ).on( 'click', function () {
     type: 'post'
   } ).done( function ( data ) {
     if ( data ) {
-      $( "#formPost" ).submit();
+      // $( "#formPost" ).submit();
+      console.log(data);
     }
   } );
 } );

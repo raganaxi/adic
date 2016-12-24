@@ -53,11 +53,13 @@ class user
     return $result;
   }
 
-  public static function regPost($title, $description, $date, $userid, $category, $file){
-    $consulta = 'call register_post("'.$title.'", "'.$description.'",  "'.$date.'",  "'.$userid.'",  "'.$category.'",  "'.$file.'")';
+  public static function regPost($title, $description, $date, $userid, $file){
+    $consulta = 'call register_post("'.$title.'", "'.$description.'",  "'.$date.'",  "'.$userid.'", "'.$file.'")';
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consulta($consulta);
-    return $result;
+    $check = 'SELECT * FROM post WHERE title = "'.$title.'" and date = "'.$date.'" and userid = "'.$userid.'" ';
+    $result2 = $PDOMYSQL->consulta($check);
+    return $result2;
   }
 
   public static function editProfileData($name, $number, $negocio, $user_id){
