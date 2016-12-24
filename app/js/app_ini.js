@@ -6,8 +6,8 @@ var controller;
 var urlLocal="http://localhost:8080/adic/";
 //var urlRemoto="http://adondeirenlaciudad.com/";
 var urlRemoto = urlLocal;
-var urlAjax=urlRemoto;
 
+var urlAjax=urlRemoto;
 var map;
 var markers = [];
 $(document).bind("mobileinit", function(){
@@ -25,23 +25,21 @@ $(document).ready(function() {
 	var time;
 
 	loaderMain();
-	function loaderMain(){
+
+  function loaderMain(){
 		inicializar();
 		is_logged_in();
-
-<<<<<<< HEAD
-=======
 	}
+
 	function is_token_in(){
 		app=getAppJson();
 		token=app.user.token;
 		if (token==='') {
 			is_login_in();
 		}
->>>>>>> 356c6f4a69720a1ec9c0c5c289dd220893de6d91
 	}
-	function is_logged_in(){
 
+	function is_logged_in(){
 		app=getAppJson();
 		email=app.user.email;
 		name=app.user.name;
@@ -162,15 +160,14 @@ $(document).ready(function() {
 				};
 				setAppJson(app);
 			}
-
 		}
-
-
 		return app;
 	}
+
 	function setAppJson(app){
 		storage.app=JSON.stringify(app);
 	}
+
 	/* session storage */
 	function getAppSession(){
 		if (storageS.appS===undefined) {
@@ -281,9 +278,7 @@ $(document).ready(function() {
 
 		/* Act on the event */
 	});
-<<<<<<< HEAD
-	function getMenuCategorias(){
-=======
+
 	$(document).on('click', '.ubicacionLink', function(event) {
 		$.mobile.changePage("#ubicaciones");
 		event.preventDefault();
@@ -322,8 +317,8 @@ $(document).ready(function() {
 		showMarkers();
 
 	});
-	function getMenuCategorias(){
->>>>>>> 356c6f4a69720a1ec9c0c5c289dd220893de6d91
+
+  function getMenuCategorias(){
 		/*codigo ajax para despues traernos el menu de categorias */
 	}
 	function getDiaSemana(){
@@ -546,9 +541,7 @@ $(document).ready(function() {
 		}
 	}
 	function ubicacionesFunction(){
-<<<<<<< HEAD
 		app=getAppJson();
-=======
 
 		clearMarkers();
 		deleteMarkers();
@@ -575,7 +568,6 @@ $(document).ready(function() {
 		showMarkers();
 		ajustarMapa();
 		showMarkers();
->>>>>>> 356c6f4a69720a1ec9c0c5c289dd220893de6d91
 
 	}
 
@@ -782,10 +774,7 @@ $(document).ready(function() {
 		ref.removeEventListener('loadstop', LoadStop);
 		ref.removeEventListener('exit', Close);
 	}
-<<<<<<< HEAD
-	/* fin del ready */
-});
-=======
+
 	$(document).on("pageshow","#ubicaciones",function(){
 		console.log("pageshow event fired - pagetwo is now shown");
 		google.maps.event.trigger(map, "resize");
@@ -810,12 +799,9 @@ $(document).ready(function() {
 			time = setTimeout(ajustarMapa, 500);
 		}
 	});
-
-
-
-
 	/* fin del ready */
 });
+
 function initMap() {
 	var haightAshbury = {lat: 25.564653, lng: -103.449304};
 
@@ -861,4 +847,3 @@ function deleteMarkers() {
 	clearMarkers();
 	markers = [];
 }
->>>>>>> 356c6f4a69720a1ec9c0c5c289dd220893de6d91
