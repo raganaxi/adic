@@ -89,6 +89,10 @@ if (isset($_POST['create_Post'])) {
 	echo json_encode($result);
 }
 
+if (isset($_POST['save_direccion'])){
+  $result = user::saveDireccion($_POST['calle'], $_POST['numero'], $_POST['municipio'], $_POST['estado'], $_POST['pais'], $_POST['cp'], $_POST['lat'], $_POST['lon'], $_SESSION['iduser']);
+  echo json_encode($result);
+}
 
 //Registrar socio
 if (isset($_POST['reg_soc'])) {

@@ -27,6 +27,8 @@ if(!isset($_SESSION['rol'])){
               </li>
               <li role="presentation" class=""><a href="#tab_imagenPerfil" role="tab" id="imagenPerfil-tab" data-toggle="tab" aria-expanded="false">Imagen de Perfil</a>
               </li>
+              <li role="presentation" class=""><a href="#tab_direcciones" role="tab" id="direcciones-tab" data-toggle="tab" aria-expanded="false">Direcciones</a>
+              </li>
               <li role="presentation" class=""><a href="#tab_acceso" role="tab" id="acceso-tab" data-toggle="tab" aria-expanded="false">Cuenta</a>
               </li>
             </ul>
@@ -108,6 +110,55 @@ if(!isset($_SESSION['rol'])){
                   </div>
                   <button type="button" id="changeAccess" class="btn bgGreen cWhite pull-right" >
                     Editar
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tab_direcciones" aria-labelledby="datos-tab">
+              <div class="x_content">
+                <form id="editProfileF"><!--action="editPpicture.php" method="post" enctype="multipart/form-data"-->
+                  <div class="form-section">
+                    <label for="calleDir">Calle</label>
+                    <input id="calleDir" type="text" class="form-control" placeholder="Calle" name="calleDir" value="" required>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="form-section">
+                    <label for="numeroDir">Número</label>
+                    <input id="numeroDir" type="text" class="form-control" placeholder="Número" name="numeroDir" value="" required>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="form-section">
+                    <label for="municipioDir">Municipio</label>
+                    <input id="municipioDir" type="text" class="form-control" placeholder="Municipio" name="municipioDir" value="" required>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="form-section">
+                    <label for="estadoDir">Estado</label>
+                    <input id="estadoDir" type="text" class="form-control" placeholder="Estado" name="estadoDir" value="" required>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="form-section">
+                    <label for="paisDir">País</label>
+                    <input id="paisDir" type="text" class="form-control" placeholder="País" name="paisDir" value="" required>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="form-section">
+                    <label for="cpDir">Código Postal</label>
+                    <input id="cpDir" type="text" class="form-control" placeholder="CP" name="cpDir" value="" required>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="form-section">
+                    <label for="latDir">Latitud</label>
+                    <input id="latDir" type="text" class="form-control" placeholder="Latitud" name="latDir" value="" required>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="form-section">
+                    <label for="lonDir">Longitud</label>
+                    <input id="lonDir" type="text" class="form-control" placeholder="Longitud" name="lonDir" value="" required>
+                    <div class="clear"></div>
+                  </div>
+                  <button type="button" id="saveDireccion" class="btn bgGreen cWhite pull-right" >
+                    Guardar Dirección
                   </button>
                 </form>
               </div>

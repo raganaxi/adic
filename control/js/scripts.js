@@ -725,6 +725,28 @@ $( "#editProfile" ).on( 'click', function () {
 
 } );
 
+$('#saveDireccion').on('click', function(){
+  $.ajax({
+    data: {
+      "save_direccion": 1,
+      "calle": $('#calleDir').val(),
+      "numero": $('#numeroDir').val(),
+      "municipio": $('#municipioDir').val(),
+      "estado": $('#estadoDir').val(),
+      "pais": $('#paisDir').val(),
+      "cp": $('#cpDir').val(),
+      "lat": $('#latDir').val(),
+      "lon": $('#lonDir').val()
+    },
+    url: '../classes/ajaxUsers.php',
+    type: 'post'
+  }).done(function(data){
+    if(data){
+      console.log(data);
+    }
+  })
+})
+
 // window.onload = function () {
 //
 //   $( "#registerUser" ).validate( {
