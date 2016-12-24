@@ -718,7 +718,8 @@ $( "#editProfile" ).on( 'click', function () {
     type: 'post'
   } ).done( function ( data ) {
     if ( data ) {
-      $( "#editProfileF" ).submit();
+      console.log(data);
+      //$( "#editProfileF" ).submit();
     }
   } );
 

@@ -649,7 +649,7 @@ a.product-content-image {
     position: relative;
 }
 
-
-
-
-
+.negProfImg {
+  width: 100%;
+  padding-bottom: 80%;
+}

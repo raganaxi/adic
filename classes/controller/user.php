@@ -63,7 +63,7 @@ class user
   }
 
   public static function editProfileData($name, $number, $negocio, $user_id){
-    $consulta = 'UPDATE user_data SET name='.$name.', number='.$number.', negocio='.$negocio.' WHERE user_id='.$user_id.'';
+    $consulta = 'UPDATE user_data SET name="'.$name.'", number="'.$number.'", negocio="'.$negocio.'" WHERE user_id="'.$user_id.'" ';
     $check = 'SELECT * FROM user_data WHERE name='.$name.', number='.$number.', negocio='.$negocio.' AND user_id='.$user_id.'';
     error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
