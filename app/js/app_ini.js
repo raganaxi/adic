@@ -3,7 +3,7 @@ var storage;
 var app={};
 var appS={};
 var controller;
-var urlLocal="http://localhost:8080/adic/";
+var urlLocal="http://localhost:81/cache/adic/";
 //var urlRemoto="http://adondeirenlaciudad.com/";
 var urlRemoto = urlLocal;
 
@@ -453,7 +453,7 @@ $(document).ready(function() {
 		'</div>'+
 
 		'<p class="titulo-negocio">'+
-		'<a data-id="'+json.userid+'" class="goProfile negocio-link">'+json.nombre+'</a>'+
+		'<a data-id="'+json.userid+'" class="goProfile negocio-link">'+json.negocio+'</a>'+
 		'</p>'+
 		'</div>'+
 		'<div class="col-xs-4 div-flex-negocio">'+
@@ -608,7 +608,7 @@ $(document).ready(function() {
 
 		$("#postContainer").on('click', '.botonFiltroUsuario', function(event) {
 			event.preventDefault();
-			$.mobile.changePage("#profile");
+			$.mobile.changePage("#negocio");
 		});
 		$("#categoriasMenu").on('click', '.menuCategoriaClick', function(event) {
 			event.preventDefault();
@@ -641,7 +641,9 @@ $(document).ready(function() {
 			event.preventDefault();
 			/* Act on the event */
 			var id =$(this).attr('data-id');
+			$.mobile.changePage("#negocio");
 			console.log('go profile '+id);
+
 		});
 
 		$("#form_search").submit(function( event ) {
