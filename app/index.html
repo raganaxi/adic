@@ -274,12 +274,12 @@
           <div class="z-row">
             <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
               <div class="z-forceBlock bgTransparent noMargin boxShadow">
-                <div class="z-block panelImg bgDarkBlue negProfImg" style="background-image:url('images/profPicture/default.png')">
+                <div id="imgSocio" class="z-block panelImg bgDarkBlue negProfImg" style="background-image:url('images/profPicture/default.png')">
                 </div>
                 <div class="z-block h10vh bgDarkClear">
                   <div class="z-content z-contentMiddle text-center">
-                    <h3 class="noMargin text-uppercase text-bold text-center cWhite">Negocio</h3>
-                    <a class="s15 text-center cLightBlue" type="button" data-toggle="modal" data-target="#mapModal">
+                    <h3 id="nombreSocio" class="noMargin text-uppercase text-bold text-center cWhite">Negocio</h3>
+                    <a id="ubicacionSocio" class="s15 text-center cLightBlue negocio-link ubicacionLink"  data-id="0">
                       <span class="fa fa-map-marker"></span> Ver Ubicacion
                     </a>
                   </div>
@@ -288,16 +288,15 @@
                   <div data-role="collapsibleset" class="noMargin" data-theme="a" data-content-theme="a">
                     <div data-role="collapsible">
                       <h3>Direcciones</h3>
-                      <p>I'm the collapsible content for section 1</p>
+                      <div id="direccionesSocio">direcciones</div>
                     </div>
                     <div data-role="collapsible">
                       <h3>Contacto</h3>
-                      <p>Telefono</p>
-                      <p>Correo</p>
+                      <div id="contactoSocio"></div>
                     </div>
                     <div data-role="collapsible">
-                      <h3>Section 3</h3>
-                      <p>I'm the collapsible content for section 3</p>
+                      <h3>Galeria</h3>
+                      <p></p>
                     </div>
                   </div>
                 </div>

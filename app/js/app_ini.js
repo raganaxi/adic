@@ -409,6 +409,7 @@ $(document).ready(function() {
 					datahtml+=getHTMLNegocios(datos[i]);
 				}
 				appS=getAppSession();
+				appS.negocios=negocios=datos;
 				appS.address=data.datos.address;
 				setAppSession(appS);
 				datahtml+='</div>';
@@ -453,7 +454,7 @@ $(document).ready(function() {
 		'</div>'+
 
 		'<p class="titulo-negocio">'+
-		'<a data-id="'+json.userid+'" class="goProfile negocio-link">'+json.negocio+'</a>'+
+		'<a data-id="'+json.userid+'" class="goProfile negocio-link"><div>'+json.negocio+'</div></a>'+
 		'</p>'+
 		'</div>'+
 		'<div class="col-xs-4 div-flex-negocio">'+
@@ -539,6 +540,28 @@ $(document).ready(function() {
 			$vista.attr('tooltip', 'Promociones');
 			getNegocios();
 		}
+	}
+	function perfilFunction(){
+		is_token_in();
+		appS=getAppSession();
+		if (appS.negocioId!==undefined) {
+			if (appS.negocios!==undefined) {
+				var negocios=appS.negocios;
+				var negocioId=appS.negocioId;
+				for(var i in negocios) {
+					if (negocios[i].userid===negocioId) {
+						//console.log(negocios[i]);
+						$('#imgSocio').css('background-image', 'url('+urlAjax+'images/profPicture/'+negocios[i].userpic+')');
+						$('#nombreSocio').html(negocios[i].negocio);
+						$('#ubicacionSocio').attr('data-id',negocios[i].userid);
+						//$('#imgSocio').css('background-image', 'url('+urlAjax+'images/profPicture/'+negocios[i].userpic+')');
+						//pendiente
+					}
+					//datahtml+=getHtmlPost(data.datos[i]);
+				}
+			}
+		}
+
 	}
 	function ubicacionesFunction(){
 		app=getAppJson();
@@ -641,8 +664,11 @@ $(document).ready(function() {
 			event.preventDefault();
 			/* Act on the event */
 			var id =$(this).attr('data-id');
+			var appS=appS=getAppSession();
+			appS.negocioId=id;
+			setAppSession(appS);
 			$.mobile.changePage("#negocio");
-			console.log('go profile '+id);
+			//console.log('go profile '+id);
 
 		});
 
@@ -711,6 +737,9 @@ $(document).ready(function() {
 		});
 		$(document).on("pagebeforeshow","#main",function(event){
 			mainFunction();
+		});
+		$(document).on("pagebeforeshow","#negocio",function(event){
+			perfilFunction();
 		});
 
 
