@@ -665,3 +665,11 @@ a.product-content-image {
   width: 100%;
   padding-bottom: 80%;
 }
+/* perfil */
+#PromocionesPorSocio .z-panelHeader{
+  display: none;
+}
+#PromocionesPorSocio {
+    margin: 0 -1em;
+    padding: .5em 1em;
+}

@@ -26,7 +26,7 @@ $(document).ready(function() {
 
 	loaderMain();
 
-  function loaderMain(){
+	function loaderMain(){
 		inicializar();
 		is_logged_in();
 	}
@@ -318,7 +318,7 @@ $(document).ready(function() {
 
 	});
 
-  function getMenuCategorias(){
+	function getMenuCategorias(){
 		/*codigo ajax para despues traernos el menu de categorias */
 	}
 	function getDiaSemana(){
@@ -509,6 +509,15 @@ $(document).ready(function() {
 		'</div>'+
 		'</div>';
 	}
+	function getContactoHtml(json){
+		return ''+
+		'<div>Tel: '+json.number+'</div>'+
+		'<div>Correo: '+json.mail+'</div>';
+	}
+	function getDireccionesHtml(json){
+		return ''+
+		'<div>Direccion: '+json.calle+' '+json.numero+', '+json.cp+' '+json.municipio+' '+json.estado+' '+json.pais+'</div>';
+	}
 	function ajaxLoader(action){
 		if (action==="inicia") {
 			$.mobile.loading( "show", {
@@ -541,26 +550,27 @@ $(document).ready(function() {
 			getNegocios();
 		}
 	}
-	function perfilFunction(){
-		is_token_in();
-		appS=getAppSession();
-		if (appS.negocioId!==undefined) {
-			if (appS.negocios!==undefined) {
-				var negocios=appS.negocios;
-				var negocioId=appS.negocioId;
-				for(var i in negocios) {
-					if (negocios[i].userid===negocioId) {
-						//console.log(negocios[i]);
-						$('#imgSocio').css('background-image', 'url('+urlAjax+'images/profPicture/'+negocios[i].userpic+')');
-						$('#nombreSocio').html(negocios[i].negocio);
-						$('#ubicacionSocio').attr('data-id',negocios[i].userid);
-						//$('#imgSocio').css('background-image', 'url('+urlAjax+'images/profPicture/'+negocios[i].userpic+')');
-						//pendiente
-					}
-					//datahtml+=getHtmlPost(data.datos[i]);
-				}
+	function perfilFunction(negocioId,negocio,postHtml,address){
+		
+		$('#imgSocio').css('background-image', 'url('+urlAjax+'images/profPicture/'+negocio.userpic+')');
+		$('#nombreSocio').html(negocio.negocio);
+		$('#ubicacionSocio').attr('data-id',negocio.userid);
+		var contactoHtml=getContactoHtml(negocio);
+		$('#contactoSocio').html(contactoHtml);
+		var direccionesHtml='';
+		for(var i in address){
+
+			if (address[i].userid===negocioId){
+				direccionesHtml+=getDireccionesHtml(address[i]);
+
 			}
+
 		}
+		$('#direccionesSocio').html(direccionesHtml);
+		$('#PromocionesPorSocio').html(postHtml);
+
+
+
 
 	}
 	function ubicacionesFunction(){
@@ -739,7 +749,55 @@ $(document).ready(function() {
 			mainFunction();
 		});
 		$(document).on("pagebeforeshow","#negocio",function(event){
-			perfilFunction();
+			is_token_in();
+			ajaxLoader("inicia");
+			appS=getAppSession();
+			if (appS.negocioId!==undefined) {
+				if (appS.negocios!==undefined) {
+					var negocios=appS.negocios;
+					var negocioId=appS.negocioId;
+					for(var i in negocios) {
+						if (negocios[i].userid===negocioId) {
+							var negocio=negocios[i];
+							var data= {'action': 'getPostSocio','iduser':negocioId};
+							$.ajax({
+								data:data,
+								crossDomain: true,
+								cache: false,
+								xhrFields: {
+									withCredentials: true
+								},
+								url: urlAjax+'classes/ajaxApp.php',
+								type: 'post'
+							}).done(function(data){
+								if(data.continuar==="ok"){
+									var datahtml="";
+									for(var i in data.datos) {
+										datahtml+=getHtmlPost(data.datos[i]);
+									}
+									perfilFunction(negocioId,negocio,datahtml,appS.address);
+
+								}
+								else{
+									var datahtml='<div class="h50">Sin publicaciones :(';
+									perfilFunction(negocioId,negocio,datahtml,appS.address);
+								}
+								ajaxLoader("termina");
+
+							}).fail(function( jqXHR, textStatus, errorThrown ) {
+								var datahtml='<div class="h50">Sin publicaciones :(';
+								perfilFunction(negocioId,negocio,datahtml,appS.address);
+								ajaxLoader("termina");
+							});
+
+
+
+							break;
+						}
+						
+					}
+				}
+			}
 		});
 
 

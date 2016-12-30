@@ -105,40 +105,57 @@ public static function getPost($categoria,$fecha){
   $consulta = 'SELECT post.*,category.nombre as categoria,
   user_data.name as user_name, user_data.img as user_pic FROM post
   INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid
-  INNER JOIN category on user_data.category_id = category.idcategory where date = ';
+  INNER JOIN category on user_data.category_id = category.idcategory ';
   $result="";
+
   if ($categoria=="") {
     if ($fecha=="") {
-      $consulta.="CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date) order by date desc";
+      $consulta.=" where date = CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date) order by date desc";
       $result =  $db_con->consulta($consulta);
 
     }
     else{
-      $consulta.=' ? order by date desc';
+      $consulta.=' where date = ? order by date desc';
       $parametros = array($fecha);
       $result =  $db_con->consultaSegura($consulta,$parametros);
 
     }
   }else{
     if ($fecha=="") {
-      $consulta.=" CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date) and category.idcategory = ? order by date desc";
+      $consulta.=" where date = CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date) and category.idcategory = ? order by date desc";
       $parametros = array($categoria);
       $result =  $db_con->consultaSegura($consulta,$parametros);
 
     }
     else{
-      $consulta.=' ? and category.idcategory = ? order by date desc';
+      $consulta.=' where date = ? and category.idcategory = ? order by date desc';
       $parametros = array($fecha,$categoria);
       $result =  $db_con->consultaSegura($consulta,$parametros);
 
     }
+  }
+  
+  return $result;
+}
+public static function getPostSocio($iduser){
+  $db_con = new PDOMYSQL;
+  $consulta = 'SELECT post.*,category.nombre as categoria,
+  user_data.name as user_name, user_data.img as user_pic FROM post
+  INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid
+  INNER JOIN category on user_data.category_id = category.idcategory ';
+  $result="";
+
+  if($iduser!=""){
+    $consulta.=" where CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date) <= STR_TO_DATE(date, '%Y-%m-%d') and user.iduser = ? order by date desc ";
+    $parametros = array($iduser);
+    $result =  $db_con->consultaSegura($consulta,$parametros);
   }
   return $result;
 }
 public static function getNegocios($categoria){
 
   $db_con = new PDOMYSQL;
-  $consulta = "SELECT IF(negocio is null, 'Sin Nombre', negocio) AS negocio,iduser as userid,username,role,active,user_data.name as nombre,user_data.number, case img when NULL then 'default.png' when '' then 'default.png' else img end as userpic, category.nombre as categoria , category.idcategory as categoriaid FROM user INNER JOIN user_data ON user_data.user_id = user.iduser INNER JOIN category on category.idcategory = user_data.category_id WHERE user.role = ? and active = 1 ";
+  $consulta = "SELECT IF(negocio is null, 'Sin Nombre', negocio) AS negocio,iduser as userid,username,role,active,user_data.name as nombre,user_data.number,user_data.mail, case img when NULL then 'default.png' when '' then 'default.png' else img end as userpic, category.nombre as categoria , category.idcategory as categoriaid FROM user INNER JOIN user_data ON user_data.user_id = user.iduser INNER JOIN category on category.idcategory = user_data.category_id WHERE user.role = ? and active = 1 ";
   $socio='socio';
   $parametros = array($socio);
   if($categoria!=""){

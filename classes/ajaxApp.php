@@ -50,6 +50,7 @@ if (is_ajax()){
 			case 'logout': logout_function();break;
 			case 'registerU': register_user();break;
 			case 'getPost': getPost_function();break;
+			case 'getPostSocio': getPostSocio_function();break;
 			case 'getNegocios': getNegocios_function();break;
 			case 'getAddress': getAddress_function();break;
 			case 'getCat': getCat_function();break;
@@ -412,6 +413,46 @@ function getPost_function(){
 		default:
 	}
 	$post=posts::getPost($categoria,$fecha);
+	
+	
+	if (!empty($post)){
+		$datos=$post;
+		$continuar="ok";
+		$error="no_error";
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_error";
+		$datos=$post;
+		$mensaje="ocurrio algo";
+	}
+	
+}
+
+function getPostSocio_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$iduser="";
+	switch($_SERVER['REQUEST_METHOD'])
+	{
+		case 'GET':
+		
+		if (isset($_GET["iduser"]) && !empty($_GET["iduser"])) {
+			$iduser=$_GET["iduser"];
+		}
+		break;
+		case 'POST':		
+		if (isset($_POST["iduser"]) && !empty($_POST["iduser"])) {
+			$iduser=$_POST["iduser"];
+		}
+		break;
+		default:
+	}
+	
+	$post=posts::getPostSocio($iduser);
 	
 	
 	if (!empty($post)){
