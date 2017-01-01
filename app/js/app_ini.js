@@ -483,7 +483,7 @@ $(document).ready(function() {
 		'<div class="z-content z-contentMiddle">'+
 		'<form action="" method="post" >'+
 		'<button name="useridx" class="goProfile noMargin text-uppercase text-uppercase s15 cDark text-bold profileU noBorder bgTransparent noPadding" data-id="'+
-		json.userid+'">'+json.user_name+
+		json.userid+'">'+json.negocio+
 		'</button>'+
 		'</form>'+
 		'</div>'+

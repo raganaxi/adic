@@ -103,7 +103,7 @@ class posts
 public static function getPost($categoria,$fecha){
   $db_con = new PDOMYSQL;
   $consulta = 'SELECT post.*,category.nombre as categoria,
-  user_data.name as user_name, user_data.img as user_pic FROM post
+  user_data.negocio as negocio, user_data.img as user_pic FROM post
   INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid
   INNER JOIN category on user_data.category_id = category.idcategory ';
   $result="";
@@ -140,7 +140,7 @@ public static function getPost($categoria,$fecha){
 public static function getPostSocio($iduser){
   $db_con = new PDOMYSQL;
   $consulta = 'SELECT post.*,category.nombre as categoria,
-  user_data.name as user_name, user_data.img as user_pic FROM post
+  user_data.negocio as negocio, user_data.img as user_pic FROM post
   INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid
   INNER JOIN category on user_data.category_id = category.idcategory ';
   $result="";
