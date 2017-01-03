@@ -102,10 +102,9 @@ class posts
 
 public static function getPost($categoria,$fecha){
   $db_con = new PDOMYSQL;
-  $consulta = 'SELECT post.*,category.nombre as categoria,
-  user_data.negocio as negocio, user_data.img as user_pic FROM post
+  $consulta = "SELECT post.*,category.nombre as categoria,IF(user_data.negocio is null, 'Sin Nombre', user_data.negocio) AS negocio, user_data.img as user_pic FROM post
   INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid
-  INNER JOIN category on user_data.category_id = category.idcategory ';
+  INNER JOIN category on user_data.category_id = category.idcategory ";
   $result="";
 
   if ($categoria=="") {
@@ -139,10 +138,9 @@ public static function getPost($categoria,$fecha){
 }
 public static function getPostSocio($iduser){
   $db_con = new PDOMYSQL;
-  $consulta = 'SELECT post.*,category.nombre as categoria,
-  user_data.negocio as negocio, user_data.img as user_pic FROM post
+  $consulta = "SELECT post.*,category.nombre as categoria, IF(user_data.negocio is null, 'Sin Nombre', user_data.negocio) AS negocio, user_data.img as user_pic FROM post
   INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid
-  INNER JOIN category on user_data.category_id = category.idcategory ';
+  INNER JOIN category on user_data.category_id = category.idcategory ";
   $result="";
 
   if($iduser!=""){
@@ -163,6 +161,7 @@ public static function getNegocios($categoria){
     $parametros = array($socio,$categoria);
     //var_dump($consulta);
   }
+  $consulta.=" order by negocio";
 
   $result =  $db_con->consultaSegura($consulta,$parametros);
 

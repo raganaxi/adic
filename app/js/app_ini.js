@@ -4,8 +4,8 @@ var app={};
 var appS={};
 var controller;
 var urlLocal="http://localhost:81/cache/adic/";
-var urlRemoto="http://adondeirenlaciudad.com/";
-//var urlRemoto = urlLocal;
+//var urlRemoto="http://adondeirenlaciudad.com/";
+var urlRemoto = urlLocal;
 
 var urlAjax=urlRemoto;
 var map;
@@ -330,12 +330,20 @@ $(document).ready(function() {
 		var buttonEnd='</button>';
 		var dias = new Array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
 		semana.primerDia=	dias[dia];
-		var botones=buttonStart+' value="'+ahora.getFullYear()+'-'+(ahora.getMonth() + 1)+'-'+ahora.getDate()+'" >Hoy'+buttonEnd;
+		var stringDia=ahora.getDate();
+		var stringMes=(ahora.getMonth()+ 1);
+		if (+stringDia<10) {stringDia="0"+stringDia;}
+		if (+stringMes<10) {stringMes="0"+stringMes;}
+		var botones=buttonStart+' value="'+ahora.getFullYear()+'-'+stringMes +'-'+stringDia+'" >Hoy'+buttonEnd;
 		for (var i = 1; i < 6; i++) {
 			despues = ahora.setTime(ahora.getTime() + (1*24*60*60*1000));
 			despues = new Date(despues);
 			var diaDespues=despues.getDay();
-			botones+=buttonStart+' value="'+despues.getFullYear()+'-'+(despues.getMonth() + 1)+'-'+despues.getDate()+'" >'+dias[diaDespues]+buttonEnd;
+			var stringDia=despues.getDate();
+			var stringMes=(despues.getMonth()+ 1);
+			if (+stringDia<10) {stringDia="0"+stringDia;}
+			if (+stringMes<10) {stringMes="0"+stringMes;}
+			botones+=buttonStart+' value="'+despues.getFullYear()+'-'+stringMes+'-'+stringDia+'" >'+dias[diaDespues]+buttonEnd;
 		}
 		semana.botones=botones;
 
@@ -439,31 +447,27 @@ $(document).ready(function() {
 	});
 	function getHTMLNegocios(json){
 
-		return '<li>'+
-		'<div class="card-negocio">'+
-		'<div class="flex-negocio">'+
-		'<div class="col-xs-4 div-flex-negocio">'+
-		'<a class="profile product-content-image flex-negocio .div-flex-negocio" data-userid="'+json.userid+'">'+
-		'<div class="image-swap img-responsive" style="background-image: url('+urlAjax+'images/profPicture/'+json.userpic+');">'+
-		'</div>'+
-		'</a>'+
-		'</div>'+
-		'<div class="col-xs-4 div-flex-negocio">'+
-		'<div class="categoria">'+
-		'<a data-id="'+json.categoriaid+'" class="categoriaClick negocio-link " data-name="'+json.categoria+'">'+json.categoria+'</a>'+
-		'</div>'+
-
-		'<p class="titulo-negocio">'+
-		'<a data-id="'+json.userid+'" class="goProfile negocio-link"><div>'+json.negocio+'</div></a>'+
-		'</p>'+
-		'</div>'+
-		'<div class="col-xs-4 div-flex-negocio">'+
-		'<div class="categoria">'+
-		'<a data-id="'+json.userid+'" class="negocio-link ubicacionLink text-center" ><i class="fa fa-map-marker" aria-hidden="true"></i></a>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
+		return ''+
+		'<li>'+
+		'	<div class="card-negocio">'+
+		'		<div class="flex-negocio">'+
+		'			<div class="col-xs-4 div-flex-negocio">'+
+		'				<a class="profile product-content-image flex-negocio .div-flex-negocio" data-userid="'+json.userid+'">'+
+		'					<div class="image-swap img-responsive" style="background-image: url('+urlAjax+'images/profPicture/'+json.userpic+');">'+
+		'					</div>'+
+		'				</a>'+
+		'			</div>'+
+		'			<div class="col-xs-4 div-flex-negocio">'+
+		'				<a data-id="'+json.userid+'" class="goProfile negocio-link"><div>'+json.negocio+'</div></a>'+
+		'				<div class="categoria negocios-categoria">'+json.categoria+'</div>'+
+		'			</div>'+
+		'			<div class="col-xs-4 div-flex-negocio">'+
+		'				<div class="categoria">'+
+		'					<a data-id="'+json.userid+'" class="negocio-link ubicacionLink text-center" ><i class="fa fa-map-marker" aria-hidden="true"></i></a>'+
+		'				</div>'+
+		'			</div>'+
+		'		</div>'+
+		'	</div>'+
 		'</li>';
 	}
 	function getHtmlPost(json){
@@ -542,10 +546,12 @@ $(document).ready(function() {
 		getMenuCategorias();
 		$vista= $(".toggle-view-promociones");
 		if (appS.user.vista==="promociones") {
+			$('#openPanelRight').show( "slow" );;
 			getPost();
 			$vista.attr('tooltip', 'Negocios');
 		}
 		else{
+			$('#openPanelRight').hide( "fast" );;
 			$vista.attr('tooltip', 'Promociones');
 			getNegocios();
 		}
@@ -603,9 +609,6 @@ $(document).ready(function() {
 		showMarkers();
 
 	}
-
-
-
 
 	function inicializar(){
 		/* cambiamos nombre a local storage para un uso mas sensillo y para corregir problemas de navegadores que no lo soportan mas adelante*/
@@ -681,11 +684,6 @@ $(document).ready(function() {
 			//console.log('go profile '+id);
 
 		});
-
-		$("#form_search").submit(function( event ) {
-			$("#searchBtn").click();
-			event.preventDefault();
-		});
 		$(document).on('click','.lgn-with-fb',function(event) {
 			var token='swd';
 			//var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
@@ -703,37 +701,6 @@ $(document).ready(function() {
 			navigator.app.loadUrl(url, { openExternal:true });
 			return false;
 		}
-		$("#searchBtn").on('click', function(event) {
-			ajaxLoader("inicia");
-			event.preventDefault();
-			var data= {'action': 'buscar','input':$("#search").val()};
-			$.ajax({
-				data:  data,
-				crossDomain: true,
-				cache: false,
-				xhrFields: {
-					withCredentials: true
-				},
-				url: urlAjax+'classes/ajaxApp.php',
-				type: 'post'
-			}).done(function(data){
-				if(data.continuar==="ok"){
-					var datahtml="";
-					for(var i in data.datos) {
-						datahtml+=getHtmlPost(data.datos[i]);
-					}
-					$("#postContainer").html(datahtml);
-
-				}
-				else{
-					$("#postContainer").html('<div class="h50">Sin publicaciones :(');
-				}
-				$("html, body").animate({ scrollTop: 0 }, "slow");
-				ajaxLoader("termina");
-
-			});
-
-		});
 		$("#diasSemana").on('click', '.searchDayClick', function(event) {
 			event.preventDefault();
 			$("html, body").animate({ scrollTop: 0 }, "slow");
@@ -773,6 +740,8 @@ $(document).ready(function() {
 								if(data.continuar==="ok"){
 									var datahtml="";
 									for(var i in data.datos) {
+
+										datahtml+="<h3>Dia<h3>";
 										datahtml+=getHtmlPost(data.datos[i]);
 									}
 									perfilFunction(negocioId,negocio,datahtml,appS.address);
@@ -796,6 +765,81 @@ $(document).ready(function() {
 						}
 						
 					}
+				}
+				else{
+					var data= {'action': 'getNegocios','categoria':appS.user.categoria};
+					$.ajax({
+						data:data,
+						crossDomain: true,
+						cache: false,
+						xhrFields: {
+							withCredentials: true
+						},
+						url: urlAjax+'classes/ajaxApp.php',
+						type: 'post'
+					}).done(function(data){
+						if(data.continuar==="ok"){
+							appS=getAppSession();
+							var negocioId=appS.negocioId;
+							var negocios=data.datos.negocios;
+							appS.negocios=negocios;
+							appS.address=data.datos.address;
+							setAppSession(appS);
+							
+							for(var i in negocios) {
+								if (negocios[i].userid===negocioId) {
+									var negocio=negocios[i];
+									var data= {'action': 'getPostSocio','iduser':negocioId};
+									$.ajax({
+										data:data,
+										crossDomain: true,
+										cache: false,
+										xhrFields: {
+											withCredentials: true
+										},
+										url: urlAjax+'classes/ajaxApp.php',
+										type: 'post'
+									}).done(function(data){
+										if(data.continuar==="ok"){
+											var datahtml="";
+											for(var i in data.datos) {
+
+												datahtml+="<h3>Dia<h3>";
+												datahtml+=getHtmlPost(data.datos[i]);
+											}
+											perfilFunction(negocioId,negocio,datahtml,appS.address);
+
+										}
+										else{
+											var datahtml='<div class="h50">Sin publicaciones :(';
+											perfilFunction(negocioId,negocio,datahtml,appS.address);
+										}
+										ajaxLoader("termina");
+
+									}).fail(function( jqXHR, textStatus, errorThrown ) {
+										var datahtml='<div class="h50">Sin publicaciones :(';
+										perfilFunction(negocioId,negocio,datahtml,appS.address);
+										ajaxLoader("termina");
+									});
+
+
+
+									break;
+								}
+								
+							}
+
+
+						}
+						else{
+							//	
+						}
+						ajaxLoader("termina");
+
+					}).fail(function( jqXHR, textStatus, errorThrown ) {
+						//
+						ajaxLoader("termina");
+					});
 				}
 			}
 		});
