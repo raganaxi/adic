@@ -5,7 +5,7 @@ var appS={};
 var controller;
 //var urlLocal="http://localhost:81/cache/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
-//var urlRemoto = urlLocal;
+var urlRemoto = urlLocal;
 
 var urlAjax=urlRemoto;
 var map;
@@ -289,13 +289,13 @@ $(document).ready(function() {
 
 		appS=getAppSession();
 		var directions=[];
-		var address=appS.address;
+		var addresses=appS.addresses;
 		var primer=false;
-		for(var i in address){
+		for(var i in addresses){
 
-			if (address[i].userid===id && address[i].latitud!=='' && address[i].longitud!==''){
-				directions.push(address[i]);
-				var latTmp={lat:+address[i].latitud,lng:+address[i].longitud};
+			if (addresses[i].userid===id && addresses[i].latitud!=='' && addresses[i].longitud!==''){
+				directions.push(addresses[i]);
+				var latTmp={lat:+addresses[i].latitud,lng:+addresses[i].longitud};
 				if (primer===false) {
 					primer=true;
 					centerMap(latTmp,17);
@@ -303,7 +303,7 @@ $(document).ready(function() {
 				}
 
 				addMarker(latTmp);
-				//console.log(address[i]);
+				//console.log(addresses[i]);
 
 			}
 
@@ -325,6 +325,7 @@ $(document).ready(function() {
 		appS=getAppSession();
 		var ahora = new Date();
 		var dia= ahora.getDay();
+		var fechasDeLaSemana=[];
 		var semana={};
 		var buttonStart='<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay searchDayClick"';
 		var buttonEnd='</button>';
@@ -334,8 +335,10 @@ $(document).ready(function() {
 		var stringMes=(ahora.getMonth()+ 1);
 		if (+stringDia<10) {stringDia="0"+stringDia;}
 		if (+stringMes<10) {stringMes="0"+stringMes;}
-		var botones=buttonStart+' value="'+ahora.getFullYear()+'-'+stringMes +'-'+stringDia+'" >Hoy'+buttonEnd;
-		for (var i = 1; i < 6; i++) {
+		var fechaSemana=ahora.getFullYear()+'-'+stringMes +'-'+stringDia;
+		fechasDeLaSemana[0] ={fecha:fechaSemana,dia:dias[dia]};
+		var botones=buttonStart+' value="'+fechaSemana+'" >Hoy'+buttonEnd;
+		for (var i = 1; i < 7; i++) {
 			despues = ahora.setTime(ahora.getTime() + (1*24*60*60*1000));
 			despues = new Date(despues);
 			var diaDespues=despues.getDay();
@@ -343,7 +346,9 @@ $(document).ready(function() {
 			var stringMes=(despues.getMonth()+ 1);
 			if (+stringDia<10) {stringDia="0"+stringDia;}
 			if (+stringMes<10) {stringMes="0"+stringMes;}
-			botones+=buttonStart+' value="'+despues.getFullYear()+'-'+stringMes+'-'+stringDia+'" >'+dias[diaDespues]+buttonEnd;
+			fechaSemana=despues.getFullYear()+'-'+stringMes+'-'+stringDia;
+			fechasDeLaSemana[i] ={fecha:fechaSemana,dia:dias[diaDespues]};
+			botones+=buttonStart+' value="'+fechaSemana+'" >'+dias[diaDespues]+buttonEnd;
 		}
 		semana.botones=botones;
 
@@ -353,6 +358,12 @@ $(document).ready(function() {
 		else{
 			$(".primerDiaSemana").html(semana.primerDia);
 		}
+		var semanas={
+			botones:semana
+			,semana:fechasDeLaSemana
+		};
+		appS.user.semanas=semanas;
+		setAppSession(appS);
 		$("#diasSemana").html(semana.botones);
 
 	}
@@ -372,7 +383,7 @@ $(document).ready(function() {
 		}).done(function(data){
 			if(data.continuar==="ok"){
 				var post = data.datos.post;
-				var address= data.datos.address;
+				var addresses= data.datos.addresses;
 				var datahtml=''+
 				'<form class="ui-filterable">'+
 				'<input id="filterPublicacionesInput" data-type="search">'+
@@ -381,17 +392,17 @@ $(document).ready(function() {
 				for(var i in post) {
 					var calle="",numero="",municipio="",estado="",pais="",cp="",latitud=0,longitud=0;
 
-					for(var j in address){
+					for(var j in addresses){
 
-						if (address[j].userid===post[i].userid){
-							calle=address[j].calle;
-							numero=address[j].numero;
-							municipio=address[j].municipio;
-							estado=address[j].estado;
-							pais=address[j].pais;
-							cp=address[j].cp;
-							latitud=address[j].latitud;
-							longitud=address[j].longitud;
+						if (addresses[j].userid===post[i].userid){
+							calle=addresses[j].calle;
+							numero=addresses[j].numero;
+							municipio=addresses[j].municipio;
+							estado=addresses[j].estado;
+							pais=addresses[j].pais;
+							cp=addresses[j].cp;
+							latitud=addresses[j].latitud;
+							longitud=addresses[j].longitud;
 							break;
 
 						}
@@ -408,7 +419,7 @@ $(document).ready(function() {
 					datahtml+='<li>'+getHtmlPost(post[i])+'</li>';
 				}
 				appS=getAppSession();
-				appS.address=address;
+				appS.addresses=addresses;
 				setAppSession(appS);
 				$("#postContainer").html(datahtml);
 				$('#filterPublicacionesInput').textinput();
@@ -455,7 +466,7 @@ $(document).ready(function() {
 				}
 				appS=getAppSession();
 				appS.negocios=negocios=datos;
-				appS.address=data.datos.address;
+				appS.addresses=data.datos.addresses;
 				setAppSession(appS);
 				datahtml+='</div>';
 				$("#postContainer").html(datahtml);
@@ -509,9 +520,9 @@ $(document).ready(function() {
 	}
 	function getHtmlPost(json){
 
-		var address="";
+		var addresses="";
 		if (json.calle!="") {
-			address=json.calle+' #'+json.numero+', '+json.cp+' '+json.municipio+', '+json.estado;
+			addresses=json.calle+' #'+json.numero+', '+json.cp+' '+json.municipio+', '+json.estado;
 		}
 		return ''+
 		'<div class="z-panel z-forceBlock bgWhite wow fadeInUp boxShadow" data-wow-duration=".5s" data-wow-delay=".2s">'+
@@ -520,8 +531,7 @@ $(document).ready(function() {
 		'			<div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-3 noPadding">'+
 		'				<form class="z-block h80">'+
 		'					<button name="useridx"  data-id="'+json.userid+'" class="goProfile z-content z-contentMiddle botonFiltroUsuario">'+
-		'						<div class="profileImg panelImg" style="background-image:url(\''+urlAjax+'images/profPicture/'+json.user_pic+'\');margin-top:10px;">'+
-		'						</div>'+
+		'						<div class="profileImg panelImg" style="background-image:url(\''+urlAjax+'images/profPicture/'+json.user_pic+'\');margin-top:10px;"></div>'+
 		'					</button>'+
 		'				</form>'+
 		'			</div>'+
@@ -531,15 +541,14 @@ $(document).ready(function() {
 		'						<form action="" method="post" >'+
 		'							<button name="useridx" class="goProfile noMargin text-uppercase text-uppercase s15 cDark text-bold profileU noBorder bgTransparent noPadding" data-id="'+json.userid+'">'+json.negocio+'</button>'+
 		'						</form>'+
-		'						<form action="" method="post" >'+
-		'							<a data-id="'+json.userid+'" class="ubicacionLink cDark">'+address+'</a></form>'+
+		'						<form action="" method="post" ><a data-id="'+json.userid+'" class="ubicacionLink cDark">'+addresses+'</a></form>'+
 		'					</div>'+
 		'				</div>'+
 		'			</div>'+
 		'		</div>'+
 		'	</div>'+
 		'	<div class="z-panelBody z-block overflowHidden noPadding">'+
-		'		<div id="" class="bgDarkBlueClear ofertaImg panelImg" style="background-image:url(\''+urlAjax+json.image+'\');">'+
+		'		<div id="" class="bgDarkBlueClear ofertaImg panelImg" style="background-image:url(\''+urlAjax+json.image+'\');"></div>'+
 		'	</div>'+
 		'	<div class="z-row noMargin">'+
 		'		<div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">'+
@@ -555,49 +564,7 @@ $(document).ready(function() {
 		'	</div>'+
 		'</div>';
 	}
-	function getHtmlPost2(json){
-		return '<div class="z-panel z-forceBlock bgWhite wow fadeInUp boxShadow" data-wow-duration=".5s" data-wow-delay=".2s">'+
-		'<div class="z-panelHeader noPadding noBorder">'+
-		'<div class="z-row noMargin">'+
-		'<div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-3 noPadding">'+
-		'<form class="z-block h70">'+
-		'<button name="useridx"  data-id="'+json.userid+'" class="goProfile z-content z-contentMiddle botonFiltroUsuario">'+
-		'<div class="profileImg panelImg" style="background-image:url(\''+urlAjax+'images/profPicture/'+json.user_pic+'\');">'+
-		'</div>'+
-		'</button>'+
-		'</form>'+
-		'</div>'+
-		'<div class="z-col-lg-9 z-col-md-9 z-col-sm-10 z-col-xs-7 noPadding">'+
-		'<div class="z-block h70">'+
-		'<div class="z-content z-contentMiddle">'+
-		'<form action="" method="post" >'+
-		'<button name="useridx" class="goProfile noMargin text-uppercase text-uppercase s15 cDark text-bold profileU noBorder bgTransparent noPadding" data-id="'+
-		json.userid+'">'+json.negocio+
-		'</button>'+
-		'</form>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
-		'<div class="z-panelBody z-block overflowHidden noPadding">'+
-		'<div id="" class="bgDarkBlueClear ofertaImg panelImg" style="background-image:url(\''+urlAjax+json.image+
-		'\');">'+
-		'</div>'+
-		'<div class="z-row noMargin">'+
-		'<div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">'+
-		'<div class="z-block h80 mh80 overflowAuto">'+
-		'<div class="z-content z-contentMiddle">'+
-		'<p class="cDark s15">'+
-		'<span class="text-bold text-uppercase">'+json.title+'</span>'+
-		'<span class="hidden">'+json.categoria+
-		'</div>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
-		'</div>';
-	}
+	
 	function getContactoHtml(json){
 		return ''+
 		'<div>Tel: '+json.number+'</div>'+
@@ -641,28 +608,19 @@ $(document).ready(function() {
 			getNegocios();
 		}
 	}
-	function perfilFunction(negocioId,negocio,postHtml,address){
-		
+	function perfilFunction(negocioId,negocio,postHtml,directions){
 		$('#imgSocio').css('background-image', 'url('+urlAjax+'images/profPicture/'+negocio.userpic+')');
 		$('#nombreSocio').html(negocio.negocio);
 		$('#ubicacionSocio').attr('data-id',negocio.userid);
 		var contactoHtml=getContactoHtml(negocio);
 		$('#contactoSocio').html(contactoHtml);
 		var direccionesHtml='';
-		for(var i in address){
-
-			if (address[i].userid===negocioId){
-				direccionesHtml+=getDireccionesHtml(address[i]);
-
-			}
+		for(var i in directions){
+			direccionesHtml+=getDireccionesHtml(directions[i]);
 
 		}
 		$('#direccionesSocio').html(direccionesHtml);
 		$('#PromocionesPorSocio').html(postHtml);
-
-
-
-
 	}
 	function ubicacionesFunction(){
 		app=getAppJson();
@@ -672,10 +630,10 @@ $(document).ready(function() {
 
 		appS=getAppSession();
 		var directions=[];
-		var address=appS.address;
+		var addresses=appS.addresses;
 		var primer=false;
-		for(var i in address){
-			var latTmp={lat:+address[i].latitud,lng:+address[i].longitud};
+		for(var i in addresses){
+			var latTmp={lat:+addresses[i].latitud,lng:+addresses[i].longitud};
 			if (primer===false) {
 				primer=true;
 				centerMap(latTmp,14);
@@ -804,118 +762,146 @@ $(document).ready(function() {
 			ajaxLoader("inicia");
 			appS=getAppSession();
 			if (appS.negocioId!==undefined) {
-				if (appS.negocios!==undefined) {
-					var negocios=appS.negocios;
-					var negocioId=appS.negocioId;
-					for(var i in negocios) {
-						if (negocios[i].userid===negocioId) {
-							var negocio=negocios[i];
-							var data= {'action': 'getPostSocio','iduser':negocioId};
-							$.ajax({
-								data:data,
-								crossDomain: true,
-								cache: false,
-								xhrFields: {
-									withCredentials: true
-								},
-								url: urlAjax+'classes/ajaxApp.php',
-								type: 'post'
-							}).done(function(data){
-								if(data.continuar==="ok"){
-									var datahtml="";
-									for(var i in data.datos) {
+				var data= {'action': 'getNegocios','categoria':appS.user.categoria};
+				$.ajax({
+					data:data,
+					crossDomain: true,
+					cache: false,
+					xhrFields: {
+						withCredentials: true
+					},
+					url: urlAjax+'classes/ajaxApp.php',
+					type: 'post'
+				}).done(function(data){
+					if(data.continuar==="ok"){
+						appS=getAppSession();
+						var negocioId=appS.negocioId;
+						var negocios=data.datos.negocios;
+						var addresses= data.datos.addresses;
+						var address=[];
+						var directions=[];
+						var hasAddress=false;
+						for(var i in addresses){
 
-										datahtml+="<h3>Dia<h3>";
-										datahtml+=getHtmlPost2(data.datos[i]);
-									}
-									perfilFunction(negocioId,negocio,datahtml,appS.address);
-
+							if (addresses[i].userid===negocioId){
+								directions.push(addresses[i]);
+								if(!hasAddress){
+									address.push(addresses[i]);
+									hasAddress=true;
 								}
-								else{
-									var datahtml='<div class="h50">Sin publicaciones :(';
-									perfilFunction(negocioId,negocio,datahtml,appS.address);
-								}
-								ajaxLoader("termina");
 
-							}).fail(function( jqXHR, textStatus, errorThrown ) {
-								var datahtml='<div class="h50">Sin publicaciones :(';
-								perfilFunction(negocioId,negocio,datahtml,appS.address);
-								ajaxLoader("termina");
-							});
-
-
-
-							break;
-						}
-						
-					}
-				}
-				else{
-					var data= {'action': 'getNegocios','categoria':appS.user.categoria};
-					$.ajax({
-						data:data,
-						crossDomain: true,
-						cache: false,
-						xhrFields: {
-							withCredentials: true
-						},
-						url: urlAjax+'classes/ajaxApp.php',
-						type: 'post'
-					}).done(function(data){
-						if(data.continuar==="ok"){
-							appS=getAppSession();
-							var negocioId=appS.negocioId;
-							var negocios=data.datos.negocios;
-							appS.negocios=negocios;
-							appS.address=data.datos.address;
-							setAppSession(appS);
-							
-							for(var i in negocios) {
-								if (negocios[i].userid===negocioId) {
-									var negocio=negocios[i];
-									var data= {'action': 'getPostSocio','iduser':negocioId};
-									$.ajax({
-										data:data,
-										crossDomain: true,
-										cache: false,
-										xhrFields: {
-											withCredentials: true
-										},
-										url: urlAjax+'classes/ajaxApp.php',
-										type: 'post'
-									}).done(function(data){
-										if(data.continuar==="ok"){
-											var datahtml="";
-											for(var i in data.datos) {
-
-												datahtml+="<h3>Dia<h3>";
-												datahtml+=getHtmlPost2(data.datos[i]);
-											}
-											perfilFunction(negocioId,negocio,datahtml,appS.address);
-
-										}
-										else{
-											var datahtml='<div class="h50">Sin publicaciones :(';
-											perfilFunction(negocioId,negocio,datahtml,appS.address);
-										}
-										ajaxLoader("termina");
-
-									}).fail(function( jqXHR, textStatus, errorThrown ) {
-										var datahtml='<div class="h50">Sin publicaciones :(';
-										perfilFunction(negocioId,negocio,datahtml,appS.address);
-										ajaxLoader("termina");
-									});
-
-
-
-									break;
-								}
-								
 							}
 
+						}
+
+
+
+
+						appS.negocios=negocios;
+						appS.addresses=addresses;
+						appS.negocio={
+							hasAddress:hasAddress
+							,directions:directions
+							,address:address
+
+						};
+						setAppSession(appS);
+
+						for(var i in negocios) {
+							if (negocios[i].userid===negocioId) {
+								var negocio=negocios[i];
+								var data= {'action': 'getPostSocio','iduser':negocioId};
+								$.ajax({
+									data:data,
+									crossDomain: true,
+									cache: false,
+									xhrFields: {
+										withCredentials: true
+									},
+									url: urlAjax+'classes/ajaxApp.php',
+									type: 'post'
+								}).done(function(data){
+									var appS = getAppSession();
+									var semana=appS.user.semanas.semana;
+									var addresses= appS.addresses;
+									var directions=appS.negocio.directions;
+									var address=appS.negocio.address;
+									var hasAddress=appS.negocio.hasAddress;
+									if(data.continuar==="ok"){
+										
+										var post= data.datos;
+										var semanaHtml=[];
+										var datahtml='';
+										for(i in semana){
+											semanaHtml[i]='<div class="divisionDiaPerfil">Publicaciones del dia '+semana[i].dia+'</div>';
+										}
+
+										for(var i in post) {
+											var publicacion=post[i];
+											var calle="",numero="",municipio="",estado="",pais="",cp="",latitud=0,longitud=0;
+											if(hasAddress){
+												calle=address[0].calle;
+												numero=address[0].numero;
+												municipio=address[0].municipio;
+												estado=address[0].estado;
+												pais=address[0].pais;
+												cp=address[0].cp;
+												latitud=address[0].latitud;
+												longitud=address[0].longitud;
+
+											}
+											publicacion.calle=calle;
+											publicacion.numero=numero;
+											publicacion.municipio=municipio;
+											publicacion.estado=estado;
+											publicacion.pais=pais;
+											publicacion.cp=cp;
+											publicacion.latitud=latitud;
+											publicacion.longitud=longitud;
+											for(i in semana){
+												semanaHtml[i]+=getHtmlPost(publicacion);
+												break;
+											}
+											//datahtml+=getHtmlPost(publicacion);
+										}
+										for(i in semana){
+											if (semanaHtml[i]!='<div class="divisionDiaPerfil">Publicaciones del dia '+semana[i].dia+'</div>') {
+												datahtml+=semanaHtml[i];
+											}
+											
+										}
+										
+										perfilFunction(negocioId,negocio,datahtml,directions);
+										
+
+									}
+									else{
+										var datahtml='<div class="h50">Sin publicaciones :(';
+										perfilFunction(negocioId,negocio,datahtml,directions);
+									}
+									ajaxLoader("termina");
+
+								}).fail(function( jqXHR, textStatus, errorThrown ) {
+									var appS = getAppSession();
+									var addresses= appS.addresses;
+									var directions=appS.negocio.directions;
+									var address=appS.negocio.address;
+									var hasAddress=appS.negocio.hasAddress;
+									var datahtml='<div class="h50">Sin publicaciones :(';
+									perfilFunction(negocioId,negocio,datahtml,appS.addresses);
+									ajaxLoader("termina");
+								});
+
+
+
+								break;
+							}
 
 						}
-						else{
+
+
+					}
+					else{
 							//	
 						}
 						ajaxLoader("termina");
@@ -924,9 +910,9 @@ $(document).ready(function() {
 						//
 						ajaxLoader("termina");
 					});
+
 				}
-			}
-		});
+			});
 
 
 

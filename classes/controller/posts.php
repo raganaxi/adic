@@ -136,9 +136,7 @@ public static function getPost($categoria,$fecha){
 }
 public static function getPostSocio($iduser){
   $db_con = new PDOMYSQL;
-  $consulta = "SELECT post.*,category.nombre as categoria, IF(user_data.negocio is null, 'Sin Nombre', user_data.negocio) AS negocio, user_data.img as user_pic FROM post
-  INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid
-  INNER JOIN category on user_data.category_id = category.idcategory ";
+  $consulta = "SELECT post.*,category.nombre as categoria, IF(user_data.negocio is null, 'Sin Nombre', user_data.negocio) AS negocio, user_data.img as user_pic FROM post INNER JOIN user on post.userid = user.iduser left JOIN user_data ON user.iduser = user_data.user_id left JOIN category on user_data.category_id = category.idcategory ";
   $result="";
 
   if($iduser!=""){
