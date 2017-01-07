@@ -157,6 +157,21 @@ if(!isset($_SESSION['rol'])){
                     <input id="lonDir" type="text" class="form-control" placeholder="Longitud" name="lonDir" value="" required>
                     <div class="clear"></div>
                   </div>
+                     <div id="mapa">
+                            <div class="map_vermapa">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11430.395500596715!2d-103.40921931203525!3d25.526749232901167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1458071643914" width="290px" height="190px" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <script>
+function iniciar() {
+var mapOptions = {
+center: new google.maps.LatLng(25.80, -80.30),
+zoom: 10,
+mapTypeId: google.maps.MapTypeId.ROADMAP};
+var map = new google.maps.Map(document.getElementById("map"),mapOptions);}              
+</script>
+
+<div id="map" style="width: 100px; height: 100px"></div>
                   <button type="button" id="saveDireccion" class="btn bgGreen cWhite pull-right" >
                     Guardar Dirección
                   </button>
@@ -170,3 +185,5 @@ if(!isset($_SESSION['rol'])){
   </div>
 </div>
 <?php include ('footer.php'); ?>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDvWxBhx1mc5MB2rnNQzMn4Z7xrGjVBtpQ&callback=iniciar">
+</script>
