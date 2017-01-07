@@ -859,8 +859,11 @@ $(document).ready(function() {
 											publicacion.latitud=latitud;
 											publicacion.longitud=longitud;
 											for(i in semana){
-												semanaHtml[i]+=getHtmlPost(publicacion);
-												break;
+												if(semana[i].fecha==publicacion.date){
+													semanaHtml[i]+=getHtmlPost(publicacion);
+													break;
+												}
+												
 											}
 											//datahtml+=getHtmlPost(publicacion);
 										}
@@ -920,90 +923,90 @@ $(document).ready(function() {
 
 
 
-		mainFunction();
+mainFunction();
 
-		initMap();
-		/* fin inicializar */
+initMap();
+/* fin inicializar */
+}
+function cambioCategoria(id,icon,name){
+	$("html, body").animate({ scrollTop: 0 }, "slow");
+	appS=getAppSession();
+	if (id==="0") {
+		appS.user.categoria="0";
+		appS.user.categoriaNombre="Inicio";
+		appS.user.classIcon=icon;
+		setAppSession(appS);
+		mainFunction();
+		$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
 	}
-	function cambioCategoria(id,icon,name){
-		$("html, body").animate({ scrollTop: 0 }, "slow");
-		appS=getAppSession();
-		if (id==="0") {
-			appS.user.categoria="0";
+	else{
+		if (id==="-1") {
+
 			appS.user.categoriaNombre="Inicio";
 			appS.user.classIcon=icon;
 			setAppSession(appS);
-			mainFunction();
 			$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
+			$.mobile.changePage("#ubicaciones");
+			ubicacionesFunction();
 		}
 		else{
-			if (id==="-1") {
-
-				appS.user.categoriaNombre="Inicio";
-				appS.user.classIcon=icon;
-				setAppSession(appS);
-				$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
-				$.mobile.changePage("#ubicaciones");
-				ubicacionesFunction();
-			}
-			else{
-				appS.user.categoria=id;
-				appS.user.categoriaNombre=name;
-				appS.user.classIcon=icon;
-				setAppSession(appS);
-				mainFunction();
-				$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
-			}
+			appS.user.categoria=id;
+			appS.user.categoriaNombre=name;
+			appS.user.classIcon=icon;
+			setAppSession(appS);
+			mainFunction();
+			$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
 		}
 	}
-	function openInAppBrowserBlank(url)
+}
+function openInAppBrowserBlank(url)
+{
+	try {
+		ref = window.open(encodeURI(url),'_blank','location=no');
+		ref.addEventListener('loadstop', LoadStop);
+		ref.addEventListener('exit', Close);
+	}
+	catch (err)
 	{
-		try {
-			ref = window.open(encodeURI(url),'_blank','location=no');
-			ref.addEventListener('loadstop', LoadStop);
-			ref.addEventListener('exit', Close);
-		}
-		catch (err)
-		{
-			alert(err);
-		}
+		alert(err);
 	}
-	function LoadStop(event) {
-		if(event.url == "http://www.mypage.com/closeInAppBrowser.html"){
-			/*alert("fun load stop runs");*/
-			ref.close();
-		}
+}
+function LoadStop(event) {
+	if(event.url == "http://www.mypage.com/closeInAppBrowser.html"){
+		/*alert("fun load stop runs");*/
+		ref.close();
 	}
-	function Close(event) {
-		ref.removeEventListener('loadstop', LoadStop);
-		ref.removeEventListener('exit', Close);
-	}
+}
+function Close(event) {
+	ref.removeEventListener('loadstop', LoadStop);
+	ref.removeEventListener('exit', Close);
+}
 
-	$(document).on("pageshow","#ubicaciones",function(){
-		console.log("pageshow event fired - pagetwo is now shown");
-		google.maps.event.trigger(map, "resize");
-	});
-	function ajustarMapa(){
-		var center = map.getCenter();
-		var height=$('#ubicaciones').height();
-		$('#map').height((height*80)/100);
+$(document).on("pageshow","#ubicaciones",function(){
+	console.log("pageshow event fired - pagetwo is now shown");
+	google.maps.event.trigger(map, "resize");
+});
+function ajustarMapa(){
+	var center = map.getCenter();
+	var height=$('#ubicaciones').height();
+	$('#map').height((height*80)/100);
 
 
-		map.setCenter(center);
-		google.maps.event.trigger(map, "resize");
+	map.setCenter(center);
+	google.maps.event.trigger(map, "resize");
+}
+$(window).resize(function(event) {
+	/* Act on the event */
+	var newWidth = $(window).width();
+	var newHeight = $(window).height();
+	if( newWidth != width || newHeight != height ) {
+		width = newWidth;
+		height = newHeight;
+		clearTimeout(time);
+		time = setTimeout(ajustarMapa, 500);
 	}
-	$(window).resize(function(event) {
-		/* Act on the event */
-		var newWidth = $(window).width();
-		var newHeight = $(window).height();
-		if( newWidth != width || newHeight != height ) {
-			width = newWidth;
-			height = newHeight;
-			clearTimeout(time);
-			time = setTimeout(ajustarMapa, 500);
-		}
-	});
-	/* fin del ready */
+});
+/* fin del ready */
 });
 
 function initMap() {
