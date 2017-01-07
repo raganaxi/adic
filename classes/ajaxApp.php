@@ -413,18 +413,27 @@ function getPost_function(){
 		default:
 	}
 	$post=posts::getPost($categoria,$fecha);
-	
-	
 	if (!empty($post)){
 		$datos=$post;
-		$continuar="ok";
-		$error="no_error";
+		$address=posts::getAddress($categoria);	
+		if (!empty($address)){
+			$array = array('post' => $post, 'address' =>$address);
+			$datos=$array;
+			$continuar="ok";
+			$error="no_error";
+		}
+		else{
+			$continuar="ok";
+			$error="no_error";
+			$datos=$address;
+			$mensaje="ocurrio algo";
+		}
 	}
 	else{
 		$continuar="no_ok";
-		$error="no_error";
+		$error="error";
 		$datos=$post;
-		$mensaje="ocurrio algo";
+		$mensaje="no hay negocios";
 	}
 	
 }

@@ -3,9 +3,9 @@ var storage;
 var app={};
 var appS={};
 var controller;
-var urlLocal="http://localhost:81/cache/adic/";
-//var urlRemoto="http://adondeirenlaciudad.com/";
-var urlRemoto = urlLocal;
+//var urlLocal="http://localhost:81/cache/adic/";
+var urlRemoto="http://adondeirenlaciudad.com/";
+//var urlRemoto = urlLocal;
 
 var urlAjax=urlRemoto;
 var map;
@@ -371,11 +371,48 @@ $(document).ready(function() {
 			type: 'post'
 		}).done(function(data){
 			if(data.continuar==="ok"){
-				var datahtml="";
-				for(var i in data.datos) {
-					datahtml+=getHtmlPost(data.datos[i]);
+				var post = data.datos.post;
+				var address= data.datos.address;
+				var datahtml=''+
+				'<form class="ui-filterable">'+
+				'<input id="filterPublicacionesInput" data-type="search">'+
+				'</form>'+
+				'<div class="elements" data-filter="true" data-input="#filterPublicacionesInput" id="filterPublicaciones">';
+				for(var i in post) {
+					var calle="",numero="",municipio="",estado="",pais="",cp="",latitud=0,longitud=0;
+
+					for(var j in address){
+
+						if (address[j].userid===post[i].userid){
+							calle=address[j].calle;
+							numero=address[j].numero;
+							municipio=address[j].municipio;
+							estado=address[j].estado;
+							pais=address[j].pais;
+							cp=address[j].cp;
+							latitud=address[j].latitud;
+							longitud=address[j].longitud;
+							break;
+
+						}
+
+					}
+					post[i].calle=calle;
+					post[i].numero=numero;
+					post[i].municipio=municipio;
+					post[i].estado=estado;
+					post[i].pais=pais;
+					post[i].cp=cp;
+					post[i].latitud=latitud;
+					post[i].longitud=longitud;
+					datahtml+='<li>'+getHtmlPost(post[i])+'</li>';
 				}
+				appS=getAppSession();
+				appS.address=address;
+				setAppSession(appS);
 				$("#postContainer").html(datahtml);
+				$('#filterPublicacionesInput').textinput();
+				$('#filterPublicaciones').filterable();
 
 			}
 			else{
@@ -471,6 +508,54 @@ $(document).ready(function() {
 		'</li>';
 	}
 	function getHtmlPost(json){
+
+		var address="";
+		if (json.calle!="") {
+			address=json.calle+' #'+json.numero+', '+json.cp+' '+json.municipio+', '+json.estado;
+		}
+		return ''+
+		'<div class="z-panel z-forceBlock bgWhite wow fadeInUp boxShadow" data-wow-duration=".5s" data-wow-delay=".2s">'+
+		'	<div class="z-panelHeader noPadding noBorder">'+
+		'		<div class="z-row noMargin">'+
+		'			<div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-3 noPadding">'+
+		'				<form class="z-block h80">'+
+		'					<button name="useridx"  data-id="'+json.userid+'" class="goProfile z-content z-contentMiddle botonFiltroUsuario">'+
+		'						<div class="profileImg panelImg" style="background-image:url(\''+urlAjax+'images/profPicture/'+json.user_pic+'\');margin-top:10px;">'+
+		'						</div>'+
+		'					</button>'+
+		'				</form>'+
+		'			</div>'+
+		'			<div class="z-col-lg-9 z-col-md-9 z-col-sm-10 z-col-xs-7 noPadding">'+
+		'				<div class="z-block h80">'+
+		'					<div class="z-content z-contentMiddle">'+
+		'						<form action="" method="post" >'+
+		'							<button name="useridx" class="goProfile noMargin text-uppercase text-uppercase s15 cDark text-bold profileU noBorder bgTransparent noPadding" data-id="'+json.userid+'">'+json.negocio+'</button>'+
+		'						</form>'+
+		'						<form action="" method="post" >'+
+		'							<a data-id="'+json.userid+'" class="ubicacionLink cDark">'+address+'</a></form>'+
+		'					</div>'+
+		'				</div>'+
+		'			</div>'+
+		'		</div>'+
+		'	</div>'+
+		'	<div class="z-panelBody z-block overflowHidden noPadding">'+
+		'		<div id="" class="bgDarkBlueClear ofertaImg panelImg" style="background-image:url(\''+urlAjax+json.image+'\');">'+
+		'	</div>'+
+		'	<div class="z-row noMargin">'+
+		'		<div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">'+
+		'			<div class="z-block h80 mh80 overflowAuto">'+
+		'				<div class="z-content z-contentMiddle">'+
+		'					<p class="cDark s15">'+
+		'						<span class="text-bold text-uppercase">'+json.title+'</span><br>'+
+		'						<span class="">'+json.description+'</span>'+
+		'					</p>'+
+		'				</div>'+
+		'			</div>'+
+		'		</div>'+
+		'	</div>'+
+		'</div>';
+	}
+	function getHtmlPost2(json){
 		return '<div class="z-panel z-forceBlock bgWhite wow fadeInUp boxShadow" data-wow-duration=".5s" data-wow-delay=".2s">'+
 		'<div class="z-panelHeader noPadding noBorder">'+
 		'<div class="z-row noMargin">'+
@@ -629,7 +714,6 @@ $(document).ready(function() {
 			rules: {
 				logUser: {
 					required: true,
-					email: true
 				},
 				logPass: {
 					required: true,
@@ -637,7 +721,7 @@ $(document).ready(function() {
 				}
 			},
 			messages: {
-				logUser: "Porfavor ingresa un E-mail valido",
+				logUser: "Porfavor ingresa un usuario valido",
 				logPass: "Ingresa una contraseña con mas de 5 caracteres",
 			}
 		});
@@ -742,7 +826,7 @@ $(document).ready(function() {
 									for(var i in data.datos) {
 
 										datahtml+="<h3>Dia<h3>";
-										datahtml+=getHtmlPost(data.datos[i]);
+										datahtml+=getHtmlPost2(data.datos[i]);
 									}
 									perfilFunction(negocioId,negocio,datahtml,appS.address);
 
@@ -805,7 +889,7 @@ $(document).ready(function() {
 											for(var i in data.datos) {
 
 												datahtml+="<h3>Dia<h3>";
-												datahtml+=getHtmlPost(data.datos[i]);
+												datahtml+=getHtmlPost2(data.datos[i]);
 											}
 											perfilFunction(negocioId,negocio,datahtml,appS.address);
 
