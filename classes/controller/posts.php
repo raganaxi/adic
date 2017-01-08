@@ -107,27 +107,27 @@ public static function getPost($categoria,$fecha){
 
   if ($categoria=="") {
     if ($fecha=="") {
-      $consulta="SELECT post.*,category.nombre as categoria,IF(user_data.negocio is null, 'Sin Nombre', user_data.negocio) AS negocio,user_data.img as user_pic from user inner JOIN user_data ON user.iduser = user_data.user_id inner join category on user_data.category_id = category.idcategory inner join post on user.iduser=post.userid where user.role=? and date = CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date) order by date desc";
+      $consulta="SELECT post.*,category.nombre as categoria,IF(user_data.negocio is null, 'Sin Nombre', user_data.negocio) AS negocio,user_data.img as user_pic,address.* from user inner JOIN user_data ON user.iduser = user_data.user_id inner join category on user_data.category_id = category.idcategory inner join post on user.iduser=post.userid left join address on user.iduser = address.user_id where user.role=? and date = CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date)  group by post.idpost order by date asc";
       $parametros = array('socio');
       $result =  $db_con->consultaSegura($consulta,$parametros);
 
     }
     else{
-      $consulta="SELECT post.*,category.nombre as categoria,IF(user_data.negocio is null, 'Sin Nombre', user_data.negocio) AS negocio,user_data.img as user_pic from user inner JOIN user_data ON user.iduser = user_data.user_id inner join category on user_data.category_id = category.idcategory inner join post on user.iduser=post.userid where user.role=? and date = ? order by date desc";
+      $consulta="SELECT post.*,category.nombre as categoria,IF(user_data.negocio is null, 'Sin Nombre', user_data.negocio) AS negocio,user_data.img as user_pic,address.* from user inner JOIN user_data ON user.iduser = user_data.user_id inner join category on user_data.category_id = category.idcategory inner join post on user.iduser=post.userid left join address on user.iduser = address.user_id where user.role=? and date = ? group by post.idpost order by date asc";
       $parametros = array('socio',$fecha);
       $result =  $db_con->consultaSegura($consulta,$parametros);
 
     }
   }else{
     if ($fecha=="") {
-      $consulta="SELECT post.*,category.nombre as categoria,IF(user_data.negocio is null, 'Sin Nombre', user_data.negocio) AS negocio,user_data.img as user_pic from user inner JOIN user_data ON user.iduser = user_data.user_id inner join category on user_data.category_id = category.idcategory inner join post on user.iduser=post.userid where user.role=? and date = CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date) and user_data.category_id = ? order by date desc";
+      $consulta="SELECT post.*,category.nombre as categoria,IF(user_data.negocio is null, 'Sin Nombre', user_data.negocio) AS negocio,user_data.img as user_pic,address.* from user inner JOIN user_data ON user.iduser = user_data.user_id inner join category on user_data.category_id = category.idcategory inner join post on user.iduser=post.userid left join address on user.iduser = address.user_id where user.role=? and date = CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date) and user_data.category_id = ? group by post.idpost order by date asc";
       $parametros = array('socio',$categoria);
 
       $result =  $db_con->consultaSegura($consulta,$parametros);
 
     }
     else{
-      $consulta="SELECT post.*,category.nombre as categoria,IF(user_data.negocio is null, 'Sin Nombre', user_data.negocio) AS negocio,user_data.img as user_pic from user inner JOIN user_data ON user.iduser = user_data.user_id inner join category on user_data.category_id = category.idcategory inner join post on user.iduser=post.userid where user.role=? and post.date= ? and user_data.category_id=? order by date desc ";
+      $consulta="SELECT post.*,category.nombre as categoria,IF(user_data.negocio is null, 'Sin Nombre', user_data.negocio) AS negocio,user_data.img as user_pic,address.* from user inner JOIN user_data ON user.iduser = user_data.user_id inner join category on user_data.category_id = category.idcategory inner join post on user.iduser=post.userid left join address on user.iduser = address.user_id where user.role=? and post.date= ? and user_data.category_id=? group by post.idpost order by date asc ";
       $parametros = array('socio',$fecha,$categoria);
       $result =  $db_con->consultaSegura($consulta,$parametros);
 
@@ -138,12 +138,12 @@ public static function getPost($categoria,$fecha){
 }
 public static function getPostSocio($iduser){
   $db_con = new PDOMYSQL;
-  $consulta = "SELECT post.*,category.nombre as categoria, IF(user_data.negocio is null, 'Sin Nombre', user_data.negocio) AS negocio, user_data.img as user_pic FROM post INNER JOIN user on post.userid = user.iduser left JOIN user_data ON user.iduser = user_data.user_id left JOIN category on user_data.category_id = category.idcategory ";
+  $consulta = "";
   $result="";
 
   if($iduser!=""){
-    $consulta.=" where CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date) <= STR_TO_DATE(date, '%Y-%m-%d') and user.iduser = ? order by date desc ";
-    $parametros = array($iduser);
+    $consulta="SELECT post.*,category.nombre as categoria, IF(user_data.negocio is null, 'Sin Nombre', user_data.negocio) AS negocio, user_data.img as user_pic,address.* from user inner JOIN user_data ON user.iduser = user_data.user_id inner join category on user_data.category_id = category.idcategory inner join post on user.iduser=post.userid left join address on user.iduser = address.user_id where user.role=? and CAST(CONVERT_TZ(now(),'+00:00','-06:00') as date) <= STR_TO_DATE(date, '%Y-%m-%d') and user.iduser = ? group by post.idpost order by date asc ";
+    $parametros = array('socio',$iduser);
     $result =  $db_con->consultaSegura($consulta,$parametros);
   }
   return $result;
@@ -151,16 +151,16 @@ public static function getPostSocio($iduser){
 public static function getNegocios($categoria){
 
   $db_con = new PDOMYSQL;
-  $consulta = "SELECT IF(negocio is null, 'Sin Nombre', negocio) AS negocio,iduser as userid,username,role,active,user_data.name as nombre,user_data.number,user_data.mail, case img when NULL then 'default.png' when '' then 'default.png' else img end as userpic, category.nombre as categoria , category.idcategory as categoriaid FROM user INNER JOIN user_data ON user_data.user_id = user.iduser INNER JOIN category on category.idcategory = user_data.category_id WHERE user.role = ? and active = 1 ";
+  $consulta = "SELECT IF(negocio is null, 'Sin Nombre', negocio) AS negocio,iduser as userid,username,role,active,user_data.name as nombre,user_data.number,user_data.mail, case img when NULL then 'default.png' when '' then 'default.png' else img end as userpic, category.nombre as categoria , category.idcategory as categoriaid from user INNER JOIN user_data ON  user.iduser = user_data.user_id INNER JOIN category on user_data.category_id=category.idcategory WHERE user.role = ? and user.active = 1 ";
   $socio='socio';
   $parametros = array($socio);
   if($categoria!=""){
-    $consulta.=" and user_data.category_id = ?";
+    $consulta .= " and user_data.category_id = ? ";
     $parametros = array($socio,$categoria);
-    //var_dump($consulta);
+    
   }
-  $consulta.=" order by negocio";
-
+  $consulta.="order by negocio";
+  //var_dump($consulta);
   $result =  $db_con->consultaSegura($consulta,$parametros);
 
 
