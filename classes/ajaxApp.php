@@ -423,17 +423,19 @@ function getPost_function(){
 			$error="no_error";
 		}
 		else{
+			$addresses=[];
+			$array = array('post' => $post, 'addresses' =>$addresses);
 			$continuar="ok";
 			$error="no_error";
-			$datos=$post;
-			$mensaje="ocurrio algo";
+			$datos=$array;
+			$mensaje="direccones vacias";
 		}
 	}
 	else{
 		$continuar="no_ok";
 		$error="error";
 		$datos=$post;
-		$mensaje="no hay negocios";
+		$mensaje="no hay publicaciones";
 	}
 	
 }
@@ -513,10 +515,12 @@ function getNegocios_function(){
 			$error="no_error";
 		}
 		else{
+			$addresses=[];
+			$array = array('negocios' => $post, 'addresses' =>$addresses);
 			$continuar="ok";
 			$error="no_error";
-			$datos=$addresses;
-			$mensaje="ocurrio algo";
+			$datos=$array;
+			$mensaje="direccones vacias";
 		}
 	}
 	else{
