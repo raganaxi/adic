@@ -60,7 +60,10 @@ $(document).ready(function() {
 			})
 			.done(function( data, textStatus, jqXHR ) {
 				if(data.continuar==="ok"){
-					$.mobile.changePage("#main");
+					var activePage = $.mobile.pageContainer.pagecontainer("getActivePage").attr('id');
+					if (activePage==="login") {
+						$.mobile.changePage("#main");
+					}
 
 				}
 				else{
@@ -141,7 +144,7 @@ $(document).ready(function() {
 	function getAppJson(){
 		if (storage.app===undefined) {
 			var user={
-				token:"",
+				token:'',
 				email:"",
 				name:"",
 			};
@@ -154,7 +157,7 @@ $(document).ready(function() {
 			app=JSON.parse(storage.app);
 			if (app.user===undefined) {
 				app.user={
-					token:"",
+					token:'',
 					email:"",
 					name:"",
 				};
@@ -214,7 +217,7 @@ $(document).ready(function() {
 		}).done(function(data){
 			if (data.continuar==="ok") {
 				var user={
-					token:"",
+					token:'',
 					email:"",
 					name:"",
 				};
@@ -726,23 +729,7 @@ $(document).ready(function() {
 			//console.log('go profile '+id);
 
 		});
-		$(document).on('click','.lgn-with-fb',function(event) {
-			var token='swd';
-			//var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
-			var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
-			//$("#iframemodal .modal-body").html(html);
-		});
-		$(document).on('click','.link', function(event) {
-			event.preventDefault();
-			url = $(this).attr("rel");
-			//navigator.app.loadUrl(url, {openExternal: true});
-			window.open(url,'_blank', 'location=yes');
-		});
-
-		function loadURL(url){
-			navigator.app.loadUrl(url, { openExternal:true });
-			return false;
-		}
+		
 		$("#diasSemana").on('click', '.searchDayClick', function(event) {
 			event.preventDefault();
 			$("html, body").animate({ scrollTop: 0 }, "slow");

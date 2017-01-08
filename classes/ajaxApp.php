@@ -425,7 +425,7 @@ function getPost_function(){
 		else{
 			$continuar="ok";
 			$error="no_error";
-			$datos=$addresses;
+			$datos=$post;
 			$mensaje="ocurrio algo";
 		}
 	}
