@@ -15,8 +15,8 @@ if(!isset($_SESSION['rol'])){
     header('Location: '.'logout.php');
   }
 }
-?>
-<div id="perfil_socio" class="right_col" role="main">
+?>     
+<div id="perfil_socio" class="right_col" role="main" onload="initMap()">
   <div class="z-row">
     <div class="col-xs-12">
       <div class="" role="tabpanel" data-example-id="togglable-tabs">
@@ -118,28 +118,27 @@ if(!isset($_SESSION['rol'])){
               <div class="x_content">
                 <form id="editProfileF"><!--action="editPpicture.php" method="post" enctype="multipart/form-data"-->
                   <div class="form-section">
-                    <label for="calleDir">Calle</label>
-                    <input id="calleDir" type="text" class="form-control" placeholder="Calle" name="calleDir" value="" required>
+                    <label for="calleDir">Dirección</label><input id="calleDir" type="text" class="form-control geo1" placeholder="Calle y numero" name="calleDir" value="" required>
                     <div class="clear"></div>
                   </div>
                   <div class="form-section">
-                    <label for="numeroDir">Número</label>
-                    <input id="numeroDir" type="text" class="form-control" placeholder="Número" name="numeroDir" value="" required>
+                    <label for="numeroDir">Colonia</label>
+                    <input id="coloniaDir" type="text" class="form-control geo2" placeholder="Número" name="numeroDir" value="" required>
                     <div class="clear"></div>
                   </div>
                   <div class="form-section">
                     <label for="municipioDir">Municipio</label>
-                    <input id="municipioDir" type="text" class="form-control" placeholder="Municipio" name="municipioDir" value="" required>
+                    <input id="municipioDir" type="text" class="form-control geo3" placeholder="Municipio" name="municipioDir" value="" required>
                     <div class="clear"></div>
                   </div>
                   <div class="form-section">
                     <label for="estadoDir">Estado</label>
-                    <input id="estadoDir" type="text" class="form-control" placeholder="Estado" name="estadoDir" value="" required>
+                    <input id="estadoDir" type="text" class="form-control geo4" placeholder="Estado" name="estadoDir" value="" required>
                     <div class="clear"></div>
                   </div>
                   <div class="form-section">
                     <label for="paisDir">País</label>
-                    <input id="paisDir" type="text" class="form-control" placeholder="País" name="paisDir" value="" required>
+                    <input id="paisDir" type="text" class="form-control geo5" placeholder="País" name="paisDir" value="" required>
                     <div class="clear"></div>
                   </div>
                   <div class="form-section">
@@ -157,6 +156,7 @@ if(!isset($_SESSION['rol'])){
                     <input id="lonDir" type="text" class="form-control" placeholder="Longitud" name="lonDir" value="" required>
                     <div class="clear"></div>
                   </div>
+                   <div id="mapDir" style="width: 100%; height: 350px;" ></div>
                   <button type="button" id="saveDireccion" class="btn bgGreen cWhite pull-right" >
                     Guardar Dirección
                   </button>
@@ -170,3 +170,6 @@ if(!isset($_SESSION['rol'])){
   </div>
 </div>
 <?php include ('footer.php'); ?>
+<script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBPc0IqUH5Kc7aTNQlfMDXEcJFVglGC9DI" async defer></script>
+
+
