@@ -391,6 +391,78 @@
     }
     </script>
     <!-- /datepicker -->
+<!-- funciones del mapa de direciones -->
+<script type="text/javascript">
+var map;
+//crear mapa
+function initMap(lat,long) {
+  if (lat==null||long==null) {
+     lat = 25.5409967;
+      long=-103.4349972;
+  }//alert(lat+", "+long);
+        var myLatLng = {lat:lat, lng: long};     
+        var map = new google.maps.Map(document.getElementById('mapDir'), {
+          center: myLatLng,
+          scrollwheel: false,
+          zoom: 16,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        // Crear posicion del marcador
+        var marker = new google.maps.Marker({
+          draggable: true,
+          map: map,
+          position: myLatLng,
+          title: 'Hello World!'
+        });
+ //posicion al arrastrar el marcador       
+ google.maps.event.addListener(marker, 'drag', function(){
+        $("#latDir").val(marker.getPosition().lat());
+$("#lonDir").val(marker.getPosition().lng());
+    });
+
+      }
+//funcion para calcular latitud y longitud por medio de la direccion
+function geo(address){
+      var geocoder = new google.maps.Geocoder();
+if (address=='') {address='Bosque Venustiano Carranza, Torreón';}
+var latitude;
+var longitude;
+geocoder.geocode( { 'address': address}, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+
+     latitude = results[0].geometry.location.lat();
+
+      longitude = results[0].geometry.location.lng();
+//console.log('La longitud es: ' + longitude + ', la latitud es: ' + latitude);
+ initMap(latitude,longitude);
+$("#latDir").val(latitude);
+$("#lonDir").val(longitude);
+
+    } 
+});  
+}
+//
+$("input[id*=Dir]").on('keyup',function(){
+  if($(this).attr("id")!='cpDir'&&$(this).attr("id")!='latDir'&&$(this).attr("id")!='lonDir'&&$(this).attr("id")!='mapDir'){
+    var address='';  
+    for (var i = 1; i <= 5; i++) {
+       if ($(".geo"+i).val()!='' && i!=1) { address+=','}
+       address+=' '+ $(".geo"+i).val();
+      }
+      //alert(address);
+      geo(address);
+  }
+  if ($(this).attr("id")=='latDir'||$(this).attr("id")=='lonDir') { if ($("#latDir").val()!=''&&$("#lonDir").val()!='') {
+        initMap(parseFloat($("#latDir").val()),parseFloat($("#lonDir").val()));
+      }
+  }
+});
+//iniciador del mapa 
+$("#direcciones-tab").on('click',function(){
+  setTimeout( "initMap(null,null)", 200 );
+});    
+</script>
+<!-- /funciones del mapa de direciones -->
 
   </body>
 </html>
