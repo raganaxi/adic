@@ -415,25 +415,27 @@ function getPost_function(){
 	$post=posts::getPost($categoria,$fecha);
 	if (!empty($post)){
 		$datos=$post;
-		$address=posts::getAddress($categoria);	
-		if (!empty($address)){
-			$array = array('post' => $post, 'address' =>$address);
+		$addresses=posts::getAddress($categoria);	
+		if (!empty($addresses)){
+			$array = array('post' => $post, 'addresses' =>$addresses);
 			$datos=$array;
 			$continuar="ok";
 			$error="no_error";
 		}
 		else{
+			$addresses=[];
+			$array = array('post' => $post, 'addresses' =>$addresses);
 			$continuar="ok";
 			$error="no_error";
-			$datos=$address;
-			$mensaje="ocurrio algo";
+			$datos=$array;
+			$mensaje="direccones vacias";
 		}
 	}
 	else{
 		$continuar="no_ok";
 		$error="error";
 		$datos=$post;
-		$mensaje="no hay negocios";
+		$mensaje="no hay publicaciones";
 	}
 	
 }
@@ -505,18 +507,20 @@ function getNegocios_function(){
 
 	if (!empty($post)){
 		$datos=$post;
-		$address=posts::getAddress($categoria);	
-		if (!empty($address)){
-			$array = array('negocios' => $post, 'address' =>$address);
+		$addresses=posts::getAddress($categoria);	
+		if (!empty($addresses)){
+			$array = array('negocios' => $post, 'addresses' =>$addresses);
 			$datos=$array;
 			$continuar="ok";
 			$error="no_error";
 		}
 		else{
+			$addresses=[];
+			$array = array('negocios' => $post, 'addresses' =>$addresses);
 			$continuar="ok";
 			$error="no_error";
-			$datos=$address;
-			$mensaje="ocurrio algo";
+			$datos=$array;
+			$mensaje="direccones vacias";
 		}
 	}
 	else{
@@ -551,16 +555,16 @@ function getAddress_function(){
 		break;
 		default:
 	}
-	$address=posts::getAddress($categoria);	
-	if (!empty($address)){
-		$datos=$address;
+	$addresses=posts::getaddresses($categoria);	
+	if (!empty($addresses)){
+		$datos=$addresses;
 		$continuar="ok";
 		$error="no_error";
 	}
 	else{
 		$continuar="no_ok";
 		$error="no_error";
-		$datos=$address;
+		$datos=$addresses;
 		$mensaje="ocurrio algo";
 	}
 	
