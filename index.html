@@ -28,18 +28,20 @@
     <![endif]-->
   </head>
   <body id="page-top">
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top noBorder">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle bgTransparent noBorder s20 noMargin collapsed s25" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <button type="button" class="navbar-toggle bgTransparent noBorder s20 noMargin collapsed s25" data-toggle="collapse" data-target="#collapse-1">
             <span class="sr-only"></span><i class="fa fa-bars"></i>
           </button>
-          <a class="navbar-brand page-scroll cDark" href="#page-top"><span class="hidden-lg hidden-md">A dónde ir en la ciudad</span></a>
+          <a class="navbar-brand page-scroll cDark noPadding" href="#page-top">
+            <img src="images/logos/logo.png" alt="..." class="mh50 img-responsive">
+          </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse noBorder" id="collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li>
               <a class="page-scroll" href="#download">Descargar</a>
@@ -53,6 +55,9 @@
             <li>
               <a class="page-scroll" href="#contact">Síguenos</a>
             </li>
+            <li>
+              <a class="btn-primary bgLightBlue cWhite" href="/control">Inicia Sesión</a>
+            </li>
           </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -64,7 +69,7 @@
       <div class="overlay bgDarkClear"></div>
       <div class="container">
         <div class="row">
-          <div class="col-sm-7">
+          <div class="col-lg-8 col-md-9 col-sm-10 col-xs-12">
             <div class="header-content">
               <div class="header-content-inner">
                 <img src="images/logos/logo.png" alt="..." class="mh150 img-responsive">
@@ -74,22 +79,22 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-5">
+          <!-- <div class="col-sm-5">
             <div class="device-container">
               <div class="device-mockup iphone6_plus portrait white">
                 <div class="device">
                   <div class="screen">
-                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else!
-                                    <img src="images/demo-screen-1.jpg" class="img-responsive" alt="">-->
+                    Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else!
+                                    <img src="images/demo-screen-1.jpg" class="img-responsive" alt="">
                     <iframe src="app/index.html" height="100%" width="100%" style="height: 100%;width: 100%;overflow: hidden!important;border:none;"></iframe>
                   </div>
-                  <div class="button">
-                    <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+                  <div class="button hidden">
+                    You can hook the "home button" to some JavaScript events or just remove it
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </header>
@@ -169,14 +174,11 @@
       <div class="container">
         <h2>Síguenos en nuestras redes sociales <i class="fa fa-thumbs-up cLightGrey"></i></h2>
         <ul class="list-inline list-social">
-          <li class="social-twitter">
-            <a href="#" class="boxShadow"><i class="fa fa-twitter"></i></a>
+          <li class="social-instagram">
+            <a href="https://www.instagram.com/adondeirenlaciudad/" target="_blank" class="boxShadow"><i class="fa fa-instagram"></i></a>
           </li>
           <li class="social-facebook">
-            <a href="#" class="boxShadow"><i class="fa fa-facebook"></i></a>
-          </li>
-          <li class="social-google-plus">
-            <a href="#" class="boxShadow"><i class="fa fa-google-plus"></i></a>
+            <a href="https://www.facebook.com/adondeirenlaciudad" target="_blank" class="boxShadow"><i class="fa fa-facebook"></i></a>
           </li>
         </ul>
       </div>
@@ -187,10 +189,10 @@
         <p>&copy; <span class="text-uppercase">A dónde ir en la ciudad.</span><br>Todos los derechos reservados.</p>
         <ul class="list-inline">
           <li>
-            <a href="#">Privacidad</a>
+            <a href="privacidad.html">Privacidad</a>
           </li>
           <li>
-            <a href="#">Terminos y condiciones</a>
+            <a href="terminos.html">Terminos y condiciones</a>
           </li>
         </ul>
       </div>
