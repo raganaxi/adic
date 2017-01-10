@@ -47,17 +47,6 @@
                 </li>
               </ul>
             </div>
-            <div class="menu_section">
-              <h3>Reportes</h3>
-              <ul class="nav side-menu">
-                <li>
-                  <a href="index.php"><i class="fa fa-bar-chart"></i> Tipo Reporte 1</a>
-                </li>
-                <li>
-                  <a href="index.php"><i class="fa fa-th-list"></i> Tipo Reporte 2</a>
-                </li>
-              </ul>
-            </div>
           <?php break;
           case 'socio': ?>
             <div class="menu_section">
