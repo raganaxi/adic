@@ -46,7 +46,6 @@ if (is_ajax()){
 		switch($action) { /*//Switch case for value of action*/
 			case 'sesion': sesion_function();break;
 			case 'loginU': login_function(); break;
-			case 'loginFacebook': login_functionf(); break;
 			case 'logout': logout_function();break;
 			case 'registerU': register_user();break;
 			case 'getPost': getPost_function();break;
@@ -54,7 +53,6 @@ if (is_ajax()){
 			case 'getNegocios': getNegocios_function();break;
 			case 'getAddress': getAddress_function();break;
 			case 'getCat': getCat_function();break;
-			case 'buscar': buscar_function();break;
 			case 'activateT': activateToken_function();break;
 
 		}
@@ -102,20 +100,28 @@ function register_user(){
 		$logUser = trim($logUser);
 		$logPass = trim($logPass);
 		$register_result = user::register($logUser, $logPass, "email");
-		$result = user::login($logUser, $logPass);
-		if (!empty($result)) {
-			$continuar ="ok"; /*login on*/
-			$datos['row']=$result;
-			$newToken=	user::obtenToken512($logUser,$result[0]['iduser'],"localhost","prueba");
-			if($newToken){
-				$datos['token']=$newToken;
-			}	
-		}
-		else{
+		if ($register_result=="Y") {
+			$result = user::login($logUser, $logPass);
+			if (!empty($result)) {
+				$continuar ="ok"; /*login on*/
+				$datos['row']=$result;
+				$newToken=	user::obtenToken512($logUser,$result[0]['iduser'],"localhost","prueba");
+				if($newToken){
+					$datos['token']=$newToken;
+				}	
+			}
+			else{
+				$continuar="no_ok";
+				$error="no_error";
+				$mensaje="email o contraseña no existen "; /* wrong details */
+			}		
+		}else{
 			$continuar="no_ok";
 			$error="no_ok";
-			$mensaje="email o contraseña no existen "; /* wrong details */
-		}		
+			$mensaje="usario/correo ya registrado"; /* wrong details */
+		}
+
+		
 	}
 	else{
 		$continuar="no_ok";
