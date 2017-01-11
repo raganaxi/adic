@@ -72,10 +72,6 @@ class user
     return $result;
   }
 
-  public static function saveDireccion($calle, $numero, $mun, $edo, $pais, $cp, $lat, $lon, $id){
-    
-  }
-
   /*public static function editProfile($name, $phone, $mail, $image, $user_id){
     $consulta = 'call editProfile("'.$name.'", "'.$phone.'",  "'.$mail.'",  "'.$image.'",  "'.$user_id.'")';
     error_log($consulta);

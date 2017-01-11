@@ -54,7 +54,7 @@ p {
   margin-bottom: 20px;
 }
 .navbar-default {
-  background-color: white;
+  background-color: #333;
   border-color: rgba(34, 34, 34, 0.05);
   -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
@@ -86,7 +86,7 @@ p {
 }
 .navbar-default .nav > li > a,
 .navbar-default .nav > li > a:focus {
-  color: #222222;
+  color: #999999;
 }
 .navbar-default .nav > li > a:hover,
 .navbar-default .nav > li > a:focus:hover {
@@ -122,8 +122,8 @@ p {
     color: white;
   }
   .navbar-default.affix {
-    background-color: white;
-    border-color: rgba(34, 34, 34, 0.1);
+    background-color: #333333;
+    /*border-color: rgba(34, 34, 34, 0.1);*/
     box-shadow: 0px 4px 10px 0 rgba(0,0,0,.3);
   }
   .navbar-default.affix .navbar-header .navbar-brand {
@@ -135,7 +135,7 @@ p {
   }
   .navbar-default.affix .nav > li > a,
   .navbar-default.affix .nav > li > a:focus {
-    color: #222222;
+    color: #999999;
   }
   .navbar-default.affix .nav > li > a:hover,
   .navbar-default.affix .nav > li > a:focus:hover {
@@ -187,7 +187,7 @@ header .device-container .screen img {
 }
 @media (min-width: 768px) {
   header {
-    min-height: 100%;
+    min-height: auto;
   }
   header .header-content {
     text-align: left;
@@ -354,6 +354,12 @@ section.contact ul.list-social li.social-twitter a {
 section.contact ul.list-social li.social-twitter a:hover {
   background-color: #0d95e8;
 }
+section.contact ul.list-social li.social-instagram a {
+  background-color: #f4831d;
+}
+section.contact ul.list-social li.social-instagram a:hover {
+  background-color: #e3720e;
+}
 section.contact ul.list-social li.social-facebook a {
   background-color: #3b5998;
 }
@@ -444,4 +450,95 @@ img::-moz-selection {
 }
 body {
   webkit-tap-highlight-color: #222222;
+}
+
+
+.c2 {
+  padding-top: 0pt;
+  padding-bottom: 9.8pt;
+  line-height: 1.0;
+  orphans: 2;
+  widows: 2;
+  height: 11pt
+}
+
+.c6 {
+  padding-top: 0pt;
+  padding-bottom: 9.8pt;
+  line-height: 1.0;
+  orphans: 2;
+  widows: 2
+}
+
+.c4 {
+  padding-top: 0pt;
+  padding-bottom: 0pt;
+  line-height: 1.0;
+  orphans: 2;
+  widows: 2
+}
+
+.c1 {
+  font-size: 12pt;
+  font-family: "Arial";
+  font-weight: 400
+}
+
+.c8 {
+  orphans: 2;
+  widows: 2;
+  height: 11pt
+}
+
+.c5 {
+  background-color: #ffffff;
+  max-width: 425.2pt;
+  padding: 70.8pt 85pt 70.8pt 85pt
+}
+
+.c0 {
+  font-size: 12pt;
+  font-family: "Arial";
+  font-weight: 700
+}
+
+.c7 {
+  background-color: #ffffff;
+  color: #000000
+}
+
+.c3 {
+  text-align: justify
+}
+
+.c9 {
+  text-align: justify;
+}
+
+.title {
+  padding-top: 24pt;
+  color: #000000;
+  font-weight: 700;
+  font-size: 36pt;
+  padding-bottom: 6pt;
+  font-family: "Calibri";
+  line-height: 1.1500000000000001;
+  page-break-after: avoid;
+  orphans: 2;
+  widows: 2;
+  text-align: left
+}
+
+.subtitle {
+  padding-top: 18pt;
+  color: #666666;
+  font-size: 24pt;
+  padding-bottom: 4pt;
+  font-family: "Georgia";
+  line-height: 1.1500000000000001;
+  page-break-after: avoid;
+  font-style: italic;
+  orphans: 2;
+  widows: 2;
+  text-align: left
 }
