@@ -64,7 +64,7 @@
 
               <div class="separator">
                 <p class="change_link">No tienes cuenta?
-                  <a href="#signup" class="to_register"> Crear una </a>
+                  <a href="#signup" class="to_register"> Solicita tu regístro </a>
                 </p>
 
                 <div class="clearfix"></div>
@@ -105,7 +105,7 @@
 
               <div class="separator">
                 <p class="change_link">Ya tienes cuenta?
-                  <a href="#signin" class="to_register"> Haz Log in </a>
+                  <a href="#signin" class="to_register"> Haz Login </a>
                 </p>
 
                 <div class="clearfix"></div>
