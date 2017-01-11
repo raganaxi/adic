@@ -176,6 +176,14 @@ font-size: 20px;
 .bgGreyClear { background-color: rgba(80, 79, 68, .5)!important; }
 .bgDarkGreyClear { background-color: rgba(113, 113, 113, .5)!important; }
 .bgOrangeClear { background-color: rgba(255, 141, 0, .5)!important; }
+.bgCover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.3);
+}
 .hFull { height: 100%; }
 .h10vh { height: 10vh; } .h20vh { height: 20vh; }
 .h30vh { height: 30vh; } .h40vh { height: 40vh; }

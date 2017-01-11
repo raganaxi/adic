@@ -72,10 +72,6 @@ class user
     return $result;
   }
 
-  public static function saveDireccion($calle, $numero, $mun, $edo, $pais, $cp, $lat, $lon, $id){
-    
-  }
-
   /*public static function editProfile($name, $phone, $mail, $image, $user_id){
     $consulta = 'call editProfile("'.$name.'", "'.$phone.'",  "'.$mail.'",  "'.$image.'",  "'.$user_id.'")';
     error_log($consulta);
@@ -201,7 +197,7 @@ class user
     return self::tokenValidate($token);
   }
   public static function tokenValidate($token){
-    $consulta ="SELECT * FROM tbl_tokens WHERE tx_token=? and active=1";
+    $consulta ="SELECT * FROM tbl_tokens WHERE tx_token=? and DATE(DATE_ADD(creation_date, INTERVAL 1 month)) >= now() and active=1 ";
     $parametros = array($token);
     error_log($consulta);
     $db_con = new PDOMYSQL;

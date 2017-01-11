@@ -171,5 +171,3 @@ if(!isset($_SESSION['rol'])){
 </div>
 <?php include ('footer.php'); ?>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBPc0IqUH5Kc7aTNQlfMDXEcJFVglGC9DI" async defer></script>
-
-
