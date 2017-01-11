@@ -197,7 +197,7 @@ class user
     return self::tokenValidate($token);
   }
   public static function tokenValidate($token){
-    $consulta ="SELECT * FROM tbl_tokens WHERE tx_token=? and active=1";
+    $consulta ="SELECT * FROM tbl_tokens WHERE tx_token=? and DATE(DATE_ADD(creation_date, INTERVAL 1 month)) >= now() and active=1 ";
     $parametros = array($token);
     error_log($consulta);
     $db_con = new PDOMYSQL;
