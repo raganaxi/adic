@@ -56,6 +56,7 @@ if (is_ajax()){
 			case 'getCat': getCat_function();break;
 			case 'buscar': buscar_function();break;
 			case 'activateT': activateToken_function();break;
+			case 'info' : info_function();break;
 
 		}
 	}else{
@@ -68,6 +69,23 @@ if (is_ajax()){
 }
 function is_ajax() {
 	return true;//isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+}
+function info_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$result = posts::info_info();
+	if (!empty($result)) {
+		$continuar ="ok";
+		$datos=$result;		
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_ok";
+		$mensaje="no mms"; /* wrong details */
+	}		
 }
 function register_user(){
 	global $db_con;
