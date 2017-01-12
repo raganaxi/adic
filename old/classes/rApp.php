@@ -394,5 +394,192 @@ function getPost_function(){
 	}*/
 
 }
+function getPostSocio_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$iduser="";
+	switch($_SERVER['REQUEST_METHOD'])
+	{
+		case 'GET':
+
+		if (isset($_GET["iduser"]) && !empty($_GET["iduser"])) {
+			$iduser=$_GET["iduser"];
+		}
+		break;
+		case 'POST':		
+		if (isset($_POST["iduser"]) && !empty($_POST["iduser"])) {
+			$iduser=$_POST["iduser"];
+		}
+		break;
+		default:
+	}
+
+	$post=posts::getPostSocio($iduser);
+
+
+	if (!empty($post)){
+		$datos=$post;
+		$continuar="ok";
+		$error="no_error";
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_error";
+		$datos=$post;
+		$mensaje="ocurrio algo";
+	}
+
+}
+function getNegocios_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$categoria="";
+	switch($_SERVER['REQUEST_METHOD'])
+	{
+		case 'GET':
+
+
+		if (isset($_GET["categoria"]) && !empty($_GET["categoria"])) {
+			$categoria=$_GET["categoria"];
+		}
+		break;
+		case 'POST':
+		if (isset($_POST["categoria"]) && !empty($_POST["categoria"])) {
+			$categoria=$_POST["categoria"];
+		}		
+
+		break;
+		default:
+	}
+	$post=posts::getNegocios($categoria);
+
+	if (!empty($post)){
+		$datos=$post;
+		$addresses=posts::getAddress($categoria);	
+		if (!empty($addresses)){
+			$array = array('negocios' => $post, 'addresses' =>$addresses);
+			$datos=$array;
+			$continuar="ok";
+			$error="no_error";
+		}
+		else{
+			$addresses=[];
+			$array = array('negocios' => $post, 'addresses' =>$addresses);
+			$continuar="ok";
+			$error="no_error";
+			$datos=$array;
+			$mensaje="direccones vacias";
+		}
+	}
+	else{
+		$continuar="no_ok";
+		$error="error";
+		$datos=$post;
+		$mensaje="no hay negocios";
+	}
+
+}
+function getAddress_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$categoria="";
+	switch($_SERVER['REQUEST_METHOD'])
+	{
+		case 'GET':
+
+
+		if (isset($_GET["categoria"]) && !empty($_GET["categoria"])) {
+			$categoria=$_GET["categoria"];
+		}
+		break;
+		case 'POST':
+		if (isset($_POST["categoria"]) && !empty($_POST["categoria"])) {
+			$categoria=$_POST["categoria"];
+		}		
+
+		break;
+		default:
+	}
+	$addresses=posts::getaddresses($categoria);	
+	if (!empty($addresses)){
+		$datos=$addresses;
+		$continuar="ok";
+		$error="no_error";
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_error";
+		$datos=$addresses;
+		$mensaje="ocurrio algo";
+	}
+
+}
+function getCat_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+
+	$categoria=posts::getCategory();
+
+
+	if (!empty($categoria)){
+		$datos=$categoria;
+		$continuar="ok";
+		$error="no_error";
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_error";
+		$datos=$categoria;
+		$mensaje="ocurrio algo";
+	}
+
+}
+function buscar_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$input="";
+	switch($_SERVER['REQUEST_METHOD'])
+	{
+		case 'GET':
+		if (isset($_GET["input"]) && !empty($_GET["input"])) {
+			$input=$_GET["input"];
+		}
+		break;
+		case 'POST':	
+		if (isset($_POST["input"]) && !empty($_POST["input"])) {
+			$input=$_POST["input"];
+		}
+		break;
+		default:
+	}
+	$result=posts::searchInput($input);
+	if (!empty($result)){
+		$datos=$result;
+		$continuar="ok";
+		$error="no_error";
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_error";
+		$datos=$result;
+		$mensaje="esta vacio";
+	}
+
+}
 
 ?>
