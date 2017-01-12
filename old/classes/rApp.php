@@ -368,9 +368,10 @@ function getPost_function(){
 		default:
 	}
 	$post=posts::getPost($categoria,$fecha);
-	/*if (!empty($post)){
+	if (!empty($post)){
 		$datos=$post;
 		$addresses=posts::getAddress($categoria);	
+		/*
 		if (!empty($addresses)){
 			$array = array('post' => $post, 'addresses' =>$addresses);
 			$datos=$array;
@@ -384,14 +385,14 @@ function getPost_function(){
 			$error="no_error";
 			$datos=$array;
 			$mensaje="direccones vacias";
-		}
+		}*/
 	}
 	else{
 		$continuar="no_ok";
 		$error="error";
 		$datos=$post;
 		$mensaje="no hay publicaciones";
-	}*/
+	}
 
 }
 /*
