@@ -367,8 +367,8 @@ function getPost_function(){
 		break;
 		default:
 	}
-	/*$post=posts::getPost($categoria,$fecha);
-	if (!empty($post)){
+	$post=posts::getPost($categoria,$fecha);
+	/*if (!empty($post)){
 		$datos=$post;
 		$addresses=posts::getAddress($categoria);	
 		if (!empty($addresses)){
