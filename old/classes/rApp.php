@@ -416,6 +416,7 @@ function getPostSocio_function(){
 		break;
 		default:
 	}
+	/*
 
 	$post=posts::getPostSocio($iduser);
 
@@ -430,7 +431,7 @@ function getPostSocio_function(){
 		$error="no_error";
 		$datos=$post;
 		$mensaje="ocurrio algo";
-	}
+	}*/
 
 }
 function getNegocios_function(){
@@ -457,6 +458,7 @@ function getNegocios_function(){
 		break;
 		default:
 	}
+	/*
 	$post=posts::getNegocios($categoria);
 
 	if (!empty($post)){
@@ -483,6 +485,7 @@ function getNegocios_function(){
 		$datos=$post;
 		$mensaje="no hay negocios";
 	}
+	*/
 
 }
 function getAddress_function(){
@@ -509,6 +512,7 @@ function getAddress_function(){
 		break;
 		default:
 	}
+	/*
 	$addresses=posts::getaddresses($categoria);	
 	if (!empty($addresses)){
 		$datos=$addresses;
@@ -520,7 +524,7 @@ function getAddress_function(){
 		$error="no_error";
 		$datos=$addresses;
 		$mensaje="ocurrio algo";
-	}
+	}*/
 
 }
 
