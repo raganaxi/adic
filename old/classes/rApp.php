@@ -523,63 +523,6 @@ function getAddress_function(){
 	}
 
 }
-function getCat_function(){
-	global $db_con;
-	global $continuar;
-	global $error;
-	global $datos;
-	global $mensaje;
 
-	$categoria=posts::getCategory();
-
-
-	if (!empty($categoria)){
-		$datos=$categoria;
-		$continuar="ok";
-		$error="no_error";
-	}
-	else{
-		$continuar="no_ok";
-		$error="no_error";
-		$datos=$categoria;
-		$mensaje="ocurrio algo";
-	}
-
-}
-function buscar_function(){
-	global $db_con;
-	global $continuar;
-	global $error;
-	global $datos;
-	global $mensaje;
-	$input="";
-	switch($_SERVER['REQUEST_METHOD'])
-	{
-		case 'GET':
-		if (isset($_GET["input"]) && !empty($_GET["input"])) {
-			$input=$_GET["input"];
-		}
-		break;
-		case 'POST':	
-		if (isset($_POST["input"]) && !empty($_POST["input"])) {
-			$input=$_POST["input"];
-		}
-		break;
-		default:
-	}
-	$result=posts::searchInput($input);
-	if (!empty($result)){
-		$datos=$result;
-		$continuar="ok";
-		$error="no_error";
-	}
-	else{
-		$continuar="no_ok";
-		$error="no_error";
-		$datos=$result;
-		$mensaje="esta vacio";
-	}
-
-}
 
 ?>
