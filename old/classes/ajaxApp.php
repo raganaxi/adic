@@ -1,15 +1,5 @@
 <?php
-$origen="";
-if (isset($_SERVER['HTTP_ORIGIN'])) {
-	$origen=$_SERVER['HTTP_ORIGIN'];
-}
-else{
-	$origen="*";
-}
 
-header("Access-Control-Allow-Origin:".$origen);/*
-header("Access-Control-Allow-Origin:".$_SERVER['HTTP_ORIGIN']);*/
-header('Access-Control-Allow-Credentials: true');
 
 require_once('autoloader.php');
 require_once('../config.php');
