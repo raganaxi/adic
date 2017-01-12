@@ -395,7 +395,7 @@ function getPost_function(){
 	}
 
 }
-/*
+
 function getPostSocio_function(){
 	global $db_con;
 	global $continuar;
@@ -471,7 +471,7 @@ function getNegocios_function(){
 			$error="no_error";
 		}
 		else{
-			$addresses=[];
+			$addresses = array();
 			$array = array('negocios' => $post, 'addresses' =>$addresses);
 			$continuar="ok";
 			$error="no_error";
