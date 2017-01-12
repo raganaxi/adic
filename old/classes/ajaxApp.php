@@ -6,10 +6,10 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
 else{
 	$origen="*";
 }
-header('Access-Control-Allow-Credentials: true');
+
 header("Access-Control-Allow-Origin:".$origen);/*
 header("Access-Control-Allow-Origin:".$_SERVER['HTTP_ORIGIN']);*/
-
+header('Access-Control-Allow-Credentials: true');
 
 require_once('autoloader.php');
 require_once('../config.php');
@@ -41,9 +41,8 @@ switch($_SERVER['REQUEST_METHOD'])
 }
 /* dependiendo de la accion es la funcion que se ejecutara */
 if (is_ajax()){
-	if ($action!="") { /*Checks if action value exists*/
-		
-		switch($action) { /*//Switch case for value of action*/
+	if ($action!="") { 		
+		switch($action) { 
 			case 'sesion': sesion_function();break;
 			case 'loginU': login_function(); break;
 			case 'logout': logout_function();break;
@@ -54,7 +53,7 @@ if (is_ajax()){
 			case 'getAddress': getAddress_function();break;
 			case 'getCat': getCat_function();break;
 			case 'activateT': activateToken_function();break;
-			case 'info' : info_function();break;
+			default:break;
 
 		}
 	}else{
@@ -67,23 +66,6 @@ if (is_ajax()){
 }
 function is_ajax() {
 	return true;//isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
-}
-function info_function(){
-	global $db_con;
-	global $continuar;
-	global $error;
-	global $datos;
-	global $mensaje;
-	$result = posts::info_info();
-	if (!empty($result)) {
-		$continuar ="ok";
-		$datos=$result;		
-	}
-	else{
-		$continuar="no_ok";
-		$error="no_ok";
-		$mensaje="no mms"; /* wrong details */
-	}		
 }
 function register_user(){
 	global $db_con;
