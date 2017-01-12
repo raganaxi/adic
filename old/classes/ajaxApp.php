@@ -42,7 +42,7 @@ switch($_SERVER['REQUEST_METHOD'])
 /* dependiendo de la accion es la funcion que se ejecutara */
 if (is_ajax()){
 	if ($action!="") { /*Checks if action value exists*/
-		
+
 		switch($action) { /*//Switch case for value of action*/
 			case 'sesion': sesion_function();break;
 			case 'loginU': login_function(); break;
@@ -66,7 +66,7 @@ if (is_ajax()){
 	echo $return;
 }
 function is_ajax() {
-	return true;//isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+	return true;/*isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';*/
 }
 function info_function(){
 	global $db_con;
@@ -96,7 +96,7 @@ function register_user(){
 	switch($_SERVER['REQUEST_METHOD'])
 	{
 		case 'GET':
-		
+
 		if (isset($_GET["mail"]) && !empty($_GET["mail"])) {
 			$logUser=$_GET["mail"];
 		}
@@ -139,7 +139,7 @@ function register_user(){
 			$mensaje="usario/correo ya registrado"; /* wrong details */
 		}
 
-		
+
 	}
 	else{
 		$continuar="no_ok";
@@ -159,7 +159,7 @@ function login_function(){
 	switch($_SERVER['REQUEST_METHOD'])
 	{
 		case 'GET':
-		
+
 		if (isset($_GET["logUser"]) && !empty($_GET["logUser"])) {
 			$logUser=$_GET["logUser"];
 		}
@@ -203,51 +203,7 @@ function login_function(){
 
 	}
 }
-function login_functionf(){
-	global $db_con;
-	global $continuar;
-	global $error;
-	global $datos;
-	global $mensaje;
-	$logUser="";
-	switch($_SERVER['REQUEST_METHOD'])
-	{
-		case 'GET':
-		
-		if (isset($_GET["logUser"]) && !empty($_GET["logUser"])) {
-			$logUser=$_GET["logUser"];
-		}
-		case 'POST':		
-		if (isset($_POST["logUser"]) && !empty($_POST["logUser"])) {
-			$logUser=$_POST["logUser"];
-		}
-		break;
-		default:
-	}
-	if($logUser!=""){
-		$logUser = trim($logUser);
-		$result = user::loginFacebook($logUser);
-		if (!empty($result)) {
-			$continuar ="ok"; 
-			$datos['row']=$result;
-			$newToken=	user::obtenToken512($logUser,$result[0]['iduser'],"localhost","prueba");
-			if($newToken){
-				$datos['token']=$newToken;
-			}	
-		}
-		else{
-			$continuar="no_ok";
-			$error="no_ok";
-			$mensaje="usuario no registrado con facebook, favor de registrarse";
-		}		
-	}
-	else{
-		$continuar="no_ok";
-		$error="no_error";
-		$mensaje="ocurrio un problema inesperado";
 
-	}
-}
 function activateToken_function(){
 	global $db_con;
 	global $continuar;
@@ -259,7 +215,7 @@ function activateToken_function(){
 	switch($_SERVER['REQUEST_METHOD'])
 	{
 		case 'GET':
-		
+
 		if (isset($_GET["token"]) && !empty($_GET["token"])) {
 			$token=$_GET["token"];
 		}
@@ -280,7 +236,7 @@ function activateToken_function(){
 	if($email!=""){
 		$user=user::userExist($email);
 		if (!empty($user)) {
-			
+
 			/*var_dump($user);*/
 			/*activado normal*/
 			$activate=user::tokenActivate($token,$user[0]['iduser']);
@@ -292,7 +248,7 @@ function activateToken_function(){
 				$error="no_error";
 				$mensaje="no se activo el token";
 			}
-			
+
 		}
 		else{
 			/*registro de usuario y activado*/
@@ -342,7 +298,7 @@ function sesion_function(){
 	switch($_SERVER['REQUEST_METHOD'])
 	{
 		case 'GET':
-		
+
 		if (isset($_GET["token"]) && !empty($_GET["token"])) {
 			$token=$_GET["token"];
 		}
@@ -380,7 +336,7 @@ function logout_function(){
 	switch($_SERVER['REQUEST_METHOD'])
 	{
 		case 'GET':
-		
+
 		if (isset($_GET["token"]) && !empty($_GET["token"])) {
 			$token=$_GET["token"];
 		}
@@ -398,8 +354,8 @@ function logout_function(){
 		$continuar="ok";
 		$error="no_error";
 		return;
-		
-		
+
+
 	}
 	else{
 		$continuar="no_ok";
@@ -418,7 +374,7 @@ function getPost_function(){
 	switch($_SERVER['REQUEST_METHOD'])
 	{
 		case 'GET':
-		
+
 		if (isset($_GET["fecha"]) && !empty($_GET["fecha"])) {
 			$fecha=$_GET["fecha"];
 		}
@@ -461,7 +417,7 @@ function getPost_function(){
 		$datos=$post;
 		$mensaje="no hay publicaciones";
 	}
-	
+
 }
 
 function getPostSocio_function(){
@@ -474,7 +430,7 @@ function getPostSocio_function(){
 	switch($_SERVER['REQUEST_METHOD'])
 	{
 		case 'GET':
-		
+
 		if (isset($_GET["iduser"]) && !empty($_GET["iduser"])) {
 			$iduser=$_GET["iduser"];
 		}
@@ -486,10 +442,10 @@ function getPostSocio_function(){
 		break;
 		default:
 	}
-	
+
 	$post=posts::getPostSocio($iduser);
-	
-	
+
+
 	if (!empty($post)){
 		$datos=$post;
 		$continuar="ok";
@@ -501,7 +457,7 @@ function getPostSocio_function(){
 		$datos=$post;
 		$mensaje="ocurrio algo";
 	}
-	
+
 }
 function getNegocios_function(){
 	global $db_con;
@@ -513,8 +469,8 @@ function getNegocios_function(){
 	switch($_SERVER['REQUEST_METHOD'])
 	{
 		case 'GET':
-		
-		
+
+
 		if (isset($_GET["categoria"]) && !empty($_GET["categoria"])) {
 			$categoria=$_GET["categoria"];
 		}
@@ -523,7 +479,7 @@ function getNegocios_function(){
 		if (isset($_POST["categoria"]) && !empty($_POST["categoria"])) {
 			$categoria=$_POST["categoria"];
 		}		
-		
+
 		break;
 		default:
 	}
@@ -553,7 +509,7 @@ function getNegocios_function(){
 		$datos=$post;
 		$mensaje="no hay negocios";
 	}
-	
+
 }
 function getAddress_function(){
 	global $db_con;
@@ -565,8 +521,8 @@ function getAddress_function(){
 	switch($_SERVER['REQUEST_METHOD'])
 	{
 		case 'GET':
-		
-		
+
+
 		if (isset($_GET["categoria"]) && !empty($_GET["categoria"])) {
 			$categoria=$_GET["categoria"];
 		}
@@ -575,7 +531,7 @@ function getAddress_function(){
 		if (isset($_POST["categoria"]) && !empty($_POST["categoria"])) {
 			$categoria=$_POST["categoria"];
 		}		
-		
+
 		break;
 		default:
 	}
@@ -591,7 +547,7 @@ function getAddress_function(){
 		$datos=$addresses;
 		$mensaje="ocurrio algo";
 	}
-	
+
 }
 function getCat_function(){
 	global $db_con;
@@ -601,8 +557,8 @@ function getCat_function(){
 	global $mensaje;
 
 	$categoria=posts::getCategory();
-	
-	
+
+
 	if (!empty($categoria)){
 		$datos=$categoria;
 		$continuar="ok";
@@ -614,7 +570,7 @@ function getCat_function(){
 		$datos=$categoria;
 		$mensaje="ocurrio algo";
 	}
-	
+
 }
 function buscar_function(){
 	global $db_con;
@@ -649,7 +605,7 @@ function buscar_function(){
 		$datos=$result;
 		$mensaje="esta vacio";
 	}
-	
+
 }
 
 

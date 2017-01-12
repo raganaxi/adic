@@ -185,5 +185,82 @@ function login_function(){
 	}
 }
 
+function activateToken_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$token="";
+	$email="";
+	switch($_SERVER['REQUEST_METHOD'])
+	{
+		case 'GET':
+
+		if (isset($_GET["token"]) && !empty($_GET["token"])) {
+			$token=$_GET["token"];
+		}
+		if (isset($_GET["email"]) && !empty($_GET["email"])) {
+			$email=$_GET["email"];
+		}
+		break;
+		case 'POST':		
+		if (isset($_POST["token"]) && !empty($_POST["token"])) {
+			$token=$_POST["token"];
+		}
+		if (isset($_POST["email"]) && !empty($_POST["email"])) {
+			$email=$_POST["email"];
+		}
+		break;
+		default:
+	}
+	if($email!=""){
+		$user=user::userExist($email);
+		if (!empty($user)) {
+
+			/*var_dump($user);*/
+			/*activado normal*/
+			$activate=user::tokenActivate($token,$user[0]['iduser']);
+			if ($activate) {
+				$continuar ="ok"; 
+			}
+			else{
+				$continuar="no_ok";
+				$error="no_error";
+				$mensaje="no se activo el token";
+			}
+
+		}
+		else{
+			/*registro de usuario y activado*/
+			$user=user::registerOnMailDefault($email);
+			if (!empty($user)) {
+				$activate=user::tokenActivate($token,$email);
+				if ($activate) {
+					$continuar ="ok"; 
+				}
+				else{
+					$continuar="no_ok";
+					$error="no_error";
+					$mensaje="no se activo el token";
+				}
+			}
+			else{
+				$continuar="no_ok";
+				$error="no_error";
+				$mensaje="ocurrio un problema inesperado";
+
+			}
+
+		}
+
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_error";
+		$mensaje="ocurrio un problema inesperado";
+
+	}
+}
 
 ?>
