@@ -262,5 +262,81 @@ function activateToken_function(){
 
 	}
 }
+/* funcion que sirve para verificar el token de session emula el uso de la session en php */
+function sesion_function(){
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$user_email="";
+	$token="";
+	switch($_SERVER['REQUEST_METHOD'])
+	{
+		case 'GET':
+
+		if (isset($_GET["token"]) && !empty($_GET["token"])) {
+			$token=$_GET["token"];
+		}
+		break;
+		case 'POST':		
+		if (isset($_POST["token"]) && !empty($_POST["token"])) {
+			$token=$_POST["token"];
+		}
+		break;
+		default:
+	}
+	if ($token!="") {
+		$validate=user::tokenValidate($token);
+		if ($validate) {
+			$continuar="ok";
+			$error="no_error";
+			return;
+		}
+	}
+	$continuar="no_ok";
+	$error="no_error";
+	$mensaje="no ha iniciado session";
+	return;
+}
+
+/* logout function */
+function logout_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$user_email="";
+	$token="";
+	switch($_SERVER['REQUEST_METHOD'])
+	{
+		case 'GET':
+
+		if (isset($_GET["token"]) && !empty($_GET["token"])) {
+			$token=$_GET["token"];
+		}
+		break;
+		case 'POST':		
+		if (isset($_POST["token"]) && !empty($_POST["token"])) {
+			$token=$_POST["token"];
+		}
+		break;
+		default:
+	}
+	if ($token!="") {
+		$validate=user::tokenValidateDelete($token);
+		$datos=$validate;
+		$continuar="ok";
+		$error="no_error";
+		return;
+
+
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_error";
+		$mensaje="token vacio";
+	}
+}
 
 ?>
