@@ -6,7 +6,6 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
 else{
 	$origen="*";
 }
-echo $origin;
 header("Access-Control-Allow-Origin:".$origen);/*
 header("Access-Control-Allow-Origin:".$_SERVER['HTTP_ORIGIN']);*/
 header('Access-Control-Allow-Credentials: true');
@@ -42,20 +41,7 @@ switch($_SERVER['REQUEST_METHOD'])
 /* dependiendo de la accion es la funcion que se ejecutara */
 if (is_ajax()){
 	if ($action!="") { 		
-		switch($action) { 
-			case 'sesion': sesion_function();break;
-			case 'loginU': login_function(); break;
-			case 'logout': logout_function();break;
-			case 'registerU': register_user();break;
-			case 'getPost': getPost_function();break;
-			case 'getPostSocio': getPostSocio_function();break;
-			case 'getNegocios': getNegocios_function();break;
-			case 'getAddress': getAddress_function();break;
-			case 'getCat': getCat_function();break;
-			case 'activateT': activateToken_function();break;
-			default:break;
-
-		}
+		
 	}else{
 		$continuar="no_ok";
 		$mensaje="no hay accion";
