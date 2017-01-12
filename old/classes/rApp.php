@@ -525,6 +525,5 @@ function getAddress_function(){
 	}
 
 }
-*/
 
 ?>
