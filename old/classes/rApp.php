@@ -11,6 +11,9 @@ header("Access-Control-Allow-Origin:".$origen);/*
 header("Access-Control-Allow-Origin:".$_SERVER['HTTP_ORIGIN']);*/
 header('Access-Control-Allow-Credentials: true');
 
+require_once('autoloader.php');
+require_once('../config.php');
+
 use pdomysql AS pdomysql;
 use user AS user;
 use posts AS posts;
@@ -67,7 +70,7 @@ function info_function(){
 	global $error;
 	global $datos;
 	global $mensaje;
-	//$result = posts::info_info();
+	$result = posts::info_info();
 	if (!empty($result)) {
 		$continuar ="ok";
 		$datos=$result;		
