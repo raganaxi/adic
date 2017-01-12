@@ -67,7 +67,7 @@ function info_function(){
 	global $error;
 	global $datos;
 	global $mensaje;
-	$result = posts::info_info();
+	//$result = posts::info_info();
 	if (!empty($result)) {
 		$continuar ="ok";
 		$datos=$result;		
@@ -141,7 +141,8 @@ function register_user(){
 
 	}
 }
-function login_function(){
+function login_function()
+{
 	global $db_con;
 	global $continuar;
 	global $error;
