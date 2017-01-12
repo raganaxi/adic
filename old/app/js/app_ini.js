@@ -5,7 +5,7 @@ var appS={};
 var controller;
 var urlLocal="http://localhost:81/cache/adic/old/";
 var urlRemoto="http://adondeirenlaciudad.com/old/";
-
+var appRuta='rApp.php';
 /* comentar para subir a produccion*/
 
 //var urlRemoto = urlLocal;
@@ -58,7 +58,7 @@ $(document).ready(function() {
 				xhrFields: {
 					withCredentials: true
 				},
-				url  : urlAjax+'classes/ajaxApp.php',
+				url  : urlAjax+'classes/'+appRuta,
 				dataType: "json",
 				data : data,
 			})
@@ -111,7 +111,7 @@ $(document).ready(function() {
 			xhrFields: {
 				withCredentials: true
 			},
-			url  : urlAjax+'classes/ajaxApp.php',
+			url  : urlAjax+'classes/'+appRuta,
 			dataType: "json",
 			data : data,
 		})
@@ -215,7 +215,7 @@ $(document).ready(function() {
 			xhrFields: {
 				withCredentials: true
 			},
-			url: urlAjax+'classes/ajaxApp.php',
+			url: urlAjax+'classes/'+appRuta,
 			type: 'post'
 		}).done(function(data){
 			if (data.continuar==="ok") {
@@ -245,7 +245,7 @@ $(document).ready(function() {
 			xhrFields: {
 				withCredentials: true
 			},
-			url: urlAjax+'classes/ajaxApp.php',
+			url: urlAjax+'classes/'+appRuta,
 			type: 'post'
 		}).done(function(data){
 			if(data.continuar==="ok"){
@@ -390,7 +390,7 @@ $(document).ready(function() {
 			xhrFields: {
 				withCredentials: true
 			},
-			url: urlAjax+'classes/ajaxApp.php',
+			url: urlAjax+'classes/'+appRuta,
 			type: 'post'
 		}).done(function(data){
 			if(data.continuar==="ok"){
@@ -435,7 +435,7 @@ $(document).ready(function() {
 			xhrFields: {
 				withCredentials: true
 			},
-			url: urlAjax+'classes/ajaxApp.php',
+			url: urlAjax+'classes/'+appRuta,
 			type: 'post'
 		}).done(function(data){
 			if(data.continuar==="ok"){
@@ -752,7 +752,7 @@ $(document).ready(function() {
 					xhrFields: {
 						withCredentials: true
 					},
-					url: urlAjax+'classes/ajaxApp.php',
+					url: urlAjax+'classes/'+appRuta,
 					type: 'post'
 				}).done(function(data){
 					if(data.continuar==="ok"){
@@ -801,7 +801,7 @@ $(document).ready(function() {
 									xhrFields: {
 										withCredentials: true
 									},
-									url: urlAjax+'classes/ajaxApp.php',
+									url: urlAjax+'classes/'+appRuta,
 									type: 'post'
 								}).done(function(data){
 									var appS = getAppSession();
