@@ -367,7 +367,7 @@ function getPost_function(){
 		break;
 		default:
 	}
-	$post=posts::getPost($categoria,$fecha);
+	/*$post=posts::getPost($categoria,$fecha);
 	if (!empty($post)){
 		$datos=$post;
 		$addresses=posts::getAddress($categoria);	
@@ -391,7 +391,7 @@ function getPost_function(){
 		$error="error";
 		$datos=$post;
 		$mensaje="no hay publicaciones";
-	}
+	}*/
 
 }
 
