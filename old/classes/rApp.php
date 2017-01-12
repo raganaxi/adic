@@ -20,7 +20,20 @@ $error="no_error";
 $continuar="no_ok";
 $datos="";
 $action="";
-
+switch($_SERVER['REQUEST_METHOD'])
+{
+	case 'GET':
+	if (isset($_GET["action"]) && !empty($_GET["action"])) {
+		$action=$_GET["action"];
+	}
+	break;
+	case 'POST':
+	if (isset($_POST["action"]) && !empty($_POST["action"])) {
+		$action=$_POST["action"];
+	}
+	break;
+	default:
+}
 if (is_ajax()){
 	if ($action!="") {
 		switch($action) { /*//Switch case for value of action*/
