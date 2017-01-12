@@ -3,12 +3,12 @@ var storage;
 var app={};
 var appS={};
 var controller;
-var urlLocal="http://localhost:81/cache/adic/";
-var urlRemoto="http://adondeirenlaciudad.com/";
+var urlLocal="http://localhost:81/cache/adic/old/";
+var urlRemoto="http://adondeirenlaciudad.com/old/";
 
 /* comentar para subir a produccion*/
 
-var urlRemoto = urlLocal;
+//var urlRemoto = urlLocal;
 
 var urlAjax=urlRemoto;
 var map;
