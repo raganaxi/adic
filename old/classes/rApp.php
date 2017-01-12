@@ -45,7 +45,6 @@ if (is_ajax()){
 			case 'getPostSocio': getPostSocio_function();break;
 			case 'getNegocios': getNegocios_function();break;
 			case 'getAddress': getAddress_function();break;
-			case 'getCat': getCat_function();break;
 			case 'activateT': activateToken_function();break;
 			case 'info' : info_function();break;
 
