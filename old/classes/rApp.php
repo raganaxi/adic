@@ -20,24 +20,22 @@ $error="no_error";
 $continuar="no_ok";
 $datos="";
 $action="";
-switch($_SERVER['REQUEST_METHOD'])
-{
-	case 'GET':
-	if (isset($_GET["action"]) && !empty($_GET["action"])) {
-		$action=$_GET["action"];
-	}
-	break;
-	case 'POST':
-	if (isset($_POST["action"]) && !empty($_POST["action"])) {
-		$action=$_POST["action"];
-	}
-	break;
-	default:
-}
 
-$return = json_encode(array('continuar' => $continuar,'error'=>$error,'mensaje'=> $mensaje,'datos'=>$datos),JSON_FORCE_OBJECT );
-header('Content-type: application/json; charset=utf-8');
-echo $return;
+if (is_ajax()){
+	if ($action!="") {
+		
+
+	}else{
+		$continuar="no_ok";
+		$mensaje="no hay accion";
+	}
+	$return = json_encode(array('continuar' => $continuar,'error'=>$error,'mensaje'=> $mensaje,'datos'=>$datos),JSON_FORCE_OBJECT );
+	header('Content-type: application/json; charset=utf-8');
+	echo $return;
+}
+function is_ajax() {
+	return true;/*isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';*/
+}
 
 
 
