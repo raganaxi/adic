@@ -166,6 +166,18 @@ public static function getNegocios($categoria){
 
   return $result;
 }
+public static function getImgSocio($iduser){
+  $db_con = new PDOMYSQL;
+  $consulta = "";
+  $result="";
+
+  if($iduser!=""){
+    $consulta="SELECT images.* from images inner JOIN user ON user.iduser = images.user_id where user.iduser = ?";
+    $parametros = array($iduser);
+    $result =  $db_con->consultaSegura($consulta,$parametros);
+  }
+  return $result;
+}
 
 public static function getAddress($categoria){
   $db_con = new PDOMYSQL;

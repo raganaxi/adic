@@ -439,14 +439,19 @@ function getPostSocio_function(){
 
 
 	if (!empty($post)){
-		$datos=$post;
+		$images=posts::getImgSocio($iduser);
+		$array= array('post' => $post,'images'=>$images );
+		$datos=$array;
 		$continuar="ok";
 		$error="no_error";
+
 	}
 	else{
 		$continuar="no_ok";
 		$error="no_error";
-		$datos=$post;
+		$images=posts::getImgSocio($iduser);
+		$array= array('post' => $post,'images'=>$images );
+		$datos=$array;
 		$mensaje="ocurrio algo";
 	}
 

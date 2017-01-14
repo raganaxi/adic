@@ -14,7 +14,6 @@ header('Access-Control-Allow-Credentials: true');
 require_once('autoloader.php');
 require_once('../config.php');
 
-//invocacion de clases
 use pdomysql AS pdomysql;
 use user AS user;
 use posts AS posts;
@@ -24,7 +23,6 @@ $error="no_error";
 $continuar="no_ok";
 $datos="";
 $action="";
-
 switch($_SERVER['REQUEST_METHOD'])
 {
 	case 'GET':
@@ -39,10 +37,8 @@ switch($_SERVER['REQUEST_METHOD'])
 	break;
 	default:
 }
-/* dependiendo de la accion es la funcion que se ejecutara */
 if (is_ajax()){
-	if ($action!="") { /*Checks if action value exists*/
-
+	if ($action!="") {
 		switch($action) { /*//Switch case for value of action*/
 			case 'sesion': sesion_function();break;
 			case 'loginU': login_function(); break;
@@ -52,11 +48,11 @@ if (is_ajax()){
 			case 'getPostSocio': getPostSocio_function();break;
 			case 'getNegocios': getNegocios_function();break;
 			case 'getAddress': getAddress_function();break;
-			case 'getCat': getCat_function();break;
 			case 'activateT': activateToken_function();break;
 			case 'info' : info_function();break;
 
 		}
+
 	}else{
 		$continuar="no_ok";
 		$mensaje="no hay accion";
@@ -148,7 +144,8 @@ function register_user(){
 
 	}
 }
-function login_function(){
+function login_function()
+{
 	global $db_con;
 	global $continuar;
 	global $error;
@@ -281,12 +278,6 @@ function activateToken_function(){
 
 	}
 }
-
-
-
-
-
-
 /* funcion que sirve para verificar el token de session emula el uso de la session en php */
 function sesion_function(){
 	global $continuar;
@@ -396,6 +387,7 @@ function getPost_function(){
 	if (!empty($post)){
 		$datos=$post;
 		$addresses=posts::getAddress($categoria);	
+		
 		if (!empty($addresses)){
 			$array = array('post' => $post, 'addresses' =>$addresses);
 			$datos=$array;
@@ -403,7 +395,7 @@ function getPost_function(){
 			$error="no_error";
 		}
 		else{
-			$addresses=[];
+			$addresses = array();
 			$array = array('post' => $post, 'addresses' =>$addresses);
 			$continuar="ok";
 			$error="no_error";
@@ -447,14 +439,19 @@ function getPostSocio_function(){
 
 
 	if (!empty($post)){
-		$datos=$post;
+		$images=posts::getImgSocio($iduser);
+		$array= array('post' => $post,'images'=>$images );
+		$datos=$array;
 		$continuar="ok";
 		$error="no_error";
+
 	}
 	else{
 		$continuar="no_ok";
 		$error="no_error";
-		$datos=$post;
+		$images=posts::getImgSocio($iduser);
+		$array= array('post' => $post,'images'=>$images );
+		$datos=$array;
 		$mensaje="ocurrio algo";
 	}
 
@@ -495,7 +492,7 @@ function getNegocios_function(){
 			$error="no_error";
 		}
 		else{
-			$addresses=[];
+			$addresses = array();
 			$array = array('negocios' => $post, 'addresses' =>$addresses);
 			$continuar="ok";
 			$error="no_error";
@@ -549,89 +546,5 @@ function getAddress_function(){
 	}
 
 }
-function getCat_function(){
-	global $db_con;
-	global $continuar;
-	global $error;
-	global $datos;
-	global $mensaje;
-
-	$categoria=posts::getCategory();
-
-
-	if (!empty($categoria)){
-		$datos=$categoria;
-		$continuar="ok";
-		$error="no_error";
-	}
-	else{
-		$continuar="no_ok";
-		$error="no_error";
-		$datos=$categoria;
-		$mensaje="ocurrio algo";
-	}
-
-}
-function buscar_function(){
-	global $db_con;
-	global $continuar;
-	global $error;
-	global $datos;
-	global $mensaje;
-	$input="";
-	switch($_SERVER['REQUEST_METHOD'])
-	{
-		case 'GET':
-		if (isset($_GET["input"]) && !empty($_GET["input"])) {
-			$input=$_GET["input"];
-		}
-		break;
-		case 'POST':	
-		if (isset($_POST["input"]) && !empty($_POST["input"])) {
-			$input=$_POST["input"];
-		}
-		break;
-		default:
-	}
-	$result=posts::searchInput($input);
-	if (!empty($result)){
-		$datos=$result;
-		$continuar="ok";
-		$error="no_error";
-	}
-	else{
-		$continuar="no_ok";
-		$error="no_error";
-		$datos=$result;
-		$mensaje="esta vacio";
-	}
-
-}
-
-
-/* fin*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ?>
