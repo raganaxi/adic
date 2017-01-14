@@ -37,6 +37,8 @@
     <!-- Custom Theme Style -->
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/helpers.css" rel="stylesheet">
+        <!--dataTables Style -->
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
   </head>
 
   <body class="nav-md">

@@ -53,6 +53,8 @@
     <script src="js/scripts.js"></script>
     <script src="js/functions.js"></script>
     <script src="js/jquery.validate.min.js"></script>
+        <!-- dataTables -->
+    <script type="text/javascript" charset="utf8" src="js/jquery.dataTables.js"></script>
 
     <!-- Flot -->
     <script>

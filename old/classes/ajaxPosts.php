@@ -30,6 +30,10 @@ if (isset($_POST['postsDay'])) {
 	$result = posts::search(null, $_SESSION['date']);
 	echo json_encode($result);
 }
+if (isset($_POST['tableDir'])) {
+	error_log(print_r($_SESSION['date'],true));
+	echo 'holaa';
 
+}
 
 ?>

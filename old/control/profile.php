@@ -162,6 +162,33 @@ if(!isset($_SESSION['rol'])){
                   </button>
                 </form>
               </div>
+
+                            <div class="x_content">
+                <div class="x_title">
+                  <h2>Lista de Direcciones</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <table id="tableDir" >
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Direccion</th>
+                    <th>Colonia</th>
+                    <th>Municipio</th>
+                    <th>Estado</th>
+                    <th>Pais</th>
+                    <th>C.P.</th>
+                    <th>Long</th>
+                    <th>Lat</th>
+                    <th>Eliminar</th>
+                    </tr>
+                  </thead>
+                </table>
+
+              </div>
+
+
+
             </div>
           </div>
         </div>
@@ -171,3 +198,41 @@ if(!isset($_SESSION['rol'])){
 </div>
 <?php include ('footer.php'); ?>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBPc0IqUH5Kc7aTNQlfMDXEcJFVglGC9DI" async defer></script>
+<script type="text/javascript">
+crearTabla();
+  function crearTabla(){
+   var table= $("#tableDir").dataTable();
+    
+  /* $.ajax({
+      type:"POST",
+      url:'../old/classes/ajaxPost.php',
+      data: { tableDir:'1'},
+      dataType: 'json',
+      success: function (data){
+        if (data.success) {
+           $.each(data, function(index,record){
+              if ($.isNumeric(index)) {
+                var row=$("<tr />");
+                $("<td />").text(record. ).appendTo(row);
+              }
+           });
+        }
+
+
+      }
+   }); */
+
+
+   /*$('#tableDir').DataTable({
+    ajax:{
+      type:"POST",
+      url:'../classes/ajaxPost.php',
+      data: { tableDir:'1'}
+     },
+    columns: [  ]
+
+   });*/
+
+
+  }
+</script>
