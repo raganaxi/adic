@@ -24,6 +24,26 @@ if(!isset($_SESSION['rol'])){
     width: 50%;
     display: inline-block;
   }
+.fa-pencil-square-o{
+  font-size: x-large;
+  color: blue;
+  cursor: pointer;
+}
+.fa-pencil-square-o:hover{
+  font-size: xx-large;
+  color: #6706e2;
+}
+.fa-times{
+    font-size: x-large;
+  color: red;
+  float: right;
+  cursor: pointer;
+}
+.fa-times:hover{
+  font-size: xx-large;
+  color: #e62b89;
+}
+
 </style>    
 <div id="perfil_socio" class="right_col" role="main" onload="initMap()">
   <div class="z-row">
@@ -148,8 +168,8 @@ if(!isset($_SESSION['rol'])){
                     <th>C.P.</th>
                     <th>Long</th>
                     <th>Lat</th>
-                    <th>Eliminar</th>
-                    <th></th>
+                    <th>Editar/<br>Eliminar</th>
+                    <th>Status</th>
                     </tr>
                   </thead>
                 </table>
@@ -171,19 +191,36 @@ if(!isset($_SESSION['rol'])){
 
   function crearTabla(){
    var table= $("#tableDir").DataTable({
-                "iDisplayLength":100,
+          "iDisplayLength":100,
           "processing":true,
           "serverSide":true,
+           "defaultContent": "-",
+            "targets": "_all",
       ajax:{
       type: "POST",
-      url:'../classes/ajaxPosts.php',
+     //url:'../classes/controller/socTable.php',
+     url:'../classes/ajaxPosts.php',
       data: { tableDir:'1'},
-        dataType: "json",
+      dataType: "json",
       },  
-                "columnDefs":[
-                {    "defaultContent": "-",
-                     "targets": "_all",
-                  "targets" : [5],
+       "columnDefs":[
+                 /* {
+                    "targets" : [0],
+                  "render": function(data,type,full){
+                      
+
+                  }
+
+                  },   */  
+                
+                {
+                  "targets" : [9],
+                  "render": function(data,type,full){
+                    return '<i id="update_'+full[0]+'" class="fa fa-pencil-square-o" aria-hidden="true"></i><i id="delete_'+full[0]+'" class="fa fa-times" aria-hidden="true"></i>'
+                  }
+                },
+                  {
+                    "targets" : [10],
                   "render": function(data,type,full){
                       if(data == 1){
                         return 'Activo';
@@ -193,30 +230,12 @@ if(!isset($_SESSION['rol'])){
 
                   }
                 }
+                
               ],
           "sDom":'ltrip',
           "initComplete": function(settings, json) {
               }
-
     });
-  /* $.ajax({
-      type:"POST",
-      url:'../old/classes/ajaxPost.php',
-      data: { tableDir:'1'},
-      dataType: 'json',
-      success: function (data){
-        if (data.success) {
-           $.each(data, function(index,record){
-              if ($.isNumeric(index)) {
-                var row=$("<tr />");
-                $("<td />").text(record. ).appendTo(row);
-              }
-           });
-        }
-
-
-      }
-   }); */
 
 
    /*$('#tableDir').DataTable({
