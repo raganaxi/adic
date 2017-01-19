@@ -166,10 +166,22 @@ public static function getNegocios($categoria){
 
   return $result;
 }
+public static function getImgSocio($iduser){
+  $db_con = new PDOMYSQL;
+  $consulta = "";
+  $result="";
+
+  if($iduser!=""){
+    $consulta="SELECT images.* from images inner JOIN user ON user.iduser = images.user_id where user.iduser = ?";
+    $parametros = array($iduser);
+    $result =  $db_con->consultaSegura($consulta,$parametros);
+  }
+  return $result;
+}
 
 public static function getAddress($categoria){
   $db_con = new PDOMYSQL;
-  $consulta = "SELECT iduser as userid, if( address.calle is NULL,'', address.calle) as calle, if( address.numero is NULL,'',address.numero) as numero, if( address.municipio is NULL,'', address.municipio)  as municipio, if( address.estado is NULL,'', address.estado) as estado, if( address.pais is NULL,'', address.pais) as pais, if( address.cp is NULL,'', address.cp) as cp, if( address.lat is NULL,'', address.lat) as latitud, if( address.long is NULL,'', address.long) as longitud, if( address.idaddress is NULL,'', address.idaddress) as idaddress FROM user INNER JOIN user_data ON user_data.user_id = user.iduser INNER JOIN category on category.idcategory = user_data.category_id inner JOIN address on address.user_id = user_data.user_id WHERE user.role = ?";
+  $consulta = "SELECT iduser as userid, if( address.direccion is NULL,'', address.direccion) as direccion, if( address.municipio is NULL,'', address.municipio)  as municipio, if( address.estado is NULL,'', address.estado) as estado, if( address.pais is NULL,'', address.pais) as paisaddress, if( address.cp is NULL,'', address.cp) as cp, if( address.lat is NULL,'', address.lat) as latitud, if( address.long is NULL,'', address.long) as longitud, if( address.idaddress is NULL,'', address.idaddress) as idaddress, if( user_data.negocio is NULL,'Negocio', user_data.negocio) as negocio FROM user INNER JOIN user_data ON user_data.user_id = user.iduser INNER JOIN category on category.idcategory = user_data.category_id inner JOIN address on address.user_id = user_data.user_id WHERE user.role = ?";
   $socio='socio';
   $parametros = array($socio);
   if($categoria!=""){

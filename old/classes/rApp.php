@@ -50,6 +50,7 @@ if (is_ajax()){
 			case 'getAddress': getAddress_function();break;
 			case 'activateT': activateToken_function();break;
 			case 'info' : info_function();break;
+			case 'getAddresses': getAddresses_function();break;
 
 		}
 
@@ -71,6 +72,23 @@ function info_function(){
 	global $datos;
 	global $mensaje;
 	$result = posts::info_info();
+	if (!empty($result)) {
+		$continuar ="ok";
+		$datos=$result;		
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_ok";
+		$mensaje="no mms"; /* wrong details */
+	}		
+}
+function getAddresses_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$result = posts::getAddress();
 	if (!empty($result)) {
 		$continuar ="ok";
 		$datos=$result;		
