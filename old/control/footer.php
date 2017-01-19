@@ -56,6 +56,9 @@
         <!-- dataTables -->
     <script type="text/javascript" charset="utf8" src="js/jquery.dataTables.js"></script>
 
+     <script type="text/javascript" charset="utf8" src="https://cdn.jsdelivr.net/sweetalert2/6.3.2/sweetalert2.min.js"></script>
+     <script type="text/javascript" charset="utf8" src="https://cdn.jsdelivr.net/sweetalert2/6.3.2/sweetalert2.js"></script>
+
     <!-- Flot -->
     <script>
       $(document).ready(function() {
@@ -461,8 +464,63 @@ $("input[id*=Dir]").on('keyup',function(){
 });
 //iniciador del mapa 
 $("#direcciones-tab").on('click',function(){
-  setTimeout( "initMap(null,null)", 200 );
-});    
+  //setTimeout( "initMap(null,null)", 200 );
+  //crearTabla();
+});
+
+
+
+var formAddress='<form id="editProfileD"><div class="form-section"><label for="calleDir">Dirección</label><input id="calleDir" type="text" class="form-control geo1" placeholder="Calle y numero" name="calleDir" value="" required><div class="clear"></div></div><div class="form-section"><label for="numeroDir">Colonia</label><input id="coloniaDir" type="text" class="form-control geo2" placeholder="Número" name="numeroDir" value="" required><div class="clear"></div></div><div class="form-section"><label for="municipioDir">Municipio</label><input id="municipioDir" type="text" class="form-control geo3" placeholder="Municipio" name="municipioDir" value="" required><div class="clear"></div></div><div class="form-section"><label for="estadoDir">Estado</label><input id="estadoDir" type="text" class="form-control geo4" placeholder="Estado" name="estadoDir" value="" required><div class="clear"></div></div><div class="form-section"><label for="paisDir">País</label><input id="paisDir" type="text" class="form-control geo5" placeholder="País" name="paisDir" value="" required><div class="clear"></div></div><div class="form-section"><label for="cpDir">Código Postal</label><input id="cpDir" type="text" class="form-control" placeholder="CP" name="cpDir" value="" required><div class="clear"></div></div><div class="form-section"><label for="latDir">Latitud</label><input id="latDir" type="text" class="form-control" placeholder="Latitud" name="latDir" value="" required><div class="clear"></div></div><div class="form-section"><label for="lonDir">Longitud</label><input id="lonDir" type="text" class="form-control" placeholder="Longitud" name="lonDir" value="" required><div class="clear"></div></div><div id="mapDir" style="width: 100%; height: 350px;" ></div></form>';
+/*<button type="button" id="saveDireccion" class="btn bgGreen cWhite pull-right" >Guardar Dirección</button>*/
+$('#btnAddAddress').click(function(){
+ 
+  swal({
+
+    title:'+Direcciones',
+    html: formAddress,
+    customClass: 'swal-xl',
+     showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  cancelButtonText: 'Cancelar',
+  confirmButtonText: 'Guardar Dirección',
+  preConfirm: function () {
+          $.ajax({
+        type: "POST",
+        url: '../classes/ajaxPosts.php',
+        data: {direccion: 1,dir:$('#calleDir').val(),col:$('#coloniaDir').val(),mun:$('#municipioDir').val(),est:$('#estadoDir').val(),pais:$('#paisDir').val(),cp:$('#cpDir').val(),lat:$('#latDir').val(),lon:$('#lonDir').val()},
+        succes: function(response){
+          alert(response);
+          if (response=="correcto") {
+
+            swal({
+              type: 'success',
+              title: 'Operacio Exitosa',
+              text: 'la direccion ha sido guardad con exito'
+            })
+          }else{
+            swal({
+            type: 'warning',
+            title: 'error'
+            
+          })
+          }
+
+        },
+        error: function(e){
+          swal({
+            type: 'warning',
+            title: 'error',
+            text: e
+          })
+        }
+
+    });
+  }
+  })
+initMap(null,null);
+});
+
 </script>
 <!-- /funciones del mapa de direciones -->
 

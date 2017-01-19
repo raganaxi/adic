@@ -6,7 +6,7 @@ $mapping = array(
     'posts' => __DIR__ . '/controller/posts.php',
     'soctable' => __DIR__ . '/controller/socTable.php',
     'ConnectionFactory' => __DIR__ . '/controller/ConnectionFactory.php',
-    'address' => __DIR__ . '/class.Address.php',
+    'address' => __DIR__ . '/controller/class.address.php',
 );
 
 spl_autoload_register(function ($class) use ($mapping) {

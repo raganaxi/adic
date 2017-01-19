@@ -77,7 +77,7 @@ require_once('ConnectionFactory.php');
         	);
 
         $sqlTotal->close();
-        //error_log(print_r($json_data,true));
+        error_log(print_r($json_data,true));
         echo json_encode($json_data);
         //print_r(json_decode($_POST['areasServ']));
 

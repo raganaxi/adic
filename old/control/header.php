@@ -39,6 +39,8 @@
     <link href="css/helpers.css" rel="stylesheet">
         <!--dataTables Style -->
     <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/6.3.2/sweetalert2.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/6.3.2/sweetalert2.css">
   </head>
 
   <body class="nav-md">

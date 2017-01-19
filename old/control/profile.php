@@ -15,7 +15,16 @@ if(!isset($_SESSION['rol'])){
     header('Location: '.'logout.php');
   }
 }
-?>     
+?> 
+<style type="text/css">
+  .swal-xl{
+    width: 80%!important;
+  }
+   #editProfileD .form-section{
+    width: 50%;
+    display: inline-block;
+  }
+</style>    
 <div id="perfil_socio" class="right_col" role="main" onload="initMap()">
   <div class="z-row">
     <div class="col-xs-12">
@@ -116,51 +125,10 @@ if(!isset($_SESSION['rol'])){
             </div>
             <div role="tabpanel" class="tab-pane fade" id="tab_direcciones" aria-labelledby="datos-tab">
               <div class="x_content">
-                <form id="editProfileF"><!--action="editPpicture.php" method="post" enctype="multipart/form-data"-->
-                  <div class="form-section">
-                    <label for="calleDir">Dirección</label><input id="calleDir" type="text" class="form-control geo1" placeholder="Calle y numero" name="calleDir" value="" required>
-                    <div class="clear"></div>
-                  </div>
-                  <div class="form-section">
-                    <label for="numeroDir">Colonia</label>
-                    <input id="coloniaDir" type="text" class="form-control geo2" placeholder="Número" name="numeroDir" value="" required>
-                    <div class="clear"></div>
-                  </div>
-                  <div class="form-section">
-                    <label for="municipioDir">Municipio</label>
-                    <input id="municipioDir" type="text" class="form-control geo3" placeholder="Municipio" name="municipioDir" value="" required>
-                    <div class="clear"></div>
-                  </div>
-                  <div class="form-section">
-                    <label for="estadoDir">Estado</label>
-                    <input id="estadoDir" type="text" class="form-control geo4" placeholder="Estado" name="estadoDir" value="" required>
-                    <div class="clear"></div>
-                  </div>
-                  <div class="form-section">
-                    <label for="paisDir">País</label>
-                    <input id="paisDir" type="text" class="form-control geo5" placeholder="País" name="paisDir" value="" required>
-                    <div class="clear"></div>
-                  </div>
-                  <div class="form-section">
-                    <label for="cpDir">Código Postal</label>
-                    <input id="cpDir" type="text" class="form-control" placeholder="CP" name="cpDir" value="" required>
-                    <div class="clear"></div>
-                  </div>
-                  <div class="form-section">
-                    <label for="latDir">Latitud</label>
-                    <input id="latDir" type="text" class="form-control" placeholder="Latitud" name="latDir" value="" required>
-                    <div class="clear"></div>
-                  </div>
-                  <div class="form-section">
-                    <label for="lonDir">Longitud</label>
-                    <input id="lonDir" type="text" class="form-control" placeholder="Longitud" name="lonDir" value="" required>
-                    <div class="clear"></div>
-                  </div>
-                   <div id="mapDir" style="width: 100%; height: 350px;" ></div>
-                  <button type="button" id="saveDireccion" class="btn bgGreen cWhite pull-right" >
-                    Guardar Dirección
-                  </button>
-                </form>
+              <div class="form-control">
+                <button id="btnAddAddress" class="btn bgGreen cWhite pull-right">add Direccion</button>
+              </div>
+             
               </div>
 
                             <div class="x_content">
@@ -181,6 +149,7 @@ if(!isset($_SESSION['rol'])){
                     <th>Long</th>
                     <th>Lat</th>
                     <th>Eliminar</th>
+                    <th></th>
                     </tr>
                   </thead>
                 </table>
@@ -199,10 +168,37 @@ if(!isset($_SESSION['rol'])){
 <?php include ('footer.php'); ?>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBPc0IqUH5Kc7aTNQlfMDXEcJFVglGC9DI" async defer></script>
 <script type="text/javascript">
-crearTabla();
+
   function crearTabla(){
-   var table= $("#tableDir").dataTable();
-    
+   var table= $("#tableDir").DataTable({
+                "iDisplayLength":100,
+          "processing":true,
+          "serverSide":true,
+      ajax:{
+      type: "POST",
+      url:'../classes/ajaxPosts.php',
+      data: { tableDir:'1'},
+        dataType: "json",
+      },  
+                "columnDefs":[
+                {    "defaultContent": "-",
+                     "targets": "_all",
+                  "targets" : [5],
+                  "render": function(data,type,full){
+                      if(data == 1){
+                        return 'Activo';
+                      }else{
+                        return 'Inactivo';
+                      }
+
+                  }
+                }
+              ],
+          "sDom":'ltrip',
+          "initComplete": function(settings, json) {
+              }
+
+    });
   /* $.ajax({
       type:"POST",
       url:'../old/classes/ajaxPost.php',
@@ -232,7 +228,39 @@ crearTabla();
     columns: [  ]
 
    });*/
+/*
+          var table = $('#socTabla').DataTable({
+          "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.10/i18n/Spanish.json"
+          },
+          "iDisplayLength":100,
+          "processing":true,
+          "serverSide":true,
+          //"scrollY": 500,
+          //"scrollX": true,
+          "ajax":{
+              data:{},
+              type:  'post',
+              url: '../classes/controller/socTable.php'
+          },
+          "columnDefs":[
+                {
+                  "targets" : [5],
+                  "render": function(data,type,full){
+                      if(data == 1){
+                        return 'Activo';
+                      }else{
+                        return 'Inactivo';
+                      }
 
+                  }
+                }
+              ],
+          "sDom":'ltrip',
+          "initComplete": function(settings, json) {
+              }
+            });
+*/
 
   }
 </script>

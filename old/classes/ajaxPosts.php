@@ -3,8 +3,10 @@ require_once('autoloader.php');
 require_once('../config.php');
 
 //invocacion de clases
-use pdomysql AS pdomysql;
-use posts AS posts;
+  use pdomysql AS pdomysql;
+  use user AS user;
+  use posts AS posts;
+  use address AS address;
 
 //Buscar posts
 if (isset($_POST['search_post'])) {
@@ -31,9 +33,39 @@ if (isset($_POST['postsDay'])) {
 	echo json_encode($result);
 }
 if (isset($_POST['tableDir'])) {
-	error_log(print_r($_SESSION['date'],true));
-	echo 'holaa';
-
+	  $requestData= $_REQUEST;
+	 error_log(print_r($requestData,true));
+	//error_log(print_r($_SESSION['date'],true));
+	$t = new address;
+	$datos=  $t->getAddress();
+	$json_data = array(
+        "draw" => intval($requestData['draw']),
+        		 $datos,
+        		        "recordsTotal"=> 3,
+        		/*"recordsFiltered"   => intval($filter ? count($data) : $sqlTotal->num_rows),*/
+                "recordsFiltered"   => 3,
+                 'length' => 100
+        	);
+	           error_log(print_r($json_data,true));
+echo json_encode($json_data);  
 }
+if (isset($_POST['direccion'])) {
+     $setDir = new address;
+     $setDir->direccion=$_POST['dir'];
+     $setDir->colonia=$_POST['col'];
+     $setDir->municipio=$_POST['mun'];
+     $setDir->estado=$_POST['est'];
+     $setDir->pais=$_POST['pais'];
+     $setDir->cp=$_POST['cp'];
+     $setDir->lat=$_POST['lat'];
+     $setDir->long=$_POST['lon'];
+     $setDir->setAddress();
+     echo "correcto";
+}
+
+
+
+
+	
 
 ?>
