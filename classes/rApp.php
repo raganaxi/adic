@@ -402,9 +402,8 @@ function getPost_function(){
 		default:
 	}
 	$post=posts::getPost($categoria,$fecha);
+	$addresses=posts::getAddress($categoria);
 	if (!empty($post)){
-		$datos=$post;
-		$addresses=posts::getAddress($categoria);	
 		
 		if (!empty($addresses)){
 			$array = array('post' => $post, 'addresses' =>$addresses);
@@ -422,9 +421,10 @@ function getPost_function(){
 		}
 	}
 	else{
+		$array = array('post' => $post, 'addresses' =>$addresses);
+		$datos=$array;
 		$continuar="no_ok";
 		$error="error";
-		$datos=$post;
 		$mensaje="no hay publicaciones";
 	}
 
