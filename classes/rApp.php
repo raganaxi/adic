@@ -51,6 +51,7 @@ if (is_ajax()){
 			case 'activateT': activateToken_function();break;
 			case 'info' : info_function();break;
 			case 'getAddresses': getAddresses_function();break;
+			case 'getImages': getImages_function();break;
 
 		}
 
@@ -82,22 +83,17 @@ function info_function(){
 		$mensaje="no mms"; /* wrong details */
 	}		
 }
-function getAddresses_function(){
+function getImages_function(){
 	global $db_con;
 	global $continuar;
 	global $error;
 	global $datos;
 	global $mensaje;
-	$result = posts::getAddress();
-	if (!empty($result)) {
-		$continuar ="ok";
-		$datos=$result;		
-	}
-	else{
-		$continuar="no_ok";
-		$error="no_ok";
-		$mensaje="no mms"; /* wrong details */
-	}		
+	$result = posts::getImages();
+	$return = json_encode(array('data' => $result) );
+	header('Content-type: application/json; charset=utf-8');
+	echo $return;
+	die;		
 }
 function register_user(){
 	global $db_con;

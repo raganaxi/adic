@@ -40,6 +40,9 @@ if(!isset($_SESSION['rol'])){
               </li>
               <li role="presentation" class=""><a href="#tab_acceso" role="tab" id="acceso-tab" data-toggle="tab" aria-expanded="false">Cuenta</a>
               </li>
+              <li role="presentation" class=""><a href="#tab_galeria" role="tab" id="acceso-tab" data-toggle="tab" aria-expanded="false">Galeria de Imagenes </a>
+
+              </li>
             </ul>
             <div class="clearfix"></div>
           </div>
@@ -158,6 +161,30 @@ if(!isset($_SESSION['rol'])){
 
 
 
+            </div>
+             <div role="tabpanel" class="tab-pane fade" id="tab_galeria" aria-labelledby="galeria-tab">
+              <div class="x_content">
+                <table id="imgDataTable" class="display" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th>id</th>
+                      <th>name</th>
+                      <th>description</th>
+                      <th>ubication</th>
+                      <th>user_id</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>id</th>
+                      <th>name</th>
+                      <th>description</th>
+                      <th>ubication</th>
+                      <th>user_id</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
             </div>
           </div>
         </div>

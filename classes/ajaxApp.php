@@ -50,6 +50,7 @@ if (is_ajax()){
 			case 'getAddress': getAddress_function();break;
 			case 'activateT': activateToken_function();break;
 			case 'info' : info_function();break;
+			case 'getImages': getImages_function();break;
 
 		}
 
@@ -80,6 +81,17 @@ function info_function(){
 		$error="no_ok";
 		$mensaje="no mms"; /* wrong details */
 	}		
+}
+function getImages_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$result = posts::getImages();
+	$return = json_encode(array('data' => $result),JSON_FORCE_OBJECT );
+	header('Content-type: application/json; charset=utf-8');
+	echo $return;		
 }
 function register_user(){
 	global $db_con;

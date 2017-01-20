@@ -197,6 +197,17 @@ public static function getAddress($categoria){
   return $result;
 }
 
+public static function getImages(){
+  $db_con = new PDOMYSQL;
+  $consulta = "SELECT * from images where user_id > ?";
+  $parametros = array(0);
+
+  $result =  $db_con->consultaSegura($consulta,$parametros);
+
+
+  return $result;
+}
+
 public static function searchInput($input){
   $db_con = new PDOMYSQL;
   /*SELECT post.*

@@ -878,3 +878,22 @@ $( document ).ready( function () {
     } );
   } );
 } );
+
+/***** booz ********/
+$(document).ready(function() {
+  $('#imgDataTable').DataTable( {
+        "ajax": '../classes/rApp.php?action=getImages',
+        "columns": [
+            { "data": "id" },
+            { "data": "name" },
+            { "data": "description" },
+            { "data": "ubication" },
+            { "data": "user_id" },
+        ]
+    });
+});
+
+
+
+
+
