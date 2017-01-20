@@ -447,6 +447,7 @@ $("#lonDir").val(longitude);
 });  
 }
 //
+function keyupDir(){
 $("input[id*=Dir]").on('keyup',function(){
   if($(this).attr("id")!='cpDir'&&$(this).attr("id")!='latDir'&&$(this).attr("id")!='lonDir'&&$(this).attr("id")!='mapDir'){
     var address='';  
@@ -462,10 +463,10 @@ $("input[id*=Dir]").on('keyup',function(){
       }
   }
 });
+}
 //iniciador del mapa 
 $("#direcciones-tab").on('click',function(){
-  //setTimeout( "initMap(null,null)", 200 );
-  //crearTabla();
+  crearTabla();
 });
 
 
@@ -480,29 +481,34 @@ $('#btnAddAddress').click(function(){
     html: formAddress,
     customClass: 'swal-xl',
      showCancelButton: true,
+     showCloseButton: true,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
   cancelButtonText: 'Cancelar',
   confirmButtonText: 'Guardar Dirección',
-  preConfirm: function () {
-          $.ajax({
+   showLoaderOnConfirm: true,
+ preConfirm: function () {
+      return new Promise(function (resolve, reject) {
+      if ($("#calleDir").val()&&$("#latDir").val()&&$("#lonDir").val()) {
+                $.ajax({
         type: "POST",
         url: '../classes/ajaxPosts.php',
         data: {direccion: 1,dir:$('#calleDir').val(),col:$('#coloniaDir').val(),mun:$('#municipioDir').val(),est:$('#estadoDir').val(),pais:$('#paisDir').val(),cp:$('#cpDir').val(),lat:$('#latDir').val(),lon:$('#lonDir').val()},
-        succes: function(response){
-          alert(response);
-          if (response=="correcto") {
-
+        beforeSend: function(){
+         
+        },
+        success: function(response){
+          if (response==true) {
             swal({
               type: 'success',
               title: 'Operacio Exitosa',
-              text: 'la direccion ha sido guardad con exito'
+              text: 'La direccion ha sido guardad con exito.'
             })
           }else{
             swal({
             type: 'warning',
-            title: 'error'
-            
+            title: 'Error',
+            text: 'Por favor contacte al soporte tecnico.'
           })
           }
 
@@ -510,17 +516,26 @@ $('#btnAddAddress').click(function(){
         error: function(e){
           swal({
             type: 'warning',
-            title: 'error',
+            title: 'Error',
             text: e
           })
         }
-
     });
+  }else{
+    var t='';       
+    if (!$("#calleDir").val()){ t='direccion';
+    }else{if(!$("#latDir").val()){t='latitud';
+    }else{if(!$("#lonDir").val()){t='longitud';} 
+      } 
+    }
+    reject('<?php echo "<h2 style=\"color:blue;\">";?>El campo de '+t+' es obligatorio. Escriba una '+t+' valida y vuelva a intentarlo.<?php echo "</h2>";?>')
   }
-  })
+  });
+ }
+  }).then(function () {})
 initMap(null,null);
+keyupDir();
 });
-
 </script>
 <!-- /funciones del mapa de direciones -->
 

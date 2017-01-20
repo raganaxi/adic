@@ -1,28 +1,25 @@
 <?php
 use pdomysql AS pdomysql;
 use Address AS Address;
-//require_once(__DIR__ .'/controller/pdomysql.php');
 
 class address{
 
-	public $idaddress=null;
-	public $direccion=null;
-	//private $numero=null;
-	public $colonia=null;
-	public $municipio=null;
-	public $estado=null;
-	public $pais=null;
-	public $cp=null;
-	public $lat=null;
-    public $long=null;
-    public $user_id=null;
+	private  $idaddress=null;
+	private $direccion=null;
+	private $colonia=null;
+	private $municipio=null;
+	private $estado=null;
+	private $pais=null;
+	private $cp=null;
+	private $lat=null;
+    private $long=null;
+    private $user_id=null;
 
 
-//colonia,municipio,estado,pais,cp,lat,long,user_id
+
 	public function __construct($data=array()){
         $idaddress = isset($data['idaddress']) ? $data['idaddress'] : null;
         $direccion = isset($data['direccion']) ? $data['direccion'] : null;
-       // $numero = isset($data['numero']) ? $data['numero'] : null;
         $colonia = isset($data['colonia']) ? $data['colonia'] : null;
         $municipio = isset($data['municipio']) ? $data['municipio'] : null;
         $estado = isset($data['estado']) ? $data['estado'] : null;
@@ -35,27 +32,27 @@ class address{
     }
  
    public function getAddress(){
-    	$consulta ="SELECT * from address";
+    	$consulta ="SELECT * from address WHERE user_id=?";
     	$db_con= new PDOMYSQL;
-        $parametros = array('');
-        $result=$db_con->consultaSegura($consulta,$parametros);
+        $parametros = array($this->user_id);
+        $result=$db_con->consultaSeguraIndex($consulta,$parametros);
         return $result;
     }
   
 
 
     public function setAddress(){
-        $consulta = "INSERT INTO address (direccion,colonia,municipio,estado,pais,cp,lat,`long`) values(?,?,?,?,?,?,?,?)";
-        $parametros=array($this->direccion,$this->colonia,$this->municipio,$this->estado,$this->pais,$this->cp,$this->lat,$this->long);
+        $consulta = "INSERT INTO address (direccion,colonia,municipio,estado,pais,cp,lat,`long`,user_Id) values(?,?,?,?,?,?,?,?,?)";
+        $parametros=array($this->direccion,$this->colonia,$this->municipio,$this->estado,$this->pais,$this->cp,$this->lat,$this->long,$this->user_id);
         $db_con=new PDOMYSQL;
         $result=$db_con->consultaSegura($consulta,$parametros);
-            return true;
+        return true;
     }
 
 
     public function updateAddress(){
     	$consulta="UPDATE address SET direccion =?, colonia = ? municipio = ? estado = ? pais = ? cp = ? lat = ? long = ? user_id = ? WHERE idaddress = ?";
-    	$parametros=array($this['direccion'],$this['colonia'],$this['municipio'],$this['estado'],$this['pais'],$this['cp'],$this['lat'],$this['long'],$this['user_id'],$this['idaddress']);
+    	$parametros=array($this->direccion,$this->colonia,$this->municipio,$this->estado,$this->pais,$this->cp,$this->lat,$this->long,$this->user_id,$this->idaddress);
     	$db_con=new PDOMYSQL;
     	$result=$db_con->consultaSegura($consulta,$parametros);
     	if(!empty($result)){
@@ -67,7 +64,7 @@ class address{
 
     public function deleteAddress(){
     	$consulta="UPDATE address SET bandera =? WHERE idaddress = ?";
-    	$parametros=array(0,$this['idaddress']);
+    	$parametros=array(0,$this->idaddress);
     	$db_con=new PDOMYSQL;
     	$result=$db_con->consultaSegura($consulta,$parametros);
     	if(!empty($result)){
@@ -76,11 +73,28 @@ class address{
       	    return false;
         }
     }
-    
+
+    public function setIdaddress($idaddress){$this->idaddress=$idaddress;}
+    public function getIdaddress(){return $this->idaddress;} 
     public function setDireccion($direccion){$this->direccion=$direccion;}
-    
+    public function getDireccion(){return $this->direccion;} 
+    public function setColonia($colonia){$this->colonia=$colonia;}
+    public function getColonia(){return $this->colonia;} 
+    public function setMunicipio($municipio){$this->municipio=$municipio;}
+    public function getMunicipio(){return $this->municipio;} 
+      public function setEstado($estado){$this->estado=$estado;}
+    public function getEstado(){return $this->estado;} 
+       public function setPais($pais){$this->pais=$pais;}
+    public function getPais(){return $this->pais;}
+    public function setCp($cp){$this->cp=$cp;}
+    public function getCp(){return $this->cp;}
+        public function setLat($lat){$this->lat=$lat;}
+    public function getLat(){return $this->lat;}
+    public function setLong($long){$this->long=$long;}
+public function getLong(){return $this->long;}
+     public function setUser_id($user_id){$this->user_id=$user_id;}
+    public function getUser_id(){return $this->user_id;}
+    }
 
-
-
-}
+ 
 ?>

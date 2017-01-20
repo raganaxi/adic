@@ -52,6 +52,25 @@ class PDOMYSQL
 		
 		return $datos;
 	}
+    public  function consultaSeguraIndex($query, $arreglo){
+		$data=array();
+		try {			
+			$statement  = $this->PDO->prepare($query);
+			$statement->execute($arreglo);
+         $data = $statement->fetchAll(PDO::FETCH_BOTH);
+        $today = new DateTime(date('Y-m-d'));
+
+        }
+	 catch (PDOException $e) {
+			error_log($e);
+			$error="error";
+			$mensaje="ocurrio un problema en la consulta";
+			return false;
+		}
+		return $data;
+	}
+
+
 
 	//regresa nuestra consulta en json
 	public static function returntable($query){
