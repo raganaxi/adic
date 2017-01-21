@@ -1,5 +1,5 @@
 <?php
-  $uploaddir = '../images/posts/';
+  $uploaddir = 'images/posts/';
   $uploadfile = $uploaddir . basename($_FILES['file']['name']);
   $status = null;
 

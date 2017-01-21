@@ -11,6 +11,20 @@
     </div>
 
     <script src="js/jquery.min.js"></script>
+    <!-- canvas-to-blob.min.js is only needed if you wish to resize images before upload.
+    This must be loaded before fileinput.min.js -->
+    <script src="js/canvas-to-blob.min.js" type="text/javascript"></script>
+    <!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview.
+     This must be loaded before fileinput.min.js -->
+     <script src="js/sortable.min.js" type="text/javascript"></script>
+    <!-- purify.min.js is only needed if you wish to purify HTML content in your preview for HTML files.
+     This must be loaded before fileinput.min.js -->
+     <script src="js/purify.min.js" type="text/javascript"></script>
+     <!-- the main fileinput plugin file -->
+     <script src="js/fileinput.min.js"></script>
+    <!-- optionally if you need translation for your language then include 
+    locale file as mentioned below -->
+    <script src="js/es.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
     <script src="js/fastclick.js"></script>
     <script src="js/nprogress.js"></script>

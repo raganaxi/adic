@@ -32,7 +32,7 @@
     <link href="css/helpers.css" rel="stylesheet">
   </head>
 
-  <body id="login" class="login bgDarkBlue">
+  <body id="login" class="login bgDarkBlue" data-iduser="<?php echo $_SESSION['user'] ; ?>">
     <div>
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>

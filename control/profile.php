@@ -52,9 +52,9 @@ if(!isset($_SESSION['rol'])){
         <div class="x_panel">
           <div class="x_title">
             <ul id="myTab" class="nav nav-tabs " role="tablist">
-              <li role="presentation" class="active"><a href="#tab_datos" id="datos-tab" role="tab" data-toggle="tab" aria-expanded="true">Perfil y Contacto</a>
+              <li role="presentation" ><a href="#tab_datos" id="datos-tab" role="tab" data-toggle="tab" aria-expanded="true">Perfil y Contacto</a>
               </li>
-              <li role="presentation" class=""><a href="#tab_imagenPerfil" role="tab" id="imagenPerfil-tab" data-toggle="tab" aria-expanded="false">Imagen de Perfil</a>
+              <li role="presentation" class="active"><a href="#tab_imagenPerfil" role="tab" id="imagenPerfil-tab" data-toggle="tab" aria-expanded="false">Imagen de Perfil</a>
               </li>
               <li role="presentation" class=""><a href="#tab_direcciones" role="tab" id="direcciones-tab" data-toggle="tab" aria-expanded="false">Direcciones</a>
               </li>
@@ -67,7 +67,7 @@ if(!isset($_SESSION['rol'])){
             <div class="clearfix"></div>
           </div>
           <div id="myTabContent" class="tab-content">
-            <div role="tabpanel" class="tab-pane fade active in" id="tab_datos" aria-labelledby="datos-tab">
+            <div role="tabpanel" class="tab-pane fade " id="tab_datos" aria-labelledby="datos-tab">
               <div class="x_content">
                 <form id="editProfileF"><!--action="editPpicture.php" method="post" enctype="multipart/form-data"-->
                   <div class="form-section">
@@ -115,16 +115,24 @@ if(!isset($_SESSION['rol'])){
                 </form>
               </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="tab_imagenPerfil" aria-labelledby="imagenPerfil-tab">
+            <div role="tabpanel" class="tab-pane fade active in " id="tab_imagenPerfil" aria-labelledby="imagenPerfil-tab">
               <div class="x_content">
-                <form class="" action="">
-                  <div class="form-section">
-                    <input type="file" class="form-control" name="fileToUpload" id="fileToUpload" name="fileToUpload">
-                  </div>
-                </form>
-                <button type="button" id="editProfilePic" class="btn bgGreen cWhite pull-right" >
-                  Editar
-                </button>
+                <?php   
+                $directory="images/profPicture/".$_SESSION['iduser']."/";      
+                $images = glob($directory . "*.*");
+                ?>
+                <h1>Subir su imagen de Perfil </h1>
+                  <hr>
+                    <div class="form-group">
+                      <input id="profileImage" name="file-es[]" type="file" class="file-loading">
+                    </div>
+
+                    <form action="uploadPicture.php" method="post" enctype="multipart/form-data">
+                      Select image to upload:
+                      <input type="file" name="fileToUpload" id="fileToUpload">
+                      <input type="submit" value="Upload Image" name="submit">
+                    </form>
+
               </div>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="tab_acceso" aria-labelledby="acceso-tab">
@@ -213,6 +221,34 @@ if(!isset($_SESSION['rol'])){
   </div>
 </div>
 <?php include ('footer.php'); ?>
+<script type="text/javascript">
+ $(document).ready(function() {
+  var id=$('body').attr('data-iduser');
+  $("#profileImage").fileinput({
+    uploadUrl: "uploadAjax.php", 
+    uploadAsync: false,
+    minFileCount: 1,
+    maxFileCount: 20,
+    showUpload: false,
+    uploadExtraData: {
+        iduser: id,
+    },
+    showRemove: false,
+    initialPreview: [
+    <?php foreach($images as $image){?>
+      "<img src='<?php echo $image; ?>' height='120px' class='file-preview-image'>",
+      <?php } ?>],
+      initialPreviewConfig: [<?php foreach($images as $image){ $infoImagenes=explode("/",$image);?>
+      {caption: "<?php echo $infoImagenes[1];?>",  height: "120px", url: "borrarAjax.php", key:"<?php echo $infoImagenes[1];?>"},
+      <?php } ?>]
+    }).on("filebatchselected", function(event, files) {
+
+      $("#profileImage").fileinput("upload");
+
+    });
+  });
+
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBPc0IqUH5Kc7aTNQlfMDXEcJFVglGC9DI" async defer></script>
 <script type="text/javascript">
 

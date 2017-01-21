@@ -3994,3 +3994,15 @@ ul.notifications {
   width: 7vh!important;
   height: 7vh!important;
 }
+
+.file-hidden{
+  display: none !important;
+}
+.input-group-btn .btn {
+    min-height: 40px !important;
+}
+
+
+
+
+
