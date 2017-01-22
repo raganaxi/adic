@@ -4001,8 +4001,10 @@ ul.notifications {
 .input-group-btn .btn {
     min-height: 40px !important;
 }
-
-
+/*.file-footer-caption {
+    display: none !important;
+}
+*/
 
 
 

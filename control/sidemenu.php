@@ -13,7 +13,7 @@
     <!-- menu profile quick info -->
     <div class="profile">
       <div class="profile_pic">
-        <div style="background-image: url(../images/profPicture/<?= $profile['0']['img'] ?>);" class="img-circle profile_img profile_img_sidemenu"></div>
+        <div style="background-image: url(../imagenes_/profPicture/<?= $profile['0']['img'] ?>);" class="img-circle profile_img profile_img_sidemenu"></div>
       </div>
       <div class="profile_info">
         <span>Bienvenido,</span>

@@ -117,15 +117,27 @@ if(!isset($_SESSION['rol'])){
             </div>
             <div role="tabpanel" class="tab-pane fade active in " id="tab_imagenPerfil" aria-labelledby="imagenPerfil-tab">
               <div class="x_content">
-                <?php   
-                $directory="images/profPicture/".$_SESSION['iduser']."/";      
+                <?php 
+                $directory = "../imagenes_/profPicture/".$_SESSION['iduser']."/";
+                if (!file_exists($directory)) {
+                  mkdir($directory, 0777,true);
+                }
+
                 $images = glob($directory . "*.*");
+                $db_con = new PDOMYSQL;
+                $cosultaImages="SELECT img from user_data where user_id = ?";
+                $parametros = array($_SESSION['iduser']);
+                $result =  $db_con->consultaSegura($cosultaImages,$parametros);
+                //error_log(json_encode($result[0]['img']));
+                //error_log(json_encode($images));
+                $images = array("../imagenes_/profPicture/".$result[0]['img']);
+                //error_log(json_encode($images));
                 ?>
                 <h1>Subir su imagen de Perfil </h1>
-                  <hr>
-                    <div class="form-group">
-                      <input id="profileImage" name="file-es[]" type="file" class="file-loading">
-                    </div>
+                <hr>
+                <div class="form-group " id="imgprofPicture">
+                      <input id="archivos" name="imagenes[]" type="file" class="file-loading" data-min-file-count="1">
+                </div>
 
                     
 
@@ -218,31 +230,45 @@ if(!isset($_SESSION['rol'])){
 </div>
 <?php include ('footer.php'); ?>
 <script type="text/javascript">
- $(document).ready(function() {
-  var id=$('body').attr('data-iduser');
-  $("#profileImage").fileinput({
-    uploadUrl: "uploadAjax.php", 
-    uploadAsync: false,
-    minFileCount: 1,
-    maxFileCount: 20,
-    showUpload: false,
-    uploadExtraData: {
-        iduser: id,
-    },
-    showRemove: false,
-    initialPreview: [
-    <?php foreach($images as $image){?>
-      "<img src='<?php echo $image; ?>' height='120px' class='file-preview-image'>",
-      <?php } ?>],
-      initialPreviewConfig: [<?php foreach($images as $image){ $infoImagenes=explode("/",$image);?>
-      {caption: "<?php echo $infoImagenes[1];?>",  height: "120px", url: "borrarAjax.php", key:"<?php echo $infoImagenes[1];?>"},
-      <?php } ?>]
-    }).on("filebatchselected", function(event, files) {
+   $(document).ready(function() {
+      var id=$('body').attr('data-iduser');
+      var fileInputProfPicture= $("#archivos").fileinput({
+        uploadUrl: "uploadAjax.php", 
+        uploadAsync: false,
+        maxFileCount: 1,
+        language: 'es',
+        validateInitialCount:true,
+        deleteUrl: "borrarAjax.php",
+        allowedFileExtensions: ['jpg', 'png', 'gif'],
+        previewClass: 'classPreview',
+        showUpload: false,
+        uploadExtraData: {
+          iduser: <?php echo $_SESSION['iduser'];?>,
+      },
+      showRemove: false,
+      initialPreview: [
+      <?php foreach($images as $image){ ?>
+          "<img src='<?php echo $image; ?>' height='120px' class='file-preview-image'>",
+          <?php } ?>],
+          initialPreviewConfig: [<?php foreach($images as $image){ 
+            //error_log($image);
 
-      $("#profileImage").fileinput("upload");
+            $infoImagenes=explode("../imagenes_/profPicture/",$image);
+            //error_log($infoImagenes[1]);
 
+
+            ?>
+            { caption: "<?php echo $infoImagenes[1];?>",  height: "120px", url: "borrarAjax.php", key:"<?php echo $infoImagenes[1];?>"},
+            <?php } ?>]
+        }).on("filebatchselected", function(event, files) {
+
+
+            $("#archivos").fileinput("upload");
+            
+
+        });
+        var a=$("#archivos").fileinput;
     });
-  });
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBPc0IqUH5Kc7aTNQlfMDXEcJFVglGC9DI" async defer></script>
