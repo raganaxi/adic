@@ -18,7 +18,9 @@ if (isset($_POST['iduser'])) {
     $iduser=$_POST['iduser'];
 }
 $directory = "../imagenes_/profPicture/";
-
+if (!file_exists($directory.$iduser)) {
+    mkdir($directory.$iduser, 0777,true);
+}
 
 
 // Contar envían por el plugin
@@ -36,11 +38,11 @@ for($i = 0; $i < $Imagenes; $i++) {
     $infoImagenesSubidas[$i]=array("caption"=>"$nombreArchivo","height"=>"120px","url"=>"borrarAjax.php","key"=>$nombreArchivo);
     $ImagenesSubidas[$i]="<img  height='120px'  src='$rutaArchivo' class='file-preview-image'>";
     
-            $img=$nombreArchivo;
-            user::updateProfPicture($img,$iduser);
-    }
+    $img=$nombreArchivo;
+    user::updateProfPicture($img,$iduser);
+}
 $arr = array("file_id"=>0,"overwriteInitial"=>true,"initialPreviewConfig"=>$infoImagenesSubidas,
-             "initialPreview"=>$ImagenesSubidas);
+   "initialPreview"=>$ImagenesSubidas);
 
 
 

@@ -18,43 +18,12 @@ if(!isset($_SESSION['rol'])){
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-          <div class="table-responsive hidden">
-            <table id="publicacionesSocio" class="table table-hover jambo_table">
-              <thead>
-                <tr>
-                  <th>Mail</th>
-                  <th>Contacto</th>
-                  <th>Telefono</th>
-                  <th>Negocio</th>
-                  <th>Password</th>
-                  <!-- <th>Rol</th> -->
-                  <!-- <th>Estatus</th> -->
-                  <th>Tipo de registro</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                /*$posts = user::getPostsSocio($_SESSION['user']);
-
-                foreach ($posts as $key => $value) {
-
-                  $posts[$key]['active'] = ($posts[$key]['active'] == 0)? 'Inactivo' : 'activo';
-
-                  $row = '<tr>'.
-                    '<td>'.$posts[$key]['username'].'</td>'.
-                    '<td>'.$posts[$key]['name'].'</td>'.
-                    '<td>'.$posts[$key]['number'].'</td>'.
-                    '<td>'.$posts[$key]['negocio'].'</td>'.
-                    '<td>'.$posts[$key]['pass'].'</td>'.
-                    '<td>'.$posts[$key]['reg_type'].'</td>'.
-                  '</tr>';
-                  echo $row;
-                }*/
-                ?>
-              </tbody>
-            </table>
-          </div>
+          <section id="sectionPost" class="z-container mainContainer">
+            <div class="z-row">
+              <div id="postContainer" class="z-col-lg-6 z-col-md-6 z-col-sm-10 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-3 z-col-sm-offset-1 z-col-xs-offset-0 scroll">
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>
@@ -65,7 +34,7 @@ if(!isset($_SESSION['rol'])){
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-          <form id="formPost" class="form-section" action="upload.php" method="post" enctype="multipart/form-data">
+          <form id="formCreatePost" class="form-section" enctype="multipart/form-data">
             <div class="clear"></div>
             <input id="postTitle" type="text" class="form-control" placeholder="Nombre de la oferta">
             <div class="clear"></div>
@@ -73,12 +42,9 @@ if(!isset($_SESSION['rol'])){
             <div class="clear"></div>
             <input id="postDate" class="form-control" type="date" name="name" value="">
             <div class="clear"></div>
-            <select id="category" name="category" class="form-control" >
-            </select>
+            <input type="file" id="file" name="file" class="form-control" accept="image/*">
             <div class="clear"></div>
-          <input type="file" id="file" name="file" class="form-control" accept="image/*">
-          <div class="clear"></div>
-            <button type="button" id="createPost" class="btn bgGreen cWhite s20 text-center noTransform boxShadow pull-right" name="button">Crear</button>
+            <button type="submit" id="createPost" class="btn btn-info cWhite s20 text-center noTransform boxShadow pull-right" name="button">Crear</button>
           </form>
         </div>
       </div>
@@ -91,10 +57,14 @@ if(!isset($_SESSION['rol'])){
         <div class="clear"></div>
         <textarea id="descriptionx" class="form-control h100" rows="4" placeholder="Descripción"></textarea>
         <div class="clear"></div>
+        <div class="progress progress-striped active">
+          <div class="progress-bar" style="width:0%"></div>
+        </div>
         <button type="button" id="createCategory" class="z-btn bgGreen cWhite" name="createCategory">Crear</button>
       </form>
       <div class="clear h100"></div>
     </div>
   </div>
 </div>
+
 <?php include ('footer.php'); ?>

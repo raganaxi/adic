@@ -42,7 +42,11 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/6.3.2/sweetalert2.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/6.3.2/sweetalert2.css">
+  <script>
+    var id_user=<?php echo $_SESSION['iduser']; ?>;
+  </script>
   </head>
+
 
   <body class="nav-md" data-iduser="<?php echo $_SESSION['iduser'] ; ?>" >
     <div class="container body">

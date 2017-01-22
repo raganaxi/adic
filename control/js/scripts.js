@@ -1,14 +1,19 @@
 'use strict';
 
+var urlLocal="http://localhost:81/cache/adic/";
+var urlRemoto="http://adondeirenlaciudad.com/";
+var appRuta='rApp.php';
+var urlAjax=urlRemoto;
+
 ( function () {
   var method;
   var noop = function () {};
   var methods = [
-        'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
-        'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
-        'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
-        'timeline', 'timelineEnd', 'timeStamp', 'trace', 'warn'
-    ];
+  'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+  'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+  'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+  'timeline', 'timelineEnd', 'timeStamp', 'trace', 'warn'
+  ];
   var length = methods.length;
   var console = ( window.console = window.console || {} );
 
@@ -114,7 +119,7 @@
         '</div>'
       );
     }
-*/
+    */
     $( ".p2r" ).xpull( {
       'callback': function () {
         location.reload();
@@ -248,21 +253,21 @@
     } );
   } );
 
-  $( window ).resize( function () {
-    fullHeight();
-  } )
+$( window ).resize( function () {
+  fullHeight();
+} )
 
-  $( document ).on( 'click', function ( event ) {
+$( document ).on( 'click', function ( event ) {
 
-    if ( !$( event.target ).closest( '.fab' ).length ) {
-      $( ".nav-modal" ).removeClass( "active" );
-      $( 'body' ).removeClass( 'overflowHidden' );
-    }
-    else {
-      $( ".nav-modal" ).addClass( "active" );
-      $( 'body' ).addClass( 'overflowHidden' );
-    }
-  } );
+  if ( !$( event.target ).closest( '.fab' ).length ) {
+    $( ".nav-modal" ).removeClass( "active" );
+    $( 'body' ).removeClass( 'overflowHidden' );
+  }
+  else {
+    $( ".nav-modal" ).addClass( "active" );
+    $( 'body' ).addClass( 'overflowHidden' );
+  }
+} );
 
 } )( jQuery, window, document );
 
@@ -505,13 +510,13 @@ $( "#createSoc" ).on( 'click', function () {
       "category": category
         //"pass": $("#passwSocio").val(),
         //"img": document.getElementById("imgProfile").files[0].name
-    },
-    url: '../classes/ajaxUsers.php',
-    type: 'post'
-  } ).done( function ( data ) {
-    data = $.parseJSON( data );
-    console.log( data );
-    if ( data ) {
+      },
+      url: '../classes/ajaxUsers.php',
+      type: 'post'
+    } ).done( function ( data ) {
+      data = $.parseJSON( data );
+      console.log( data );
+      if ( data ) {
       //alert('Registrado');
       //window.location.replace("profile.php");
       if($('#registerSocio').length != 0 ){
@@ -522,9 +527,9 @@ $( "#createSoc" ).on( 'click', function () {
           '<p>Nos comunicaremos contigo a la brevedad posible.</p>'+
           '<div class="clearfix"></div>'+
           '<div class="separator">'+
-            '<div class="hidden">'+
-            '  <p>Copyright (c) 2015 Copyright Holder All Rights Reserved.</p>'+
-            '</div>'+
+          '<div class="hidden">'+
+          '  <p>Copyright (c) 2015 Copyright Holder All Rights Reserved.</p>'+
+          '</div>'+
           '</div>');
       }
       if($('#registerSocio-admin').length != 0){
@@ -535,28 +540,9 @@ $( "#createSoc" ).on( 'click', function () {
       alert( 'Erro usuario no registrado' );
     }
   } );
-} );
-
-//registrar publicacion
-$( "#createPost" ).on( 'click', function () {
-  $.ajax( {
-    data: {
-      "create_Post": 1,
-      "title": $( "#postTitle" ).val(),
-      "description": $( "#postDescription" ).val(),
-      "date": $( "#postDate" ).val(),
-      //"category": $( '#category' ).val(),
-      "file": document.getElementById( "file" ).files[ 0 ].name
-    },
-    url: '../classes/ajaxUsers.php',
-    type: 'post'
-  } ).done( function ( data ) {
-    if ( data ) {
-      // $( "#formPost" ).submit();
-      console.log(data);
-    }
   } );
-} );
+
+
 
 // $( "#loginU" ).on( 'click', function () {
 //   $.ajax( {
@@ -882,17 +868,144 @@ $( document ).ready( function () {
 /***** booz ********/
 $(document).ready(function() {
   $('#imgDataTable').DataTable( {
-        "ajax": '../classes/rApp.php?action=getImages',
-        "columns": [
-            { "data": "id" },
-            { "data": "name" },
-            { "data": "description" },
-            { "data": "ubication" },
-            { "data": "user_id" },
-        ]
-    });
-   
-});
+    "ajax": '../classes/rApp.php?action=getImages',
+    "columns": [
+    { "data": "id" },
+    { "data": "name" },
+    { "data": "description" },
+    { "data": "ubication" },
+    { "data": "user_id" },
+    ]
+  });
+  function getPost(){
+
+    var data= {'action': 'getPostSocio',iduser:id_user};
+    $.ajax({
+      data:data,
+      crossDomain: true,
+      cache: false,
+      xhrFields: {
+        withCredentials: true
+      },
+      url: urlAjax+'classes/'+appRuta,
+      type: 'post'
+    }).done(function(data){
+      if(data.continuar==="ok"){
+        var post = data.datos.post;
+        console.log(post);
+        var addresses= data.datos.addresses;
+                    /*var datahtml=''+
+                    '<form class="ui-filterable">'+
+                    '<input id="filterPublicacionesInput" data-type="search">'+
+                    '</form>'+
+                    '<div class="elements" data-filter="true" data-input="#filterPublicacionesInput" id="filterPublicaciones">';
+                    for(var i in post) {
+                        datahtml+='<li>'+getHtmlPost(post[i])+'</li>';
+                    }
+                    appS=getAppSession();
+                    appS.addresses=addresses;
+                    setAppSession(appS);
+                    $("#postContainer").html(datahtml);
+                    $('#filterPublicacionesInput').textinput();
+                    $('#filterPublicaciones').filterable();
+                    */
+                  }
+                  else{
+                    var addresses= data.datos.addresses;
+                    /*appS=getAppSession();
+                    appS.addresses=addresses;
+                    setAppSession(appS);
+                    $("#postContainer").html('<div class="" style="min-height:100vh;height:300px;">Sin publicaciones :(');*/
+                  }
+                  /*  ajaxLoader("termina");*/
+
+                }).fail(function( jqXHR, textStatus, errorThrown ) {
+                  $("#postContainer").html('<div class="" style="min-height:100vh;height:300px;">Sin publicaciones :(');
+                  /* ajaxLoader("termina");*/
+                });
+              }
+              $('#postContainer').each(function(index, el) {
+                getPost();
+
+                console.log('ready publicaciones');
+                $(document).on('submit','#formCreatePost',function(e){
+                  e.preventDefault();
+                  var $form = $(this);
+
+                  uploadImage($form);
+                });
+                function uploadImage($form){
+                  var formData = new FormData($form[0]);
+                  formData.append("iduser", id_user);
+                  formData.append("title", $( "#postTitle" ).val());
+                      formData.append("description",$( "#postDescription" ).val());
+                      formData.append("date",$( "#postDate" ).val())
+                  console.log(formData);
+                  $.ajax({
+                    url: "upload.php",
+                    type: "post",
+                    dataType: "html",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                  })
+                  .done(function(res){
+                    console.log("Respuesta: " + res);
+                  });
+                }
+                /*function uploadImage($form){
+                  $form.find('.progress-bar').removeClass('progress-bar-success')
+                  .removeClass('progress-bar-danger');
+                  var formdata = new FormData($form[0]); 
+                  var request = new XMLHttpRequest();
+                  
+                  request.upload.addEventListener('progress',function(e){
+                    var percent = Math.round(e.loaded/e.total * 100);
+                    $form.find('.progress-bar').width(percent+'%').html(percent+'%');
+                  });
+                  
+                  request.addEventListener('load',function(e){
+                    $form.find('.progress-bar').addClass('progress-bar-success').html('upload completed....');
+                  });
+                  request.open('post', 'server.php');
+                  request.send(formdata);
+                  $form.on('click','.cancel',function(){
+                    request.abort();
+                    $form.find('.progress-bar')
+                    .addClass('progress-bar-danger')
+                    .removeClass('progress-bar-success')
+                    .html('upload aborted...');
+                  });
+                }*/
+
+
+                /*registrar publicacion
+                $( "#createPost" ).on( 'click', function () {
+                  $.ajax( {
+                    data: {
+                      "create_Post": 1,
+                      "title": $( "#postTitle" ).val(),
+                      "description": $( "#postDescription" ).val(),
+                      "date": $( "#postDate" ).val(),
+                      /*"category": $( '#category' ).val(),
+                      "file": document.getElementById( "file" ).files[ 0 ].name
+                    },
+                    url: '../classes/ajaxUsers.php',
+                    type: 'post'
+                  } ).done( function ( data ) {
+                    if ( data ) {
+                      /*$( "#formPost" ).submit();
+                      console.log(data);
+                    }
+                  } );
+                } );*/
+              });
+
+
+            });
+
+
 
 
 

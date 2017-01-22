@@ -10,7 +10,10 @@ use user AS user;
 
 
 $directory = "../imagenes_/profPicture/";
-
+if (!file_exists($directory)) {
+                  mkdir($directory, 0777,true);
+                }
+                
 if($_SERVER['REQUEST_METHOD']=="DELETE" || $_SERVER['REQUEST_METHOD']=="POST"){
 			parse_str(file_get_contents("php://input"),$datosDELETE);
 			$key= $datosDELETE['key'];
