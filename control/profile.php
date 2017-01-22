@@ -130,14 +130,35 @@ if(!isset($_SESSION['rol'])){
                 $result =  $db_con->consultaSegura($cosultaImages,$parametros);
                 //error_log(json_encode($result[0]['img']));
                 //error_log(json_encode($images));
-                $images = array("../imagenes_/profPicture/".$result[0]['img']);
+                $image = "../imagenes_/profPicture/".$result[0]['img'];
                 //error_log(json_encode($images));
                 ?>
                 <h1>Subir su imagen de Perfil </h1>
                 <hr>
-                <div class="form-group " id="imgprofPicture">
-                      <input id="archivos" name="imagenes[]" type="file" class="file-loading" data-min-file-count="1">
+                
+                <div class="file-preview-frame file-preview-initial file-sortable kv-preview-thumb" id="preview-1485101766037-init_0" data-fileindex="init_0" data-template="image">
+                    <div class="kv-file-content">
+                        <img id="previewProfileImage" src="<?php echo $image; ?>" height="120px" class="file-preview-image">
+                    </div>
+
+
                 </div>
+
+               <div class="clearfix"></div>
+               <form id="formProfileimage" class="form-section" enctype="multipart/form-data">
+                <div class="clear"></div>
+                <label for="fileImage">
+                    <span type="span"  class="btn btn-info cWhite s20 text-center noTransform boxShadow pull-right" name="span">Buscar Imagen</span>
+                </label>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <input type="file" id="fileImage" name="fileImage" class="form-control" accept="image/*">
+                    </div>
+                </div>
+                
+                <div class="clear"></div>
+                <button type="submit" id="fileUpload" class="btn btn-success cWhite s20 text-center noTransform boxShadow pull-right" name="button">Subir Imagen</button>
+            </form>
 
                     
 
@@ -229,7 +250,7 @@ if(!isset($_SESSION['rol'])){
   </div>
 </div>
 <?php include ('footer.php'); ?>
-<script type="text/javascript">
+<?php /*<script type="text/javascript">
    $(document).ready(function() {
       var id=$('body').attr('data-iduser');
       var fileInputProfPicture= $("#archivos").fileinput({
@@ -270,7 +291,7 @@ if(!isset($_SESSION['rol'])){
         var a=$("#archivos").fileinput;
     });
 
-</script>
+</script>*/ ?>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBPc0IqUH5Kc7aTNQlfMDXEcJFVglGC9DI" async defer></script>
 <script type="text/javascript">
 

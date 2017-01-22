@@ -939,12 +939,14 @@ $(document).ready(function() {
                   formData.append("iduser", id_user);
                   formData.append("title", $( "#postTitle" ).val());
                       formData.append("description",$( "#postDescription" ).val());
-                      formData.append("date",$( "#postDate" ).val())
+                      formData.append("date",$( "#postDate" ).val());
+                      formData.append("modulo", "post");
+                  formData.append("action", "a");
                   console.log(formData);
                   $.ajax({
                     url: "upload.php",
                     type: "post",
-                    dataType: "html",
+                    dataType: "json",
                     data: formData,
                     cache: false,
                     contentType: false,
@@ -954,52 +956,51 @@ $(document).ready(function() {
                     console.log("Respuesta: " + res);
                   });
                 }
-                /*function uploadImage($form){
-                  $form.find('.progress-bar').removeClass('progress-bar-success')
-                  .removeClass('progress-bar-danger');
-                  var formdata = new FormData($form[0]); 
-                  var request = new XMLHttpRequest();
-                  
-                  request.upload.addEventListener('progress',function(e){
-                    var percent = Math.round(e.loaded/e.total * 100);
-                    $form.find('.progress-bar').width(percent+'%').html(percent+'%');
-                  });
-                  
-                  request.addEventListener('load',function(e){
-                    $form.find('.progress-bar').addClass('progress-bar-success').html('upload completed....');
-                  });
-                  request.open('post', 'server.php');
-                  request.send(formdata);
-                  $form.on('click','.cancel',function(){
-                    request.abort();
-                    $form.find('.progress-bar')
-                    .addClass('progress-bar-danger')
-                    .removeClass('progress-bar-success')
-                    .html('upload aborted...');
-                  });
-                }*/
+                
+              });
+              $('#formProfileimage').each(function(index, el) {
+                
+                  console.log('ready profile');
+                  $(document).on('submit','#formProfileimage',function(e){
+                  e.preventDefault();
+                  var $form = $(this);
+                  console.log("clcik");
 
+                  uploadImage($form);
+                });
+                  function uploadImage($form){
+                  var formData = new FormData($form[0]);
+                  formData.append("iduser", id_user);
+                  formData.append("modulo", "profileImage");
+                  formData.append("action", "a");
+                  console.log(formData);
+                  $.ajax({
+                    url: "upload.php",
+                    type: "post",
+                    dataType: "json",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                  })
+                  .done(function(res){
+                    //alert('listo');
+                    console.log("Respuesta: " + res);
+                    if(res[0].img!==undefined){
+                      var img = res[0].img;
+                      console.log(img);
+                      $('.profile_pic div').attr({
+                        style: "background-image:url('../imagenes_/profPicture/"+img+"');"
+                      });
+                      $('#previewProfileImage').attr({
+                        src: "../imagenes_/profPicture/"+img
+                      });
 
-                /*registrar publicacion
-                $( "#createPost" ).on( 'click', function () {
-                  $.ajax( {
-                    data: {
-                      "create_Post": 1,
-                      "title": $( "#postTitle" ).val(),
-                      "description": $( "#postDescription" ).val(),
-                      "date": $( "#postDate" ).val(),
-                      /*"category": $( '#category' ).val(),
-                      "file": document.getElementById( "file" ).files[ 0 ].name
-                    },
-                    url: '../classes/ajaxUsers.php',
-                    type: 'post'
-                  } ).done( function ( data ) {
-                    if ( data ) {
-                      /*$( "#formPost" ).submit();
-                      console.log(data);
                     }
-                  } );
-                } );*/
+                    
+                  });
+                }
+
               });
 
 
