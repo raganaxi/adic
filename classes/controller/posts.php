@@ -24,7 +24,7 @@ class posts
 
   public static function regCat($name, $description){
     $consulta = 'CALL regCat("'.$name.'","'.$description.'");';
-    error_log($consulta);
+    //error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consulta($consulta);
     return $result;
@@ -32,7 +32,7 @@ class posts
 
   public static function getCategory(){
     $consulta = 'SELECT * FROM category';
-    error_log($consulta);
+    //error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consulta($consulta);
     return $result;

@@ -13,7 +13,7 @@ class user
 	*/
 	public static function register($mail, $pass, $r_type){
 		$consulta = 'call register_user("'.$mail.'", "'.$pass.'",  "'.$r_type.'")';
-    error_log($consulta);
+    //error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consulta($consulta);
     return $result;
@@ -21,16 +21,25 @@ class user
 
   public static function registerSoc($name, $phone, $mail, $pass, $r_type, $img, $negocio, $category){
     $consulta = 'call register_soc("'.$name.'","'.$phone.'","'.$mail.'", "'.user::randomPassword().'",  "'.$r_type.'",  "'.$img.'",  "'.$negocio.'", "'.$category.'")';
-    error_log($consulta);
+    //error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consulta($consulta);
+    return $result;
+  }
+  public static function updateProfPicture($img,$userid){
+    $consulta = 'call update_profPicture(?,?)';
+
+    $parametros = array($img,$userid);
+    //error_log(json_encode($parametros));
+    $db_con = new PDOMYSQL;
+    $result =  $db_con->consultaSegura($consulta,$parametros);
     return $result;
   }
 
   public static function login($mail, $pass){
     $consulta = "SELECT * FROM user where username = ? and pass = ? and active = '1'";
     $parametros = array($mail,$pass);
-    error_log($consulta);
+    //error_log($consulta);
     $db_con = new PDOMYSQL;
     $result = $db_con->consultaSegura($consulta,$parametros);
     return $result;
@@ -38,7 +47,7 @@ class user
     public static function loginFacebook($mail){
     $consulta = "SELECT * FROM user where username = ? and active = '1'";
     $parametros = array($mail,$pass);
-    error_log($consulta);
+    //error_log($consulta);
     $db_con = new PDOMYSQL;
     $result =  $db_con->consultaSegura($consulta,$parametros);
     return $result;
@@ -47,7 +56,7 @@ class user
   public static function getPost(){
     $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
     $consulta = 'SELECT post.*,category.nombre as categoria, user_data.name as user_name, user_data.img as user_pic FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid INNER JOIN category on post.categoryid = category.idcategory where date ="'.$date.'" order by date desc';
-    error_log($consulta);
+    //error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $result = $PDOMYSQL->consulta($consulta);
     return $result;
@@ -65,7 +74,7 @@ class user
   public static function editProfileData($name, $number, $negocio, $user_id){
     $consulta = 'UPDATE user_data SET name="'.$name.'", number="'.$number.'", negocio="'.$negocio.'" WHERE user_id="'.$user_id.'" ';
     $check = 'SELECT * FROM user_data WHERE name='.$name.', number='.$number.', negocio='.$negocio.' AND user_id='.$user_id.'';
-    error_log($consulta);
+    //error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $update = $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
@@ -83,7 +92,7 @@ class user
   public static function getProfile($userId){
     $consulta2 = 'SELECT user.*, user_data.* FROM user inner join user_data on user.iduser = user_data.user_id WHERE iduser ='.$userId.'';
     //$consulta = 'SELECT * FROM user_data where user_id = "'.$userId.'" ';
-    error_log(print_r($consulta2, true));
+    //error_log(print_r($consulta2, true));
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consulta($consulta2);
     return $result;
@@ -92,7 +101,7 @@ class user
   public static function getSoc(){
     $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
     $consulta = 'SELECT user.*, user_data.name, user_data.number, user_data.negocio FROM user inner join user_data on user.iduser = user_data.user_id WHERE role ="socio" and active = 0';
-    error_log($consulta);
+    //error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consulta($consulta);
     return $result;
@@ -101,7 +110,7 @@ class user
   public static function getRegSoc(){
     $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
     $consulta = 'SELECT user.*, user_data.name, user_data.number, user_data.negocio FROM user inner join user_data on user.iduser = user_data.user_id WHERE role ="socio" and active = 1';
-    error_log($consulta);
+    //error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consulta($consulta);
     return $result;
@@ -110,7 +119,7 @@ class user
   public static function getStanbySoc(){
     $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
     $consulta = 'SELECT user.*, user_data.name, user_data.number, user_data.negocio FROM user inner join user_data on user.iduser = user_data.user_id WHERE role ="socio" and active = 2';
-    error_log($consulta);
+    //error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consulta($consulta);
     return $result;
@@ -231,7 +240,7 @@ class user
     if (strlen($token)>0) {
       $consulta = "INSERT INTO tbl_tokens (tx_token,user_id,creation_date,ip,id_dispositivo,active) values(?,?,now(),?,?,1)";
       $parametros = array($token, $id,$ip, $id_dispositivo);
-      error_log($consulta);
+      //error_log($consulta);
       $db_con = new PDOMYSQL;
       $result =  $db_con->consultaSegura($consulta,$parametros);
     }
