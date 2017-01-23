@@ -479,18 +479,44 @@ $("input[id*=Dir]").on('keyup',function(){
 });
 }
 //iniciador del mapa 
-$("#direcciones-tab").on('click',function(){
-  crearTabla();
-});
 
-
-
-var formAddress='<form id="editProfileD"><div class="form-section"><label for="calleDir">Dirección</label><input id="calleDir" type="text" class="form-control geo1" placeholder="Calle y numero" name="calleDir" value="" required><div class="clear"></div></div><div class="form-section"><label for="numeroDir">Colonia</label><input id="coloniaDir" type="text" class="form-control geo2" placeholder="Número" name="numeroDir" value="" required><div class="clear"></div></div><div class="form-section"><label for="municipioDir">Municipio</label><input id="municipioDir" type="text" class="form-control geo3" placeholder="Municipio" name="municipioDir" value="" required><div class="clear"></div></div><div class="form-section"><label for="estadoDir">Estado</label><input id="estadoDir" type="text" class="form-control geo4" placeholder="Estado" name="estadoDir" value="" required><div class="clear"></div></div><div class="form-section"><label for="paisDir">País</label><input id="paisDir" type="text" class="form-control geo5" placeholder="País" name="paisDir" value="" required><div class="clear"></div></div><div class="form-section"><label for="cpDir">Código Postal</label><input id="cpDir" type="text" class="form-control" placeholder="CP" name="cpDir" value="" required><div class="clear"></div></div><div class="form-section"><label for="latDir">Latitud</label><input id="latDir" type="text" class="form-control" placeholder="Latitud" name="latDir" value="" required><div class="clear"></div></div><div class="form-section"><label for="lonDir">Longitud</label><input id="lonDir" type="text" class="form-control" placeholder="Longitud" name="lonDir" value="" required><div class="clear"></div></div><div id="mapDir" style="width: 100%; height: 350px;" ></div></form>';
+$(document).ready(function(){crearTabla();});
 /*<button type="button" id="saveDireccion" class="btn bgGreen cWhite pull-right" >Guardar Dirección</button>*/
-$('#btnAddAddress').click(function(){
- 
-  swal({
 
+
+
+$('#btnAddAddress').click(function(){formAddres(1,'','','','','','','','','');});
+function setStatus(st,id){
+  var u;
+  if (st==1) {u='activada';}
+  else{u='desactivada';}
+  $.ajax({
+      type: "POST",
+      url: '../classes/ajaxPosts.php',
+      data:{direccion: 3,status: st, idAdd:id},
+      success: function(){
+         table.ajax.reload();
+            swal({
+              type: 'success',
+              title: 'Operacio Exitosa',
+              text: 'La direccion ha sido '+u+'.'
+            })
+      },
+      error: function(e){
+          swal({
+            type: 'warning',
+            title: 'Error',
+            text: e
+          })
+        }
+    });
+
+}
+function formAddres(type,dir,col,mun,est,pais,cp,lat,long,id){ 
+
+  var formAddress='<form id="editProfileD"><div class="form-section"><label for="calleDir">Dirección</label><input id="calleDir" type="text" class="form-control geo1" placeholder="Calle y numero" name="calleDir" value="'+dir+'" required><div class="clear"></div></div><div class="form-section"><label for="numeroDir">Colonia</label><input id="coloniaDir" type="text" class="form-control geo2" placeholder="Colonia" name="numeroDir" value="'+col+'" required><div class="clear"></div></div><div class="form-section"><label for="municipioDir">Municipio</label><input id="municipioDir" type="text" class="form-control geo3" placeholder="Municipio" name="municipioDir" value="'+mun+'" required><div class="clear"></div></div><div class="form-section"><label for="estadoDir">Estado</label><input id="estadoDir" type="text" class="form-control geo4" placeholder="Estado" name="estadoDir" value="'+est+'" required><div class="clear"></div></div><div class="form-section"><label for="paisDir">País</label><input id="paisDir" type="text" class="form-control geo5" placeholder="País" name="paisDir" value="'+pais+'" required><div class="clear"></div></div><div class="form-section"><label for="cpDir">Código Postal</label><input id="cpDir" type="text" class="form-control" placeholder="CP" name="cpDir" value="'+cp+'" required><div class="clear"></div></div><div class="form-section"><label for="latDir">Latitud</label><input id="latDir" type="text" class="form-control" placeholder="Latitud" name="latDir" value="'+lat+'" required><div class="clear"></div></div><div class="form-section"><label for="lonDir">Longitud</label><input id="lonDir" type="text" class="form-control" placeholder="Longitud" name="lonDir" value="'+long+'" required><div class="clear"></div></div><div id="mapDir" style="width: 100%; height: 350px;" ></div></form>';
+
+  swal({
     title:'+Direcciones',
     html: formAddress,
     customClass: 'swal-xl',
@@ -504,10 +530,11 @@ $('#btnAddAddress').click(function(){
  preConfirm: function () {
       return new Promise(function (resolve, reject) {
       if ($("#calleDir").val()&&$("#latDir").val()&&$("#lonDir").val()) {
+
                 $.ajax({
         type: "POST",
         url: '../classes/ajaxPosts.php',
-        data: {direccion: 1,dir:$('#calleDir').val(),col:$('#coloniaDir').val(),mun:$('#municipioDir').val(),est:$('#estadoDir').val(),pais:$('#paisDir').val(),cp:$('#cpDir').val(),lat:$('#latDir').val(),lon:$('#lonDir').val()},
+        data: {direccion: type,dir:$('#calleDir').val(),col:$('#coloniaDir').val(),mun:$('#municipioDir').val(),est:$('#estadoDir').val(),pais:$('#paisDir').val(),cp:$('#cpDir').val(),lat:$('#latDir').val(),lon:$('#lonDir').val(),idAdd: id},
         beforeSend: function(){
          
         },
@@ -518,6 +545,7 @@ $('#btnAddAddress').click(function(){
               title: 'Operacio Exitosa',
               text: 'La direccion ha sido guardad con exito.'
             })
+          table.ajax.reload();
           }else{
             swal({
             type: 'warning',
@@ -525,7 +553,6 @@ $('#btnAddAddress').click(function(){
             text: 'Por favor contacte al soporte tecnico.'
           })
           }
-
         },
         error: function(e){
           swal({
@@ -549,9 +576,8 @@ $('#btnAddAddress').click(function(){
   }).then(function () {})
 initMap(null,null);
 keyupDir();
-});
+}
 </script>
 <!-- /funciones del mapa de direciones -->
-
   </body>
 </html>

@@ -33,35 +33,29 @@ if (isset($_POST['postsDay'])) {
 	echo json_encode($result);
 }
 if (isset($_POST['tableDir'])) {
-	  $requestData= $_REQUEST;
-	 error_log(print_r($requestData,true));
-	$table = new address;
-    $table->setUser_id($_SESSION['iduser']);
-	$datos=  $table->getAddress();
-    $datos2=array_chunk($datos, $requestData['length']);
-    $json = array($datos);
-	$json_data = array(
-        "draw" => intval($requestData['draw']),
-        "recordsTotal"=> count($datos),
-        "recordsFiltered"   => count($datos),
-          "aaData"=>$datos,
-        	);
-
-
-    /*       $json_data = array(
-                "draw"              => intval($requestData['draw']),
-                "recordsTotal"      => intval($filter ? $sqlsl->num_rows :$sqlTotal->num_rows),
-              
-                "recordsFiltered"   => intval( $filter ? $sqlsl->num_rows :$sqlTotal->num_rows),
-               $data
-
-            );*/
-error_log(print_r($json_data,true));
+  $requestData= $_REQUEST;
+  //error_log(print_r($requestData,true));
+  $table = new address;
+  $table->setUser_id($_SESSION['iduser']);
+  $datos=  $table->getAddress();
+  $datos2=array_chunk($datos, $requestData['length']);
+  $json_data = array(
+    "draw" => intval($requestData['draw']),
+    "recordsTotal"=> count($datos),
+    "recordsFiltered"   => count($datos),
+    "aaData"=>$datos2[$requestData['start']/$requestData['length']],
+    "datPart"=>$datos2,
+  );
+//error_log(print_r($json_data,true));
 echo json_encode($json_data);  
 }
-/*"recordsFiltered"   => intval($filter ? count($data) : $sqlTotal->num_rows),*/
 if (isset($_POST['direccion'])) {
      $setDir = new address;
+  if ($_POST['direccion']==3) {
+    $setDir->setIdaddress($_POST['idAdd']);
+    $setDir->setBandera($_POST['status']);
+    echo $setDir->deleteAddress();
+  }else{
      $setDir->setDireccion($_POST['dir']);
      $setDir->setColonia($_POST['col']);
      $setDir->setMunicipio($_POST['mun']);
@@ -71,6 +65,13 @@ if (isset($_POST['direccion'])) {
      $setDir->setLat($_POST['lat']);
      $setDir->setLong($_POST['lon']);
      $setDir->setUser_id($_SESSION['iduser']);
+  if ($_POST['direccion']==1) {
      echo  $setDir->setAddress();
+  }
+  if ($_POST['direccion']==0) {
+    $setDir->setIdaddress($_POST['idAdd']);
+     echo $setDir->updateAddress();
+  }
 }
+  }
 ?>

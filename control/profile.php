@@ -28,6 +28,7 @@ if(!isset($_SESSION['rol'])){
   font-size: x-large;
   color: blue;
   cursor: pointer;
+
 }
 .fa-pencil-square-o:hover{
   font-size: xx-large;
@@ -43,7 +44,13 @@ if(!isset($_SESSION['rol'])){
   font-size: xx-large;
   color: #e62b89;
 }
-
+#tableDir thead tr td{text-align: center;}
+#tableDir tbody tr td{text-align: center;}
+.btnPlus{
+      float: left!important;
+    padding: 3px 6px;
+    font-size: large;
+}
 </style>    
 <div id="perfil_socio" class="right_col" role="main" onload="initMap()">
   <div class="z-row">
@@ -185,15 +192,8 @@ if(!isset($_SESSION['rol'])){
             </div>
             <div role="tabpanel" class="tab-pane fade" id="tab_direcciones" aria-labelledby="datos-tab">
               <div class="x_content">
-              <div class="form-control">
-                <button id="btnAddAddress" class="btn bgGreen cWhite pull-right">add Direccion</button>
-              </div>
-             
-              </div>
-
-                            <div class="x_content">
                 <div class="x_title">
-                  <h2>Lista de Direcciones</h2>
+                  <h2>Lista de Direcciones</h2><button id="btnAddAddress" title="Añadir una nueva direccion" class="btn bgGreen cWhite pull-right fa fa-plus btnPlus"></button>
                   <div class="clearfix"></div>
                 </div>
                 <table id="tableDir" >
@@ -206,18 +206,14 @@ if(!isset($_SESSION['rol'])){
                     <th>Estado</th>
                     <th>Pais</th>
                     <th>C.P.</th>
-                    <th>Long</th>
-                    <th>Lat</th>
-                    <th>Editar/<br>Eliminar</th>
+                     <th>Latitud</th>
+                    <th>Longitud</th>
+                    <th>Editar</th>
                     <th>Status</th>
                     </tr>
                   </thead>
                 </table>
-
               </div>
-
-
-
             </div>
              <div role="tabpanel" class="tab-pane fade" id="tab_galeria" aria-labelledby="galeria-tab">
               <div class="x_content">
@@ -294,9 +290,9 @@ if(!isset($_SESSION['rol'])){
 </script>*/ ?>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBPc0IqUH5Kc7aTNQlfMDXEcJFVglGC9DI" async defer></script>
 <script type="text/javascript">
-
+var table=null;
   function crearTabla(){
-   var table= $("#tableDir").DataTable({
+    table= $("#tableDir").DataTable({
           "iDisplayLength":100,
           "processing":true,
           "serverSide":true,
@@ -322,16 +318,16 @@ if(!isset($_SESSION['rol'])){
                 {
                   "targets" : [9],
                   "render": function(data,type,full){
-                    return '<i id="update_'+full[0]+'" class="fa fa-pencil-square-o" aria-hidden="true"></i><i id="delete_'+full[0]+'" class="fa fa-times" aria-hidden="true"></i>'
+                    return '<i onClick="formAddres(0,\''+full[1]+'\',\''+full[2]+'\',\''+full[3]+'\',\''+full[4]+'\',\''+full[5]+'\',\''+full[6]+'\',\''+full[7]+'\',\''+full[8]+'\','+full[0]+')" class="fa fa-pencil-square-o" title="Editar la direccion del renglon a la cual corresponde este boton" aria-hidden="true"></i>';
                   }
                 },
                   {
                     "targets" : [10],
                   "render": function(data,type,full){
                       if(data == 1){
-                        return 'Activo';
+                        return '<button class="btn bgGreen cWhite fa fa-check-square" onClick="setStatus(0,'+full[0]+')">Activo</button>';
                       }else{
-                        return 'Inactivo';
+                        return '<button class="btn bgRed cWhite fa fa-times-circle" onClick="setStatus(1,'+full[0]+')">Inactivo</button>';
                       }
 
                   }
@@ -343,49 +339,13 @@ if(!isset($_SESSION['rol'])){
               }
     });
 
+    table.on( 'order.dt search.dt', function () {
+        table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
 
-   /*$('#tableDir').DataTable({
-    ajax:{
-      type:"POST",
-      url:'../classes/ajaxPost.php',
-      data: { tableDir:'1'}
-     },
-    columns: [  ]
 
-   });*/
-/*
-          var table = $('#socTabla').DataTable({
-          "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.10.10/i18n/Spanish.json"
-          },
-          "iDisplayLength":100,
-          "processing":true,
-          "serverSide":true,
-          //"scrollY": 500,
-          //"scrollX": true,
-          "ajax":{
-              data:{},
-              type:  'post',
-              url: '../classes/controller/socTable.php'
-          },
-          "columnDefs":[
-                {
-                  "targets" : [5],
-                  "render": function(data,type,full){
-                      if(data == 1){
-                        return 'Activo';
-                      }else{
-                        return 'Inactivo';
-                      }
-
-                  }
-                }
-              ],
-          "sDom":'ltrip',
-          "initComplete": function(settings, json) {
-              }
-            });
-*/
 
   }
 </script>

@@ -14,10 +14,10 @@ class address{
 	private $lat=null;
     private $long=null;
     private $user_id=null;
+    private $bandera=null;
 
 
-
-	public function __construct($data=array()){
+    public function __construct($data=array()){
         $idaddress = isset($data['idaddress']) ? $data['idaddress'] : null;
         $direccion = isset($data['direccion']) ? $data['direccion'] : null;
         $colonia = isset($data['colonia']) ? $data['colonia'] : null;
@@ -28,6 +28,7 @@ class address{
         $lat = isset($data['lat']) ? $data['lat'] : null;
         $long = isset($data['long']) ? $data['long'] : null;
         $user_id = isset($data['user_id']) ? $data['user_id'] : null;
+        $bandera = isset($data['bandera']) ? $data['bandera'] : null;
 
     }
  
@@ -51,26 +52,23 @@ class address{
 
 
     public function updateAddress(){
-    	$consulta="UPDATE address SET direccion =?, colonia = ? municipio = ? estado = ? pais = ? cp = ? lat = ? long = ? user_id = ? WHERE idaddress = ?";
-    	$parametros=array($this->direccion,$this->colonia,$this->municipio,$this->estado,$this->pais,$this->cp,$this->lat,$this->long,$this->user_id,$this->idaddress);
-    	$db_con=new PDOMYSQL;
-    	$result=$db_con->consultaSegura($consulta,$parametros);
-    	if(!empty($result)){
-      	    return true; 
-        }else{
-      	    return false;
-        }
+        $consulta="UPDATE address SET direccion =?, colonia = ?, municipio = ?, estado = ?, pais = ?, cp = ?, lat = ?, `long` = ?, user_id = ? WHERE idaddress = ?";
+        $parametros=array($this->direccion,$this->colonia,$this->municipio,$this->estado,$this->pais,$this->cp,$this->lat,$this->long,$this->user_id,$this->idaddress);
+        $db_con=new PDOMYSQL;
+        $result=$db_con->consultaSegura($consulta,$parametros);
+    
+            return true; 
     }
 
     public function deleteAddress(){
-    	$consulta="UPDATE address SET bandera =? WHERE idaddress = ?";
-    	$parametros=array(0,$this->idaddress);
-    	$db_con=new PDOMYSQL;
-    	$result=$db_con->consultaSegura($consulta,$parametros);
-    	if(!empty($result)){
-      	    return true;
+        $consulta="UPDATE address SET bandera =? WHERE idaddress = ?";
+        $parametros=array($this->bandera,$this->idaddress);
+        $db_con=new PDOMYSQL;
+        $result=$db_con->consultaSegura($consulta,$parametros);
+        if(!empty($result)){
+            return true;
         }else{
-      	    return false;
+            return false;
         }
     }
 
@@ -94,6 +92,8 @@ class address{
 public function getLong(){return $this->long;}
      public function setUser_id($user_id){$this->user_id=$user_id;}
     public function getUser_id(){return $this->user_id;}
+ public function setBandera($bandera){$this->bandera=$bandera;}
+    public function getBandera(){return $this->bandera;}
     }
 
  
