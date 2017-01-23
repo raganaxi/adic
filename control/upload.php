@@ -1,6 +1,5 @@
 <?php
 
-/*
 require_once('../classes/autoloader.php');
 require_once('../config.php');
 
@@ -8,7 +7,7 @@ require_once('../config.php');
 use pdomysql AS pdomysql;
 use user AS user;
 
-
+/*
 $modulo="";
 
 $action="";
