@@ -7,6 +7,7 @@ require_once('../config.php');
   use user AS user;
   use posts AS posts;
   use address AS address;
+  use post AS post; 
 
 //Buscar posts
 if (isset($_POST['search_post'])) {
@@ -32,6 +33,9 @@ if (isset($_POST['postsDay'])) {
 	$result = posts::search(null, $_SESSION['date']);
 	echo json_encode($result);
 }
+
+
+/*-----------Direcciones------*/
 if (isset($_POST['tableDir'])) {
   $requestData= $_REQUEST;
   //error_log(print_r($requestData,true));
@@ -74,4 +78,47 @@ if (isset($_POST['direccion'])) {
   }
 }
   }
+  /*-----------/Direcciones------*/
+  /*-----------POSTS------*/
+  if (isset($_POST['tablePub'])) {
+  $requestData= $_REQUEST;
+  //error_log(print_r($requestData,true));
+  $table = new post;
+  $table->setUserid($_SESSION['iduser']);
+  $datos=  $table->getPost();
+  $datos2=array_chunk($datos, $requestData['length']);
+  $json_data = array(
+    "draw" => intval($requestData['draw']),
+    "recordsTotal"=> count($datos),
+    "recordsFiltered"   => count($datos),
+    "aaData"=>$datos2[$requestData['start']/$requestData['length']],
+    "datPart"=>$datos2,
+  );
+//error_log(print_r($json_data,true));
+echo json_encode($json_data);  
+}
+if (isset($_POST['publicacion'])) {
+     $setPost = new post;
+  if ($_POST['publicacion']==3) {
+    $setPost->setIdaddress($_POST['idAdd']);
+    $setPost->setBandera($_POST['status']);
+    echo $setPost->deleteAddress();
+  }else{
+     $setPost->setTitle($_POST['tit']);
+     $setPost->setDescription($_POST['des']);
+     $setPost->setDate($_POST['fec']);
+     $setPost->setUserid($_SESSION['iduser']);
+     $setPost->setImage($_POST['file']);
+     error_log(print_r($_POST['publicacion'],true));
+  if ($_POST['publicacion']==1) {
+     echo  $setPost->setPost();
+  }
+  if ($_POST['publicacion']==0) {
+    $setPost->setIdaddress($_POST['idAdd']);
+     echo $setPost->updateAddress();
+  }
+}
+  }
+
+   /*-----------/POSTS------*/
 ?>

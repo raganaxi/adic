@@ -17,40 +17,7 @@ if(!isset($_SESSION['rol'])){
 }
 ?> 
 <style type="text/css">
-  .swal-xl{
-    width: 80%!important;
-  }
-   #editProfileD .form-section{
-    width: 50%;
-    display: inline-block;
-  }
-.fa-pencil-square-o{
-  font-size: x-large;
-  color: blue;
-  cursor: pointer;
 
-}
-.fa-pencil-square-o:hover{
-  font-size: xx-large;
-  color: #6706e2;
-}
-.fa-times{
-    font-size: x-large;
-  color: red;
-  float: right;
-  cursor: pointer;
-}
-.fa-times:hover{
-  font-size: xx-large;
-  color: #e62b89;
-}
-#tableDir thead tr td{text-align: center;}
-#tableDir tbody tr td{text-align: center;}
-.btnPlus{
-      float: left!important;
-    padding: 3px 6px;
-    font-size: large;
-}
 </style>    
 <div id="perfil_socio" class="right_col" role="main" onload="initMap()">
   <div class="z-row">

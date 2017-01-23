@@ -23,22 +23,20 @@ public function __construct($data=array()){
 
 }
 public function getPost(){
-    	$consulta ="SELECT * from post";
+    	$consulta ="SELECT * from post WHERE userid = ? and status <> 3 ";
     	$db_con= new PDOMYSQL;
-        $parametros = array('');
-        $result=$db_con->consultaSegura($consulta,$parametros);
+        $parametros = array($this->userid);
+        $result=$db_con->consultaSeguraIndex($consulta,$parametros);
         return $result;
 }
 public function setPost(){
-        $consulta = "INSERT INTO post (idpost,title,description,date, userid,categoryid,image) values(?,?,?,?,?,?,?)";
-        $parametros=array($this->idpost,$this->title,$this->description,$this->date,$this->userid,$this->categoryid,$this->image);
+        $consulta = "INSERT INTO post (title,description,`date`, userid,image) values(?,?,?,?,?)";
+        $parametros=array($this->title,$this->description,$this->date,$this->userid,$this->image);
         $db_con=new PDOMYSQL;
         $result=$db_con->consultaSegura($consulta,$parametros);
-        if(!empty($result)){
+  
       	    return true;
-        }else{
-      	    return false;
-        }
+
 }
 public function updatePost(){
     	$consulta="UPDATE post SET title =?, description = ?, date = ?, userid = ?, categoryid = ?, image = ? WHERE idpost= ?";
