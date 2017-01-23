@@ -10,7 +10,7 @@
         <li class="dropdown">
           <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
             <div class="profile_pic">
-            <div style="background-image: url(http://adondeirenlaciudad.com/imagenes_/profPicture/<?= echo $profile['0']['img']; ?>);" class="img-circle profile_img profile_img_sidemenu"></div>
+            <div style="background-image: url(http://adondeirenlaciudad.com/imagenes_/profPicture/<?php echo $profile['0']['img']; ?>);" class="img-circle profile_img profile_img_sidemenu"></div>
             </div><?php
             if(isset($_SESSION['user'])) {
               echo $_SESSION['user'];
