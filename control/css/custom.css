@@ -310,8 +310,11 @@ body .container.body .right_col {
     width: 100%;
     margin: 0; }
 
-  .nav-md .container.body .col-md-3.left_col {
+  .nav-md .container.body .col-md-3.left_col,.nav-md .container.body .col-md-3.left_col .left_col {
     display: none; }
+    .nav_title{
+      width: 100%;
+    }
 
   .nav-md .container.body .right_col {
     width: 100%;
@@ -4004,6 +4007,22 @@ ul.notifications {
 .file-hidden{
     display: none !important;
 }
+.top_nav .navbar-right .profile_pic .img-circle.profile_img.profile_img_sidemenu{
+margin-top: -9px;
+    margin-left: -5px;
+    position: absolute;
+    width: 7vh !important;
+    height: 7vh !important;
+    margin-left: -90px;
 
+}
+#socio_panel .col-md-12.col-sm-12.col-xs-12 {
+    min-height: 100vh !important;
+}
+.sidebar-footer.hidden-small a span {
+   opacity:0;
+}
 
-
+.sidebar-footer.hidden-small a:last-child span{
+    opacity:1;
+}

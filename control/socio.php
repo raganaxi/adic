@@ -5,9 +5,9 @@
         <div class="x_title">
           <h2>Dashboard</h2>
           <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li class="dropdown">
+            <?php /*<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li> */?>
+            <?php /*<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#">Settings 1</a>
@@ -15,7 +15,7 @@
                 <li><a href="#">Settings 2</a>
                 </li>
               </ul>
-            </li>
+            </li>*/?>
             <li><a class="close-link"><i class="fa fa-close"></i></a>
             </li>
           </ul>
@@ -26,11 +26,11 @@
             <div class="profile_img">
               <div id="crop-avatar">
                 <!-- Current avatar -->
-                <img class="img-responsive avatar-view" src="../imagenes_/profPicture/<?= $profile['0']['img'] ?>" alt="Avatar" title="Change the avatar">
+                <img class="img-responsive avatar-view" src="http://adondeirenlaciudad.com/imagenes_/profPicture/<?= $profile['0']['img'] ?>" alt="Avatar" title="Change the avatar">
               </div>
             </div>
             <h3><?= $profile['0']['negocio'] ?></h3>
-
+            <?php /*
             <ul class="list-unstyled user_data">
               <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
               </li>
@@ -79,13 +79,13 @@
               </ul>
             </div>
             <!-- end of skills -->
-
+            */?>
           </div>
           <div class="col-md-9 col-sm-9 col-xs-12">
 
             <div class="profile_title">
               <div class="col-md-6">
-                <h2>Reporte de Actividad</h2>
+                <?php /*<h2>Reporte de Actividad</h2>
               </div>
               <div class="col-md-6">
                 <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
@@ -95,8 +95,9 @@
               </div>
             </div>
             <!-- start of user-activity-graph -->
+
             <div id="graph_bar" style="width:100%; height:280px;"></div>
-            <!-- end of user-activity-graph -->
+            <!-- end of user-activity-graph -->*/?>
           </div>
         </div>
       </div>

@@ -13,7 +13,7 @@
     <!-- menu profile quick info -->
     <div class="profile">
       <div class="profile_pic">
-        <div style="background-image: url(../imagenes_/profPicture/<?= $profile['0']['img'] ?>);" class="img-circle profile_img profile_img_sidemenu"></div>
+        <div style="background-image: url(http://adondeirenlaciudad.com/imagenes_/profPicture/<?php echo $profile['0']['img']; ?>);" class="img-circle profile_img profile_img_sidemenu"></div>
       </div>
       <div class="profile_info">
         <span>Bienvenido,</span>
@@ -57,17 +57,6 @@
                 </li>
                 <li class="hidden">
                   <a href="event.php"><i class="fa fa-calendar-check-o"></i> Crear Evento</a>
-                </li>
-              </ul>
-            </div>
-            <div class="menu_section">
-              <h3>Reportes</h3>
-              <ul class="nav side-menu">
-                <li>
-                  <a href="index.php"><i class="fa fa-bar-chart"></i> Tipo Reporte 1</a>
-                </li>
-                <li>
-                  <a href="index.php"><i class="fa fa-th-list"></i> Tipo Reporte 2</a>
                 </li>
               </ul>
             </div>

@@ -952,7 +952,11 @@ $(document).ready(function() {
         type: "post",
         dataType: "json",
         data: formData,
+        crossDomain: true,
         cache: false,
+        xhrFields: {
+          withCredentials: true
+        },
         contentType: false,
         processData: false,
         beforeSend: function(){
