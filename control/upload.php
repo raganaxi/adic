@@ -58,7 +58,7 @@ function update_profile_function(){
 		}
 		if (!file_exists($directory.$iduser)) {
 			mkdir($directory.$iduser, 0777,true);
-		}*/
+		}*s
 		$nombreArchivo=isset($_FILES['fileImage']['name']) ?$_FILES['fileImage']['name']: null;
 		$nombreTemporal=isset($_FILES['fileImage']['tmp_name'])?$_FILES['fileImage']['tmp_name']:null;
 
