@@ -31,13 +31,13 @@ switch($modulo) {
 }
 
 function post_function(){
-	/*global $action;
+	global $action;
 
 	switch($action) {
 		case 'a': create_post_function();break;
 
 		default: echo 0;die;
-	}*/
+	}
 }
 function profile_function(){
 	global $action;
@@ -88,12 +88,12 @@ function create_post_function(){
 	global $iduserXXX;
 	try{
 		$directory = "../imagenes_/post/";
-		if (!file_exists($directory)) {
+		/*if (!file_exists($directory)) {
 			mkdir($directory, 0777,true);
 		}
 		if (!file_exists($directory.$iduserXXX)) {
 			mkdir($directory.$iduserXXX, 0777,true);
-		}
+		}*/
 		$nombreArchivo=isset($_FILES['file']['name']) ?$_FILES['file']['name']: null;
 		$nombreTemporal=isset($_FILES['file']['tmp_name'])?$_FILES['file']['tmp_name']:null;
 
@@ -104,7 +104,9 @@ function create_post_function(){
 		move_uploaded_file($nombreTemporal,$rutaArchivo);
 
 		$img=$nombreArchivo;
+		error_log($img);
 		$result = user::regPost($_POST['title'], $_POST['description'], $_POST['date'], $iduserXXX, $img);
+
 		echo json_encode($result);
 		die;
 	}
