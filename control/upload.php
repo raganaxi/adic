@@ -7,7 +7,7 @@ require_once('../config.php');
 use pdomysql AS pdomysql;
 use user AS user;
 
-/*
+
 $modulo="";
 
 $action="";
@@ -21,6 +21,7 @@ if (isset($_POST['modulo'])) {
 if (isset($_POST['iduser'])) {
 	$iduser=$_POST['iduser'];
 }
+/*
 error_log("modulo".$modulo);
 
 switch($modulo) {
