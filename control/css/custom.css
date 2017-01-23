@@ -4019,4 +4019,10 @@ margin-top: -9px;
 #socio_panel .col-md-12.col-sm-12.col-xs-12 {
     min-height: 100vh !important;
 }
+.sidebar-footer.hidden-small a span {
+   opacity:0;
+}
 
+.sidebar-footer.hidden-small a:last-child span{
+    opacity:1;
+}
