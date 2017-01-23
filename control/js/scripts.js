@@ -3,6 +3,7 @@
 var urlLocal="http://localhost:81/cache/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
 var appRuta='rApp.php';
+urlRemoto=urlLocal;
 var urlAjax=urlRemoto;
 
 ( function () {
@@ -894,117 +895,110 @@ $(document).ready(function() {
         var post = data.datos.post;
         console.log(post);
         var addresses= data.datos.addresses;
-                    /*var datahtml=''+
-                    '<form class="ui-filterable">'+
-                    '<input id="filterPublicacionesInput" data-type="search">'+
-                    '</form>'+
-                    '<div class="elements" data-filter="true" data-input="#filterPublicacionesInput" id="filterPublicaciones">';
-                    for(var i in post) {
-                        datahtml+='<li>'+getHtmlPost(post[i])+'</li>';
-                    }
-                    appS=getAppSession();
-                    appS.addresses=addresses;
-                    setAppSession(appS);
-                    $("#postContainer").html(datahtml);
-                    $('#filterPublicacionesInput').textinput();
-                    $('#filterPublicaciones').filterable();
-                    */
-                  }
-                  else{
-                    var addresses= data.datos.addresses;
-                    /*appS=getAppSession();
-                    appS.addresses=addresses;
-                    setAppSession(appS);
-                    $("#postContainer").html('<div class="" style="min-height:100vh;height:300px;">Sin publicaciones :(');*/
-                  }
-                  /*  ajaxLoader("termina");*/
+        
+      }
+      else{
+        var addresses= data.datos.addresses;
 
-                }).fail(function( jqXHR, textStatus, errorThrown ) {
-                  $("#postContainer").html('<div class="" style="min-height:100vh;height:300px;">Sin publicaciones :(');
-                  /* ajaxLoader("termina");*/
-                });
-              }
-              $('#postContainer').each(function(index, el) {
-                getPost();
+      }
+      /*  ajaxLoader("termina");*/
 
-                console.log('ready publicaciones');
-                $(document).on('submit','#formCreatePost',function(e){
-                  e.preventDefault();
-                  var $form = $(this);
+    }).fail(function( jqXHR, textStatus, errorThrown ) {
+      $("#postContainer").html('<div class="" style="min-height:100vh;height:300px;">Sin publicaciones :(');
+      /* ajaxLoader("termina");*/
+    });
+  }
+  $('#postContainer').each(function(index, el) {
+    getPost();
 
-                  uploadImage($form);
-                });
-                function uploadImage($form){
-                  var formData = new FormData($form[0]);
-                  formData.append("iduser", id_user);
-                  formData.append("title", $( "#postTitle" ).val());
-                      formData.append("description",$( "#postDescription" ).val());
-                      formData.append("date",$( "#postDate" ).val());
-                      formData.append("modulo", "post");
-                  formData.append("action", "a");
-                  console.log(formData);
-                  $.ajax({
-                    url: "upload.php",
-                    type: "post",
-                    dataType: "json",
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false
-                  })
-                  .done(function(res){
-                    console.log("Respuesta: " + res);
-                  });
-                }
-                
-              });
-              $('#formProfileimage').each(function(index, el) {
-                
-                  console.log('ready profile');
-                  $(document).on('submit','#formProfileimage',function(e){
-                  e.preventDefault();
-                  var $form = $(this);
-                  console.log("clcik");
+    console.log('ready publicaciones');
+    $(document).on('submit','#formCreatePost',function(e){
+      e.preventDefault();
+      var $form = $(this);
 
-                  uploadImage($form);
-                });
-                  function uploadImage($form){
-                  var formData = new FormData($form[0]);
-                  formData.append("iduser", id_user);
-                  formData.append("modulo", "profileImage");
-                  formData.append("action", "a");
-                  console.log(formData);
-                  $.ajax({
-                    url: "upload.php",
-                    type: "post",
-                    dataType: "json",
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false
-                  })
-                  .done(function(res){
-                    //alert('listo');
-                    console.log("Respuesta: " + res);
-                    if(res[0].img!==undefined){
-                      var img = res[0].img;
-                      console.log(img);
-                      $('.profile_pic div').attr({
-                        style: "background-image:url('../imagenes_/profPicture/"+img+"');"
-                      });
-                      $('#previewProfileImage').attr({
-                        src: "../imagenes_/profPicture/"+img
-                      });
+      uploadImage($form);
+    });
+    function uploadImage($form){
+      var formData = new FormData($form[0]);
+      formData.append("iduser", id_user);
+      formData.append("title", $( "#postTitle" ).val());
+      formData.append("description",$( "#postDescription" ).val());
+      formData.append("date",$( "#postDate" ).val());
+      formData.append("modulo", "post");
+      formData.append("action", "a");
+      console.log(formData);
+      $.ajax({
+        url: "upload.php",
+        type: "post",
+        dataType: "json",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        beforeSend: function(){
+          $('#createPost').html('subiendo...');
+        },
+      })
+      .done(function(res){
+        console.log("Respuesta: " + res);
+        $('#createPost').html('ok');
+      }).fail(function(res) {
+        console.log("fallo: " + res);
+      }).always(function() {
+        $('#createPost').html('Crear');
+      });
+      
+      
+    }
 
-                    }
-                    
-                  });
-                }
+  });
+  $('#formProfileimage').each(function(index, el) {
 
-              });
+    console.log('ready profile');
+    $(document).on('submit','#formProfileimage',function(e){
+      e.preventDefault();
+      var $form = $(this);
+      console.log("clcik");
+
+      uploadImage($form);
+    });
+    function uploadImage($form){
+      var formData = new FormData($form[0]);
+      formData.append("iduser", id_user);
+      formData.append("modulo", "profileImage");
+      formData.append("action", "a");
+      console.log(formData);
+      $.ajax({
+        url: "upload.php",
+        type: "post",
+        dataType: "json",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false
+      })
+      .done(function(res){
+
+        console.log("Respuesta: " + res);
+        if(res[0].img!==undefined){
+          var img = res[0].img;
+          console.log(img);
+          $('.profile_pic div').attr({
+            style: "background-image:url('../imagenes_/profPicture/"+img+"');"
+          });
+          $('#previewProfileImage').attr({
+            src: "../imagenes_/profPicture/"+img
+          });
+
+        }
+
+      });
+    }
+
+  });
 
 
-            });
+});
 
 
 
