@@ -62,7 +62,7 @@ function update_profile_function(){
 		$nombreArchivo=isset($_FILES['fileImage']['name']) ?$_FILES['fileImage']['name']: null;
 		$nombreTemporal=isset($_FILES['fileImage']['tmp_name'])?$_FILES['fileImage']['tmp_name']:null;
 
-		$nombreArchivo=$iduser."_".mktime()."_"str_replace(" ", "_", $nombreArchivo);
+		$nombreArchivo=$iduser."_".time()."_".str_replace(" ", "_", $nombreArchivo);
 
 		$rutaArchivo=$directory.$nombreArchivo;
 
@@ -94,7 +94,7 @@ function create_post_function(){
 		$nombreArchivo=isset($_FILES['file']['name']) ?$_FILES['file']['name']: null;
 		$nombreTemporal=isset($_FILES['file']['tmp_name'])?$_FILES['file']['tmp_name']:null;
 
-		$nombreArchivo=$iduser."_".str_replace(" ", "_", $nombreArchivo);
+		$nombreArchivo=$iduser."_".time()."_".str_replace(" ", "_", $nombreArchivo);
 
 		$rutaArchivo=$directory.$nombreArchivo;
 
