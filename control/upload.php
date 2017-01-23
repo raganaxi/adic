@@ -62,8 +62,8 @@ function update_profile_function(){
 			mkdir($directory.$iduserXXX, 0777,true);
 		}*/
 
-		
-		$nombreArchivo=isset($_FILES['fileImage']['name']) ?$_FILES['fileImage']['name']: null;
+		$file=$_FILES['fileImage'];
+		/*$nombreArchivo=isset($_FILES['fileImage']['name']) ?$_FILES['fileImage']['name']: null;
 		$nombreTemporal=isset($_FILES['fileImage']['tmp_name'])?$_FILES['fileImage']['tmp_name']:null;
 
 		$nombreArchivo=$iduserXXX."_".time()."_".str_replace(" ", "_", $nombreArchivo);
