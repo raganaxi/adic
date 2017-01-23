@@ -69,12 +69,12 @@ function update_profile_function(){
 		$nombreArchivo=$iduserXXX."_".time()."_".str_replace(" ", "_", $nombreArchivo);
 
 		$rutaArchivo=$directory.$nombreArchivo;
-		/*
-		//move_uploaded_file($nombreTemporal,$rutaArchivo);
+		
+		move_uploaded_file($nombreTemporal,$rutaArchivo);
 
 		$img=$nombreArchivo;
 		$result = user::updateProfPicture($img,$iduserXXX);
-		echo json_encode($result);*/
+		return json_encode($result);
 	}
 	catch(Exception $e){
 		error_log($e);
@@ -128,7 +128,7 @@ function create_post_function(){
 
 
 */ 
-echo 0;
+
 
 
 
