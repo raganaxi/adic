@@ -61,7 +61,7 @@ function update_profile_function(){
 		if (!file_exists($directory.$iduserXXX)) {
 			mkdir($directory.$iduserXXX, 0777,true);
 		}*/
-
+		error_log("message");
 		$file=$_FILES['fileImage'];
 		/*$nombreArchivo=isset($_FILES['fileImage']['name']) ?$_FILES['fileImage']['name']: null;
 		$nombreTemporal=isset($_FILES['fileImage']['tmp_name'])?$_FILES['fileImage']['tmp_name']:null;
@@ -80,10 +80,11 @@ function update_profile_function(){
 		error_log($e);
 		return 0;
 	}
+	/*
 	finally{
 		return;
 		die;
-	}
+	}*/
 }
 /*
 function create_post_function(){
