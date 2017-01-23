@@ -26,10 +26,10 @@
             <div class="profile_img">
               <div id="crop-avatar">
                 <!-- Current avatar -->
-                <img class="img-responsive avatar-view" src="http://adondeirenlaciudad.com/imagenes_/profPicture/<?= $profile['0']['img'] ?>" alt="Avatar" title="Change the avatar">
+                <img class="img-responsive avatar-view" src="http://adondeirenlaciudad.com/imagenes_/profPicture/<?php $profile['0']['img']; ?>" alt="Avatar" title="Change the avatar">
               </div>
             </div>
-            <h3><?= $profile['0']['negocio'] ?></h3>
+            <h3><?php echo $profile['0']['negocio']; ?></h3>
             <?php /*
             <ul class="list-unstyled user_data">
               <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
