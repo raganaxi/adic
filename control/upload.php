@@ -21,7 +21,7 @@ if (isset($_POST['modulo'])) {
 if (isset($_POST['iduser'])) {
 	$iduser=$_POST['iduser'];
 }
-/*
+
 error_log("modulo".$modulo);
 
 switch($modulo) {
@@ -31,24 +31,25 @@ switch($modulo) {
 }
 
 function post_function(){
-	global $action;
+	/*global $action;
 
 	switch($action) {
 		case 'a': create_post_function();break;
 
 		default: echo 0;die;
-	}
+	}*/
 }
 function profile_function(){
-	global $action;
+	/*global $action;
 
 	switch($action) {
 		case 'a': update_profile_function();break;
 
 		default: echo 0;die;
-	}
+	}*/
 	
 }
+/*
 function update_profile_function(){
 	global $iduser;
 	try{
