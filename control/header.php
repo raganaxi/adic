@@ -40,6 +40,7 @@
     <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
         <!--dataTables Style -->
     <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+    <!--sweet alert -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/6.3.2/sweetalert2.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/6.3.2/sweetalert2.css">
   <script>

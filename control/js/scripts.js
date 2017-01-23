@@ -1,8 +1,9 @@
 'use strict';
 
-var urlLocal="http://localhost:81/cache/adic/";
+var urlLocal="http://localhost:81/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
 var appRuta='rApp.php';
+ urlRemoto=urlLocal;
 var urlAjax=urlRemoto;
 
 ( function () {
@@ -663,6 +664,12 @@ $( "#logSocio" ).on( 'click', function () {
       }
     }
     else {
+        swal({
+            type: 'warning',
+            title: 'Error',
+            text: 'Usuario o contraseña Icorrectos, Verifique por favor.'
+          })
+
       console.log( 'problemas al iniciar session' );
       console.log(data);
     }
@@ -1005,8 +1012,63 @@ $(document).ready(function() {
 
 
             });
+/*-------------ABC  tabla direcciones-----*/
+var table=null;
+  function crearTabla(){
+    table= $("#tableDir").DataTable({
+          "iDisplayLength":100,
+          "processing":true,
+          "serverSide":true,
+           "defaultContent": "-",
+            "targets": "_all",
+      ajax:{
+      type: "POST",
+     //url:'../classes/controller/socTable.php',
+     url:'../classes/ajaxPosts.php',
+      data: { tableDir:'1'},
+      dataType: "json",
+      },  
+       "columnDefs":[
+                 /* {
+                    "targets" : [0],
+                  "render": function(data,type,full){
+                      
 
+                  }
 
+                  },   */  
+                
+                {
+                  "targets" : [9],
+                  "render": function(data,type,full){
+                    return '<i onClick="formAddres(0,\''+full[1]+'\',\''+full[2]+'\',\''+full[3]+'\',\''+full[4]+'\',\''+full[5]+'\',\''+full[6]+'\',\''+full[7]+'\',\''+full[8]+'\','+full[0]+')" class="fa fa-pencil-square-o" title="Editar la direccion del renglon a la cual corresponde este boton" aria-hidden="true"></i>';
+                  }
+                },
+                  {
+                    "targets" : [10],
+                  "render": function(data,type,full){
+                      if(data == 1){
+                        return '<button class="btn bgGreen cWhite fa fa-check-square" onClick="setStatus(0,'+full[0]+')">Activo</button>';
+                      }else{
+                        return '<button class="btn bgRed cWhite fa fa-times-circle" onClick="setStatus(1,'+full[0]+')">Inactivo</button>';
+                      }
+
+                  }
+                }
+                
+              ],
+          "sDom":'ltrip',
+          "initComplete": function(settings, json) {
+              }
+    });
+
+    table.on( 'order.dt search.dt', function () {
+        table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
+  }
+/*-------------/ABC  tabla direcciones-----*/
 
 
 

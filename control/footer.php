@@ -69,7 +69,7 @@
     <script src="js/jquery.validate.min.js"></script>
         <!-- dataTables -->
     <script type="text/javascript" charset="utf8" src="js/jquery.dataTables.js"></script>
-
+       <!--sweet alert   -->
      <script type="text/javascript" charset="utf8" src="https://cdn.jsdelivr.net/sweetalert2/6.3.2/sweetalert2.min.js"></script>
      <script type="text/javascript" charset="utf8" src="https://cdn.jsdelivr.net/sweetalert2/6.3.2/sweetalert2.js"></script>
 
