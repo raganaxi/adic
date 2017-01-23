@@ -18,7 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title><?$title= isset($_SESSION['user']) ? $_SESSION['user'].' | A donde ir en la Ciudad' : 'A donde ir en la Ciudad';echo $title; ?>  </title>
+    <title><?php $title= isset($_SESSION['user']) ? $_SESSION['user'].' | A donde ir en la Ciudad' : 'A donde ir en la Ciudad';echo $title; ?>  </title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
