@@ -66,7 +66,7 @@ function update_profile_function(){
 
 		$rutaArchivo=$directory.$nombreArchivo;
 
-		move_uploaded_file($nombreTemporal,$rutaArchivo);
+		//move_uploaded_file($nombreTemporal,$rutaArchivo);
 
 		$img=$nombreArchivo;
 		$result = user::updateProfPicture($img,$iduser);
