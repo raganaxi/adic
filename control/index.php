@@ -30,6 +30,9 @@
     <!-- Custom Theme Style -->
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/helpers.css" rel="stylesheet">
+        <!--sweet alert -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/6.3.2/sweetalert2.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/6.3.2/sweetalert2.css">
   </head>
 
   <body id="login" class="login bgDarkBlue" data-iduser="<?php echo $_SESSION['user'] ; ?>">
@@ -132,4 +135,7 @@
   <script src="js/scripts.js"></script>
   <script src="js/functions.js"></script>
   <script src="js/jquery.validate.min.js"></script>
+         <!--sweet alert   -->
+  <script type="text/javascript" charset="utf8" src="https://cdn.jsdelivr.net/sweetalert2/6.3.2/sweetalert2.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.jsdelivr.net/sweetalert2/6.3.2/sweetalert2.js"></script>
 </html>
