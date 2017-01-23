@@ -1,6 +1,6 @@
 <?php
 
-
+/*
 require_once('../classes/autoloader.php');
 require_once('../config.php');
 
@@ -90,7 +90,7 @@ function create_post_function(){
 		}
 		if (!file_exists($directory.$iduser)) {
 			mkdir($directory.$iduser, 0777,true);
-		}*/
+		}*
 		$nombreArchivo=isset($_FILES['file']['name']) ?$_FILES['file']['name']: null;
 		$nombreTemporal=isset($_FILES['file']['tmp_name'])?$_FILES['file']['tmp_name']:null;
 
@@ -121,7 +121,8 @@ function create_post_function(){
 
 
 
-
+*/ 
+echo 0;
 
 
 
