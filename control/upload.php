@@ -40,16 +40,16 @@ function post_function(){
 	}*/
 }
 function profile_function(){
-	/*global $action;
+	global $action;
 
 	switch($action) {
 		case 'a': update_profile_function();break;
 
 		default: echo 0;die;
-	}*/
+	}
 	
 }
-/*
+
 function update_profile_function(){
 	global $iduser;
 	try{
@@ -59,7 +59,8 @@ function update_profile_function(){
 		}
 		if (!file_exists($directory.$iduser)) {
 			mkdir($directory.$iduser, 0777,true);
-		}*s
+		}*/
+		/*
 		$nombreArchivo=isset($_FILES['fileImage']['name']) ?$_FILES['fileImage']['name']: null;
 		$nombreTemporal=isset($_FILES['fileImage']['tmp_name'])?$_FILES['fileImage']['tmp_name']:null;
 
@@ -71,7 +72,7 @@ function update_profile_function(){
 
 		$img=$nombreArchivo;
 		$result = user::updateProfPicture($img,$iduser);
-		echo json_encode($result);
+		echo json_encode($result);*/
 	}
 	catch(Exception $e){
 		error_log($e);
@@ -82,6 +83,7 @@ function update_profile_function(){
 		die;
 	}
 }
+/*
 function create_post_function(){
 	global $iduser;
 	try{
