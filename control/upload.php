@@ -74,7 +74,8 @@ function update_profile_function(){
 
 		$img=$nombreArchivo;
 		$result = user::updateProfPicture($img,$iduserXXX);
-		return json_encode($result);
+		echo json_encode($result);
+		die;
 	}
 	catch(Exception $e){
 		error_log($e);
