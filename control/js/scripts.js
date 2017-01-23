@@ -1259,7 +1259,7 @@ var tablePosts=null;
                },
                {"targets":[6],
                 "render": function(data,type,full){
-                    return '<i onClick="formPosts(0,\''+full[1]+'\',\''+full[2]+'\',\''+full[3]+'\',\''+full[5]+'\',\''+full[0]+')" class="fa fa-pencil-square-o" title="Editar la direccion del renglon a la cual corresponde este boton" aria-hidden="true"></i><i class="fa fa-times"></i>';
+                    return '<i onClick="formPosts(0,\''+full[1]+'\',\''+full[2]+'\',\''+full[3]+'\',\''+full[5]+'\',\''+full[0]+')" class="fa fa-pencil-square-o" title="Editar la direccion del renglon a la cual corresponde este boton" aria-hidden="true"></i><i class="fa fa-times" onClick="setStatusPost(3)"></i>';
                }
                },
               {"targets":[7],
