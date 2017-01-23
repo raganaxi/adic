@@ -47,16 +47,16 @@ function update_profile_function(){
 	global $iduser;
 	try{
 		$directory = "../imagenes_/profPicture/";
-		if (!file_exists($directory)) {
+		/*if (!file_exists($directory)) {
 			mkdir($directory, 0777,true);
 		}
 		if (!file_exists($directory.$iduser)) {
 			mkdir($directory.$iduser, 0777,true);
-		}
+		}*/
 		$nombreArchivo=isset($_FILES['fileImage']['name']) ?$_FILES['fileImage']['name']: null;
 		$nombreTemporal=isset($_FILES['fileImage']['tmp_name'])?$_FILES['fileImage']['tmp_name']:null;
 
-		$nombreArchivo=$iduser."/".str_replace(" ", "_", $nombreArchivo);
+		$nombreArchivo=$iduser."_".str_replace(" ", "_", $nombreArchivo);
 
 		$rutaArchivo=$directory.$nombreArchivo;
 
@@ -79,16 +79,16 @@ function create_post_function(){
 	global $iduser;
 	try{
 		$directory = "../imagenes_/post/";
-		if (!file_exists($directory)) {
+		/*if (!file_exists($directory)) {
 			mkdir($directory, 0777,true);
 		}
 		if (!file_exists($directory.$iduser)) {
 			mkdir($directory.$iduser, 0777,true);
-		}
+		}*/
 		$nombreArchivo=isset($_FILES['file']['name']) ?$_FILES['file']['name']: null;
 		$nombreTemporal=isset($_FILES['file']['tmp_name'])?$_FILES['file']['tmp_name']:null;
 
-		$nombreArchivo=$iduser."/".str_replace(" ", "_", $nombreArchivo);
+		$nombreArchivo=$iduser."_".str_replace(" ", "_", $nombreArchivo);
 
 		$rutaArchivo=$directory.$nombreArchivo;
 
