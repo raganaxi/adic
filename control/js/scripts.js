@@ -1068,6 +1068,165 @@ var table=null;
         } );
     } ).draw();
   }
+  /*-- funciones del mapa de direciones -*/
+
+var map;
+//crear mapa
+function initMap(lat,long) {
+  if (lat==null||long==null) {
+     lat = 25.5409967;
+      long=-103.4349972;
+  }//alert(lat+", "+long);
+        var myLatLng = {lat:lat, lng: long};     
+        var map = new google.maps.Map(document.getElementById('mapDir'), {
+          center: myLatLng,
+          scrollwheel: false,
+          zoom: 16,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        // Crear posicion del marcador
+        var marker = new google.maps.Marker({
+          draggable: true,
+          map: map,
+          position: myLatLng,
+          title: 'Hello World!'
+        });
+ //posicion al arrastrar el marcador       
+ google.maps.event.addListener(marker, 'drag', function(){
+        $("#latDir").val(marker.getPosition().lat());
+$("#lonDir").val(marker.getPosition().lng());
+    });
+
+      }
+//funcion para calcular latitud y longitud por medio de la direccion
+function geo(address){
+      var geocoder = new google.maps.Geocoder();
+if (address=='') {address='Bosque Venustiano Carranza, Torreón';}
+var latitude;
+var longitude;
+geocoder.geocode( { 'address': address}, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+
+     latitude = results[0].geometry.location.lat();
+
+      longitude = results[0].geometry.location.lng();
+//console.log('La longitud es: ' + longitude + ', la latitud es: ' + latitude);
+ initMap(latitude,longitude);
+$("#latDir").val(latitude);
+$("#lonDir").val(longitude);
+
+    } 
+});  
+}
+//
+function keyupDir(){
+$("input[id*=Dir]").on('keyup',function(){
+  if($(this).attr("id")!='cpDir'&&$(this).attr("id")!='latDir'&&$(this).attr("id")!='lonDir'&&$(this).attr("id")!='mapDir'){
+    var address='';  
+    for (var i = 1; i <= 5; i++) {
+       if ($(".geo"+i).val()!='' && i!=1) { address+=','}
+       address+=' '+ $(".geo"+i).val();
+      }
+      //alert(address);
+      geo(address);
+  }
+  if ($(this).attr("id")=='latDir'||$(this).attr("id")=='lonDir') { if ($("#latDir").val()!=''&&$("#lonDir").val()!='') {
+        initMap(parseFloat($("#latDir").val()),parseFloat($("#lonDir").val()));
+      }
+  }
+});
+}
+/*---------/funciones del mapa de direciones --*/
+$(document).ready(function(){crearTabla();});
+/*<button type="button" id="saveDireccion" class="btn bgGreen cWhite pull-right" >Guardar Dirección</button>*/
+$('#btnAddAddress').click(function(){formAddres(1,'','','','','','','','','');});
+function setStatus(st,id){
+  var u;
+  if (st==1) {u='activada';}
+  else{u='desactivada';}
+  $.ajax({
+      type: "POST",
+      url: '../classes/ajaxPosts.php',
+      data:{direccion: 3,status: st, idAdd:id},
+      success: function(){
+         table.ajax.reload();
+            swal({
+              type: 'success',
+              title: 'Operacio Exitosa',
+              text: 'La direccion ha sido '+u+'.'
+            })
+      },
+      error: function(e){
+          swal({
+            type: 'warning',
+            title: 'Error',
+            text: e
+          })
+        }
+    });
+
+}
+function formAddres(type,dir,col,mun,est,pais,cp,lat,long,id){ 
+  var formAddress='<form id="editProfileD"><div class="form-section"><label for="calleDir">Dirección</label><input id="calleDir" type="text" class="form-control geo1" placeholder="Calle y numero" name="calleDir" value="'+dir+'" required><div class="clear"></div></div><div class="form-section"><label for="numeroDir">Colonia</label><input id="coloniaDir" type="text" class="form-control geo2" placeholder="Colonia" name="numeroDir" value="'+col+'" required><div class="clear"></div></div><div class="form-section"><label for="municipioDir">Municipio</label><input id="municipioDir" type="text" class="form-control geo3" placeholder="Municipio" name="municipioDir" value="'+mun+'" required><div class="clear"></div></div><div class="form-section"><label for="estadoDir">Estado</label><input id="estadoDir" type="text" class="form-control geo4" placeholder="Estado" name="estadoDir" value="'+est+'" required><div class="clear"></div></div><div class="form-section"><label for="paisDir">País</label><input id="paisDir" type="text" class="form-control geo5" placeholder="País" name="paisDir" value="'+pais+'" required><div class="clear"></div></div><div class="form-section"><label for="cpDir">Código Postal</label><input id="cpDir" type="text" class="form-control" placeholder="CP" name="cpDir" value="'+cp+'" required><div class="clear"></div></div><div class="form-section"><label for="latDir">Latitud</label><input id="latDir" type="text" class="form-control" placeholder="Latitud" name="latDir" value="'+lat+'" required><div class="clear"></div></div><div class="form-section"><label for="lonDir">Longitud</label><input id="lonDir" type="text" class="form-control" placeholder="Longitud" name="lonDir" value="'+long+'" required><div class="clear"></div></div><div id="mapDir" style="width: 100%; height: 350px;" ></div></form>';
+  swal({
+    title:'+Direcciones',
+    html: formAddress,
+    customClass: 'swal-xl',
+     showCancelButton: true,
+     showCloseButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  cancelButtonText: 'Cancelar',
+  confirmButtonText: 'Guardar Dirección',
+   showLoaderOnConfirm: true,
+ preConfirm: function () {
+      return new Promise(function (resolve, reject) {
+      if ($("#calleDir").val()&&$("#latDir").val()&&$("#lonDir").val()) {
+       $.ajax({
+        type: "POST",
+        url: '../classes/ajaxPosts.php',
+        data: {direccion: type,dir:$('#calleDir').val(),col:$('#coloniaDir').val(),mun:$('#municipioDir').val(),est:$('#estadoDir').val(),pais:$('#paisDir').val(),cp:$('#cpDir').val(),lat:$('#latDir').val(),lon:$('#lonDir').val(),idAdd: id},
+        beforeSend: function(){
+        },
+        success: function(response){
+          if (response==true) {
+            swal({
+              type: 'success',
+              title: 'Operacio Exitosa',
+              text: 'La direccion ha sido guardad con exito.'
+            })
+          table.ajax.reload();
+          }else{
+            swal({
+            type: 'warning',
+            title: 'Error',
+            text: 'Por favor contacte al soporte tecnico.'
+          })
+          }
+        },
+        error: function(e){
+          swal({
+            type: 'warning',
+            title: 'Error',
+            text: e
+          })
+        }
+    });
+  }else{//validador de campos
+    var t='';       
+    if (!$("#calleDir").val()){ t='direccion';
+    }else{if(!$("#latDir").val()){t='latitud';
+    }else{if(!$("#lonDir").val()){t='longitud';} 
+      } 
+    }
+    reject('<h2 style=\"color:blue;\">El campo de '+t+' es obligatorio. Escriba una '+t+' valida y vuelva a intentarlo.</h2>')
+  }
+  });
+ }
+  }).then(function () {})
+initMap(null,null);
+keyupDir();
+}
 /*-------------/ABC  tabla direcciones-----*/
 
 
