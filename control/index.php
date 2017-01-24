@@ -97,6 +97,18 @@
               <div>
                 <input id="mailSocio" type="text" class="form-control" placeholder="Correo" name="mailSocio" value="">
               </div>
+              <div>
+              <select id="categorySocio" class="form-control" name="categorySocio">
+              <option value="0">--SELECCIONE UNA OPCION--</option>
+                <?php
+                 $result = posts::getCategory();
+                 error_log(print_r($result,true));
+                 for ($i=0; $i <count($result) ; $i++) { 
+                  echo '<option value='.$result[$i]['idcategory'].'>'.$result[$i]['nombre'].'</option>';
+                 }
+                ?>
+              </select>
+              </div>
               <div class="clear"></div>
               <div>
                 <button type="button" id="createSoc" class="btn bgGreen cWhite s20 text-center noTransform boxShadow">

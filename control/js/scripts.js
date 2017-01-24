@@ -538,7 +538,11 @@ $( "#createSoc" ).on( 'click', function () {
       }
     }
     else {
-      alert( 'Erro usuario no registrado' );
+         swal({
+            type: 'warning',
+            title: 'Error',
+            text: 'Erro usuario no registrado, Verifique por favor.'
+          })
     }
   } );
   } );
