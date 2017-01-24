@@ -6,6 +6,7 @@ require_once('../config.php');
 
 use pdomysql AS pdomysql;
 use user AS user;
+use post AS post; 
 
 
 $modulo="";
@@ -35,7 +36,7 @@ function post_function(){
 
 	switch($action) {
 		case 'a': create_post_function();break;
-
+        case 'b': update_post_function();break;
 		default: echo 0;die;
 	}
 }
@@ -116,6 +117,44 @@ function create_post_function(){
 	}
 
 	
+
+}
+function update_post_function(){
+		global $iduserXXX;
+	try{
+		$directory = "../imagenes_/post/";
+		/*if (!file_exists($directory)) {
+			mkdir($directory, 0777,true);
+		}
+		if (!file_exists($directory.$iduserXXX)) {
+			mkdir($directory.$iduserXXX, 0777,true);
+		}*/
+		$nombreArchivo=isset($_FILES['file']['name']) ?$_FILES['file']['name']: $_POST['imgAnt'];
+		$nombreTemporal=isset($_FILES['file']['tmp_name'])?$_FILES['file']['tmp_name']:null;
+		$nombreArchivo=$iduserXXX."_".time()."_".str_replace(" ", "_", $nombreArchivo);
+		$rutaArchivo=$directory.$nombreArchivo;
+		move_uploaded_file($nombreTemporal,$rutaArchivo);
+		$img=$nombreArchivo;
+		error_log($img);
+        // error_log(print_r($_FILES['file']['name'],true));
+		$result=new post;
+		$result->setIdpost($_POST['idPst']);
+		$result->setTitle($_POST['title']);
+		$result->setDescription($_POST['description']);
+		$result->setDate($_POST['date']);
+		if ($_FILES['file']['name']==''||$_FILES['file']['name']==null) {
+		$result->setImage('');
+		}else{
+			$result->setImage($img);
+		}
+         //error_log(print_r($result->updatePost(),true));
+		echo json_encode($result->updatePost());
+		die;
+	}
+	catch(Exception $e){
+		error_log($e);
+		return 0;
+	}
 
 }
 
