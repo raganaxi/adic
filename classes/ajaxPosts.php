@@ -100,9 +100,9 @@ echo json_encode($json_data);
 if (isset($_POST['publicacion'])) {
      $setPost = new post;
   if ($_POST['publicacion']==3) {
-    $setPost->setIdaddress($_POST['idAdd']);
-    $setPost->setBandera($_POST['status']);
-    echo $setPost->deleteAddress();
+    $setPost->setIdpost($_POST['idAdd']);
+    $setPost->setStatus($_POST['status']);
+    echo $setPost->deletePost();
   }else{
      $setPost->setTitle($_POST['tit']);
      $setPost->setDescription($_POST['des']);

@@ -11,6 +11,7 @@ private $date= null;
 private $userid= null;
 private $categoryid= null;
 private $image= null;
+private $status=null;
 
 public function __construct($data=array()){
        $idpost= isset($data['idpost']) ? $data['idpost'] : null;
@@ -20,7 +21,7 @@ public function __construct($data=array()){
        $userid= isset($data['userid']) ? $data['userid'] : null;
        $categoryid= isset($data['categoryid']) ? $data['categoryid'] : null;
        $image= isset($data['image']) ? $data['image'] : null;
-
+       $status= isset($data['status']) ? $data['status'] : null;
 }
 public function getPost(){
     	$consulta ="SELECT * from post WHERE userid = ? and status <> 3 ";
@@ -36,22 +37,27 @@ public function setPost(){
         $result=$db_con->consultaSegura($consulta,$parametros);
   
       	    return true;
-
 }
 public function updatePost(){
-    	$consulta="UPDATE post SET title =?, description = ?, date = ?, userid = ?, categoryid = ?, image = ? WHERE idpost= ?";
-    	$parametros=array($this->title,$this->description,$this->date,$this->userid,$this->categoryid,$this->image,$this->idpost);
+    $img='';
+    $img2='';
+    $parametros=array($this->title,$this->description,$this->date);
+    if ($this->image!=''&&$this->image!=null) {
+       $img='image = ?';
+        $parametros[]=$this->image;
+         $img2=' and image= "'.$this->image.'"';
+    }
+    $parametros[]=$this->idpost;
+    	$consulta="UPDATE post SET title =?, description = ?, `date` = ?, ".$img." WHERE idpost= ?";
     	$db_con=new PDOMYSQL;
     	$result=$db_con->consultaSegura($consulta,$parametros);
-    	if(!empty($result)){
-      	    return true;
-        }else{
-      	    return false;
-        }
+    $check = 'SELECT * FROM post WHERE title = "'.$this->title.'" and `date` = "'.$this->date.'" and description = "'.$this->description.'" and idpost='.$this->idpost.$img2;
+    $result2 = $db_con->consulta($check);
+    return $result2;
 }
 public function deletePost(){
-    	$consulta="UPDATE post SET bandera =? WHERE idpost = ?";
-    	$parametros=array(0,$this->idpost);
+    	$consulta="UPDATE post SET status =? WHERE idpost = ?";
+    	$parametros=array($this->status,$this->idpost);
     	$db_con=new PDOMYSQL;
     	$result=$db_con->consultaSegura($consulta,$parametros);
     	if(!empty($result)){
@@ -60,9 +66,6 @@ public function deletePost(){
       	    return false;
         }
     }
-
-
-
 
 public function setIdpost($idpost)
     
@@ -147,7 +150,18 @@ public function setIdpost($idpost)
     
     { 
         return $image->image;
-    } 
+    }
+    public function setStatus($status)
+    
+    {
+        $this->status=$status;
+    }
+    
+    public function getStatus()
+    
+    { 
+        return $status->status;
+    }  
 
 }
 ?>

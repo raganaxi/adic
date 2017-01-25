@@ -538,7 +538,11 @@ $( "#createSoc" ).on( 'click', function () {
       }
     }
     else {
-      alert( 'Erro usuario no registrado' );
+         swal({
+            type: 'warning',
+            title: 'Error',
+            text: 'Erro usuario no registrado, Verifique por favor.'
+          })
     }
   } );
   } );
@@ -960,7 +964,11 @@ $(document).ready(function() {
       formData.append("description",$( "#postDescription" ).val());
       formData.append("date",$( "#postDate" ).val());
       formData.append("modulo", "post");
-      formData.append("action", "a");
+      //alert(document.getElementById("file").value);
+      if ($('#uplPost').val()!=''&&$('#uplPost').val()!=null)
+        {formData.append("idPst",$('#uplPost').val());
+          formData.append("action", "b");}
+      else{formData.append("action", "a");}
       console.log(formData);
       $.ajax({
         url: "upload.php",
@@ -1188,7 +1196,6 @@ function setStatus(st,id){
           })
         }
     });
-
 }
 function formAddres(type,dir,col,mun,est,pais,cp,lat,long,id){ 
   var formAddress='<form id="editProfileD"><div class="form-section"><label for="calleDir">Dirección</label><input id="calleDir" type="text" class="form-control geo1" placeholder="Calle y numero" name="calleDir" value="'+dir+'" required><div class="clear"></div></div><div class="form-section"><label for="numeroDir">Colonia</label><input id="coloniaDir" type="text" class="form-control geo2" placeholder="Colonia" name="numeroDir" value="'+col+'" required><div class="clear"></div></div><div class="form-section"><label for="municipioDir">Municipio</label><input id="municipioDir" type="text" class="form-control geo3" placeholder="Municipio" name="municipioDir" value="'+mun+'" required><div class="clear"></div></div><div class="form-section"><label for="estadoDir">Estado</label><input id="estadoDir" type="text" class="form-control geo4" placeholder="Estado" name="estadoDir" value="'+est+'" required><div class="clear"></div></div><div class="form-section"><label for="paisDir">País</label><input id="paisDir" type="text" class="form-control geo5" placeholder="País" name="paisDir" value="'+pais+'" required><div class="clear"></div></div><div class="form-section"><label for="cpDir">Código Postal</label><input id="cpDir" type="text" class="form-control" placeholder="CP" name="cpDir" value="'+cp+'" required><div class="clear"></div></div><div class="form-section"><label for="latDir">Latitud</label><input id="latDir" type="text" class="form-control" placeholder="Latitud" name="latDir" value="'+lat+'" required><div class="clear"></div></div><div class="form-section"><label for="lonDir">Longitud</label><input id="lonDir" type="text" class="form-control" placeholder="Longitud" name="lonDir" value="'+long+'" required><div class="clear"></div></div><div id="mapDir" style="width: 100%; height: 350px;" ></div></form>';
@@ -1274,15 +1281,15 @@ var tablePosts=null;
                },
                {"targets":[6],
                 "render": function(data,type,full){
-                    return '<i onClick="formPosts(0,\''+full[1]+'\',\''+full[2]+'\',\''+full[3]+'\',\''+full[5]+'\',\''+full[0]+')" class="fa fa-pencil-square-o" title="Editar la direccion del renglon a la cual corresponde este boton" aria-hidden="true"></i><i class="fa fa-times"></i>';
+                    return '<i onClick="formPosts(\''+full[1]+'\',\''+full[2]+'\',\''+full[3]+'\',\''+full[5]+'\','+full[0]+')" class="fa fa-pencil-square-o" title="Editar la direccion del renglon a la cual corresponde este boton" aria-hidden="true"></i><i class="fa fa-times" onClick="deleteStPost(3,'+full[0]+', \''+full[1]+'\')"></i>';
                }
                },
               {"targets":[7],
                "render": function(data,type,full){
                   if(full[6] == 1){
-                        return '<button class="btn bgGreen cWhite fa fa-check-square" onClick="setStatus(0,'+full[0]+')">Dejar de Publicar</button>';
+                        return '<button class="btn bgGreen cWhite fa fa-check-square" onClick="setStatusPosts(0,'+full[0]+')"> Dejar de Publicar</button>';
                       }else{
-                        return '<button class="btn bgRed cWhite fa fa-times-circle" onClick="setStatus(1,'+full[0]+')">Republicar</button>';
+                        return '<button class="btn bgRed cWhite fa fa-times-circle" onClick="setStatusPosts(1,'+full[0]+')"> Republicar</button>';
                       }
                   }
                }
@@ -1299,10 +1306,61 @@ var tablePosts=null;
         } );
     } ).draw();
   }
-$('#btnAddPosts').click(function(){formPosts(1);});
+$('#btnAddPosts').click(function(){formPosts('','','','','');});
+function deleteStPost(st,id,tit){
+     swal({
+  title: '¿Esta seguro?',
+  text: 'Esta a punto de eliminar la publicacion : "'+tit+'"',
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Sí, estoy seguro' ,
+  cancelButtonText: 'No, cancelar' ,
+}).then(function () {
+setStatusPosts(st,id);
+}, function (dismiss) {
+  if (dismiss === 'cancel') {
+    swal(
+      'Operacion cancelada',
+      'Ah cancelado eliminar: "'+tit+'"',
+      'error'
+    )
+  }
+})
+}
 
-function formPosts(type,tit,des,fec,file){
-  var formPosts='<form id="formCreatePost" class="form-section" enctype="multipart/form-data"><div class="clear"></div><input id="postTitle" type="text" class="form-control" placeholder="Nombre de la oferta"><div class="clear"></div><textarea id="postDescription" class="form-control h100" rows="4" placeholder="Descripción"></textarea><div class="clear"></div><input id="postDate" class="form-control" type="date" name="name" value=""><div class="clear"></div><input type="file" id="file" name="file" class="form-control" accept="image/*"><div class="clear"></div><div id="valida"></div> <button type="submit" id="createPost" class="btn btnSuccess cWhite s20 text-center noTransform boxShadow pull-right" name="button">Crear</button></form>';
+
+function setStatusPosts(st,id){
+    var u;
+  if (st==1) {u='republicada';}
+  else{if(st==1){u='desactivada';}
+  else{u='eliminada';}
+}
+  $.ajax({
+      type: "POST",
+      url: '../classes/ajaxPosts.php',
+      data:{publicacion: 3,status: st, idAdd:id},
+      success: function(){
+        tablePosts.ajax.reload();
+            swal({
+              type: 'success',
+              title: 'Operacio Exitosa',
+              text: 'La publicacion ha sido '+u+'.'
+            })
+      },
+      error: function(e){
+          swal({
+            type: 'warning',
+            title: 'Error',
+            text: e
+          })
+        }
+    });
+
+}
+function formPosts(tit,des,fec,file,id){
+  var formPosts='<form id="formCreatePost" class="form-section" enctype="multipart/form-data" ><div class="clear" ></div><input id="postTitle" type="text" class="form-control" placeholder="Nombre de la oferta" value="'+tit+'"><input id="uplPost"  value="'+id+'" style="display:none;"><div class="clear"></div><textarea id="postDescription" class="form-control h100" rows="4" placeholder="Descripción">'+des+'</textarea><div class="clear"></div><input id="postDate" class="form-control" type="date" name="name" value="'+fec+'"><div class="clear"></div><input type="file" id="file" name="file" class="form-control" accept="image/*" value="'+file+'"><div class="clear"></div><div id="valida"></div> <button type="submit" id="createPost" class="btn btnSuccess cWhite s20 text-center noTransform boxShadow pull-right" name="button">Crear</button></form>';
     swal({
     title:'+Publicaciones',
     html: formPosts,
