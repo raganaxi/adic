@@ -10,7 +10,7 @@ use admin AS admin;
 
 
 $time = time();
-$fecha date("Y-m-d (H:i:s)", $time);
+$fecha = date("Y-m-d (H:i:s)", $time);
 admin::cron($fecha);
 
 return 0;
