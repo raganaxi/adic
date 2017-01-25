@@ -23,14 +23,19 @@ class admin
     $headers .= "Content-Transfer-Encoding: 8bit\r\n";
     return mail($mail, $subject, $email_message, $headers);
   }
-  public static function cron($mail=null, $user=null, $nameContact=null){
+  public static function cron($mail=null, $user=null, $nameContact=null,$fecha=null){
     if($mail==null)
         $mail="raganaxi@gmail.com,alkoba.sandoval13@gmail.com";
     $subject = "cron 'A donde ir en la ciudad'";
+    if ($fecha==null) {
+        $fecha="";
+    }
+    $time = time();
+    $fecha = date("Y-m-d (H:i:s)", $time) ;
     //Cuerpo del email
     $email_message = file_get_contents("../templates/email/cron.html");
-    /*$email_message = str_replace('###NOMBRE_CONTACTO###', $nameContact, $email_message);
-    $email_message = str_replace('###USUARIO###', $user, $email_message);
+    $email_message = str_replace('###FECHA###', $fecha, $email_message);
+    /*$email_message = str_replace('###USUARIO###', $user, $email_message);
     $email_message = str_replace('###MAIL###', $mail, $email_message);
     $email_message = str_replace('###PASSWORD###', $pass, $email_message);
     $email_message = preg_replace('/\\\\/','', $email_message);*/
