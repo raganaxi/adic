@@ -10,8 +10,8 @@ use admin AS admin;
 
 
 $time = time();
-$fecha = date("Y-m-d (H:i:s)", $time);
-admin::cron($fecha);
+$fecha = date("Y-m-d (H:i:s)", $time) ;
+admin::cron(null,null,null,$fecha."");
 
 return 0;
 
