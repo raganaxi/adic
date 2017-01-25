@@ -283,7 +283,7 @@
 
 
     <script>
-    if($('#socio_panel').length != 0){
+    /*if($('#socio_panel').length != 0){
       $(function() {
         Morris.Bar({
           element: 'graph_bar',
@@ -311,7 +311,7 @@
         $MENU_TOGGLE.on('click', function() {
           $(window).resize();
         });
-      });
+      });*/
     }
     </script>
 

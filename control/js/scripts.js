@@ -907,10 +907,25 @@ $( document ).ready( function () {
 
 /***** booz ********/
 $(document).ready(function() {
-  $('#imgDataTable').DataTable( {
-    "ajax": '../classes/rApp.php?action=getImages',
-    "columns": [
-    { "data": "id" },
+ $('#formGaleria').each(function(index, el) {
+  console.log(" carousel");
+  var $carousel =$('.owl-carousel');
+  $carousel.owlCarousel({
+    items:1,
+    autoHeight:true,
+    responsiveClass:true,
+    lazyLoad:true,
+    loop:true,
+    margin:0
+  }).removeClass('owl-hidden');
+});
+
+
+
+ $('#imgDataTable').DataTable( {
+  "ajax": '../classes/rApp.php?action=getImages',
+  "columns": [
+  { "data": "id" },
     { "data": "name" },
     { "data": "description" },
     { "data": "ubication" },

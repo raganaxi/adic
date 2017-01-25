@@ -38,6 +38,8 @@
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css"/>
   <link href="https://fonts.googleapis.com/css?family=Monda:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="plugins/owl/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="plugins/owl/assets/owl.theme.default.min.css">
 
 
   <!-- endbuild -->

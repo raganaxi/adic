@@ -26,7 +26,8 @@
             <div class="profile_img">
               <div id="crop-avatar">
                 <!-- Current avatar -->
-                <img class="img-responsive avatar-view" src="http://adondeirenlaciudad.com/imagenes_/profPicture/<?php $profile['0']['img']; ?>" alt="Avatar" title="Change the avatar">
+                <img class="img-responsive avatar-view" src="http://adondeirenlaciudad.com/imagenes_/profPicture/<?php 
+                echo $profile['0']['img']; ?>" alt="Avatar" title="Change the avatar">
               </div>
             </div>
             <h3><?php echo $profile['0']['negocio']; ?></h3>
