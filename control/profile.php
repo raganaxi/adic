@@ -65,7 +65,7 @@ if(!isset($_SESSION['rol'])){
                     <div class="clear"></div>
                   </div>
                   <button type="button" id="editProfile" class="btn bgGreen cWhite pull-right" >
-                    Editar
+                    Guardar cambios
                   </button>
                 </form>
               </div>
@@ -78,13 +78,13 @@ if(!isset($_SESSION['rol'])){
                     <input id="usernameP" type="text" class="form-control" placeholder="username" name="usernameP" value="<?php echo $profile[0]['username'] ?>" required>
                     <div class="clear"></div>
                   </div>
-                  <div class="form-section">
+                 <!-- <div class="form-section">
                     <label for="emailP"></label>
                     <input id="emailP" type="text" class="form-control" placeholder="E-mail" name="emailP" value="<?php echo $profile[0]['mail'] ?>" required>
                     <div class="clear"></div>
-                  </div>
+                  </div>-->
                   <button type="button" id="editProfileUser" class="btn bgGreen cWhite pull-right" >
-                    Editar
+                    Guardar cambios
                   </button>
                 </form>
               </div>
@@ -152,7 +152,7 @@ if(!isset($_SESSION['rol'])){
                     <div class="clear"></div>
                   </div>
                   <button type="button" id="changeAccess" class="btn bgGreen cWhite pull-right" >
-                    Editar
+                    Guardar cambios
                   </button>
                 </form>
               </div>

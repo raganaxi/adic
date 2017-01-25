@@ -62,7 +62,7 @@ if(!isset($_SESSION['rol'])){
                     <div class="clear"></div>
                   </div>
                   <button type="button" id="editProfile" class="btn bgGreen cWhite pull-right" >
-                    Editar
+                    Guardar cambios
                   </button>
                 </form>
               </div>
@@ -81,7 +81,7 @@ if(!isset($_SESSION['rol'])){
                     <div class="clear"></div>
                   </div>
                   <button type="button" id="editProfileUser" class="btn bgGreen cWhite pull-right" >
-                    Editar
+                   Guardar cambios
                   </button>
                 </form>
               </div>
