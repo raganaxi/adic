@@ -40,9 +40,9 @@
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>
 
-      <div class="clear h40"></div>
+      <div class="clear h200"></div>
       <div class="z-block centered">
-        <img src="../images/logos/logo.png" alt="..." class="h100">
+        <img src="../images/logos/logo.png" alt="..." class="h200" style="margin-top: 15%;">
       </div>
       <div class="clearfix"></div>
       <div class="login_wrapper">
@@ -84,7 +84,7 @@
         <div id="register" class="animate form registration_form">
           <section class="login_content">
             <form id="registerSocio" enctype="multipart/form-data" method="post">
-              <h1>Crear Cuenta</h1>
+              <h1>Solicitar Cuenta</h1>
               <div>
                 <input id="nameNegocio" type="text" class="form-control" placeholder="Nombre Negocio" name="nameBussiness" value="">
               </div>

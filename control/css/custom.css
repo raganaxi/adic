@@ -3227,7 +3227,7 @@ a.hiddenanchor {
 .login_wrapper {
   right: 0px;
   margin: 0px auto;
-  margin-top: 5%;
+  margin-top: -2%;
   max-width: 350px;
   position: relative; }
 
@@ -4025,4 +4025,9 @@ margin-top: -9px;
 
 .sidebar-footer.hidden-small a:last-child span{
     opacity:1;
+}
+
+.galeria-container {
+    max-width: 100vw;
+    width: 250px;
 }

@@ -26,6 +26,8 @@
     locale file as mentioned below -->
     <script src="js/es.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="plugins/owl/owl.carousel.min.js"></script>
+
     <script src="js/fastclick.js"></script>
     <script src="js/nprogress.js"></script>
     <script src="js/Chart.js/Chart.min.js"></script>
@@ -63,7 +65,7 @@
     <script src="js/custom.min.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/xpull.js"></script>
-    <script src="js/custom.js"></script>
+        <script src="js/custom.js"></script>
     <script src="js/scripts.js"></script>
     <script src="js/functions.js"></script>
     <script src="js/jquery.validate.min.js"></script>
