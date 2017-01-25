@@ -7,7 +7,12 @@ require_once('../config.php');
 use pdomysql AS pdomysql;
 use admin AS admin;
 
-admin::cron();
+
+
+$time = time();
+$fecha date("Y-m-d (H:i:s)", $time);
+admin::cron($fecha);
+
 return 0;
 
 
