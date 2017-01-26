@@ -1,6 +1,10 @@
+  <?php if(isset($_SESSION['user'])){ 
+?>
+
 <div id="admin_panel" class="right_col" role="main">
+  <h1>Hola Administrador!</h1>
   <!-- top tiles -->
-  <div class="row tile_count">
+ <!-- <div class="row tile_count">
     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
       <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
       <div class="count">2500</div>
@@ -21,7 +25,7 @@
       <div class="count">4,567</div>
       <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
     </div>
-    <!--<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
       <span class="count_top"><i class="fa fa-user"></i> Total Collections</span>
       <div class="count">2,315</div>
       <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
@@ -30,7 +34,7 @@
       <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
       <div class="count">7,325</div>
       <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-    </div>-->
+    </div>
   </div>
   <div class="clear"></div>
   <div class="row">
@@ -350,7 +354,7 @@
       </div>
     </div>
 
-  </div>
+  </div>-->
   <div class="row hidden">
     <div class="col-md-4 col-sm-4 col-xs-12">
       <div class="x_panel">
@@ -688,3 +692,6 @@
   </div>
   <div class="clear"></div>
 </div>
+<?php }else {
+  header('Location: index.php');
+  } ?>

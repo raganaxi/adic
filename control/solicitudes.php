@@ -6,6 +6,8 @@ if(!isset($_SESSION['rol'])){
 } else {
   if($_SESSION['rol'] == 'usuario' ){
     header('Location: '.'logout.php');
+  }else if($_SESSION['rol'] == 'socio') {
+    include ('socio.php');
   }
 }
 ?>
