@@ -66,7 +66,7 @@
                 <li>
                   <a href="profile.php"><i class="fa fa-users"></i> Cuenta</a>
                 </li>
-                <li>
+                <li style="display: none;">
                   <a href="pagos.php"><i class="fa fa-credit-card"></i> Pagos</a>
                 </li>
               </ul>

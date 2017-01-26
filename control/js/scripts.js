@@ -495,6 +495,7 @@ $( "#createSoc" ).on( 'click', function () {
   var category = '';
   if($('#registerSocio').length != 0 ){
     type = "mail";
+    category = $( '#categorySocio' ).val();
   }
   if($('#registerSocio-admin').length != 0 ){
     type = "admininstrador";

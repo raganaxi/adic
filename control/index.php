@@ -40,7 +40,7 @@
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>
 
-      <div class="clear h200"></div>
+      <div class="clear h200" style="display: none;"></div>
       <div class="z-block centered">
         <img src="../images/logos/logo.png" alt="..." class="h200" style="margin-top: 15%;">
       </div>

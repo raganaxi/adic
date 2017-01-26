@@ -14,7 +14,7 @@ require_once('../config.php');
 //invocacion de clases
 use pdomysql AS pdomysql;
 use user AS user;
-
+use admin AS admin;
 //Registrar  usuario
 if (isset($_POST['reg_user'])) {
 //	$_POST['pass'] = sha1($_POST['pass']);
@@ -99,7 +99,11 @@ if (isset($_POST['reg_soc'])) {
  //  $_POST['pass'] = isset($_POST['pass'])? $_POST['pass'] : 'admin123';
 //   $_POST['pass'] = sha1($_POST['pass']);
   //  $_POST['img'] = 'images/profPicture/'.$_POST['img'];
-	$result = user::registerSoc($_POST['name'], $_POST['phone'], $_POST['mail'], $_POST['pass'] = null, $_POST['typeReg'], $_POST['img'] = "01.png", $_POST['negocio'], $_POST['category']);
+	$result = user::registerSoc($_POST['name'], $_POST['phone'], $_POST['mail'],  null, $_POST['typeReg'], "01.png", $_POST['negocio'], $_POST['category']);
+	//admin::sendEmailWelCome($_POST['mail'],$_POST['name'],POST['negocio']);
+	$time = time();
+$fecha = date("Y-m-d (H:i:s)", $time) ;
+	admin::sendEmailWelCome(null,null,null,$fecha."");
 	//$resultl = user::login($_POST['mail'], $_POST['pass']);
 	//if (!empty($result)) {
 		// $_SESSION['user'] = isset($resultl[0]['username'])? $resultl[0]['username'] : null ;
