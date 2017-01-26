@@ -62,7 +62,7 @@ if (isset($_POST['deactivate_soc']) && $_POST['deactivate_soc'] == 1) {
 }
 
 if (isset($_POST['change_access']) && $_POST['change_access'] == 1) {
-  $result = user::changeAccess($_POST['iduser'], $_POST['username'], $_POST['oldPass'], $_POST['newPass'] );
+  $result = user::changeAccess($_SESSION['iduser'],  $_POST['oldPass'], $_POST['newPass'] );
 	if (!empty($result)) {
 		echo json_encode($result);
 	}else{
@@ -78,7 +78,7 @@ if (isset($_POST['logout'])) {
 //Editar Perfil
 if (isset($_POST['editProfile'])) {
 	//$_POST['file'] = isset($_POST['file'])?  $_POST['file'] : null;
-	$result = user::editProfileData($_POST['name'], $_POST['number'], $_POST['negocio'], $_SESSION['iduser']);
+	$result = user::editProfileData($_POST['name'], $_POST['number'],$_POST['email'], $_POST['negocio'], $_SESSION['iduser']);
 	echo json_encode($result);
 }
 
@@ -115,7 +115,10 @@ if (isset($_GET['update_profPictureAjax'])) {
 	
   echo json_encode($result[0]);
 }
-
+if(isset($_POST['editUs'])){
+$result = user::editUserData($_POST['user'],$_SESSION['iduser']);
+	echo json_encode($result);
+}
 
 
 

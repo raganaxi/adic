@@ -71,10 +71,19 @@ class user
     return $result2;
   }
 
-  public static function editProfileData($name, $number, $negocio, $user_id){
-    $consulta = 'UPDATE user_data SET name="'.$name.'", number="'.$number.'", negocio="'.$negocio.'" WHERE user_id="'.$user_id.'" ';
+  public static function editProfileData($name, $number,$email, $negocio, $user_id){
+    $consulta = 'UPDATE user_data SET name="'.$name.'", number="'.$number.'", mail="'.$email.'", negocio="'.$negocio.'" WHERE user_id="'.$user_id.'" ';
     $check = 'SELECT * FROM user_data WHERE name='.$name.', number='.$number.', negocio='.$negocio.' AND user_id='.$user_id.'';
     //error_log($consulta);
+    $PDOMYSQL = new PDOMYSQL;
+    $update = $PDOMYSQL->consulta($consulta);
+    $result = $PDOMYSQL->consulta($check);
+    return $result;
+  }
+  public static function editUserData($user,$user_id){
+        $consulta = 'UPDATE user SET username="'.$user.'" WHERE iduser='.$user_id;
+    $check = 'SELECT * FROM user WHERE username='.$user.', AND user_id='.$user_id.'';
+    error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $update = $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
@@ -136,14 +145,14 @@ class user
     return implode($pass); /*turn the array into a string*/
   }
 
-  public static function changeAccess($user, $username, $oldPass, $newPass) {
+  public static function changeAccess($user, $oldPass, $newPass) {
     $consulta = 'UPDATE user SET pass = "'.$newPass.'" WHERE iduser = '.$user.' AND pass = "'.$oldPass.'"';
     $check = 'SELECT * FROM user WHERE pass = "'.$newPass.'" and iduser = '. $user .'';
     $PDOMYSQL = new PDOMYSQL;
     $update = $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
-    error_log(print_r($update, true));
-    error_log(print_r($result, true));
+    //error_log(print_r($update, true));
+    //error_log(print_r($result, true));
     return $result;
   }
 

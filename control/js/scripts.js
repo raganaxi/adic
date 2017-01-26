@@ -629,7 +629,7 @@ $( "#changeAccess" ).on( 'click', function () {
   $.ajax( {
     data: {
       "change_access": 1,
-      "iduser": userID,
+     "iduser": userID,
       "username": username,
       "oldPass": oldPass,
       "newPass": newPass
@@ -643,7 +643,13 @@ $( "#changeAccess" ).on( 'click', function () {
     else {
       console.log( 'problemas al actualizar usuario' );
       console.log(data);
-    }
+          swal(
+      'Operacion cancelada',
+      'problemas al actualizar usuario: "'+username+'"',
+      'error'
+    )
+  }
+    
   } );
 } );
 
@@ -683,6 +689,23 @@ $( "#logSocio" ).on( 'click', function () {
 $( ".profileU" ).on( 'click', function () {
   $( this ).submit();
 } );
+$("#editProfileUser").click(function(){
+  $.ajax({
+    url: '../classes/ajaxUsers.php',
+    type: 'post',
+    data: {editUs:1,user: $("#usernameP").val()}
+  }).done(function(data){
+    if ( data ) {
+      console.log(data);
+            swal({
+              type: 'success',
+              title: 'Operacion Exitosa',
+              text: 'Las modificaciones de usuario se guardaron con exito.'
+            })
+    }
+  });
+
+});
 
 $( "#logOutbtn" ).on( 'click', function () {
   $.ajax( {
@@ -709,6 +732,7 @@ $( "#editProfile" ).on( 'click', function () {
       "name": $( "#nameP" ).val(),
       "number": $( "#phoneP" ).val(),
       "negocio": $( "#negocioP" ).val(),
+      "email": $("#emailP").val(),
       //"file": profilePic
     },
     url: '../classes/ajaxUsers.php',
@@ -716,6 +740,11 @@ $( "#editProfile" ).on( 'click', function () {
   } ).done( function ( data ) {
     if ( data ) {
       console.log(data);
+            swal({
+              type: 'success',
+              title: 'Operacion Exitosa',
+              text: 'Las modificaciones de usuario se guardaron con exito.'
+            })
       //$( "#editProfileF" ).submit();
     }
   } );
@@ -1345,7 +1374,7 @@ function setStatusPosts(st,id){
         tablePosts.ajax.reload();
             swal({
               type: 'success',
-              title: 'Operacio Exitosa',
+              title: 'Operacion Exitosa',
               text: 'La publicacion ha sido '+u+'.'
             })
       },
