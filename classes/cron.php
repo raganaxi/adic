@@ -12,7 +12,7 @@ use admin AS admin;
 $time = time();
 $fecha = date("Y-m-d (H:i:s)", $time) ;
 error_log($fecha);
-admin::cron(null,null,null,$fecha."");
+//admin::cron(null,null,null,$fecha."");
 
 return 0;
 

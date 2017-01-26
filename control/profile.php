@@ -179,39 +179,47 @@ if(!isset($_SESSION['rol'])){
   <div class="x_content">
       <h1>Subir su imagenes a la Galeria </h1>
       <hr>
+      <?php 
+            $imagenes=posts::getImages();
+            $num= count($imagenes);
+            echo $num;
+            //var_dump($imagenes);
+            /*foreach ($imagenes as $i => $val) {
+              var_dump($imagenes[$i]);
+                          }*/
+            ?>
       <div class="galeria-container">
           <div class="owl-carousel owl-theme">
-            <img class="owl-lazy" data-src="https://placehold.it/350x250&text=1" data-src-retina="https://placehold.it/350x250&text=1-retina" alt="">
-            <img class="owl-lazy" data-src="https://placehold.it/350x250&text=2" data-src-retina="https://placehold.it/350x250&text=2-retina" alt="">
-            <img class="owl-lazy" data-src="https://placehold.it/350x250&text=3" alt="">
-            <img class="owl-lazy" data-src="https://placehold.it/350x250&text=4" alt="">
-            <img class="owl-lazy" data-src="https://placehold.it/350x250&text=5" alt="">
-            <img class="owl-lazy" data-src="https://placehold.it/350x250&text=6" alt="">
-            <img class="owl-lazy" data-src="https://placehold.it/350x250&text=7" alt="">
-            <img class="owl-lazy" data-src="https://placehold.it/350x250&text=8" alt="">
-            <img class="owl-lazy" data-src="https://placehold.it/350x250&text=9" alt="">
-            <img class="owl-lazy" data-src="https://placehold.it/350x250&text=10" alt="">
-            <img class="owl-lazy" data-src="https://placehold.it/350x250&text=11" alt="">
+          <?php
+          foreach ($imagenes as $i => $val) {
+          ?>
+          <img class="owl-lazy" data-src="<?php echo $imagenes[$i]['ubication'].$imagenes[$i]['name'];   ?>" alt="<?php echo $imagenes[$i]['description']; ?>">
+  
+
+          <?php
+          }
+          ?>
+          
+          <?php
+
+
+
+
+
+
+
+            ?>
         </div>
     </div>
-
-    <div class="file-preview-frame file-preview-initial file-sortable kv-preview-thumb" id="preview-1485101766037-init_0" data-fileindex="init_0" data-template="image">
-        <div class="kv-file-content">
-            <img id="previewProfileImage" src="<?php echo $image; ?>" height="120px" class="file-preview-image">
-        </div>
-
-
-    </div>
-
     <div class="clearfix"></div>
     <form id="formGaleria" class="form-section" enctype="multipart/form-data">
         <div class="clear"></div>
-        <label for="fileImages">
+        <label for="imagenes">
             <span type="span"  class="btn btn-info cWhite s20 text-center noTransform boxShadow pull-right" name="span">Buscar Imagen</span>
         </label>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-4">
-                <input type="file" id="fileImages" name="fileImage" class="form-control" accept="image/*" multiple="true">
+                <input type="file" id="imagenes" name="fileImage" class="form-control" accept="image/*" multiple="true">
             </div>
         </div>
 
