@@ -34,6 +34,8 @@
     <link href="css/jqvmap/jqvmap.min.css" rel="stylesheet" />
     <!-- bootstrap-daterangepicker -->
     <link href="css/bootstrap/daterangepicker.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/owl/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="plugins/owl/assets/owl.theme.default.min.css">
     <!-- Custom Theme Style -->
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/helpers.css" rel="stylesheet">
