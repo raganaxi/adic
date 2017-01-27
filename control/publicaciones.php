@@ -32,7 +32,7 @@ if(!isset($_SESSION['rol'])){
           <h2>Mis Publicaciones</h2><button id="btnAddPosts" title="Crear una nueva Publicacion" class="btn bgGreen cWhite pull-right fa fa-plus btnPlus"></button>
           <div class="clearfix"></div>
         </div>
-                <table id="tablePub" >
+                <table id="tablePub" class="display" cellspacing="0" width="100%">
                   <thead>
                   <tr>
                     <th>#</th>

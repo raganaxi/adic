@@ -41,13 +41,13 @@ if (isset($_POST['tableDir'])) {
   //error_log(print_r($requestData,true));
   $table = new address;
   $table->setUser_id($_SESSION['iduser']);
-  $datos=  $table->getAddress();
+  $datos=  $table->getAddress($requestData['order'][0]);
   $datos2=array_chunk($datos, $requestData['length']);
   $json_data = array(
     "draw" => intval($requestData['draw']),
     "recordsTotal"=> count($datos),
     "recordsFiltered"   => count($datos),
-    "aaData"=>$datos2[$requestData['start']/$requestData['length']],
+    "aaData"=>isset($datos2[$requestData['start']/$requestData['length']])? $datos2[$requestData['start']/$requestData['length']]: $datos,
     "datPart"=>$datos2,
   );
 //error_log(print_r($json_data,true));
@@ -82,20 +82,20 @@ if (isset($_POST['direccion'])) {
   /*-----------POSTS------*/
   if (isset($_POST['tablePub'])) {
   $requestData= $_REQUEST;
-  //error_log(print_r($requestData,true));
+  error_log(print_r($requestData['search']['value'],true));
   $table = new post;
   $table->setUserid($_SESSION['iduser']);
-  $datos=  $table->getPost();
+  $datos=  $table->getPost($requestData['order'][0],$requestData['search']['value']);
   $datos2=array_chunk($datos, $requestData['length']);
   $json_data = array(
     "draw" => intval($requestData['draw']),
     "recordsTotal"=> count($datos),
     "recordsFiltered"   => count($datos),
-    "aaData"=>$datos2[$requestData['start']/$requestData['length']],
+    "aaData"=>isset($datos2[$requestData['start']/$requestData['length']])? $datos2[$requestData['start']/$requestData['length']]: $datos ,
     "datPart"=>$datos2,
   );
 //error_log(print_r($json_data,true));
-echo json_encode($json_data);  
+  echo json_encode($json_data);
 }
 if (isset($_POST['publicacion'])) {
      $setPost = new post;
