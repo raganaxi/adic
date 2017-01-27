@@ -105,7 +105,7 @@ function insertLog_function(){
 		break;
 		case 'POST':		
 		if (isset($_POST["sistema"]) && !empty($_POST["sistema"])) {
-			$sistema=$_POST["mail"];
+			$sistema=$_POST["sistema"];
 		}
 		if (isset($_POST["iduser"]) && !empty($_POST["iduser"])) {
 			$iduser=$_POST["iduser"];
