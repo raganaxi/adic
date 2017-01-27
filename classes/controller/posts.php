@@ -245,14 +245,6 @@ public static function insertLog($sistema, $iduser){
   return $result;
 
 }
-public static function info_info(){
-  $db_con = new PDOMYSQL;
-  $consulta = "SELECT * from post";
-  $parametros = array('1');
-  $result =  $db_con->consulta($consulta);
-  return $result;
-}
-
 /*fin de la clase*/
 }
 ?>
