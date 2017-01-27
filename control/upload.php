@@ -146,7 +146,7 @@ function update_post_function(){
 		$rutaArchivo=$directory.$nombreArchivo;
 		move_uploaded_file($nombreTemporal,$rutaArchivo);
 		$img=$nombreArchivo;
-		error_log($img);
+		//error_log($img);
         // error_log(print_r($_FILES['file']['name'],true));
 		$result=new post;
 		$result->setIdpost($_POST['idPst']);

@@ -12,7 +12,14 @@ private $userid= null;
 private $categoryid= null;
 private $image= null;
 private $status=null;
-
+private $column=array(
+    'idpost',
+    'title',
+    'description',
+    'userid',
+    'date',
+    'image',
+    );
 public function __construct($data=array()){
        $idpost= isset($data['idpost']) ? $data['idpost'] : null;
        $title= isset($data['title']) ? $data['title'] : null;
@@ -23,8 +30,21 @@ public function __construct($data=array()){
        $image= isset($data['image']) ? $data['image'] : null;
        $status= isset($data['status']) ? $data['status'] : null;
 }
-public function getPost(){
-    	$consulta ="SELECT * from post WHERE userid = ? and status <> 3 ";
+public function getPost($order=array(),$filterVal=null){
+        $cOrder='ORDER BY '.$this->column[$order['column']].' '.$order['dir'];
+        $filter='having 1 ';
+        if ($filterVal!=''&&$filterVal!=null) {
+            $filter='and (';
+            for ($i=0; $i <count($this->column) ; $i++) { 
+                $filter.=$this->column[$i].' like \'%'.$filterVal.'%\' ';
+                if ($i+1!=count($this->column)) {
+                    $filter.='OR ';
+                }
+            }
+            $filter.=') ';
+        }
+    	$consulta ="SELECT * from post WHERE userid = ? and status <> 3 ".$filter.$cOrder;
+           // error_log(print_r($consulta,true));
     	$db_con= new PDOMYSQL;
         $parametros = array($this->userid);
         $result=$db_con->consultaSeguraIndex($consulta,$parametros);
@@ -43,12 +63,14 @@ public function updatePost(){
     $img2='';
     $parametros=array($this->title,$this->description,$this->date);
     if ($this->image!=''&&$this->image!=null) {
-       $img='image = ?';
+       $img=', image = ?';
         $parametros[]=$this->image;
          $img2=' and image= "'.$this->image.'"';
     }
     $parametros[]=$this->idpost;
-    	$consulta="UPDATE post SET title =?, description = ?, `date` = ?, ".$img." WHERE idpost= ?";
+    	$consulta="UPDATE post SET title =?, description = ?, `date` = ? ".$img." WHERE idpost= ?";
+        error_log(print_r($consulta,true));
+        error_log(print_r($parametros,true));
     	$db_con=new PDOMYSQL;
     	$result=$db_con->consultaSegura($consulta,$parametros);
     $check = 'SELECT * FROM post WHERE title = "'.$this->title.'" and `date` = "'.$this->date.'" and description = "'.$this->description.'" and idpost='.$this->idpost.$img2;

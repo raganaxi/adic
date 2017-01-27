@@ -2,7 +2,7 @@
 
       <footer>
         <div class="pull-right">
-          A donde ir en la ciudad - by <a target="_blank" href="https://unbound-it.com">Unbound-IT</a>
+          A donde ir en la ciudad - by <a target="_blank" href="https://unbound-it.com">Unbound-IT, CodeBox & Agrestec</a>
         </div>
         <div class="clearfix"></div>
       </footer>

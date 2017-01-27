@@ -973,7 +973,7 @@ $(document).ready(function() {
     if ($("#postTitle").val()&&$("#postDate").val()) {
       uploadImage($form);
       swal.close ();
-      tablePosts.ajax.reload();
+    
     }else{//validador de campos
     var t='';       
     if (!$("#postTitle").val()){ t='titulo';
@@ -1018,12 +1018,14 @@ $(document).ready(function() {
       })
       .done(function(res){
         console.log("Respuesta: " + res);
+         tablePosts.ajax.reload();
         $('#createPost').html('ok');
             swal({
               type: 'success',
               title: 'Operacio Exitosa',
               text: 'La publicacion ha sido creada con exito.'
             })
+
       }).fail(function(res) {
         console.log("fallo: " + res);
             swal({
@@ -1104,7 +1106,7 @@ var tableAddress=null;
                   "targets" : [9],
                   "render": function(data,type,full){
                     return '<i onClick="formAddres(0,\''+full[1]+'\',\''+full[2]+'\',\''+full[3]+'\',\''+full[4]+'\',\''+full[5]+'\',\''+full[6]+'\',\''+full[7]+'\',\''+full[8]+'\','+full[0]+')" class="fa fa-pencil-square-o" title="Editar la direccion del renglon a la cual corresponde este boton" aria-hidden="true"></i>';
-                  }
+                  },orderable: false
                 },
                   {
                     "targets" : [10],
@@ -1115,7 +1117,7 @@ var tableAddress=null;
                         return '<button class="btn bgRed cWhite fa fa-times-circle" onClick="setStatus(1,'+full[0]+')">Inactivo</button>';
                       }
 
-                  }
+                  },orderable: false
                 }
                 
               ],
@@ -1297,7 +1299,7 @@ var tablePosts=null;
           "processing":true,
           "serverSide":true,
            "defaultContent": "-",
-            "targets": "_all",
+           "targets": "_all",
       ajax:{
       type: "POST",
      url:'../classes/ajaxPosts.php',
@@ -1312,7 +1314,7 @@ var tablePosts=null;
                {"targets":[6],
                 "render": function(data,type,full){
                     return '<i onClick="formPosts(\''+full[1]+'\',\''+full[2]+'\',\''+full[3]+'\',\''+full[5]+'\','+full[0]+')" class="fa fa-pencil-square-o" title="Editar la direccion del renglon a la cual corresponde este boton" aria-hidden="true"></i><i class="fa fa-times" onClick="deleteStPost(3,'+full[0]+', \''+full[1]+'\')"></i>';
-               }
+               },orderable: false
                },
               {"targets":[7],
                "render": function(data,type,full){
@@ -1321,11 +1323,11 @@ var tablePosts=null;
                       }else{
                         return '<button class="btn bgRed cWhite fa fa-times-circle" onClick="setStatusPosts(1,'+full[0]+')"> Republicar</button>';
                       }
-                  }
+                  },orderable: false
                }
 
               ],
-          "sDom":'ltrip',
+         // "sDom":'ltrip',
           "initComplete": function(settings, json) {
               }
     });

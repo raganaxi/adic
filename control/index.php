@@ -101,7 +101,7 @@
               <option value="0">--SELECCIONE UNA OPCION--</option>
                 <?php
                  $result = posts::getCategory();
-                 error_log(print_r($result,true));
+                // error_log(print_r($result,true));
                  for ($i=0; $i <count($result) ; $i++) { 
                   echo '<option value='.$result[$i]['idcategory'].'>'.$result[$i]['nombre'].'</option>';
                  }
