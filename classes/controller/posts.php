@@ -236,6 +236,23 @@ public static function info_info(){
   return $result;
 }
 
+public static function insertLog($sistema, $iduser){
+  $db_con = new PDOMYSQL;
+
+  $consulta=  "call  insertLog(?,?)";
+  $parametros = array($sistema,$iduser);
+  $result =  $db_con->consultaSegura($consulta,$parametros);
+  return $result;
+
+}
+public static function info_info(){
+  $db_con = new PDOMYSQL;
+  $consulta = "SELECT * from post";
+  $parametros = array('1');
+  $result =  $db_con->consulta($consulta);
+  return $result;
+}
+
 /*fin de la clase*/
 }
 ?>

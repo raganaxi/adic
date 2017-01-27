@@ -52,6 +52,7 @@ if (is_ajax()){
 			case 'info' : info_function();break;
 			case 'getAddresses': getAddresses_function();break;
 			case 'getImages': getImages_function();break;
+			case 'logUser': insertLog_function();break;
 
 		}
 
@@ -73,6 +74,46 @@ function info_function(){
 	global $datos;
 	global $mensaje;
 	$result = posts::info_info();
+	if (!empty($result)) {
+		$continuar ="ok";
+		$datos=$result;		
+	}
+	else{
+		$continuar="no_ok";
+		$error="no_ok";
+		$mensaje="no mms"; /* wrong details */
+	}		
+}
+function insertLog_function(){
+	global $db_con;
+	global $continuar;
+	global $error;
+	global $datos;
+	global $mensaje;
+	$sistema="";
+	$iduser="";	
+	switch($_SERVER['REQUEST_METHOD'])
+	{
+		case 'GET':
+
+		if (isset($_GET["mail"]) && !empty($_GET["mail"])) {
+			$sistema=$_GET["mail"];
+		}
+		if (isset($_GET["pass"]) && !empty($_GET["pass"])) {
+			$iduser=$_GET["pass"];
+		}
+		break;
+		case 'POST':		
+		if (isset($_POST["mail"]) && !empty($_POST["mail"])) {
+			$sistema=$_POST["mail"];
+		}
+		if (isset($_POST["pass"]) && !empty($_POST["pass"])) {
+			$iduser=$_POST["pass"];
+		}
+		break;
+		default:
+	}
+	$result = posts::insertLog($sistema,$iduser);
 	if (!empty($result)) {
 		$continuar ="ok";
 		$datos=$result;		
