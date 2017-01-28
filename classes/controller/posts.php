@@ -241,6 +241,9 @@ public static function insertLog($sistema, $iduser){
 
   $consulta=  "call  insertLog(?,?)";
   $parametros = array($sistema,$iduser);
+  error_log('insertLog');
+  error_log($sistema);
+  error_log($iduser);
   $result =  $db_con->consultaSegura($consulta,$parametros);
   return $result;
 

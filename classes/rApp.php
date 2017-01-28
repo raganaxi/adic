@@ -96,19 +96,19 @@ function insertLog_function(){
 	{
 		case 'GET':
 
-		if (isset($_GET["mail"]) && !empty($_GET["mail"])) {
-			$sistema=$_GET["mail"];
+		if (isset($_GET["sistema"]) && !empty($_GET["sistema"])) {
+			$sistema=$_GET["sistema"];
 		}
-		if (isset($_GET["pass"]) && !empty($_GET["pass"])) {
-			$iduser=$_GET["pass"];
+		if (isset($_GET["iduser"]) && !empty($_GET["iduser"])) {
+			$iduser=$_GET["iduser"];
 		}
 		break;
 		case 'POST':		
-		if (isset($_POST["mail"]) && !empty($_POST["mail"])) {
-			$sistema=$_POST["mail"];
+		if (isset($_POST["sistema"]) && !empty($_POST["sistema"])) {
+			$sistema=$_POST["sistema"];
 		}
-		if (isset($_POST["pass"]) && !empty($_POST["pass"])) {
-			$iduser=$_POST["pass"];
+		if (isset($_POST["iduser"]) && !empty($_POST["iduser"])) {
+			$iduser=$_POST["iduser"];
 		}
 		break;
 		default:
