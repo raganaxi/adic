@@ -35,7 +35,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/6.3.2/sweetalert2.css">
   </head>
 
-  <body id="login" class="login bgDarkBlue" data-iduser="<?php echo $_SESSION['user'] ; ?>">
+  <body id="login" class="login bgDarkBlue" data-iduser="<?php echo isset($_SESSION['user'])? $_SESSION['user'] : '' ; ?>">
     <div>
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>

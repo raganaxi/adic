@@ -30,7 +30,8 @@
                 echo $profile['0']['img']; ?>" alt="Avatar" title="Change the avatar">
               </div>
             </div>
-            <h3><?php echo $profile['0']['negocio']; ?></h3>
+
+            
             <?php /*
             <ul class="list-unstyled user_data">
               <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
@@ -80,12 +81,19 @@
               </ul>
             </div>
             <!-- end of skills -->
-            */?>
+            */
+
+$date = strtotime ( '+1 month' , strtotime ( $profile['0']['date_active'] ) ) ;
+$date = date ( 'd-m-Y' , $date );
+ ?>
           </div>
           <div class="col-md-9 col-sm-9 col-xs-12">
-
+          
             <div class="profile_title">
+             <div><h3><?php echo $profile['0']['negocio']; ?></h3>
+           <h3 >Proxima fecha de pago: <i style="color: blue;"><?php echo $date; ?></i></h3></div>      
               <div class="col-md-6">
+
                 <?php /*<h2>Reporte de Actividad</h2>
               </div>
               <div class="col-md-6">
@@ -100,6 +108,7 @@
             <div id="graph_bar" style="width:100%; height:280px;"></div>
             <!-- end of user-activity-graph -->*/?>
           </div>
+
         </div>
       </div>
     </div>

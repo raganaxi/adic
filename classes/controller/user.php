@@ -44,6 +44,15 @@ class user
     $result = $db_con->consultaSegura($consulta,$parametros);
     return $result;
   }
+  public static function firstLogin($userid){
+    $consulta="UPDATE user SET first_log = ? WHERE iduser = ?";
+       $parametros = array(1,$userid);
+    //error_log($consulta);
+    $db_con = new PDOMYSQL;
+    $result = $db_con->consultaSegura($consulta,$parametros);
+    return $result;
+
+  }
     public static function loginFacebook($mail){
     $consulta = "SELECT * FROM user where username = ? and active = '1'";
     $parametros = array($mail,$pass);
@@ -157,7 +166,7 @@ class user
   }
 
   public static function activateUser($user) {
-    $consulta = 'UPDATE user SET active = 1 WHERE iduser = '.$user.'';
+    $consulta = 'UPDATE user SET active = 1, date_active = NOW() WHERE iduser = '.$user.'';
     $check = 'SELECT * FROM user WHERE active = 1 and iduser = '. $user .'';
 		$queryDataU = "SELECT * FROM user_data WHERE user_id = $user";
     $PDOMYSQL = new PDOMYSQL;

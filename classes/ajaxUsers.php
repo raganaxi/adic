@@ -123,7 +123,11 @@ if(isset($_POST['editUs'])){
 $result = user::editUserData($_POST['user'],$_SESSION['iduser']);
 	echo json_encode($result);
 }
-
+if (isset($_POST['firstLog'])) {
+    $result = user::firstLogin($_POST['idUs']);
+    echo json_encode($result);
+	
+}
 
 
 
