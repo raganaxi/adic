@@ -25,7 +25,7 @@
   function formWizard(){
   $('.container').attr('style','display: none');
 swal({
-    title:"<i class='fa fa-user fa-5x' aria-hidden='true'></i><br>Bienvenido <?php echo $profile['0']['username'];?>!",
+    title:"<i class='fa fa-user fa-5x' aria-hidden='true'></i><br>Bienvenido <?php echo $profile['0']['name'];?>!",
     text:'Comencemos con una configuracion rapida de tu perfil.',
     animation: false,
   allowOutsideClick: false,
@@ -162,9 +162,13 @@ title: 'Direcciones',
    $('.container').attr('style','display: block');
 })
     }
-    else {
+    else {//////////
       console.log( 'problemas al actualizar usuario' );
       console.log(data);
+    $('#valida').html('<div id="valIco"></div><h2 style=\"color:blue;\">La contraseña actual es incorrecta.</h2>');
+    $('#valida').attr('style','background-color: #f0f0f0; width: 100%; padding: 10px;');
+    $('#valIco').attr('style','color: #ea7d7d;');
+    $('#valIco').attr('class','fa fa-exclamation-circle')
   }
   } );}else{
     $('#valida').html('<div id="valIco"></div><h2 style=\"color:blue;\">Es necesario que cambies tu contraseña para mayor seguridad.</h2>');
