@@ -175,49 +175,41 @@ function upload_galeria_function(){
 		if (!file_exists($directory)) {
 			mkdir($directory, 0777,true);
 		}
+		$subio_mas_imagenes=false;
 		$numActual=count(posts::getImages());
 
 		$num =count(isset($_FILES['imagenes']['name'])?$_FILES['imagenes']['name']:0);
 
 		$alto=10;
 		$numNuevo=$num+$numActual;
-		if ($numNuevo<10) {
+		if ($numNuevo<=$alto) {
 			$alto=$num;
 		}
 		else{
+
+			$subio_mas_imagenes=true;
 			$alto=$alto-$numActual;
 		}
 
-
+		
 		for($i = 0; $i < $alto; $i++) {
-			$nombreArchivo=isset($_FILES['imagenes']['name'][$i])?$_FILES['imagenes']['name'][$i]:null;
+			$nombreArchivoA=isset($_FILES['imagenes']['name'][$i])?$_FILES['imagenes']['name'][$i]:null;
 			$nombreTemporal=isset($_FILES['imagenes']['tmp_name'][$i])?$_FILES['imagenes']['tmp_name'][$i]:null;
-			$nombreArchivo=$iduserXXX."_".time()."_".str_replace(" ", "_", $nombreArchivo);
+			$nombreArchivo=$iduserXXX."_".time()."_".str_replace(" ", "_", $nombreArchivoA);
 			$rutaArchivo=$directory.$nombreArchivo;
 			move_uploaded_file($nombreTemporal,$rutaArchivo);
 			$img=$nombreArchivo;
+			posts::sertImageGallery($img,$nombreArchivoA,"",$iduserXXX)
 		}
-
-		$nombreArchivo=isset($_FILES['file']['name']) ?$_FILES['file']['name']: $_POST['imgAnt'];
-		$nombreTemporal=isset($_FILES['file']['tmp_name'])?$_FILES['file']['tmp_name']:null;
-		$nombreArchivo=$iduserXXX."_".time()."_".str_replace(" ", "_", $nombreArchivo);
-		$rutaArchivo=$directory.$nombreArchivo;
-		move_uploaded_file($nombreTemporal,$rutaArchivo);
-		$img=$nombreArchivo;
-		
-        // error_log(print_r($_FILES['file']['name'],true));
-		$result=new post;
-		$result->setIdpost($_POST['idPst']);
-		$result->setTitle($_POST['title']);
-		$result->setDescription($_POST['description']);
-		$result->setDate($_POST['date']);
-		if ($_FILES['file']['name']==''||$_FILES['file']['name']==null) {
-		$result->setImage('');
-		}else{
-			$result->setImage($img);
+		$galeria=posts::getImages($iduserXXX);
+		$result=0;
+		if ($subio_mas_imagenes) {
+			$result = array('continuar' => 'ok','galeria'=>$galeria,'mensaje'=>'solo se puden subir hasta 10 imagenes');
+		}else
+		{
+			$result = array('continuar' => 'ok','galeria'=>$galeria,'mensaje'=>'listo');
 		}
-         //error_log(print_r($result->updatePost(),true));
-		echo json_encode($result->updatePost());
+		echo json_encode($result;
 		die;
 	}
 	catch(Exception $e){

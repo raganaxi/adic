@@ -197,16 +197,7 @@ public static function getAddress($categoria){
   return $result;
 }
 
-public static function getImages(){
-  $db_con = new PDOMYSQL;
-  $consulta = "SELECT * from images where user_id > ?";
-  $parametros = array(0);
 
-  $result =  $db_con->consultaSegura($consulta,$parametros);
-
-
-  return $result;
-}
 
 public static function searchInput($input){
   $db_con = new PDOMYSQL;
@@ -248,6 +239,31 @@ public static function insertLog($sistema, $iduser){
   return $result;
 
 }
+public static function getImages($iduser){
+  $db_con = new PDOMYSQL;
+  $consulta = "SELECT * from images where user_id > ?";
+  $parametros = array($iduser);
+
+  $result =  $db_con->consultaSegura($consulta,$parametros);
+
+
+  return $result;
+}
+public static functon isertImageGallery($name,$description,$ubication,$userid){
+  $db_con = new PDOMYSQL;
+   $consulta=  "INSERT into images (name,description,ubication,user_id) values (?,?,?,?)";
+   $parametros = array($name,$description,$ubication,$userid);
+   $result =  $db_con->consultaSegura($consulta,$parametros);
+  return $result;
+}
+public static functon deleteImageGallery($id){
+  $db_con = new PDOMYSQL;
+   $consulta=  "DELETE from images where id= ?";
+   $parametros = array($id);
+   $result =  $db_con->consultaSegura($consulta,$parametros);
+  return $result;
+}
+
 /*fin de la clase*/
 }
 ?>
