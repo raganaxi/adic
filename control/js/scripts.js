@@ -576,7 +576,7 @@ $( ".activeBtn" ).on( 'click', function () {
   var $userID = $($activeBtn).closest('tr').find('.iduser').val();
   $.ajax( {
     data: {
-      "activate_soc": 1,
+      "activate_soc": $(this).val(),
       "iduser": $userID
     },
     url: '../classes/ajaxUsers.php',
