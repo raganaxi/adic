@@ -53,7 +53,7 @@ if(!isset($_SESSION['rol'])){
                     // '<td>'.$socios[$key]['reg_type'].'</td>'.
                     '<td>
                       <input class="iduser" type="hidden" value="'.$socios[$key]['iduser'].'" name="iduser">
-                      <button class="activeBtn" type="button" >Activar</button>
+                      <button class="activeBtn" value="2" type="button" >Activar</button>
                     </td>'.
                   '</tr>';
                   echo $row;

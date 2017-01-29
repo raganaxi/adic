@@ -43,8 +43,8 @@ if (isset($_POST['login_user'])) {
 	}
 }
 
-if (isset($_POST['activate_soc']) && $_POST['activate_soc'] == 1) {
-	$result = user::activateUser($_POST['iduser']);
+if (isset($_POST['activate_soc']) ) {
+	$result = user::activateUser($_POST['iduser'],$_POST['activate_soc']);
 	if (!empty($result)) {
 		echo json_encode($result);
 	}else{

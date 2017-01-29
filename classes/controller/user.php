@@ -127,7 +127,7 @@ class user
 
   public static function getRegSoc(){
     $date = isset($_SESSION['date'])? $_SESSION['date'] : date('Y-m-d');
-    $consulta = 'SELECT user.*, user_data.name, user_data.number, user_data.negocio FROM user inner join user_data on user.iduser = user_data.user_id WHERE role ="socio" and active = 1';
+    $consulta = 'SELECT user.*, user_data.name, user_data.number, user_data.negocio,user_data.mail  FROM user inner join user_data on user.iduser = user_data.user_id WHERE role ="socio" and active = 1';
     //error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consulta($consulta);
@@ -157,15 +157,18 @@ class user
   public static function changeAccess($user, $oldPass, $newPass) {
     $consulta = 'UPDATE user SET pass = "'.$newPass.'" WHERE iduser = '.$user.' AND pass = "'.$oldPass.'"';
     $check = 'SELECT * FROM user WHERE pass = "'.$newPass.'" and iduser = '. $user .'';
+      $queryDataU = "SELECT * FROM user_data WHERE user_id = $user";
     $PDOMYSQL = new PDOMYSQL;
     $update = $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
+    $rsDataUsr = $PDOMYSQL->consulta($queryDataU);
     //error_log(print_r($update, true));
     //error_log(print_r($result, true));
+    admin::sendEmailChangePass($rsDataUsr[0]["mail"],$result[0]["username"], $result[0]["pass"], $rsDataUsr[0]["name"]);
     return $result;
   }
 
-  public static function activateUser($user) {
+  public static function activateUser($user,$type) {
     $consulta = 'UPDATE user SET active = 1, date_active = NOW() WHERE iduser = '.$user.'';
     $check = 'SELECT * FROM user WHERE active = 1 and iduser = '. $user .'';
 		$queryDataU = "SELECT * FROM user_data WHERE user_id = $user";
@@ -173,7 +176,10 @@ class user
     $update =  $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
 		$rsDataUsr = $PDOMYSQL->consulta($queryDataU);
-		admin::sendEmailWelCome($rsDataUsr[0]["mail"],$result[0]["username"], $result[0]["pass"], $rsDataUsr[0]["name"]);
+    if ($type==1) {
+        admin::sendEmailWelCome($rsDataUsr[0]["mail"],$result[0]["username"], $result[0]["pass"], $rsDataUsr[0]["name"]);
+    }else{ admin::sendEmailAgainWelCome($rsDataUsr[0]["mail"],$result[0]["username"], $result[0]["pass"], $rsDataUsr[0]["name"]);
+    }
 //    error_log(print_r($result, true));
     return $result;
   }
@@ -184,7 +190,7 @@ class user
     $PDOMYSQL = new PDOMYSQL;
     $update =  $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
-//    error_log(print_r($result, true));
+//   error_log(print_r($result, true));
     return $result;
   }
 
