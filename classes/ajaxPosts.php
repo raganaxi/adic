@@ -82,7 +82,7 @@ if (isset($_POST['direccion'])) {
   /*-----------POSTS------*/
   if (isset($_POST['tablePub'])) {
   $requestData= $_REQUEST;
-  error_log(print_r($requestData['search']['value'],true));
+//  error_log(print_r($requestData['search']['value'],true));
   $table = new post;
   $table->setUserid($_SESSION['iduser']);
   $datos=  $table->getPost($requestData['order'][0],$requestData['search']['value']);
@@ -109,7 +109,7 @@ if (isset($_POST['publicacion'])) {
      $setPost->setDate($_POST['fec']);
      $setPost->setUserid($_SESSION['iduser']);
      $setPost->setImage($_POST['file']);
-     error_log(print_r($_POST['publicacion'],true));
+//     error_log(print_r($_POST['publicacion'],true));
   if ($_POST['publicacion']==1) {
      echo  $setPost->setPost();
   }

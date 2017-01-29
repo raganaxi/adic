@@ -16,7 +16,7 @@ class posts
 
 
     $consulta = 'SELECT post.*,category.nombre as categoria, user_data.name as user_name, user_data.img as user_pic FROM post INNER JOIN user on user.iduser = post.userid INNER JOIN user_data ON user_data.user_id = post.userid INNER JOIN category on post.categoryid = category.idcategory where (post.title LIKE "%'.$terms.'%" or category.nombre LIKE "%'.$terms.'%") and date ="'.$date.'"  order by date desc';
-    error_log($consulta);
+//    error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consulta($consulta);
     return $result;
@@ -232,9 +232,9 @@ public static function insertLog($sistema, $iduser){
 
   $consulta=  "call  insertLog(?,?)";
   $parametros = array($sistema,$iduser);
-  error_log('insertLog');
-  error_log($sistema);
-  error_log($iduser);
+//  error_log('insertLog');
+//  error_log($sistema);
+//  error_log($iduser);
   $result =  $db_con->consultaSegura($consulta,$parametros);
   return $result;
 

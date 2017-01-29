@@ -69,8 +69,8 @@ public function updatePost(){
     }
     $parametros[]=$this->idpost;
     	$consulta="UPDATE post SET title =?, description = ?, `date` = ? ".$img." WHERE idpost= ?";
-        error_log(print_r($consulta,true));
-        error_log(print_r($parametros,true));
+//        error_log(print_r($consulta,true));
+//        error_log(print_r($parametros,true));
     	$db_con=new PDOMYSQL;
     	$result=$db_con->consultaSegura($consulta,$parametros);
     $check = 'SELECT * FROM post WHERE title = "'.$this->title.'" and `date` = "'.$this->date.'" and description = "'.$this->description.'" and idpost='.$this->idpost.$img2;
