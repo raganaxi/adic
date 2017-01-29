@@ -45,7 +45,7 @@ class address{
    public function getAddress($order=array()){
     $cOrder='ORDER BY '.$this->column[$order['column']].' '.$order['dir'];
     	$consulta ="SELECT * from address WHERE user_id=? ".$cOrder;
-        error_log(print_r($consulta,true));
+//        error_log(print_r($consulta,true));
     	$db_con= new PDOMYSQL;
         $parametros = array($this->user_id);
         $result=$db_con->consultaSeguraIndex($consulta,$parametros);

@@ -92,7 +92,7 @@ class user
   public static function editUserData($user,$user_id){
         $consulta = 'UPDATE user SET username="'.$user.'" WHERE iduser='.$user_id;
     $check = 'SELECT * FROM user WHERE username='.$user.', AND user_id='.$user_id.'';
-    error_log($consulta);
+//    error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $update = $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
@@ -174,7 +174,7 @@ class user
     $result = $PDOMYSQL->consulta($check);
 		$rsDataUsr = $PDOMYSQL->consulta($queryDataU);
 		admin::sendEmailActivation($rsDataUsr[0]["mail"],$result[0]["username"], $result[0]["pass"], $rsDataUsr[0]["name"]);
-    error_log(print_r($result, true));
+//    error_log(print_r($result, true));
     return $result;
   }
 
@@ -184,7 +184,7 @@ class user
     $PDOMYSQL = new PDOMYSQL;
     $update =  $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
-    error_log(print_r($result, true));
+//    error_log(print_r($result, true));
     return $result;
   }
 
@@ -194,7 +194,7 @@ class user
     $PDOMYSQL = new PDOMYSQL;
     $consulta =  $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
-    error_log(print_r($result, true));
+//    error_log(print_r($result, true));
     return $result;
   }
 
@@ -246,7 +246,7 @@ class user
       $tmpToken= openssl_digest($email.Time(), 'sha512');
       $consulta = "SELECT * FROM tbl_tokens WHERE tx_token=?";
       $parametros = array($tmpToken);
-      error_log($consulta);
+//      error_log($consulta);
       $db_con = new PDOMYSQL;
       $result =  $db_con->consultaSegura($consulta,$parametros);
       if (empty($result)) {
@@ -270,7 +270,7 @@ class user
   public static function tokenValidateDelete($token){
     $consulta="UPDATE tbl_tokens SET active = 0 WHERE tx_token=?";
     $parametros = array($token);
-    error_log($consulta);
+//    error_log($consulta);
     $PDOMYSQL = new PDOMYSQL;
     $result =  $PDOMYSQL->consultaSegura($consulta,$parametros);
     return $result;

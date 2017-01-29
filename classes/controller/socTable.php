@@ -42,7 +42,7 @@ require_once('ConnectionFactory.php');
     }
 
 
-    error_log(print_r($requestData,true));
+//    error_log(print_r($requestData,true));
 
     $query = "SELECT username, user_data.name,user_data.negocio, pass, role, active, reg_type from user inner join user_data on user.iduser = user_Id where role = 'socio'".$having.$order;
 		

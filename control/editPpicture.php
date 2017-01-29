@@ -1,5 +1,5 @@
 <?php
-    error_log(print_r($_FILES, true));
+//    error_log(print_r($_FILES, true));
     $uploaddir = '../images/profPicture/';
     $uploadfile = $uploaddir . basename($_FILES['fileToUpload']['name']);
     $status = null;
