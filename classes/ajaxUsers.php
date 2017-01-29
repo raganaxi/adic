@@ -103,7 +103,7 @@ if (isset($_POST['reg_soc'])) {
 	//admin::sendEmailWelCome($_POST['mail'],$_POST['name'],POST['negocio']);
 	$time = time();
 $fecha = date("Y-m-d (H:i:s)", $time) ;
-	admin::sendEmailWelCome(null,null,null,$fecha."");
+//	admin::sendEmailWelCome(null,null,null,$fecha."");
 	//$resultl = user::login($_POST['mail'], $_POST['pass']);
 	//if (!empty($result)) {
 		// $_SESSION['user'] = isset($resultl[0]['username'])? $resultl[0]['username'] : null ;
