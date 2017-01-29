@@ -30,7 +30,7 @@ inner join user_data on user.iduser=user_data.user_id where active=1 and user.ro
    //error_log(json_encode($socios));
 foreach ($socios as $key => $value) {
 	//error_log($socios[$key]['mail']);
-	admin::sendEmailPaymentReminder($socios[$i]['mail']);
+	admin::sendEmailPaymentReminder($socios[$key]['mail']);
 sleep (2);
 }
 
