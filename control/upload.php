@@ -6,7 +6,8 @@ require_once('../config.php');
 
 use pdomysql AS pdomysql;
 use user AS user;
-use post AS post; 
+use post AS post;
+use posts AS posts;
 
 
 $modulo="";
@@ -23,7 +24,7 @@ if (isset($_POST['iduser'])) {
 	$iduserXXX=$_POST['iduser'];
 }
 
-error_log("modulo".$modulo);
+//error_log("modulo".$modulo);
 
 switch($modulo) {
 	case 'post': post_function();break;
@@ -57,11 +58,13 @@ function galeria_function(){
 
 	switch($action) {
 		case 'a': upload_galeria_function();break;
+		case 'b': delete_galeria_function();break;
 
 		default: echo 0;die;
 	}
 	
 }
+
 function update_profile_function(){
 	global $iduserXXX;
 	
@@ -168,7 +171,8 @@ function update_post_function(){
 	}
 
 }
-function upload_galeria_function(){
+function upload_galeria_function()
+{
 		global $iduserXXX;
 	try{
 		$directory = "../imagenes_/galeria/";
@@ -176,7 +180,7 @@ function upload_galeria_function(){
 			mkdir($directory, 0777,true);
 		}
 		$subio_mas_imagenes=false;
-		$numActual=count(posts::getImages());
+		$numActual=count(posts::getImages($iduserXXX));
 
 		$num =count(isset($_FILES['imagenes']['name'])?$_FILES['imagenes']['name']:0);
 
@@ -190,16 +194,20 @@ function upload_galeria_function(){
 			$subio_mas_imagenes=true;
 			$alto=$alto-$numActual;
 		}
+		error_log($alto);
 
-		
+		//error_log(json_encode($_FILES['imagenes']['name'][1]));
 		for($i = 0; $i < $alto; $i++) {
 			$nombreArchivoA=isset($_FILES['imagenes']['name'][$i])?$_FILES['imagenes']['name'][$i]:null;
+			//error_log($nombreArchivoA);
 			$nombreTemporal=isset($_FILES['imagenes']['tmp_name'][$i])?$_FILES['imagenes']['tmp_name'][$i]:null;
+			//error_log($nombreTemporal);
 			$nombreArchivo=$iduserXXX."_".time()."_".str_replace(" ", "_", $nombreArchivoA);
+			//error_log($nombreArchivo);
 			$rutaArchivo=$directory.$nombreArchivo;
 			move_uploaded_file($nombreTemporal,$rutaArchivo);
 			$img=$nombreArchivo;
-			posts::sertImageGallery($img,$nombreArchivoA,"",$iduserXXX)
+			posts::insertImageGallery($img,$nombreArchivoA,$directory,$iduserXXX);
 		}
 		$galeria=posts::getImages($iduserXXX);
 		$result=0;
@@ -209,7 +217,7 @@ function upload_galeria_function(){
 		{
 			$result = array('continuar' => 'ok','galeria'=>$galeria,'mensaje'=>'listo');
 		}
-		echo json_encode($result;
+		echo json_encode($result);
 		die;
 	}
 	catch(Exception $e){
@@ -218,7 +226,37 @@ function upload_galeria_function(){
 	}
 
 }
+function delete_galeria_function()
+{
+	global $iduserXXX;
+	$id=0;
+	if (isset($_POST['id'])) {
+	$id=$_POST['id'];
+	}
+	$img=0;
+	if (isset($_POST['img'])) {
+	$img=$_POST['img'];
+	}
 
+	try{
+		$directory = "../imagenes_/galeria/";
+		if (!file_exists($directory)) {
+			mkdir($directory, 0777,true);
+		}
+		
+		$result = posts::deleteImageGallery($id);
+		$galeria=posts::getImages($iduserXXX);
+		$result = array('continuar' => 'ok','galeria'=>$galeria,'mensaje'=>'listo');
+		unlink($directory.$img);
+		echo json_encode($result);
+		die;
+	}
+	catch(Exception $e){
+		error_log($e);
+		return 0;
+	}
+
+}
 
 
 
