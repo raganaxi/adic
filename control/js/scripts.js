@@ -919,65 +919,134 @@ $(document).ready(function() {
     loop:true,
     margin:0
   }).removeClass('owl-hidden');
-  $('#formProfileimage').each(function(index, el) {
 
-    console.log('ready profile');
-    $(document).on('submit','#formProfileimage',function(e){
-      e.preventDefault();
-      var $form = $(this);
-      console.log("clcik");
+  $(document).on('submit','#formGaleria',function(e){
+    e.preventDefault();
+    var $form = $(this);
+    //console.log("clcik");
 
-      uploadImage($form);
-    });
-    function uploadImage($form){
-      var formData = new FormData($form[0]);
-      formData.append("iduser", id_user);
-      formData.append("modulo", "profileImage");
-      formData.append("action", "a");
-      console.log(formData);
-      $.ajax({
-        url: "upload.php",
-        type: "post",
-        dataType: "json",
-        data: formData,
-        cache: false,
-        contentType: false,
-        processData: false
-      })
-      .done(function(res){
+    uploadImage($form[0]);
+  });
+  $(document).on('click', '.eliminar-item', function(event) {
+    event.preventDefault();
+    var id=$(this).attr('data-id');
+    var img=$(this).attr('data-imgx');
+    $.ajax({
+      url: "upload.php",
+      type: "post",
+      dataType: "json",
+      data: {id:id,modulo:'galeria',action:'b',iduser:id_user,img:img},
+      cache: false,
+    })
+    .done(function(res){
 
-        console.log("Respuesta: " + res);
-        if(res[0].img!==undefined){
-          var img = res[0].img;
-          console.log(img);
-          $('.profile_pic div').attr({
-            style: "background-image:url('../imagenes_/profPicture/"+img+"');"
-          });
-          $('#previewProfileImage').attr({
-            src: "../imagenes_/profPicture/"+img
-          });
+      console.log("Respuesta: " + res.galeria);
+      if (res.continuar==="ok") {
+        //alert(res.mensaje);
+        //console.log(res.galeria);
+        console.log('success');
+      }
+      else{
+       //alert(res.mensaje);
+       //console.log(res.galeria);
+       console.log('error');
+     }
+     $carousel =$('.owl-carousel.owl-loaded');
+     if ($carousel[0]) {
+       $carousel.data('owl.carousel').destroy(); 
+     }
+     var html='';
+     for (var i in res.galeria){
+      html+='<div class="item"><img class="owl-lazy"'+ 
+      ' data-src="../imagenes_/galeria/'+
+      res.galeria[i].name+'" alt="'+res.galeria[i].description+'">'+
+      '<div class="eliminar-item" data-id="'+res.galeria[i].id+'" data-imgx="'+res.galeria[i].name+'">'+
+      '<i class="fa fa-trash" aria-hidden="true"></i></div></div>';
 
-        }
-
-      });
     }
 
+    $carousel.html(html);
+    $carousel.owlCarousel({
+      items:1,
+      autoHeight:true,
+      responsiveClass:true,
+      lazyLoad:true,
+      loop:true,
+      margin:0
+    }).removeClass('owl-hidden');
+    swal({
+        type:'success'
+        ,text:res.mensaje
+        ,title:'Operacion Exitosa'
+      });
   });
+  });
+  function uploadImage($form){
+    var formData = new FormData($form);
+    formData.append("iduser", id_user);
+    formData.append("modulo", "galeria");
+    formData.append("action", "a");
+    //console.log(formData);
+    $.ajax({
+      url: "upload.php",
+      type: "post",
+      dataType: "json",
+      data: formData,
+      cache: false,
+      contentType: false,
+      processData: false
+    })
+    .done(function(res){
+
+      console.log("Respuesta: " + res.galeria);
+      if (res.continuar==="ok") {
+        //alert(res.mensaje);
+       /* console.log(res.galeria);*/
+        console.log('success');
+      }
+      else{
+       //alert(res.mensaje);
+       /*console.log(res.galeria);*/
+       console.log('error');
+     }
+     $carousel =$('.owl-carousel.owl-loaded');
+     if ($carousel[0]) {
+       $carousel.data('owl.carousel').destroy(); 
+     }
+     var html='';
+     for (var i in res.galeria){
+      html+='<div class="item"><img class="owl-lazy"'+ 
+      ' data-src="../imagenes_/galeria/'+
+      res.galeria[i].name+'" alt="'+res.galeria[i].description+'">'+
+      '<div class="eliminar-item" data-id="'+res.galeria[i].id+'" data-imgx="'+res.galeria[i].name+'">'+
+      '<i class="fa fa-trash" aria-hidden="true"></i></div></div>';
+      
+    }
+
+    $carousel.html(html);
+    $carousel.owlCarousel({
+      items:1,
+      autoHeight:true,
+      responsiveClass:true,
+      lazyLoad:true,
+      loop:true,
+      margin:0
+    }).removeClass('owl-hidden');
+    swal({
+        type:'success'
+        ,text:res.mensaje
+        ,title:'Operacion Exitosa'
+      });
+
+
+  });
+  }
+
+  
 
 });
 
 
-
- $('#imgDataTable').DataTable( {
-  "ajax": '../classes/rApp.php?action=getImages',
-  "columns": [
-  { "data": "id" },
-  { "data": "name" },
-  { "data": "description" },
-  { "data": "ubication" },
-  { "data": "user_id" },
-  ]
-});
  function getPost(){
 
   var data= {'action': 'getPostSocio',iduser:id_user};
@@ -1018,7 +1087,7 @@ $('#postContainer').each(function(index, el) {
     if ($("#postTitle").val()&&$("#postDate").val()) {
       uploadImage($form);
       swal.close ();
-      
+
     }else{//validador de campos
       var t='';       
       if (!$("#postTitle").val()){ t='titulo';
@@ -1164,7 +1233,7 @@ function crearTablaAddress(){
 
       },orderable: false
     }
-    
+
     ],
     "sDom":'ltrip',
     "initComplete": function(settings, json) {

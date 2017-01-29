@@ -88,7 +88,7 @@ if(!isset($_SESSION['rol'])){
                 </form>
               </div>
             </div>
-            
+
             <div role="tabpanel" class="tab-pane fade in " id="tab_imagenPerfil" aria-labelledby="imagenPerfil-tab">
               <div class="x_content">
                 <?php 
@@ -180,9 +180,9 @@ if(!isset($_SESSION['rol'])){
                 <h1>Subir su imagenes a la Galeria </h1>
                 <hr>
                 <?php 
-                $imagenes=posts::getImages();
+                $imagenes=posts::getImages($_SESSION['iduser']);
                 $num= count($imagenes);
-                echo $num;
+                /*echo $num;*/
             //var_dump($imagenes);
             /*foreach ($imagenes as $i => $val) {
               var_dump($imagenes[$i]);
@@ -193,13 +193,15 @@ if(!isset($_SESSION['rol'])){
                 <?php
                 foreach ($imagenes as $i => $val) {
                   ?>
-                  <img class="owl-lazy" data-src="<?php echo $imagenes[$i]['ubication'].$imagenes[$i]['name'];   ?>" alt="<?php echo $imagenes[$i]['description']; ?>">
-                  
+                  <div class="item"><img class="owl-lazy" 
+                    data-src="../imagenes_/galeria/<?php echo $imagenes[$i]['name'];   ?>" alt="<?php echo $imagenes[$i]['description']; ?>">
+                    <div class="eliminar-item" data-id="<?php echo $imagenes[$i]['id'];?>" data-imgx="<?php echo $imagenes[$i]['name'];?>"><i class="fa fa-trash" aria-hidden="true"></i></div></div>
+
 
                   <?php
                 }
                 ?>
-                
+
                 <?php
 
 
@@ -219,33 +221,14 @@ if(!isset($_SESSION['rol'])){
               </label>
               <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                  <input type="file" id="imagenes" name="fileImage" class="form-control" accept="image/*" multiple="true">
+                <input type="file" id="imagenes" name="imagenes[]" class="form-control" accept="image/*" multiple="true">
                 </div>
               </div>
 
               <div class="clear"></div>
               <button type="submit" id="fileUploadGaleria" class="btn btn-success cWhite s20 text-center noTransform boxShadow pull-right" name="button">Subir Imagen</button>
             </form>
-            <table id="imgDataTable" class="display" cellspacing="0" width="100%">
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>name</th>
-                  <th>description</th>
-                  <th>ubication</th>
-                  <th>user_id</th>
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <th>id</th>
-                  <th>name</th>
-                  <th>description</th>
-                  <th>ubication</th>
-                  <th>user_id</th>
-                </tr>
-              </tfoot>
-            </table>
+            
           </div>
         </div>
       </div>
