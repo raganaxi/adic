@@ -173,7 +173,7 @@ class user
     $update =  $PDOMYSQL->consulta($consulta);
     $result = $PDOMYSQL->consulta($check);
 		$rsDataUsr = $PDOMYSQL->consulta($queryDataU);
-		admin::sendEmailActivation($rsDataUsr[0]["mail"],$result[0]["username"], $result[0]["pass"], $rsDataUsr[0]["name"]);
+		admin::sendEmailWelCome($rsDataUsr[0]["mail"],$result[0]["username"], $result[0]["pass"], $rsDataUsr[0]["name"]);
 //    error_log(print_r($result, true));
     return $result;
   }

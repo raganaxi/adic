@@ -8,8 +8,7 @@ if(!isset($_SESSION['rol'])){
     header('Location: '.'logout.php');
   }else if($_SESSION['rol'] == 'socio') {
     include ('socio.php');
-  }
-}
+  }else{
 ?>
 <div id="standby" class="right_col" role="main">
   <div class="row">
@@ -68,4 +67,4 @@ if(!isset($_SESSION['rol'])){
     </div>
   </div>
 </div>
-<?php include ('footer.php'); ?>
+<?php }}include ('footer.php'); ?>
