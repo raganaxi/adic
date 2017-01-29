@@ -239,9 +239,9 @@ public static function insertLog($sistema, $iduser){
   return $result;
 
 }
-public static function getImages($iduser){
+public static function getImages($iduser=0){
   $db_con = new PDOMYSQL;
-  $consulta = "SELECT * from images where user_id > ?";
+  $consulta = "SELECT * from images where user_id = ?";
   $parametros = array($iduser);
 
   $result =  $db_con->consultaSegura($consulta,$parametros);
@@ -249,14 +249,14 @@ public static function getImages($iduser){
 
   return $result;
 }
-public static functon isertImageGallery($name,$description,$ubication,$userid){
+public static function insertImageGallery($name,$description,$ubication,$userid){
   $db_con = new PDOMYSQL;
    $consulta=  "INSERT into images (name,description,ubication,user_id) values (?,?,?,?)";
    $parametros = array($name,$description,$ubication,$userid);
    $result =  $db_con->consultaSegura($consulta,$parametros);
   return $result;
 }
-public static functon deleteImageGallery($id){
+public static function deleteImageGallery($id){
   $db_con = new PDOMYSQL;
    $consulta=  "DELETE from images where id= ?";
    $parametros = array($id);
