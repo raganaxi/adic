@@ -119,7 +119,7 @@ if(!isset($_SESSION['rol'])){
             </div>
             <div role="tabpanel" class="tab-pane fade" id="tab_galeria" aria-labelledby="galeria-tab">
               <div class="x_content">
-            
+                
               </div>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="tab_direcciones" aria-labelledby="datos-tab">
