@@ -3,7 +3,7 @@
 var urlLocal="http://localhost:81/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
 var appRuta='rApp.php';
- urlRemoto=urlLocal;
+urlRemoto=urlLocal;
 var urlAjax=urlRemoto;
 
 ( function () {
@@ -539,13 +539,13 @@ $( "#createSoc" ).on( 'click', function () {
       }
     }
     else {
-         swal({
-            type: 'warning',
-            title: 'Error',
-            text: 'Erro usuario no registrado, Verifique por favor.'
-          })
-    }
-  } );
+     swal({
+      type: 'warning',
+      title: 'Error',
+      text: 'Erro usuario no registrado, Verifique por favor.'
+    })
+   }
+ } );
   } );
 
 
@@ -630,7 +630,7 @@ $( "#changeAccess" ).on( 'click', function () {
   $.ajax( {
     data: {
       "change_access": 1,
-     "iduser": userID,
+      "iduser": userID,
       "username": username,
       "oldPass": oldPass,
       "newPass": newPass
@@ -644,12 +644,12 @@ $( "#changeAccess" ).on( 'click', function () {
     else {
       console.log( 'problemas al actualizar usuario' );
       console.log(data);
-          swal(
-      'Operacion cancelada',
-      'problemas al actualizar usuario: "'+username+'"',
-      'error'
-    )
-  }
+      swal(
+        'Operacion cancelada',
+        'problemas al actualizar usuario: "'+username+'"',
+        'error'
+        )
+    }
     
   } );
 } );
@@ -675,11 +675,11 @@ $( "#logSocio" ).on( 'click', function () {
       }
     }
     else {
-        swal({
-            type: 'warning',
-            title: 'Error',
-            text: 'Usuario o contraseña Icorrectos, Verifique por favor.'
-          })
+      swal({
+        type: 'warning',
+        title: 'Error',
+        text: 'Usuario o contraseña Icorrectos, Verifique por favor.'
+      })
 
       console.log( 'problemas al iniciar session' );
       console.log(data);
@@ -698,11 +698,11 @@ $("#editProfileUser").click(function(){
   }).done(function(data){
     if ( data ) {
       console.log(data);
-            swal({
-              type: 'success',
-              title: 'Operacion Exitosa',
-              text: 'Las modificaciones de usuario se guardaron con exito.'
-            })
+      swal({
+        type: 'success',
+        title: 'Operacion Exitosa',
+        text: 'Las modificaciones de usuario se guardaron con exito.'
+      })
     }
   });
 
@@ -741,11 +741,11 @@ $( "#editProfile" ).on( 'click', function () {
   } ).done( function ( data ) {
     if ( data ) {
       console.log(data);
-            swal({
-              type: 'success',
-              title: 'Operacion Exitosa',
-              text: 'Las modificaciones de usuario se guardaron con exito.'
-            })
+      swal({
+        type: 'success',
+        title: 'Operacion Exitosa',
+        text: 'Las modificaciones de usuario se guardaron con exito.'
+      })
       //$( "#editProfileF" ).submit();
     }
   } );
@@ -972,77 +972,77 @@ $(document).ready(function() {
   "ajax": '../classes/rApp.php?action=getImages',
   "columns": [
   { "data": "id" },
-    { "data": "name" },
-    { "data": "description" },
-    { "data": "ubication" },
-    { "data": "user_id" },
-    ]
+  { "data": "name" },
+  { "data": "description" },
+  { "data": "ubication" },
+  { "data": "user_id" },
+  ]
+});
+ function getPost(){
+
+  var data= {'action': 'getPostSocio',iduser:id_user};
+  $.ajax({
+    data:data,
+    crossDomain: true,
+    cache: false,
+    xhrFields: {
+      withCredentials: true
+    },
+    url: urlAjax+'classes/'+appRuta,
+    type: 'post'
+  }).done(function(data){
+    if(data.continuar==="ok"){
+      var post = data.datos.post;
+      console.log(post);
+      var addresses= data.datos.addresses;
+    }
+    else{
+      var addresses= data.datos.addresses;
+
+    }
+    /*  ajaxLoader("termina");*/
+
+  }).fail(function( jqXHR, textStatus, errorThrown ) {
+    $("#postContainer").html('<div class="" style="min-height:100vh;height:300px;">Sin publicaciones :(');
+    /* ajaxLoader("termina");*/
   });
-  function getPost(){
-
-    var data= {'action': 'getPostSocio',iduser:id_user};
-    $.ajax({
-      data:data,
-      crossDomain: true,
-      cache: false,
-      xhrFields: {
-        withCredentials: true
-      },
-      url: urlAjax+'classes/'+appRuta,
-      type: 'post'
-    }).done(function(data){
-      if(data.continuar==="ok"){
-        var post = data.datos.post;
-        console.log(post);
-        var addresses= data.datos.addresses;
-      }
-      else{
-        var addresses= data.datos.addresses;
-
-      }
-      /*  ajaxLoader("termina");*/
-
-    }).fail(function( jqXHR, textStatus, errorThrown ) {
-      $("#postContainer").html('<div class="" style="min-height:100vh;height:300px;">Sin publicaciones :(');
-      /* ajaxLoader("termina");*/
-    });
-  }
-  $('#postContainer').each(function(index, el) {
+}
+$('#postContainer').each(function(index, el) {
    // getPost(); esto causa errores?
 
-    console.log('ready publicaciones');
-    $(document).on('submit','#formCreatePost',function(e){
-      e.preventDefault();
-      var $form = $(this);
+   console.log('ready publicaciones');
+   $(document).on('submit','#formCreatePost',function(e){
+    e.preventDefault();
+    var $form = $(this);
 
     if ($("#postTitle").val()&&$("#postDate").val()) {
       uploadImage($form);
       swal.close ();
-    
+      
     }else{//validador de campos
-    var t='';       
-    if (!$("#postTitle").val()){ t='titulo';
+      var t='';       
+      if (!$("#postTitle").val()){ t='titulo';
     }else{if(!$("#postDate").val()){t='fecha';
-    }
-    }
-    ;
-    $('#valida').html('<div id="valIco"></div><h2 style=\"color:blue;\">El campo de '+t+' es obligatorio. Escriba una '+t+' valida y vuelva a intentarlo.</h2>');
-    $('#valida').attr('style','background-color: #f0f0f0; width: 100%; padding: 10px;');
-    $('#valIco').attr('style','color: #ea7d7d;');
-    $('#valIco').attr('class','fa fa-exclamation-circle')
-  }  
+  }
+}
+;
+$('#valida').html('<div id="valIco"></div><h2 style=\"color:blue;\">El campo de '+t+' es obligatorio. Escriba una '+t+' valida y vuelva a intentarlo.</h2>');
+$('#valida').attr('style','background-color: #f0f0f0; width: 100%; padding: 10px;');
+$('#valIco').attr('style','color: #ea7d7d;');
+$('#valIco').attr('class','fa fa-exclamation-circle')
+}  
 });
-    function uploadImage($form){
-      var formData = new FormData($form[0]);
-      formData.append("iduser", id_user);
-      formData.append("title", $( "#postTitle" ).val());
-      formData.append("description",$( "#postDescription" ).val());
-      formData.append("date",$( "#postDate" ).val());
-      formData.append("modulo", "post");
+   function uploadImage($form){
+    var formData = new FormData($form[0]);
+    formData.append("iduser", id_user);
+    formData.append("title", $( "#postTitle" ).val());
+    formData.append("description",$( "#postDescription" ).val());
+    formData.append("date",$( "#postDate" ).val());
+    formData.append("modulo", "post");
       //alert(document.getElementById("file").value);
       if ($('#uplPost').val()!=''&&$('#uplPost').val()!=null)
         {formData.append("idPst",$('#uplPost').val());
-          formData.append("action", "b");}
+      formData.append("action", "b");}
       else{formData.append("action", "a");}
       console.log(formData);
       $.ajax({
@@ -1063,136 +1063,136 @@ $(document).ready(function() {
       })
       .done(function(res){
         console.log("Respuesta: " + res);
-         tablePosts.ajax.reload();
+        tablePosts.ajax.reload();
         $('#createPost').html('ok');
-            swal({
-              type: 'success',
-              title: 'Operacio Exitosa',
-              text: 'La publicacion ha sido creada con exito.'
-            })
+        swal({
+          type: 'success',
+          title: 'Operacio Exitosa',
+          text: 'La publicacion ha sido creada con exito.'
+        })
 
       }).fail(function(res) {
         console.log("fallo: " + res);
-            swal({
-            type: 'warning',
-            title: 'Error',
-            text: 'Por favor contacte al soporte tecnico.'
-          })
+        swal({
+          type: 'warning',
+          title: 'Error',
+          text: 'Por favor contacte al soporte tecnico.'
+        })
       }).always(function() {
         $('#createPost').html('Crear');
       });
     }
   });
-  $('#formProfileimage').each(function(index, el) {
+$('#formProfileimage').each(function(index, el) {
 
-    console.log('ready profile');
-    $(document).on('submit','#formProfileimage',function(e){
-      e.preventDefault();
-      var $form = $(this);
-      console.log("clcik");
+  console.log('ready profile');
+  $(document).on('submit','#formProfileimage',function(e){
+    e.preventDefault();
+    var $form = $(this);
+    console.log("clcik");
 
-      uploadImage($form);
-    });
-    function uploadImage($form){
-      var formData = new FormData($form[0]);
-      formData.append("iduser", id_user);
-      formData.append("modulo", "profileImage");
-      formData.append("action", "a");
-      console.log(formData);
-      $.ajax({
-        url: "upload.php",
-        type: "post",
-        dataType: "json",
-        data: formData,
-        cache: false,
-        contentType: false,
-        processData: false
-      })
-      .done(function(res){
-
-        console.log("Respuesta: " + res);
-        if(res[0].img!==undefined){
-          var img = res[0].img;
-          console.log(img);
-          $('.profile_pic div').attr({
-            style: "background-image:url('../imagenes_/profPicture/"+img+"');"
-          });
-          $('#previewProfileImage').attr({
-            src: "../imagenes_/profPicture/"+img
-          });
-
-        }
-
-      });
-    }
-
+    uploadImage($form);
   });
+  function uploadImage($form){
+    var formData = new FormData($form[0]);
+    formData.append("iduser", id_user);
+    formData.append("modulo", "profileImage");
+    formData.append("action", "a");
+    console.log(formData);
+    $.ajax({
+      url: "upload.php",
+      type: "post",
+      dataType: "json",
+      data: formData,
+      cache: false,
+      contentType: false,
+      processData: false
+    })
+    .done(function(res){
+
+      console.log("Respuesta: " + res);
+      if(res[0].img!==undefined){
+        var img = res[0].img;
+        console.log(img);
+        $('.profile_pic div').attr({
+          style: "background-image:url('../imagenes_/profPicture/"+img+"');"
+        });
+        $('#previewProfileImage').attr({
+          src: "../imagenes_/profPicture/"+img
+        });
+
+      }
+
+    });
+  }
+
+});
 
 
 });
 
 /*-------------ABC  tabla direcciones-----*/
 var tableAddress=null;
-  function crearTablaAddress(){
-    tableAddress= $("#tableDir").DataTable({
-          "iDisplayLength":100,
-          "processing":true,
-          "serverSide":true,
-           "defaultContent": "-",
-            "targets": "_all",
-      ajax:{
+function crearTablaAddress(){
+  tableAddress= $("#tableDir").DataTable({
+    "iDisplayLength":100,
+    "processing":true,
+    "serverSide":true,
+    "defaultContent": "-",
+    "targets": "_all",
+    ajax:{
       type: "POST",
-     url:'../classes/ajaxPosts.php',
+      url:'../classes/ajaxPosts.php',
       data: { tableDir:'1'},
       dataType: "json",
-      },  
-       "columnDefs":[
-                {
-                  "targets" : [9],
-                  "render": function(data,type,full){
-                    return '<i onClick="formAddres(0,\''+full[1]+'\',\''+full[2]+'\',\''+full[3]+'\',\''+full[4]+'\',\''+full[5]+'\',\''+full[6]+'\',\''+full[7]+'\',\''+full[8]+'\','+full[0]+')" class="fa fa-pencil-square-o" title="Editar la direccion del renglon a la cual corresponde este boton" aria-hidden="true"></i>';
-                  },orderable: false
-                },
-                  {
-                    "targets" : [10],
-                  "render": function(data,type,full){
-                      if(data == 1){
-                        return '<button class="btn bgGreen cWhite fa fa-check-square" onClick="setStatus(0,'+full[0]+')">Activo</button>';
-                      }else{
-                        return '<button class="btn bgRed cWhite fa fa-times-circle" onClick="setStatus(1,'+full[0]+')">Inactivo</button>';
-                      }
+    },  
+    "columnDefs":[
+    {
+      "targets" : [9],
+      "render": function(data,type,full){
+        return '<i onClick="formAddres(0,\''+full[1]+'\',\''+full[2]+'\',\''+full[3]+'\',\''+full[4]+'\',\''+full[5]+'\',\''+full[6]+'\',\''+full[7]+'\',\''+full[8]+'\','+full[0]+')" class="fa fa-pencil-square-o" title="Editar la direccion del renglon a la cual corresponde este boton" aria-hidden="true"></i>';
+      },orderable: false
+    },
+    {
+      "targets" : [10],
+      "render": function(data,type,full){
+        if(data == 1){
+          return '<button class="btn bgGreen cWhite fa fa-check-square" onClick="setStatus(0,'+full[0]+')">Activo</button>';
+        }else{
+          return '<button class="btn bgRed cWhite fa fa-times-circle" onClick="setStatus(1,'+full[0]+')">Inactivo</button>';
+        }
 
-                  },orderable: false
-                }
-                
-              ],
-          "sDom":'ltrip',
-          "initComplete": function(settings, json) {
-              }
-    });
+      },orderable: false
+    }
+    
+    ],
+    "sDom":'ltrip',
+    "initComplete": function(settings, json) {
+    }
+  });
 
-    tableAddress.on( 'order.dt search.dt', function () {
-        tableAddress.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-            cell.innerHTML = i+1;
-        } );
-    } ).draw();
-  }
-  /*-- funciones del mapa de direciones -*/
+  tableAddress.on( 'order.dt search.dt', function () {
+    tableAddress.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+      cell.innerHTML = i+1;
+    } );
+  } ).draw();
+}
+/*-- funciones del mapa de direciones -*/
 
 var map;
 //crear mapa
 function initMap(lat,long) {
   if (lat==null||long==null) {
-     lat = 25.5409967;
-      long=-103.4349972;
+   lat = 25.5409967;
+   long=-103.4349972;
   }//alert(lat+", "+long);
-        var myLatLng = {lat:lat, lng: long};     
-        var map = new google.maps.Map(document.getElementById('mapDir'), {
-          center: myLatLng,
-          scrollwheel: false,
-          zoom: 16,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
+  var myLatLng = {lat:lat, lng: long};     
+  var map = new google.maps.Map(document.getElementById('mapDir'), {
+    center: myLatLng,
+    scrollwheel: false,
+    zoom: 16,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
         // Crear posicion del marcador
         var marker = new google.maps.Marker({
           draggable: true,
@@ -1202,46 +1202,46 @@ function initMap(lat,long) {
         });
  //posicion al arrastrar el marcador       
  google.maps.event.addListener(marker, 'drag', function(){
-        $("#latDir").val(marker.getPosition().lat());
-$("#lonDir").val(marker.getPosition().lng());
-    });
+  $("#latDir").val(marker.getPosition().lat());
+  $("#lonDir").val(marker.getPosition().lng());
+});
 
-      }
+}
 //funcion para calcular latitud y longitud por medio de la direccion
 function geo(address){
-      var geocoder = new google.maps.Geocoder();
-if (address=='') {address='Bosque Venustiano Carranza, Torreón';}
-var latitude;
-var longitude;
-geocoder.geocode( { 'address': address}, function(results, status) {
-if (status == google.maps.GeocoderStatus.OK) {
+  var geocoder = new google.maps.Geocoder();
+  if (address=='') {address='Bosque Venustiano Carranza, Torreón';}
+  var latitude;
+  var longitude;
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
 
      latitude = results[0].geometry.location.lat();
 
-      longitude = results[0].geometry.location.lng();
+     longitude = results[0].geometry.location.lng();
 //console.log('La longitud es: ' + longitude + ', la latitud es: ' + latitude);
- initMap(latitude,longitude);
+initMap(latitude,longitude);
 $("#latDir").val(latitude);
 $("#lonDir").val(longitude);
 
-    } 
+} 
 });  
 }
 //
 function keyupDir(){
-$("input[id*=Dir]").on('keyup',function(){
-  if($(this).attr("id")!='cpDir'&&$(this).attr("id")!='latDir'&&$(this).attr("id")!='lonDir'&&$(this).attr("id")!='mapDir'){
-    var address='';  
-    for (var i = 1; i <= 5; i++) {
+  $("input[id*=Dir]").on('keyup',function(){
+    if($(this).attr("id")!='cpDir'&&$(this).attr("id")!='latDir'&&$(this).attr("id")!='lonDir'&&$(this).attr("id")!='mapDir'){
+      var address='';  
+      for (var i = 1; i <= 5; i++) {
        if ($(".geo"+i).val()!='' && i!=1) { address+=','}
-       address+=' '+ $(".geo"+i).val();
-      }
+         address+=' '+ $(".geo"+i).val();
+     }
       //alert(address);
       geo(address);
-  }
-  if ($(this).attr("id")=='latDir'||$(this).attr("id")=='lonDir') { if ($("#latDir").val()!=''&&$("#lonDir").val()!='') {
-        initMap(parseFloat($("#latDir").val()),parseFloat($("#lonDir").val()));
-      }
+    }
+    if ($(this).attr("id")=='latDir'||$(this).attr("id")=='lonDir') { if ($("#latDir").val()!=''&&$("#lonDir").val()!='') {
+      initMap(parseFloat($("#latDir").val()),parseFloat($("#lonDir").val()));
+    }
   }
 });
 }
@@ -1254,25 +1254,25 @@ function setStatus(st,id){
   if (st==1) {u='activada';}
   else{u='desactivada';}
   $.ajax({
-      type: "POST",
-      url: '../classes/ajaxPosts.php',
-      data:{direccion: 3,status: st, idAdd:id},
-      success: function(){
-        tableAddress.ajax.reload();
-            swal({
-              type: 'success',
-              title: 'Operacio Exitosa',
-              text: 'La direccion ha sido '+u+'.'
-            })
-      },
-      error: function(e){
-          swal({
-            type: 'warning',
-            title: 'Error',
-            text: e
-          })
-        }
-    });
+    type: "POST",
+    url: '../classes/ajaxPosts.php',
+    data:{direccion: 3,status: st, idAdd:id},
+    success: function(){
+      tableAddress.ajax.reload();
+      swal({
+        type: 'success',
+        title: 'Operacio Exitosa',
+        text: 'La direccion ha sido '+u+'.'
+      })
+    },
+    error: function(e){
+      swal({
+        type: 'warning',
+        title: 'Error',
+        text: e
+      })
+    }
+  });
 }
 function formAddres(type,dir,col,mun,est,pais,cp,lat,long,id){ 
   var formAddress='<form id="editProfileD"><div class="form-section"><label for="calleDir">Dirección</label><input id="calleDir" type="text" class="form-control geo1" placeholder="Calle y numero" name="calleDir" value="'+dir+'" required><div class="clear"></div></div><div class="form-section"><label for="numeroDir">Colonia</label><input id="coloniaDir" type="text" class="form-control geo2" placeholder="Colonia" name="numeroDir" value="'+col+'" required><div class="clear"></div></div><div class="form-section"><label for="municipioDir">Municipio</label><input id="municipioDir" type="text" class="form-control geo3" placeholder="Municipio" name="municipioDir" value="'+mun+'" required><div class="clear"></div></div><div class="form-section"><label for="estadoDir">Estado</label><input id="estadoDir" type="text" class="form-control geo4" placeholder="Estado" name="estadoDir" value="'+est+'" required><div class="clear"></div></div><div class="form-section"><label for="paisDir">País</label><input id="paisDir" type="text" class="form-control geo5" placeholder="País" name="paisDir" value="'+pais+'" required><div class="clear"></div></div><div class="form-section"><label for="cpDir">Código Postal</label><input id="cpDir" type="text" class="form-control" placeholder="CP" name="cpDir" value="'+cp+'" required><div class="clear"></div></div><div class="form-section"><label for="latDir">Latitud</label><input id="latDir" type="text" class="form-control" placeholder="Latitud" name="latDir" value="'+lat+'" required><div class="clear"></div></div><div class="form-section"><label for="lonDir">Longitud</label><input id="lonDir" type="text" class="form-control" placeholder="Longitud" name="lonDir" value="'+long+'" required><div class="clear"></div></div><div id="mapDir" style="width: 100%; height: 350px;" ></div></form>';
@@ -1280,112 +1280,112 @@ function formAddres(type,dir,col,mun,est,pais,cp,lat,long,id){
     title:'+Direcciones',
     html: formAddress,
     customClass: 'swal-xl',
-     showCancelButton: true,
-     showCloseButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  cancelButtonText: 'Cancelar',
-  confirmButtonText: 'Guardar Dirección',
-   showLoaderOnConfirm: true,
- preConfirm: function () {
+    showCancelButton: true,
+    showCloseButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    cancelButtonText: 'Cancelar',
+    confirmButtonText: 'Guardar Dirección',
+    showLoaderOnConfirm: true,
+    preConfirm: function () {
       return new Promise(function (resolve, reject) {
-      if ($("#calleDir").val()&&$("#latDir").val()&&$("#lonDir").val()) {
-       $.ajax({
-        type: "POST",
-        url: '../classes/ajaxPosts.php',
-        data: {direccion: type,dir:$('#calleDir').val(),col:$('#coloniaDir').val(),mun:$('#municipioDir').val(),est:$('#estadoDir').val(),pais:$('#paisDir').val(),cp:$('#cpDir').val(),lat:$('#latDir').val(),lon:$('#lonDir').val(),idAdd: id},
-        beforeSend: function(){
-        },
-        success: function(response){
-          if (response==true) {
+        if ($("#calleDir").val()&&$("#latDir").val()&&$("#lonDir").val()) {
+         $.ajax({
+          type: "POST",
+          url: '../classes/ajaxPosts.php',
+          data: {direccion: type,dir:$('#calleDir').val(),col:$('#coloniaDir').val(),mun:$('#municipioDir').val(),est:$('#estadoDir').val(),pais:$('#paisDir').val(),cp:$('#cpDir').val(),lat:$('#latDir').val(),lon:$('#lonDir').val(),idAdd: id},
+          beforeSend: function(){
+          },
+          success: function(response){
+            if (response==true) {
+              swal({
+                type: 'success',
+                title: 'Operacio Exitosa',
+                text: 'La direccion ha sido guardad con exito.'
+              })
+              tableAddress.ajax.reload();
+            }else{
+              swal({
+                type: 'warning',
+                title: 'Error',
+                text: 'Por favor contacte al soporte tecnico.'
+              })
+            }
+          },
+          error: function(e){
             swal({
-              type: 'success',
-              title: 'Operacio Exitosa',
-              text: 'La direccion ha sido guardad con exito.'
+              type: 'warning',
+              title: 'Error',
+              text: e
             })
-          tableAddress.ajax.reload();
-          }else{
-            swal({
-            type: 'warning',
-            title: 'Error',
-            text: 'Por favor contacte al soporte tecnico.'
-          })
           }
-        },
-        error: function(e){
-          swal({
-            type: 'warning',
-            title: 'Error',
-            text: e
-          })
-        }
-    });
+        });
   }else{//validador de campos
     var t='';       
     if (!$("#calleDir").val()){ t='direccion';
-    }else{if(!$("#latDir").val()){t='latitud';
-    }else{if(!$("#lonDir").val()){t='longitud';} 
-      } 
+  }else{if(!$("#latDir").val()){t='latitud';
+}else{if(!$("#lonDir").val()){t='longitud';} 
+} 
+}
+reject('<h2 style=\"color:blue;\">El campo de '+t+' es obligatorio. Escriba una '+t+' valida y vuelva a intentarlo.</h2>')
+}
+});
     }
-    reject('<h2 style=\"color:blue;\">El campo de '+t+' es obligatorio. Escriba una '+t+' valida y vuelva a intentarlo.</h2>')
-  }
-  });
- }
   }).then(function () {})
-initMap(null,null);
-keyupDir();
+  initMap(null,null);
+  keyupDir();
 }
 /*-------------/ABC  tabla direcciones-----*/
 /*-------------ABC  tabla Publicaciones-----*/
 var tablePosts=null;
-  function crearTablaPosts(){
-    tablePosts= $("#tablePub").DataTable({
-          "iDisplayLength":100,
-          "processing":true,
-          "serverSide":true,
-           "defaultContent": "-",
-           "targets": "_all",
-      ajax:{
+function crearTablaPosts(){
+  tablePosts= $("#tablePub").DataTable({
+    "iDisplayLength":100,
+    "processing":true,
+    "serverSide":true,
+    "defaultContent": "-",
+    "targets": "_all",
+    ajax:{
       type: "POST",
-     url:'../classes/ajaxPosts.php',
+      url:'../classes/ajaxPosts.php',
       data: { tablePub:'1'},
       dataType: "json",
-      },  
-       "columnDefs":[
-               {"targets": [4],
-               visible: false
+    },  
+    "columnDefs":[
+    {"targets": [4],
+    visible: false
 
-               },
-               {"targets":[6],
-                "render": function(data,type,full){
-                    return '<i onClick="formPosts(\''+full[1]+'\',\''+full[2]+'\',\''+full[3]+'\',\''+full[5]+'\','+full[0]+')" class="fa fa-pencil-square-o" title="Editar la direccion del renglon a la cual corresponde este boton" aria-hidden="true"></i><i class="fa fa-times" onClick="deleteStPost(3,'+full[0]+', \''+full[1]+'\')"></i>';
-               },orderable: false
-               },
-              {"targets":[7],
-               "render": function(data,type,full){
-                  if(full[6] == 1){
-                        return '<button class="btn bgGreen cWhite fa fa-check-square" onClick="setStatusPosts(0,'+full[0]+')"> Dejar de Publicar</button>';
-                      }else{
-                        return '<button class="btn bgRed cWhite fa fa-times-circle" onClick="setStatusPosts(1,'+full[0]+')"> Republicar</button>';
-                      }
-                  },orderable: false
-               }
-
-              ],
-         // "sDom":'ltrip',
-          "initComplete": function(settings, json) {
-              }
-    });
-
-    tablePosts.on( 'order.dt search.dt', function () {
-        tablePosts.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-            cell.innerHTML = i+1;
-        } );
-    } ).draw();
+  },
+  {"targets":[6],
+  "render": function(data,type,full){
+    return '<i onClick="formPosts(\''+full[1]+'\',\''+full[2]+'\',\''+full[3]+'\',\''+full[5]+'\','+full[0]+')" class="fa fa-pencil-square-o" title="Editar la direccion del renglon a la cual corresponde este boton" aria-hidden="true"></i><i class="fa fa-times" onClick="deleteStPost(3,'+full[0]+', \''+full[1]+'\')"></i>';
+  },orderable: false
+},
+{"targets":[7],
+"render": function(data,type,full){
+  if(full[6] == 1){
+    return '<button class="btn bgGreen cWhite fa fa-check-square" onClick="setStatusPosts(0,'+full[0]+')"> Dejar de Publicar</button>';
+  }else{
+    return '<button class="btn bgRed cWhite fa fa-times-circle" onClick="setStatusPosts(1,'+full[0]+')"> Republicar</button>';
   }
+},orderable: false
+}
+
+],
+         // "sDom":'ltrip',
+         "initComplete": function(settings, json) {
+         }
+       });
+
+  tablePosts.on( 'order.dt search.dt', function () {
+    tablePosts.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+      cell.innerHTML = i+1;
+    } );
+  } ).draw();
+}
 $('#btnAddPosts').click(function(){formPosts('','','','','');});
 function deleteStPost(st,id,tit){
-     swal({
+ swal({
   title: '¿Esta seguro?',
   text: 'Esta a punto de eliminar la publicacion : "'+tit+'"',
   type: 'warning',
@@ -1395,54 +1395,54 @@ function deleteStPost(st,id,tit){
   confirmButtonText: 'Sí, estoy seguro' ,
   cancelButtonText: 'No, cancelar' ,
 }).then(function () {
-setStatusPosts(st,id);
+  setStatusPosts(st,id);
 }, function (dismiss) {
   if (dismiss === 'cancel') {
     swal(
       'Operacion cancelada',
       'Ah cancelado eliminar: "'+tit+'"',
       'error'
-    )
+      )
   }
 })
 }
 
 
 function setStatusPosts(st,id){
-    var u;
+  var u;
   if (st==1) {u='republicada';}
   else{if(st==1){u='desactivada';}
   else{u='eliminada';}
 }
-  $.ajax({
-      type: "POST",
-      url: '../classes/ajaxPosts.php',
-      data:{publicacion: 3,status: st, idAdd:id},
-      success: function(){
-        tablePosts.ajax.reload();
-            swal({
-              type: 'success',
-              title: 'Operacion Exitosa',
-              text: 'La publicacion ha sido '+u+'.'
-            })
-      },
-      error: function(e){
-          swal({
-            type: 'warning',
-            title: 'Error',
-            text: e
-          })
-        }
-    });
+$.ajax({
+  type: "POST",
+  url: '../classes/ajaxPosts.php',
+  data:{publicacion: 3,status: st, idAdd:id},
+  success: function(){
+    tablePosts.ajax.reload();
+    swal({
+      type: 'success',
+      title: 'Operacion Exitosa',
+      text: 'La publicacion ha sido '+u+'.'
+    })
+  },
+  error: function(e){
+    swal({
+      type: 'warning',
+      title: 'Error',
+      text: e
+    })
+  }
+});
 
 }
 function formPosts(tit,des,fec,file,id){
   var formPosts='<form id="formCreatePost" class="form-section" enctype="multipart/form-data" ><div class="clear" ></div><input id="postTitle" type="text" class="form-control" placeholder="Nombre de la oferta" value="'+tit+'"><input id="uplPost"  value="'+id+'" style="display:none;"><div class="clear"></div><textarea id="postDescription" class="form-control h100" rows="4" placeholder="Descripción">'+des+'</textarea><div class="clear"></div><input id="postDate" class="form-control" type="date" name="name" value="'+fec+'"><div class="clear"></div><input type="file" id="file" name="file" class="form-control" accept="image/*" value="'+file+'"><div class="clear"></div><div id="valida"></div> <button type="submit" id="createPost" class="btn btnSuccess cWhite s20 text-center noTransform boxShadow pull-right" name="button">Crear</button></form>';
-    swal({
+  swal({
     title:'+Publicaciones',
     html: formPosts,
-     showCancelButton: false,
-     showCloseButton: true,
+    showCancelButton: false,
+    showCloseButton: true,
     showConfirmButton: false,
   }).then(function () {})
 }
@@ -1451,4 +1451,4 @@ function formPosts(tit,des,fec,file,id){
 
 
 $(document).ready(function(){crearTablaAddress();
-crearTablaPosts();});
+  crearTablaPosts();});
