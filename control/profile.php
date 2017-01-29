@@ -13,7 +13,7 @@ if(!isset($_SESSION['rol'])){
 } else {
   if($_SESSION['rol'] == 'usuario' ){
     header('Location: '.'logout.php');
-}
+  }
 }
 ?> 
 <style type="text/css">
@@ -88,50 +88,50 @@ if(!isset($_SESSION['rol'])){
                 </form>
               </div>
             </div>
-          
-<div role="tabpanel" class="tab-pane fade in " id="tab_imagenPerfil" aria-labelledby="imagenPerfil-tab">
-  <div class="x_content">
-    <?php 
-    $directory = "../imagenes_/profPicture/".$_SESSION['iduser']."/";
-    if (!file_exists($directory)) {
-      mkdir($directory, 0777,true);
-  }
+            
+            <div role="tabpanel" class="tab-pane fade in " id="tab_imagenPerfil" aria-labelledby="imagenPerfil-tab">
+              <div class="x_content">
+                <?php 
+                $directory = "../imagenes_/profPicture/".$_SESSION['iduser']."/";
+                if (!file_exists($directory)) {
+                  mkdir($directory, 0777,true);
+                }
 
 
-  $db_con = new PDOMYSQL;
-  $cosultaImages="SELECT img from user_data where user_id = ?";
-  $parametros = array($_SESSION['iduser']);
-  $result =  $db_con->consultaSegura($cosultaImages,$parametros);
+                $db_con = new PDOMYSQL;
+                $cosultaImages="SELECT img from user_data where user_id = ?";
+                $parametros = array($_SESSION['iduser']);
+                $result =  $db_con->consultaSegura($cosultaImages,$parametros);
                 //error_log(json_encode($result[0]['img']));
                 //error_log(json_encode($images));
-  $image = "../imagenes_/profPicture/".$result[0]['img'];
+                $image = "../imagenes_/profPicture/".$result[0]['img'];
                 //error_log(json_encode($images));
-  ?>
-  <h1>Subir su imagen de Perfil </h1>
-  <hr>
+                ?>
+                <h1>Subir su imagen de Perfil </h1>
+                <hr>
 
-  <div class="file-preview-frame file-preview-initial file-sortable kv-preview-thumb" id="preview-1485101766037-init_0" data-fileindex="init_0" data-template="image">
-    <div class="kv-file-content">
-        <img id="previewProfileImage" src="<?php echo $image; ?>" height="120px" class="file-preview-image">
-    </div>
-</div>
-<div class="clearfix"></div>
-<form id="formProfileimage" class="form-section" enctype="multipart/form-data">
-    <div class="clear"></div>
-    <label for="fileImage">
-        <span type="span"  class="btn btn-info cWhite s20 text-center noTransform boxShadow pull-right" name="span">Buscar Imagen</span>
-    </label>
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <input type="file" id="fileImage" name="fileImage" class="form-control" accept="image/*">
-        </div>
-    </div>
-    <div class="clear"></div>
-    <button type="submit" id="fileUpload" class="btn btn-success cWhite s20 text-center noTransform boxShadow pull-right" name="button">Subir Imagen</button>
-</form>
-</div>
-</div>
-<div role="tabpanel" class="tab-pane fade" id="tab_acceso" aria-labelledby="acceso-tab">
+                <div class="file-preview-frame file-preview-initial file-sortable kv-preview-thumb" id="preview-1485101766037-init_0" data-fileindex="init_0" data-template="image">
+                  <div class="kv-file-content">
+                    <img id="previewProfileImage" src="<?php echo $image; ?>" height="120px" class="file-preview-image">
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <form id="formProfileimage" class="form-section" enctype="multipart/form-data">
+                  <div class="clear"></div>
+                  <label for="fileImage">
+                    <span type="span"  class="btn btn-info cWhite s20 text-center noTransform boxShadow pull-right" name="span">Buscar Imagen</span>
+                  </label>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                      <input type="file" id="fileImage" name="fileImage" class="form-control" accept="image/*">
+                    </div>
+                  </div>
+                  <div class="clear"></div>
+                  <button type="submit" id="fileUpload" class="btn btn-success cWhite s20 text-center noTransform boxShadow pull-right" name="button">Subir Imagen</button>
+                </form>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tab_acceso" aria-labelledby="acceso-tab">
               <div class="x_content">
                 <form class="" action="">
                   <div class="form-section">
@@ -150,107 +150,107 @@ if(!isset($_SESSION['rol'])){
                 </form>
               </div>
             </div>
-<div role="tabpanel" class="tab-pane fade" id="tab_direcciones" aria-labelledby="datos-tab">
-  <div class="x_content">
-    <div class="x_title">
-      <h2>Lista de Direcciones</h2><button id="btnAddAddress" title="Añadir una nueva direccion" class="btn bgGreen cWhite pull-right fa fa-plus btnPlus"></button>
-      <div class="clearfix"></div>
-  </div>
-  <table id="tableDir" >
-      <thead>
-          <tr>
-            <th>#</th>
-            <th>Direccion</th>
-            <th>Colonia</th>
-            <th>Municipio</th>
-            <th>Estado</th>
-            <th>Pais</th>
-            <th>C.P.</th>
-            <th>Latitud</th>
-            <th>Longitud</th>
-            <th>Editar</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-</table>
-</div>
-</div>
-<div role="tabpanel" class="tab-pane fade active in" id="tab_galeria" aria-labelledby="galeria-tab">
-  <div class="x_content">
-      <h1>Subir su imagenes a la Galeria </h1>
-      <hr>
-      <?php 
-            $imagenes=posts::getImages();
-            $num= count($imagenes);
-            echo $num;
+            <div role="tabpanel" class="tab-pane fade" id="tab_direcciones" aria-labelledby="datos-tab">
+              <div class="x_content">
+                <div class="x_title">
+                  <h2>Lista de Direcciones</h2><button id="btnAddAddress" title="Añadir una nueva direccion" class="btn bgGreen cWhite pull-right fa fa-plus btnPlus"></button>
+                  <div class="clearfix"></div>
+                </div>
+                <table id="tableDir" >
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Direccion</th>
+                      <th>Colonia</th>
+                      <th>Municipio</th>
+                      <th>Estado</th>
+                      <th>Pais</th>
+                      <th>C.P.</th>
+                      <th>Latitud</th>
+                      <th>Longitud</th>
+                      <th>Editar</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade active in" id="tab_galeria" aria-labelledby="galeria-tab">
+              <div class="x_content">
+                <h1>Subir su imagenes a la Galeria </h1>
+                <hr>
+                <?php 
+                $imagenes=posts::getImages();
+                $num= count($imagenes);
+                echo $num;
             //var_dump($imagenes);
             /*foreach ($imagenes as $i => $val) {
               var_dump($imagenes[$i]);
-                          }*/
+            }*/
             ?>
-      <div class="galeria-container">
-          <div class="owl-carousel owl-theme">
-          <?php
-          foreach ($imagenes as $i => $val) {
-          ?>
-          <img class="owl-lazy" data-src="<?php echo $imagenes[$i]['ubication'].$imagenes[$i]['name'];   ?>" alt="<?php echo $imagenes[$i]['description']; ?>">
-  
+            <div class="galeria-container">
+              <div class="owl-carousel owl-theme">
+                <?php
+                foreach ($imagenes as $i => $val) {
+                  ?>
+                  <img class="owl-lazy" data-src="<?php echo $imagenes[$i]['ubication'].$imagenes[$i]['name'];   ?>" alt="<?php echo $imagenes[$i]['description']; ?>">
+                  
 
-          <?php
-          }
-          ?>
-          
-          <?php
-
-
+                  <?php
+                }
+                ?>
+                
+                <?php
 
 
 
 
 
-            ?>
-        </div>
-    </div>
-    <div class="clearfix"></div>
-    <form id="formGaleria" class="form-section" enctype="multipart/form-data">
-        <div class="clear"></div>
-        <label for="imagenes">
-            <span type="span"  class="btn btn-info cWhite s20 text-center noTransform boxShadow pull-right" name="span">Buscar Imagen</span>
-        </label>
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <input type="file" id="imagenes" name="fileImage" class="form-control" accept="image/*" multiple="true">
+
+
+                ?>
+              </div>
             </div>
-        </div>
+            <div class="clearfix"></div>
+            <form id="formGaleria" class="form-section" enctype="multipart/form-data">
+              <div class="clear"></div>
+              <label for="imagenes">
+                <span type="span"  class="btn btn-info cWhite s20 text-center noTransform boxShadow pull-right" name="span">Buscar Imagen</span>
+              </label>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                  <input type="file" id="imagenes" name="fileImage" class="form-control" accept="image/*" multiple="true">
+                </div>
+              </div>
 
-        <div class="clear"></div>
-        <button type="submit" id="fileUploadGaleria" class="btn btn-success cWhite s20 text-center noTransform boxShadow pull-right" name="button">Subir Imagen</button>
-    </form>
-    <table id="imgDataTable" class="display" cellspacing="0" width="100%">
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>name</th>
-          <th>description</th>
-          <th>ubication</th>
-          <th>user_id</th>
-      </tr>
-  </thead>
-  <tfoot>
-    <tr>
-      <th>id</th>
-      <th>name</th>
-      <th>description</th>
-      <th>ubication</th>
-      <th>user_id</th>
-  </tr>
-</tfoot>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
+              <div class="clear"></div>
+              <button type="submit" id="fileUploadGaleria" class="btn btn-success cWhite s20 text-center noTransform boxShadow pull-right" name="button">Subir Imagen</button>
+            </form>
+            <table id="imgDataTable" class="display" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>name</th>
+                  <th>description</th>
+                  <th>ubication</th>
+                  <th>user_id</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>id</th>
+                  <th>name</th>
+                  <th>description</th>
+                  <th>ubication</th>
+                  <th>user_id</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 </div>
@@ -296,5 +296,5 @@ if(!isset($_SESSION['rol'])){
         var a=$("#archivos").fileinput;
     });
 
-</script>*/ ?>
-<script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBPc0IqUH5Kc7aTNQlfMDXEcJFVglGC9DI" async defer></script>
+  </script>*/ ?>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBPc0IqUH5Kc7aTNQlfMDXEcJFVglGC9DI" async defer></script>

@@ -919,6 +919,51 @@ $(document).ready(function() {
     loop:true,
     margin:0
   }).removeClass('owl-hidden');
+  $('#formProfileimage').each(function(index, el) {
+
+    console.log('ready profile');
+    $(document).on('submit','#formProfileimage',function(e){
+      e.preventDefault();
+      var $form = $(this);
+      console.log("clcik");
+
+      uploadImage($form);
+    });
+    function uploadImage($form){
+      var formData = new FormData($form[0]);
+      formData.append("iduser", id_user);
+      formData.append("modulo", "profileImage");
+      formData.append("action", "a");
+      console.log(formData);
+      $.ajax({
+        url: "upload.php",
+        type: "post",
+        dataType: "json",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false
+      })
+      .done(function(res){
+
+        console.log("Respuesta: " + res);
+        if(res[0].img!==undefined){
+          var img = res[0].img;
+          console.log(img);
+          $('.profile_pic div').attr({
+            style: "background-image:url('../imagenes_/profPicture/"+img+"');"
+          });
+          $('#previewProfileImage').attr({
+            src: "../imagenes_/profPicture/"+img
+          });
+
+        }
+
+      });
+    }
+
+  });
+
 });
 
 
