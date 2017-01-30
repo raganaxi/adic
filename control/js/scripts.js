@@ -595,6 +595,53 @@ $( ".activeBtn" ).on( 'click', function () {
   } );
 } );
 
+function deleteSoc(id,user,row){
+  swal({
+  title: 'Estas seguro de eliminar a: '+user,
+  text: "El usuario sera eliminado de la lista",
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Sí, estoy seguro',
+  CancelButtonText: 'No, cancelar',
+  showLoaderOnConfirm: true,
+}).then(function () {
+    $.ajax( {
+    data: {
+      "delete_soc": 1,
+      "iduser": id
+    },
+    url: '../classes/ajaxUsers.php',
+    type: 'post'
+  }).done( function ( data ) {
+    if ( data != 0 ) {
+        swal({ 
+    title:'Operacion Exitosa',
+    text:'El usuario '+user+' ha sido eliminado.',
+    type:'success'
+  })
+      $("#row_"+row).addClass('bgGreenClear');
+      setTimeout(function(){
+        $("#row_"+row).addClass('hidden');
+      },400);
+    }
+    else {
+      console.log( 'problemas al activar usuario' );
+      console.log(data);
+    }
+  })
+}, function (dismiss) {
+  if (dismiss === 'cancel') {
+    swal(
+      'Operacion cancelada',
+      'Ah cancelado eliminar: "'+user+'"',
+      'error'
+      )
+  }
+})
+}
+
 //desactivacion de socios
 $( ".deactiveBtn" ).on( 'click', function () {
   var $deactiveBtn = $(this);

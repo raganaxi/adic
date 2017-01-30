@@ -60,6 +60,14 @@ if (isset($_POST['deactivate_soc']) && $_POST['deactivate_soc'] == 1) {
 		echo 0;
 	}
 }
+if (isset($_POST['delete_soc'])) {
+	$result = user::deleteUser($_POST['iduser']);
+	if (!empty($result)) {
+		echo json_encode($result);
+	}else{
+		echo 0;
+	}
+}
 
 if (isset($_POST['change_access']) && $_POST['change_access'] == 1) {
   $result = user::changeAccess($_SESSION['iduser'],  $_POST['oldPass'], $_POST['newPass'] );
