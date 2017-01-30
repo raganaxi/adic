@@ -207,7 +207,7 @@ function upload_galeria_function()
 			$rutaArchivo=$directory.$nombreArchivo;
 			move_uploaded_file($nombreTemporal,$rutaArchivo);
 			$img=$nombreArchivo;
-			posts::insertImageGallery($img,$nombreArchivoA,$directory,$iduserXXX);
+			posts::insertImageGallery($img,$nombreArchivoA,"http://adondeirenlaciudad.com/imagenes_/galeria/",$iduserXXX);
 		}
 		$galeria=posts::getImages($iduserXXX);
 		$result=0;
