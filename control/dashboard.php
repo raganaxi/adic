@@ -140,7 +140,7 @@ title: 'Direcciones',
       console.log('cambio de contraseña');
               swal({
     title: '<div style="color: white;">Configuracion Finalizada!<div>',
-    html:'<div class="z-block centered"><img src="../images/logos/logo.png" alt="..." class="h200" style="width: 100%;"></div><h4 style="color:#00cfff;">Te da la bienvenida!.</h4><h6 style="color:#fd3b4f;">Si deceas cambiar alguna configuracion de las anteriores, puedes ingresar a la seccion cuenta para modificar o añadir cualquier dato.<h6>',
+    html:'<div class="z-block centered"><img src="../images/logos/logo.png" alt="..." class="h200" style="width: 100%;"></div><h4 style="color:#00cfff;">Te da la bienvenida!.</h4><h6 style="color:#fd3b4f;">Si deseas cambiar alguna configuración de las anteriores, puedes ingresar a la seccion cuenta para modificar o añadir cualquier dato.<h6>',
     customClass:'bgDarkBlue',
     animation: false,
   allowOutsideClick: false,

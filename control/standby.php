@@ -23,38 +23,41 @@ if(!isset($_SESSION['rol'])){
             <table id="socTabla" class="table table-hover jambo_table">
               <thead>
                 <tr>
+                  <th>Usuario</th>
                   <th>Mail</th>
                   <th>Contacto</th>
                   <th>Telefono</th>
                   <th>Negocio</th>
                   <th>Password</th>
                   <!-- <th>Rol</th> -->
-                  <th>Estatus</th>
-                  <!-- <th>Tipo de registro</th> -->
+                 <!-- <th>Estatus</th>
+                   <th>Tipo de registro</th> -->
                   <th>Acciones</th>
+                  <th>Eliminar</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
                 $socios = user::getStanbySoc();
-
+                
                 foreach ($socios as $key => $value) {
 
                   $socios[$key]['active'] = ($socios[$key]['active'] == 0)? 'Inactivo' : 'activo';
 
-                  $row = '<tr>'.
+                  $row = '<tr id="row_'.$key.'">'.
                     '<td>'.$socios[$key]['username'].'</td>'.
+                    '<td>'.$socios[$key]['mail'].'</td>'.
                     '<td>'.$socios[$key]['name'].'</td>'.
                     '<td>'.$socios[$key]['number'].'</td>'.
                     '<td>'.$socios[$key]['negocio'].'</td>'.
                     '<td>'.$socios[$key]['pass'].'</td>'.
                     // '<td>'.$socios[$key]['role'].'</td>'.
-                    '<td>'.$socios[$key]['active'].'</td>'.
+                   // '<td>'.$socios[$key]['active'].'</td>'.
                     // '<td>'.$socios[$key]['reg_type'].'</td>'.
                     '<td>
                       <input class="iduser" type="hidden" value="'.$socios[$key]['iduser'].'" name="iduser">
                       <button class="activeBtn" value="2" type="button" >Activar</button>
-                    </td>'.
+                    </td><td><i id="btnDeleteSoc" class="fa fa-times" onclick="deleteSoc('.$socios[$key]['iduser'].', \''.$socios[$key]['username'].'\','.$key.')" title="Elimina el socio del listado"></i></td>'.
                   '</tr>';
                   echo $row;
                 }
