@@ -169,7 +169,8 @@ function register_user(){
 		$logUser = trim($logUser);
 		$logPass = trim($logPass);
 		$register_result = user::register($logUser, $logPass, "email");
-		if ($register_result=="Y") {
+		error_log(json_encode($register_result[0]['response']));
+		if ($register_result[0]['response']=="Y") {
 			$result = user::login($logUser, $logPass);
 			if (!empty($result)) {
 				$continuar ="ok"; /*login on*/
@@ -184,7 +185,8 @@ function register_user(){
 				$error="no_error";
 				$mensaje="email o contraseña no existen "; /* wrong details */
 			}		
-		}else{
+		}
+		else{
 			$continuar="no_ok";
 			$error="no_ok";
 			$mensaje="usario/correo ya registrado"; /* wrong details */
