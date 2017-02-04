@@ -1553,7 +1553,7 @@ $.ajax({
 
 }
 function formPosts(tit,des,fec,file,id){
-  var formPosts='<form id="formCreatePost" class="form-section" enctype="multipart/form-data" ><div class="clear" ></div><input id="postTitle" type="text" class="form-control" placeholder="Nombre de la oferta" value="'+tit+'"><input id="uplPost"  value="'+id+'" style="display:none;"><div class="clear"></div><textarea id="postDescription" class="form-control h100" rows="4" placeholder="Descripción">'+des+'</textarea><div class="clear"></div><input id="postDate" class="form-control" type="date" name="name" value="'+fec+'"><div class="clear"></div><input type="file" id="file" name="file" class="form-control" accept="image/*" value="'+file+'"><div class="clear"></div><div id="valida"></div> <button type="submit" id="createPost" class="btn btnSuccess cWhite s20 text-center noTransform boxShadow pull-right" name="button">Crear</button></form>';
+  var formPosts='<form id="formCreatePost" class="form-section" enctype="multipart/form-data" ><div class="clear" ></div><input id="postTitle" type="text" class="form-control" placeholder="Nombre de la oferta" value="'+tit+'"><input id="uplPost"  value="'+id+'" style="display:none;"><div class="clear"></div><textarea id="postDescription" class="form-control h100" rows="4" placeholder="Descripción">'+des+'</textarea><div class="clear"></div><input id="postDate" class="form-control" type="date" name="name" value="'+fec+'">     <div class="clear"></div><input type="file" id="file" name="file" class="form-control" accept="image/*" value="'+file+'"><div class="clear"></div><div id="valida"></div> <button type="submit" id="createPost" class="btn btnSuccess cWhite s20 text-center noTransform boxShadow pull-right" name="button">Crear</button></form>';
   swal({
     title:'+Publicaciones',
     html: formPosts,
@@ -1561,10 +1561,7 @@ function formPosts(tit,des,fec,file,id){
     showCloseButton: true,
     showConfirmButton: false,
   }).then(function () {})
-}
+}/*----<ul><li><div class="clear"></div><div><label>Lunes</label><label class="switch"><input type="checkbox" id="weekLunes"><div class="slider round"></div></label></div></li><li><div class="clear"></div><div><label>Martes</label><label class="switch"><input type="checkbox" id="weekMartes"><div class="slider round"></div></label></div></li><li><div class="clear"></div><div><label>Miercoles</label><label class="switch"><input type="checkbox" id="weekMiercoles"><div class="slider round"></div></label></div></li><li><div class="clear"></div><div><label>Jueves</label><label class="switch"><input type="checkbox" id="weekJueves"><div class="slider round"></div></label></div></li><li><div class="clear"></div><div><label>Viernes</label><label class="switch"><input type="checkbox" id="weekViernes"><div class="slider round"></div></label></div></li><li><div class="clear"></div><div><label>Sabado</label><label class="switch"><input type="checkbox" id="weekSabado"><div class="slider round"></div></label></div></li><li><div class="clear"></div><div><label>Domingo</label><label class="switch"><input type="checkbox" id="weekDomingo"><div class="slider round"></div></label></div></li></ul>*/
 /*-------------/ABC  tabla Publicaciones-----*/
-
-
-
 $(document).ready(function(){crearTablaAddress();
   crearTablaPosts();});

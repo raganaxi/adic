@@ -68,4 +68,17 @@ if(!isset($_SESSION['rol'])){
   </div>
 </div>
 
-<?php include ('footer.php'); ?>
+
+
+<?php
+/*<ul>
+  <li><div class="clear"></div><div><label>Lunes</label><label class="switch"><input type="checkbox" id="weekLunes"><div class="slider round"></div></label></div></li>
+  <li><div class="clear"></div><div><label>Martes</label><label class="switch"><input type="checkbox" id="weekMartes"><div class="slider round"></div></label></div></li>
+ <li><div class="clear"></div><div><label>Miercoles</label><label class="switch"><input type="checkbox" id="weekMiercoles"><div class="slider round"></div></label></div></li>
+ <li><div class="clear"></div><div><label>Jueves</label><label class="switch"><input type="checkbox" id="weekJueves"><div class="slider round"></div></label></div></li>
+ <li><div class="clear"></div><div><label>Viernes</label><label class="switch"><input type="checkbox" id="weekViernes"><div class="slider round"></div></label></div></li>
+ <li><div class="clear"></div><div><label>Sabado</label><label class="switch"><input type="checkbox" id="weekSabado"><div class="slider round"></div></label></div></li>
+ <li><div class="clear"></div><div><label>Domingo</label><label class="switch"><input type="checkbox" id="weekDomingo"><div class="slider round"></div></label></div></li>
+</ul>
+*/
+ include ('footer.php'); ?>

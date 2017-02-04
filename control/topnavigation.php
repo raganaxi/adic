@@ -21,7 +21,8 @@
             <span class=" fa fa-angle-down"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">
-            <li><a href="profile.php"> Profile</a></li>
+           <li><a href="publicaciones.php"><i class="fa fa-dollar"></i> Publicaciones</a></li>
+            <li><a href="profile.php"><i class="fa fa-users"></i> Cuenta</a></li>
             <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
           </ul>
         </li>

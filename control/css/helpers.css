@@ -1266,8 +1266,11 @@ font-size: 15px;
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 45px;
+  height: 24px;
+
+  float: right;
+  vertical-align: middle;
 }
 
 .switch input {display:none;}
@@ -1287,9 +1290,9 @@ font-size: 15px;
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
+  height: 16px;
+  width: 16px;
+  left: 2px;
   bottom: 4px;
   background-color: white;
   -webkit-transition: .4s;
