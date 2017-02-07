@@ -87,15 +87,15 @@ class admin
     if ($fecha==null) {
         $fecha="";
     }
-    $time = time();
-    $fecha = date("Y-m-d (H:i:s)", $time) ;
+    
     //Cuerpo del email
     $email_message = file_get_contents("../templates/email/cron.html");
-    $email_message = str_replace('###FECHA###', $fecha, $email_message);
-    /*$email_message = str_replace('###USUARIO###', $user, $email_message);
-    $email_message = str_replace('###MAIL###', $mail, $email_message);
-    $email_message = str_replace('###PASSWORD###', $pass, $email_message);
-    $email_message = preg_replace('/\\\\/','', $email_message);*/
+    $email_message = str_replace('####NOOXXO####', '4152 3132 5027 4466', $email_message);
+    $email_message = str_replace('###BANCO###', 'BANCOMER', $email_message);
+    $email_message = str_replace('###NAME###', '', $email_message);
+    $email_message = str_replace('###CUENTA###', '012060011745350812', $email_message);
+    $email_message = str_replace('###CORREO###', 'mexappstore@gmail.com', $email_message);
+    
     $headers = "From: info@adondeirenlaciudad.com\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=utf-8\r\n";
