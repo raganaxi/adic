@@ -50,10 +50,10 @@ class admin
     //Cuerpo del email
     $email_message = file_get_contents("../templates/email/recordatorio.html");
     $email_message = str_replace('####NOOXXO####', '4152 3132 5027 4466', $email_message);
-    $email_message = str_replace('###BANCO###', 'BANCOMER', $email_message);
-    $email_message = str_replace('###NAME###', '', $email_message);
-    $email_message = str_replace('###CUENTA###', '012060011745350812', $email_message);
-    $email_message = str_replace('###CORREO###', 'mexappstore@gmail.com', $email_message);
+    $email_message = str_replace('####BANCO####', 'BANCOMER', $email_message);
+    $email_message = str_replace('####NAME####', '', $email_message);
+    $email_message = str_replace('####CUENTA####', '012060011745350812', $email_message);
+    $email_message = str_replace('####CORREO####', 'mexappstore@gmail.com', $email_message);
    /* $email_message = str_replace('####BANCO####', $nameContact, $email_message);
     $email_message = str_replace('####OTRA####', $user, $email_message);
     $email_message = str_replace('####NAME####', $pass, $email_message);
