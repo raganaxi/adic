@@ -179,16 +179,16 @@ public static function getImgSocio($iduser){
   return $result;
 }
 
-public static function getAddress($categoria){
+public static function getAddress(){
   $db_con = new PDOMYSQL;
   $consulta = "SELECT iduser as userid, if( address.direccion is NULL,'', address.direccion) as direccion, if( address.municipio is NULL,'', address.municipio)  as municipio, if( address.estado is NULL,'', address.estado) as estado, if( address.pais is NULL,'', address.pais) as pais, if( address.cp is NULL,'', address.cp) as cp, if( address.lat is NULL,'', address.lat) as latitud, if( address.long is NULL,'', address.long) as longitud, if( address.idaddress is NULL,'', address.idaddress) as idaddress, if( user_data.negocio is NULL,'Negocio', user_data.negocio) as negocio FROM user INNER JOIN user_data ON user_data.user_id = user.iduser INNER JOIN category on category.idcategory = user_data.category_id inner JOIN address on address.user_id = user_data.user_id WHERE user.role = ? and address.bandera=1 and user.active=1 ";
   $socio='socio';
   $parametros = array($socio);
-  if($categoria!=""){
+  /*if($categoria!=""){
     $consulta.=" and user_data.category_id = ? ";
     $parametros = array($socio,$categoria);
     //var_dump($consulta);
-  }
+  }*/
   $consulta.=" order by userid";
 
   $result =  $db_con->consultaSegura($consulta,$parametros);

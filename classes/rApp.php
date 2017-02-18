@@ -441,7 +441,7 @@ function getPost_function(){
 		default:
 	}
 	$post=posts::getPost($categoria,$fecha);
-	$addresses=posts::getAddress($categoria);
+	$addresses=posts::getAddress();
 	if (!empty($post)){
 		
 		if (!empty($addresses)){
@@ -541,7 +541,7 @@ function getNegocios_function(){
 
 	if (!empty($post)){
 		$datos=$post;
-		$addresses=posts::getAddress($categoria);	
+		$addresses=posts::getAddress();	
 		if (!empty($addresses)){
 			$array = array('negocios' => $post, 'addresses' =>$addresses);
 			$datos=$array;
@@ -589,7 +589,7 @@ function getAddress_function(){
 		break;
 		default:
 	}
-	$addresses=posts::getaddresses($categoria);	
+	$addresses=posts::getaddresses();	
 	if (!empty($addresses)){
 		$datos=$addresses;
 		$continuar="ok";
